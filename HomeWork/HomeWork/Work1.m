@@ -81,7 +81,7 @@
     NSArray *strArray = @[@"cataclism",@"teapot",@"catepillar", @"cat",@"teapot",@"truncate"];
     NSLog(@"Задание 2. Исходный массив строк %@",strArray);
     //2.1. Отфильтруйте так, чтобы остались только строки с префиксом "cat" (Поможет метод строки hasPrefix) с помощью NSPredicate.
-    NSPredicate *catStart = [NSPredicate predicateWithFormat:@"SELF beginswith[s] 'cat'"];
+    NSPredicate *catStart = [NSPredicate predicateWithFormat:@"SELF beginswith 'cat'"];
     NSArray *catArray = [strArray filteredArrayUsingPredicate:catStart];
     //2.2. Полученный массив выведите в консоль.
     NSLog(@"Отфильтрованый массив строк (начинаются с cat) %@",catArray);
