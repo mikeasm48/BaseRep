@@ -35,11 +35,9 @@
 {
     NSSortDescriptor *descriptor =
     [NSSortDescriptor   sortDescriptorWithKey:@"self"
-                        ascending:ascendingSort
-                        selector :@selector(compare:)];
-    
+                                    ascending:ascendingSort
+                                     selector:@selector(compare:)];
     [arrayToSort sortUsingDescriptors:@[descriptor]];
-    
 }
 
 + (void) homeWorkExercise
@@ -58,7 +56,7 @@
             [arrayToExercise addObject:element];
         }
     }
-     NSLog(@"Массив со значениями больше 20: %@",arrayToExercise);
+    NSLog(@"Массив со значениями больше 20: %@",arrayToExercise);
     
     //1.3. Сделайте с помощью цикла массив, содержащий только кратные трём числа.
     for (NSNumber *element in arrayToSort) {
@@ -75,7 +73,7 @@
     //1.5. Отсортируйте его по убыванию.
     //Можно тоже вставками
     //[self insertionSort: arrayToSort inverse:YES];
-    //Но для разнообразия применим сортровку здорового человека
+    //Но для разнообразия применим сортировку здорового человека
     [self descriptorArrayNumberSort: arrayToSort ascending: NO];
     NSLog(@"Итого: все отсортировано по убыванию %@",arrayToSort);
     
@@ -94,6 +92,6 @@
         NSNumber *len = [NSNumber numberWithLong:cat.length];
         [catDic setObject: len forKey:cat];
     }
-    NSLog(@"словарь, содержащий пары слово - количество букв в нём%@",catDic);
+    NSLog(@"словарь, содержащий пары слово - количество букв в нём %@",catDic);
 }
 @end
