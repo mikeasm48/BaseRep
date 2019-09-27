@@ -1,14 +1,18 @@
 //
-//  ViewController.h
+//  Work1.h
 //  HomeWork
 //
 //  Created by Михаил Асмаковец on 26/09/2019.
 //  Copyright © 2019 Михаил Асмаковец. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
-@interface ViewController : UIViewController
+NS_ASSUME_NONNULL_BEGIN
+
+@interface Work1 : NSObject
++ (void) arraysSort;
 
 @end
 
+NS_ASSUME_NONNULL_END
