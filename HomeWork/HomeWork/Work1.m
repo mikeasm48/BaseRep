@@ -75,9 +75,8 @@
     //2.3. Сделайте из полученного массива словарь, содержащий пары слово - количество букв в нём.
     NSMutableDictionary *catDic = [NSMutableDictionary new];
     
-    for (NSArray *cat in catArray) {
-        NSString *str = [NSString stringWithString: cat];
-        NSNumber *len = [NSNumber numberWithLong:str.length];
+    for (NSString *cat in catArray) {
+        NSNumber *len = [NSNumber numberWithLong:cat.length];
         [catDic setObject: len forKey:cat];
     }
     NSLog(@"словарь, содержащий пары слово - количество букв в нём%@",catDic);
