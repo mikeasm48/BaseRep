@@ -30,8 +30,20 @@
         }
     }
 }
+//Сортировка массива с помощью дескриптора Objective C
++ (void) descriptorArrayNumberSort: (NSMutableArray*) arrayToSort ascending:(BOOL) ascendingSort
+{
+    NSSortDescriptor *descriptor =
+    [NSSortDescriptor   sortDescriptorWithKey:@"self"
+                        ascending:ascendingSort
+                        selector :@selector(compare:)];
+    
+    [arrayToSort sortUsingDescriptors:@[descriptor]];
+    
+}
 
-+ (void) arraysSort{
++ (void) homeWorkExercise
+{
     //1. Есть массив чисел 3, 6, 32, 24, 81.
     NSMutableArray *arrayToSort = [NSMutableArray arrayWithObjects:@(3), @(6), @(32), @(24),@(81), nil];
     NSLog(@"Задание 1. Исходный массив: %@",arrayToSort);
@@ -61,7 +73,10 @@
     [arrayToSort addObjectsFromArray:arrayToExercise];
     NSLog(@"Добавил общий результат в исходный отсортированый %@",arrayToSort);
     //1.5. Отсортируйте его по убыванию.
-    [self insertionSort: arrayToSort inverse:YES];
+    //Можно тоже вставками
+    //[self insertionSort: arrayToSort inverse:YES];
+    //Но для разнообразия применим сортровку здорового человека
+    [self descriptorArrayNumberSort: arrayToSort ascending: NO];
     NSLog(@"Итого: все отсортировано по убыванию %@",arrayToSort);
     
     //2. Есть массив строк: "cataclism", "catepillar", "cat", "teapot", "truncate".
