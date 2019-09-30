@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0071C4492341D113000FA128 /* RichGuest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0071C4482341D113000FA128 /* RichGuest.m */; };
 		00C3387523407C1700AE3FFA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C3387423407C1700AE3FFA /* AppDelegate.m */; };
 		00C3387823407C1700AE3FFA /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C3387723407C1700AE3FFA /* SceneDelegate.m */; };
 		00C3387B23407C1700AE3FFA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C3387A23407C1700AE3FFA /* ViewController.m */; };
@@ -20,6 +21,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0071C4462341CD91000FA128 /* GuestProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GuestProtocol.h; sourceTree = "<group>"; };
+		0071C4472341D113000FA128 /* RichGuest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RichGuest.h; sourceTree = "<group>"; };
+		0071C4482341D113000FA128 /* RichGuest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RichGuest.m; sourceTree = "<group>"; };
 		00C3387023407C1700AE3FFA /* HomeWorkDelegate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HomeWorkDelegate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00C3387323407C1700AE3FFA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		00C3387423407C1700AE3FFA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -92,11 +96,14 @@
 			children = (
 				00C3388D234088CA00AE3FFA /* RestaurantProtocol.h */,
 				00C3388E234089D600AE3FFA /* Guest.h */,
+				0071C4472341D113000FA128 /* RichGuest.h */,
+				0071C4482341D113000FA128 /* RichGuest.m */,
 				00C3388F234089D600AE3FFA /* Guest.m */,
 				00C33891234089E400AE3FFA /* Waiter.h */,
 				00C33892234089E400AE3FFA /* Waiter.m */,
 				00C3389423408A7600AE3FFA /* Kitchen.h */,
 				00C3389523408A7600AE3FFA /* Kitchen.m */,
+				0071C4462341CD91000FA128 /* GuestProtocol.h */,
 			);
 			name = Protolols;
 			sourceTree = "<group>";
@@ -175,6 +182,7 @@
 				00C33890234089D600AE3FFA /* Guest.m in Sources */,
 				00C3387523407C1700AE3FFA /* AppDelegate.m in Sources */,
 				00C3388623407C1800AE3FFA /* main.m in Sources */,
+				0071C4492341D113000FA128 /* RichGuest.m in Sources */,
 				00C3387823407C1700AE3FFA /* SceneDelegate.m in Sources */,
 				00C33893234089E400AE3FFA /* Waiter.m in Sources */,
 				00C3389623408A7600AE3FFA /* Kitchen.m in Sources */,

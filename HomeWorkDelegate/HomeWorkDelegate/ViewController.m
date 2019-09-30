@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "RestaurantProtocol.h"
 #import "Guest.h"
+#import "RichGuest.h"
 #import "Waiter.h"
 #import "Kitchen.h"
 
@@ -20,10 +21,23 @@
 
 @implementation ViewController
 
-
+- (BOOL) randomBool {
+    int i = arc4random()%2;
+    return i == 1;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.guest = [[Guest alloc] init];
+    NSLog(@"Начало сценария");
+    if ([self randomBool] )
+    {
+        NSLog(@"Пришел RichGuest");
+        self.guest = [[RichGuest alloc] init];
+    }else
+    {
+        NSLog(@"Пришел Guest");
+       self.guest = [[Guest alloc] init];
+    }
+    
     self.guest.delegate = self;
     self.waiter = [[Waiter alloc] init];
     self.waiter.delegate = self;
@@ -34,7 +48,7 @@
 }
 
 - (void)makeOrder {
-    NSLog(@"Начало сценария");
+
     NSLog(@"Гость делает заказ");
     [self.waiter getOrder];
 }
@@ -50,7 +64,12 @@
 }
 
 - (void) payAndGiveTip {
-    NSLog(@"Гость благодарит и оставляет чаевые");
+    NSLog(@"Гость уходит");
+    if ([self.guest respondsToSelector:@selector(payTip)]){
+        [self.guest payTip];
+    } else {
+        NSLog(@"и не оставляет чаевые");
+    }
     NSLog(@"Сценарий завершен");
 }
 

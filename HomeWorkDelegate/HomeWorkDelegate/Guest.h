@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "RestaurantProtocol.h"
+#import "GuestProtocol.h"
 //Гость в ресторане
-@interface Guest : NSObject
+@interface Guest : NSObject <GuestProtocol>
 
 @property (nonatomic, weak) id <RestaurantProtocol> delegate;
 
