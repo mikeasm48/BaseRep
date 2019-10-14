@@ -7,12 +7,12 @@
 //
 
 #import "RichGuest.h"
-#import "GuestProtocol.h"
 
-@implementation RichGuest:Guest
+@implementation RichGuest: Guest
 
--(void) payTip{
-    NSLog(@"Гость: оставляет чаевые");
+- (void) decideSatisfied{
+    //Happy Path
+    [self.delegate payAndGiveTip];
 }
 
 @end

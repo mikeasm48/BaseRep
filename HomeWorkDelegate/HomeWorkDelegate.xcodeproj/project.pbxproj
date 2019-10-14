@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0031D72E2354496400FE5316 /* Restaurant.m in Sources */ = {isa = PBXBuildFile; fileRef = 0031D72D2354496400FE5316 /* Restaurant.m */; };
 		0071C4492341D113000FA128 /* RichGuest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0071C4482341D113000FA128 /* RichGuest.m */; };
 		00C3387523407C1700AE3FFA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C3387423407C1700AE3FFA /* AppDelegate.m */; };
 		00C3387823407C1700AE3FFA /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C3387723407C1700AE3FFA /* SceneDelegate.m */; };
@@ -21,7 +22,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0071C4462341CD91000FA128 /* GuestProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GuestProtocol.h; sourceTree = "<group>"; };
+		0031D72C2354496400FE5316 /* Restaurant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Restaurant.h; sourceTree = "<group>"; };
+		0031D72D2354496400FE5316 /* Restaurant.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Restaurant.m; sourceTree = "<group>"; };
 		0071C4472341D113000FA128 /* RichGuest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RichGuest.h; sourceTree = "<group>"; };
 		0071C4482341D113000FA128 /* RichGuest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RichGuest.m; sourceTree = "<group>"; };
 		00C3387023407C1700AE3FFA /* HomeWorkDelegate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HomeWorkDelegate.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -103,7 +105,8 @@
 				00C33892234089E400AE3FFA /* Waiter.m */,
 				00C3389423408A7600AE3FFA /* Kitchen.h */,
 				00C3389523408A7600AE3FFA /* Kitchen.m */,
-				0071C4462341CD91000FA128 /* GuestProtocol.h */,
+				0031D72C2354496400FE5316 /* Restaurant.h */,
+				0031D72D2354496400FE5316 /* Restaurant.m */,
 			);
 			name = Protolols;
 			sourceTree = "<group>";
@@ -182,6 +185,7 @@
 				00C33890234089D600AE3FFA /* Guest.m in Sources */,
 				00C3387523407C1700AE3FFA /* AppDelegate.m in Sources */,
 				00C3388623407C1800AE3FFA /* main.m in Sources */,
+				0031D72E2354496400FE5316 /* Restaurant.m in Sources */,
 				0071C4492341D113000FA128 /* RichGuest.m in Sources */,
 				00C3387823407C1700AE3FFA /* SceneDelegate.m in Sources */,
 				00C33893234089E400AE3FFA /* Waiter.m in Sources */,
@@ -325,15 +329,19 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 26LWM2HSCG;
 				INFOPLIST_FILE = HomeWorkDelegate/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "Home-Office.HomeWorkDelegate";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				RESOURCES_TARGETED_DEVICE_FAMILY = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -342,15 +350,19 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 26LWM2HSCG;
 				INFOPLIST_FILE = HomeWorkDelegate/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "Home-Office.HomeWorkDelegate";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				RESOURCES_TARGETED_DEVICE_FAMILY = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

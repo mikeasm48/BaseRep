@@ -8,14 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import "RestaurantProtocol.h"
-#import "GuestProtocol.h"
-//Гость в ресторане
-@interface Guest : NSObject <GuestProtocol>
 
+//Гость в ресторане
+@interface Guest : NSObject
+//Делегат: протокол ресторана
 @property (nonatomic, weak) id <RestaurantProtocol> delegate;
 
-- (void) visitRestaurant;
+//Посетить ресторан
+- (void) visit: (id <RestaurantProtocol>) restaurant;
 
+//Принять решение об оплате: с чаевыми или без
 - (void) decideSatisfied;
 
 @end

@@ -8,6 +8,7 @@
 
 #import "Guest.h"
 
-@interface RichGuest : Guest
+//Гость в ресторане с ресурсами, всегда оставляет чаевые
+@interface RichGuest: Guest
 
 @end

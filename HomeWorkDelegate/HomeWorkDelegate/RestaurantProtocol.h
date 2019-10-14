@@ -13,6 +13,10 @@
 - (void) processOrderToKitchen;
 //Кухня передаёт его официанту и он приносит гостю
 - (void) deliverOrderToGuest;
+//Гость получает заказ и принимает решение
+- (void) decideForPayment;
 //Гость может поблагодарить и оставить чаевые
 - (void) payAndGiveTip;
+//Гость может не оставить чаевые
+- (void) payAndGiveNoTip;
 @end

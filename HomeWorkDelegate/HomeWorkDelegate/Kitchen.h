@@ -11,9 +11,9 @@
 
 //Кухня
 @interface Kitchen : NSObject
-
+//Делегат: протокол ресторана
 @property (nonatomic, weak) id <RestaurantProtocol> delegate;
-
+//Начало приготовления блюда
 - (void) startCooking;
 @end
 

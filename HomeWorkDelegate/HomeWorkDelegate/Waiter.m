@@ -15,6 +15,7 @@
 }
 
 - (void) completeOrder{
-    [self.delegate payAndGiveTip];
+    [self.delegate decideForPayment];
 }
+
 @end

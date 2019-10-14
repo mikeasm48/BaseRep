@@ -10,11 +10,11 @@
 
 //Официант
 @interface Waiter : NSObject
-
+//Делегат: протокол ресторана
 @property (nonatomic, weak) id <RestaurantProtocol> delegate;
-
+//Получить заказ
 - (void) getOrder;
-
+//Выполнить заказ
 - (void) completeOrder;
 
 @end

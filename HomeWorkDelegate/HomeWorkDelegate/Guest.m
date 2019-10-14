@@ -10,12 +10,14 @@
 
 @implementation Guest
 
-- (void)visitRestaurant { 
+- (void) visit : (id <RestaurantProtocol>) restaurant {
+    self.delegate = restaurant;
     [self.delegate makeOrder];
 }
 
 - (void) decideSatisfied{
     //Happy Path
-    [self.delegate payAndGiveTip];
+    [self.delegate payAndGiveNoTip];
 }
+
 @end
