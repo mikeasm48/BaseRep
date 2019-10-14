@@ -11,7 +11,7 @@
 
 //Ресторан
 @interface Restaurant <RestaurantProtocol> : NSObject
-
+//Конструктор с гостем
 - (instancetype)init: (Guest*) withGuest;
 
 @end
