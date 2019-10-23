@@ -13,7 +13,7 @@ class TableViewCell: UITableViewCell {
         super.prepareForReuse()
         self.accessoryType = .none
     }
-    //Устанавливаем стиль с сабтитлом
+    //Устанавливаем стиль с сабтайтлом
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: UITableViewCell.CellStyle.subtitle, reuseIdentifier: reuseIdentifier)
     }

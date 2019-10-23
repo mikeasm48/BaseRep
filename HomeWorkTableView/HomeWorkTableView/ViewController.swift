@@ -14,7 +14,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     
     let textField : UITextField = {
         
-        let textField = UITextField(frame: CGRect(x: 25.0, y: 300.0, width: 300.0, height: 40.0))
+        let textField = UITextField(frame: CGRect(x: 10.0, y: 120.0, width: 300.0, height: 100.0))
         return textField
     }()
     

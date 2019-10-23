@@ -48,6 +48,10 @@ class RootViewController: UIViewController, UITableViewDelegate {
         return UITableView.automaticDimension
     }
     
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+    
     //Передаем данные для редактирования
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         dataSource.setCurrent(indexPath.section, element: indexPath.row)
