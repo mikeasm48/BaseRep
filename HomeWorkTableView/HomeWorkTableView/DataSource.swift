@@ -9,22 +9,21 @@
 import UIKit
 class DataSource : NSObject, UITableViewDataSource {
     
-    private var sections: Array = [["Sign In To Your iPhone"],
+    private var sections: Array =
+                            [["Sign In To Your iPhone"],
                             ["General", "Privacy"],
                             ["Passwords & Accounts"],
                             ["Maps", "Safari", "News", "Siri","Photos", "Game Center"],
                             ["Developer"]]
    
-    //TODO делать копию sections при иницализации
-    private var pictures: Array = [["Sign In To Your iPhone"],
-                                   ["General", "Privacy"],
-                                   ["Passwords & Accounts"],
-                                   ["Maps", "Safari", "News", "Siri","Photos", "Game Center"],
-                                   ["Developer"]]
+    private var pictures: Array<[String]>
     
     private var currentSection  = 0
     private var currentElement  = 0
     
+    override init() {
+        pictures = Array(sections)
+    }
     
     func setCurrent(_ section: Int, element: Int){
         currentSection = section
@@ -49,11 +48,15 @@ class DataSource : NSObject, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TableViewCell", for: indexPath) as UITableViewCell
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TableViewCell", for: indexPath) as! TableViewCell
         cell.accessoryType = .disclosureIndicator
 
         cell.textLabel?.text = sections[indexPath.section][indexPath.row]
+        
+        if (indexPath.section == 0) {
+            cell.detailTextLabel?.text = "Set up iCloud, the AppStore, and more"
+            cell.textLabel?.textColor = UIColor.blue
+        }
         
         cell.imageView?.image = UIImage(named: pictures[indexPath.section][indexPath.row] )
         

@@ -11,7 +11,6 @@ import UIKit
 class RootViewController: UIViewController, UITableViewDelegate {
     
     let viewController : ViewController = ViewController()
-    
     let dataSource = DataSource()
     let tableView = UITableView.init(frame: .zero, style: UITableView.Style.grouped)
     
@@ -39,6 +38,14 @@ class RootViewController: UIViewController, UITableViewDelegate {
         viewController.dataSource = dataSource
     }
     
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if (indexPath.section == 0){
+            return 80
+        }
+        return UITableView.automaticDimension
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         dataSource.setCurrent(indexPath.section, element: indexPath.row)
         pushViewToEdit()
@@ -55,10 +62,12 @@ class RootViewController: UIViewController, UITableViewDelegate {
         navigationController?.pushViewController(viewController, animated: true)
     }
     
-    class TableViewCell: UITableViewCell {
-        override func prepareForReuse() {
-            super.prepareForReuse()
-            self.accessoryType = .none
-        }
-    }
+//    class TableViewCell: UITableViewCell {
+//        @IBOutlet var plantDescription : UILabel?
+//        override func prepareForReuse() {
+//            super.prepareForReuse()
+//            self.accessoryType = .none
+//        }
+//    }
+    
 }

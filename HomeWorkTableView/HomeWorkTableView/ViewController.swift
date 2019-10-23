@@ -10,8 +10,6 @@ import UIKit
 
 class ViewController: UIViewController, UINavigationControllerDelegate {
     
-    var timer: Timer?
-    
     var dataSource: DataSource?
     
     let textField : UITextField = {
@@ -29,10 +27,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        let textToEdit = getTextToEdit()
-        print(textToEdit)
-        textField.text = textToEdit
-        //button.setTitle(textToEdit, for: .normal)
+        textField.text = getTextToEdit()
         view.backgroundColor = UIColor.cyan
         navigationController?.delegate = self
         
@@ -40,12 +35,10 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     }
     
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
-        print(viewController)
         guard let text = textField.text else {
             return
         }
         dataSource?.setCurrentData(text)
     }
-    
 }
 

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		000FBD21236061DA0026BC1D /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000FBD20236061DA0026BC1D /* DataSource.swift */; };
 		000FBD23236061EB0026BC1D /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000FBD22236061EB0026BC1D /* RootViewController.swift */; };
+		000FBD2523607FE40026BC1D /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000FBD2423607FE40026BC1D /* TableViewCell.swift */; };
 		00F2FE09235D79DA0022EECA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F2FE08235D79DA0022EECA /* AppDelegate.swift */; };
 		00F2FE0B235D79DA0022EECA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F2FE0A235D79DA0022EECA /* ViewController.swift */; };
 		00F2FE10235D79DB0022EECA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00F2FE0F235D79DB0022EECA /* Assets.xcassets */; };
@@ -18,6 +19,7 @@
 /* Begin PBXFileReference section */
 		000FBD20236061DA0026BC1D /* DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
 		000FBD22236061EB0026BC1D /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		000FBD2423607FE40026BC1D /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		00F2FE05235D79DA0022EECA /* HomeWorkTableView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HomeWorkTableView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00F2FE08235D79DA0022EECA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		00F2FE0A235D79DA0022EECA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 				00F2FE0F235D79DB0022EECA /* Assets.xcassets */,
 				00F2FE11235D79DB0022EECA /* LaunchScreen.storyboard */,
 				00F2FE14235D79DB0022EECA /* Info.plist */,
+				000FBD2423607FE40026BC1D /* TableViewCell.swift */,
 			);
 			path = HomeWorkTableView;
 			sourceTree = "<group>";
@@ -137,6 +140,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				000FBD2523607FE40026BC1D /* TableViewCell.swift in Sources */,
 				000FBD21236061DA0026BC1D /* DataSource.swift in Sources */,
 				00F2FE0B235D79DA0022EECA /* ViewController.swift in Sources */,
 				000FBD23236061EB0026BC1D /* RootViewController.swift in Sources */,
