@@ -9,9 +9,11 @@
 import UIKit
 
 class RootViewController: UIViewController, UITableViewDelegate {
-    
+    //Контроллер для редактирования
     let viewController : ViewController = ViewController()
+    //DS
     let dataSource = DataSource()
+    //Таблица
     let tableView = UITableView.init(frame: .zero, style: UITableView.Style.grouped)
     
     override func viewWillAppear(_ animated: Bool) {
@@ -38,7 +40,7 @@ class RootViewController: UIViewController, UITableViewDelegate {
         viewController.dataSource = dataSource
     }
     
-    
+    //Устанавливаем кастомную высоту первой строки
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if (indexPath.section == 0){
             return 80
@@ -46,28 +48,20 @@ class RootViewController: UIViewController, UITableViewDelegate {
         return UITableView.automaticDimension
     }
     
+    //Передаем данные для редактирования
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         dataSource.setCurrent(indexPath.section, element: indexPath.row)
         pushViewToEdit()
     }
-    
-    
+    //Пушится вьюха редактирования
     func pushViewToEdit () {
+        // Аницация
         let transition = CATransition()
         transition.duration = 1.5
         transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
         transition.type = CATransitionType.fade
         navigationController?.view.layer.add(transition, forKey: "transition")
-        
+        //Push
         navigationController?.pushViewController(viewController, animated: true)
     }
-    
-//    class TableViewCell: UITableViewCell {
-//        @IBOutlet var plantDescription : UILabel?
-//        override func prepareForReuse() {
-//            super.prepareForReuse()
-//            self.accessoryType = .none
-//        }
-//    }
-    
 }

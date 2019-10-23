@@ -18,6 +18,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         return textField
     }()
     
+    //Безопасно распаквываем данные для редактирования
     func getTextToEdit () -> String {
         guard let text = dataSource?.getCurrentData() else {
             return "no text to edit"
@@ -34,6 +35,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         view.addSubview(textField)
     }
     
+    //Вовзращаем отредактированные данные
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
         guard let text = textField.text else {
             return
