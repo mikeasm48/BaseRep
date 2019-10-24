@@ -12,9 +12,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     
     var dataSource: DataSource?
     
-    let textField : UITextField = {
-        
-        let textField = UITextField(frame: CGRect(x: 10.0, y: 120.0, width: 300.0, height: 100.0))
+    let textField : UITextView = {
+        let textField = UITextView(frame: CGRect(x: 10.0, y: 120.0, width: 300.0, height: 300.0))
         return textField
     }()
     
@@ -31,6 +30,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         textField.text = getTextToEdit()
         view.backgroundColor = UIColor.cyan
         navigationController?.delegate = self
+
         
         view.addSubview(textField)
     }
