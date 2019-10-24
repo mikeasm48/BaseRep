@@ -30,8 +30,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         textField.text = getTextToEdit()
         view.backgroundColor = UIColor.cyan
         navigationController?.delegate = self
-
-        
+        textField.frame = self.view.frame
         view.addSubview(textField)
     }
     

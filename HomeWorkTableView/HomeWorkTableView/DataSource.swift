@@ -39,7 +39,6 @@ class DataSource : NSObject, UITableViewDataSource {
         return sections [currentSection][currentElement]
     }
     
-    
     func setCurrentData(_ data: String){
         sections [currentSection][currentElement] = data
     }
@@ -66,9 +65,7 @@ class DataSource : NSObject, UITableViewDataSource {
         cell.imageView?.image = UIImage(named: pictures[indexPath.section][indexPath.row] )
         
         cell.textLabel?.numberOfLines = 0
-        
-        print("Cell: " + cell.textLabel!.frame.size.width.description)
-        
+
         return cell
     }
 }

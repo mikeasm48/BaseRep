@@ -40,33 +40,23 @@ class RootViewController: UIViewController, UITableViewDelegate {
         viewController.dataSource = dataSource
     }
     
-    
-    
     //Устанавливаем кастомную высоту первой строки
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let minimumHeightForFirst = CGFloat(80)
-        let minimumHeight = CGFloat(40)
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+        let stringToFit = dataSource.getData(for: indexPath)
+        let fontToFit = UIFont(name: "UICTFont", size: 17)
         
-        print(indexPath.section.description + "/" + indexPath.row.description)
-        //print(tableView.numberOfRows(inSection: indexPath.section))
-        //!!!!!Здесь всегда идет в ELSE
-        guard let cell = tableView.cellForRow(at: indexPath) else {
-            if (indexPath.section == 0){
-                return minimumHeightForFirst
-            }
-            return minimumHeight
+        label.text = stringToFit
+        label.font = fontToFit
+        label.numberOfLines = 0
+        label.sizeToFit()
+        let calculatedCellSize = label.sizeThatFits(CGSize(width: CGFloat(414), height: CGFloat.greatestFiniteMagnitude))
+        
+        if (indexPath.section == 0) {
+            return calculatedCellSize.height * 2 + 40
         }
+        return calculatedCellSize.height * 2 + 10
 
-        
-        //        let cellLength = cell.textLabel!.frame.size.width
-        
-//        let cellLength = CGFloat(300)
-//        let label = UILabel(frame: tableView.frame)
-//        label.text = dataSource.getData(for: indexPath)
-//        let calculatedCellSize = label.sizeThatFits(CGSize(width: cellLength, height: CGFloat.greatestFiniteMagnitude))
-        //dfprint (calculatedCellSize)
-        //return calculatedCellSize.height
-        return UITableView.automaticDimension
     }
     
     //Передаем данные для редактирования
@@ -74,6 +64,7 @@ class RootViewController: UIViewController, UITableViewDelegate {
         dataSource.setCurrent(indexPath.section, element: indexPath.row)
         pushViewToEdit()
     }
+    
     //Пушится вьюха редактирования
     func pushViewToEdit () {
         // Аницация
