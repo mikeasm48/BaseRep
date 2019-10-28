@@ -47,12 +47,12 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         let screenWidth = view.frame.size.width
         
-        imageView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenWidth)
-        imageView.image = UIImage(named: "DefaultPicture")
-        imageView.contentMode = .scaleAspectFill
+        imageView.frame = CGRect(x: 0, y: 100, width: screenWidth, height: screenWidth)
+        
+        imageView.contentMode = .scaleAspectFit
         view.addSubview(imageView)
         currentImageView = imageView
-        
+        initDefaultPicture()
         moveButtonToPositionY(button: buttonShowPicture, dY: screenWidth - 100)
         moveButtonToPositionY(button: buttonLoadPicture, dY: screenWidth - 50)
         moveButtonToPositionY(button: buttonClearCache, dY: screenWidth)
@@ -60,15 +60,19 @@ class ViewController: UIViewController {
         view.addSubview(buttonLoadPicture)
         view.addSubview(buttonClearCache)
         
-        downloadImage { image, error in
-            DispatchQueue.main.async {
-                self.currentImageView.image = image
-            }
-        }
+//        downloadImage { image, error in
+//            DispatchQueue.main.async {
+//                self.currentImageView.image = image
+//            }
+//        }
     }
     
     func moveButtonToPositionY(button: UIButton, dY: CGFloat){
         button.frame =  buttonClearCache.frame.offsetBy(dx: CGFloat(0), dy: CGFloat(dY))
+    }
+    
+    func initDefaultPicture(){
+        imageView.image = UIImage(named: "DefaultPicture")
     }
     
     //Move to another module
@@ -93,6 +97,7 @@ class ViewController: UIViewController {
     
     //Нажатие кнопк старта анимации
     @objc func tapButtonShowPicture () {
+        initDefaultPicture()
     }
     
     //Нажатие кнопк старта анимации
