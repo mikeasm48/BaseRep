@@ -12,7 +12,6 @@ class ViewController: UIViewController {
     
     var presenter: PresenterInputProtocol?
     var imageView = UIImageView ()
-    //@IBOutlet weak var currentImageView: UIImageView!
     
     let buttonShowPicture : UIButton = {
         let button = UIButton(type: .custom)
@@ -52,7 +51,6 @@ class ViewController: UIViewController {
         
         imageView.contentMode = .scaleAspectFit
         view.addSubview(imageView)
-        //currentImageView = imageView
         initDefaultPicture()
         moveButtonToPositionY(button: buttonShowPicture, dY: screenWidth - 100)
         moveButtonToPositionY(button: buttonLoadPicture, dY: screenWidth - 50)
@@ -60,12 +58,6 @@ class ViewController: UIViewController {
         view.addSubview(buttonShowPicture)
         view.addSubview(buttonLoadPicture)
         view.addSubview(buttonClearCache)
-        
-//        downloadImage { image, error in
-//            DispatchQueue.main.async {
-//                self.currentImageView.image = image
-//            }
-//        }
     }
     
     func moveButtonToPositionY(button: UIButton, dY: CGFloat){
@@ -76,18 +68,15 @@ class ViewController: UIViewController {
         imageView.image = UIImage(named: "DefaultPicture")
     }
     
-    //Нажатие кнопк старта анимации
     @objc func tapButtonShowPicture () {
         initDefaultPicture()
         //TODO: do smth else
     }
     
-    //Нажатие кнопк старта анимации
     @objc func tapButtonLoadPicture () {
         presenter?.showPicture()
     }
     
-    //Нажатие кнопк старта анимации
     @objc func tapButtonClearCache () {
         //TODO: do smth
     }
