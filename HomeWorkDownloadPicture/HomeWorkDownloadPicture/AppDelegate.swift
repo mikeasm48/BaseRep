@@ -15,11 +15,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        // Init view controller
         self.window = UIWindow(frame: UIScreen.main.bounds)
-        self.window?.rootViewController = ViewController()
+        let viewController = ViewController()
+        self.window?.rootViewController = viewController
         self.window?.backgroundColor = UIColor.white
         self.window?.makeKeyAndVisible()
+        
+        //Init VIPER modules
+        let presenter = Presenter()
+        let interactor = Interactor()
+        //Init presenter
+        presenter.interactor = interactor
+        presenter.output = viewController
+        //Init interactor
+        interactor.output = presenter
+        //Init view
+        viewController.presenter = presenter
+        //
         return true
     }
 

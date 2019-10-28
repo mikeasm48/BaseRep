@@ -10,8 +10,9 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    var presenter: PresenterInputProtocol?
     var imageView = UIImageView ()
-    @IBOutlet weak var currentImageView: UIImageView!
+    //@IBOutlet weak var currentImageView: UIImageView!
     
     let buttonShowPicture : UIButton = {
         let button = UIButton(type: .custom)
@@ -51,7 +52,7 @@ class ViewController: UIViewController {
         
         imageView.contentMode = .scaleAspectFit
         view.addSubview(imageView)
-        currentImageView = imageView
+        //currentImageView = imageView
         initDefaultPicture()
         moveButtonToPositionY(button: buttonShowPicture, dY: screenWidth - 100)
         moveButtonToPositionY(button: buttonLoadPicture, dY: screenWidth - 50)
@@ -75,42 +76,27 @@ class ViewController: UIViewController {
         imageView.image = UIImage(named: "DefaultPicture")
     }
     
-    //Move to another module
-    
-    
-    func downloadImage(completion: @escaping (UIImage?, Error?) -> Void) {
-        guard let url = URL(string:"http://icons.iconarchive.com/icons/dtafalonso/ios8/512/Calendar-icon.png") else { return }
-        
-        let task = URLSession.shared.dataTask(with: url) { data, response, error in
-            if let currentError = error {
-                completion(nil, currentError)
-                return
-            }
-            
-            guard let currentData = data else { return }
-            let image = UIImage(data: currentData)
-            completion(image, nil)
-        }
-        
-        task.resume()
-    }
-    
     //Нажатие кнопк старта анимации
     @objc func tapButtonShowPicture () {
         initDefaultPicture()
+        //TODO: do smth else
     }
     
     //Нажатие кнопк старта анимации
     @objc func tapButtonLoadPicture () {
-        downloadImage { image, error in
-            DispatchQueue.main.async {
-                self.imageView.image = image
-            }
-        }
+        presenter?.showPicture()
     }
     
     //Нажатие кнопк старта анимации
     @objc func tapButtonClearCache () {
+        //TODO: do smth
     }
+}
+
+extension ViewController: PresenterOutputProtocol {
+    func showLoadedPicture(picture: UIImage) {
+        imageView.image = picture
+    }
+    
 }
 
