@@ -7,7 +7,6 @@
 //
 
 import UIKit
-//TODO raise and process errors
 
 protocol InteractorInputProtocol {
     func loadPicture()
@@ -16,7 +15,7 @@ protocol InteractorInputProtocol {
 
 protocol InteractorOutputProtocol {
     func setPicture (picture: UIImage)
-    
+    func errorGetPicture(errorText: String)
 }
 
 class Interactor: InteractorInputProtocol {
@@ -52,6 +51,10 @@ class Interactor: InteractorInputProtocol {
             print("have got pictire from cache")
         } else {
             downloadImage { image, error in
+                if  (error != nil) {
+                    self.output?.errorGetPicture(errorText: "Невозможно загрузить изображение")
+                    return
+                }
                 DispatchQueue.main.async {
                     self.cache.setObject(image!, forKey: cacheKey)
                     self.output?.setPicture(picture: image!)

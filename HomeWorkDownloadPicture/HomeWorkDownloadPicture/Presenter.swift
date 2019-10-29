@@ -15,6 +15,7 @@ protocol PresenterInputProtocol {
 
 protocol PresenterOutputProtocol {
     func showLoadedPicture(picture: UIImage)
+    func showError (error: String)
 }
 
 class Presenter: PresenterInputProtocol, InteractorOutputProtocol {
@@ -31,5 +32,9 @@ class Presenter: PresenterInputProtocol, InteractorOutputProtocol {
     
     func clearCachedPicture(){
         interactor?.clearCache()
+    }
+    
+    func errorGetPicture(errorText: String) {
+        output?.showError(error: errorText)
     }
 }

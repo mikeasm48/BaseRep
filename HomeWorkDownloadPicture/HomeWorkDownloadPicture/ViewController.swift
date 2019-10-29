@@ -87,5 +87,13 @@ extension ViewController: PresenterOutputProtocol {
         imageView.image = picture
     }
     
+    func showError (error: String) {
+        print("(ViewController) here we are with error: " + error)
+        let alertController = UIAlertController(title: "Ошибка", message: error, preferredStyle: .alert)
+        let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        alertController.addAction(action)
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
 }
 
