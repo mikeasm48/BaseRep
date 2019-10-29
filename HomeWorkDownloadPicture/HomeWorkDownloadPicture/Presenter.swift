@@ -10,6 +10,7 @@ import UIKit
 
 protocol PresenterInputProtocol {
     func showPicture()
+    func clearCachedPicture()
 }
 
 protocol PresenterOutputProtocol {
@@ -26,5 +27,9 @@ class Presenter: PresenterInputProtocol, InteractorOutputProtocol {
     
     func setPicture(picture: UIImage) {
         output?.showLoadedPicture(picture: picture)
+    }
+    
+    func clearCachedPicture(){
+        interactor?.clearCache()
     }
 }

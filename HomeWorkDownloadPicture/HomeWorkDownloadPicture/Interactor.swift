@@ -8,9 +8,10 @@
 
 import UIKit
 //TODO raise and process errors
-//TODO cache operations
+
 protocol InteractorInputProtocol {
     func loadPicture()
+    func clearCache()
 }
 
 protocol InteractorOutputProtocol {
@@ -20,6 +21,12 @@ protocol InteractorOutputProtocol {
 
 class Interactor: InteractorInputProtocol {
     var output: InteractorOutputProtocol?
+    let cache = NSCache<NSString, UIImage>()
+    
+    func clearCache() {
+        cache.removeAllObjects()
+        print("clear cache")
+    }
     
     func downloadImage(completion: @escaping (UIImage?, Error?) -> Void) {
         guard let url = URL(string:"http://icons.iconarchive.com/icons/dtafalonso/ios8/512/Calendar-icon.png") else { return }
@@ -39,9 +46,17 @@ class Interactor: InteractorInputProtocol {
     }
     
     func loadPicture() {
-        downloadImage { image, error in
-            DispatchQueue.main.async {
-                self.output?.setPicture(picture: image!)
+        let cacheKey: NSString = "CachedImage"
+        if let cachedImage = cache.object(forKey: cacheKey){
+            self.output?.setPicture(picture: cachedImage)
+            print("have got pictire from cache")
+        } else {
+            downloadImage { image, error in
+                DispatchQueue.main.async {
+                    self.cache.setObject(image!, forKey: cacheKey)
+                    self.output?.setPicture(picture: image!)
+                    print("have got pictire from intenet")
+                }
             }
         }
     }

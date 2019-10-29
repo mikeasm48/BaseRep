@@ -78,7 +78,7 @@ class ViewController: UIViewController {
     }
     
     @objc func tapButtonClearCache () {
-        //TODO: do smth
+        presenter?.clearCachedPicture()
     }
 }
 
