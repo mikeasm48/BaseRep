@@ -10,6 +10,7 @@ import UIKit
 
 protocol InteractorInputProtocol {
     func loadPicture()
+    func loadPictureWithError()
     func clearCache()
 }
 
@@ -21,6 +22,9 @@ protocol InteractorOutputProtocol {
 class Interactor: InteractorInputProtocol {
     var output: InteractorOutputProtocol?
     let cache = NSCache<NSString, UIImage>()
+    let defaultURL = "http://icons.iconarchive.com/icons/dtafalonso/ios8/512/Calendar-icon.png"
+    let wrongURL = "http://noicons.noiconarchive.com/_icons/dtafalonsoxxx/ios8/512/Calendar-icon.png"
+    var currentURL = ""
     
     func clearCache() {
         cache.removeAllObjects()
@@ -28,7 +32,7 @@ class Interactor: InteractorInputProtocol {
     }
     
     func downloadImage(completion: @escaping (UIImage?, Error?) -> Void) {
-        guard let url = URL(string:"http://icons.iconarchive.com/icons/dtafalonso/ios8/512/Calendar-icon.png") else { return }
+        guard let url = URL(string:currentURL) else { return }
         
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
             if let currentError = error {
@@ -40,11 +44,19 @@ class Interactor: InteractorInputProtocol {
             let image = UIImage(data: currentData)
             completion(image, nil)
         }
-        
         task.resume()
     }
     
     func loadPicture() {
+        processLoadingPicture(url: defaultURL)
+    }
+    
+    func loadPictureWithError() {
+        processLoadingPicture(url: wrongURL)
+    }
+    
+    private func processLoadingPicture (url: String){
+        currentURL = url
         let cacheKey: NSString = "CachedImage"
         if let cachedImage = cache.object(forKey: cacheKey){
             self.output?.setPicture(picture: cachedImage)
@@ -53,6 +65,7 @@ class Interactor: InteractorInputProtocol {
             downloadImage { image, error in
                 if  (error != nil) {
                     self.output?.errorGetPicture(errorText: "Невозможно загрузить изображение")
+                    print("что-то пошло не так, валимся с ошибкой")
                     return
                 }
                 DispatchQueue.main.async {

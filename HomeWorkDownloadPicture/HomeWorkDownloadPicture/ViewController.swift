@@ -33,6 +33,16 @@ class ViewController: UIViewController {
         return button
     }()
     
+    let buttonLoadPictureError : UIButton = {
+        let button = UIButton(type: .custom)
+        button.setTitle("Load Picture Error", for: .normal)
+        button.backgroundColor = UIColor.red
+        button.setTitleColor(UIColor.black, for: .normal)
+        button.addTarget(self, action:  #selector(tapButtonLoadPictureError), for:.touchDown)
+        button.frame = CGRect(x: 100, y:250, width: 200.0, height: 40.0)
+        return button
+    }()
+    
     let buttonClearCache : UIButton = {
         let button = UIButton(type: .custom)
         button.setTitle("Clear Cache", for: .normal)
@@ -52,11 +62,13 @@ class ViewController: UIViewController {
         imageView.contentMode = .scaleAspectFit
         view.addSubview(imageView)
         initDefaultPicture()
-        moveButtonToPositionY(button: buttonShowPicture, dY: screenWidth - 100)
-        moveButtonToPositionY(button: buttonLoadPicture, dY: screenWidth - 50)
+        moveButtonToPositionY(button: buttonShowPicture, dY: screenWidth - 150)
+        moveButtonToPositionY(button: buttonLoadPicture, dY: screenWidth - 100)
+        moveButtonToPositionY(button: buttonLoadPictureError, dY: screenWidth - 50)
         moveButtonToPositionY(button: buttonClearCache, dY: screenWidth)
         view.addSubview(buttonShowPicture)
         view.addSubview(buttonLoadPicture)
+        view.addSubview(buttonLoadPictureError)
         view.addSubview(buttonClearCache)
     }
     
@@ -75,6 +87,10 @@ class ViewController: UIViewController {
     
     @objc func tapButtonLoadPicture () {
         presenter?.showPicture()
+    }
+    
+    @objc func tapButtonLoadPictureError () {
+        presenter?.showPictureWithProblem()
     }
     
     @objc func tapButtonClearCache () {
