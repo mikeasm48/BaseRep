@@ -36,6 +36,13 @@ class ViewController: UIViewController, UIScrollViewDelegate {
             let deltaX = CGFloat(10 + stageViewWidth * stageCounter)
             stageHolder.stage?.setPosition(x: deltaX, y: stageViewUpperBound)
             stageCounter += 1
+            if (stageCounter == 1) {
+                stageHolder.stage?.addTask()
+                stageHolder.stage?.addTask()
+                stageHolder.stage?.addTask()
+                stageHolder.stage?.addTask()
+                stageHolder.stage?.addTask()
+            }
         }
     }
 

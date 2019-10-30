@@ -14,18 +14,23 @@ class StageView: NSObject, UICollectionViewDelegate, UICollectionViewDataSource,
     
     var collectionView: UICollectionView!
     //var isToggled: Bool = false;
-    //TODO изменяяем на 20 - полэкрана, ставим 50 - и на весь экран по вышине! разобраться
+    //TODO изменяяем на 20 - треть экрана, ставим 50 - полэкрана, 100 - и на весь экран по вышине! разобраться
     let cellHeight: CGFloat = 100.0
     let cellSpacing: CGFloat = 10.0
     let cellSectionSpacing: CGFloat = 15.0
     
     var itemsArray: Array<String> = {
-        let array: Array<String> = ["TASK-1", "TASK-2", "TASK-3","TASK-4", "TASK-5", "TASK-6", "TASK-7", "TASK-8", "TASK-9", "TASK-10","TASK-1", "TASK-2", "TASK-3","TASK-4", "TASK-5", "TASK-6", "TASK-7", "TASK-8", "TASK-9", "TASK-10"]
+        let array: Array<String> = []
         return array
     }()
     
     var collectionViewHeight:CGFloat {
-        return (cellHeight + cellSpacing)  * CGFloat(itemsArray.count)
+        let height = itemsArray.count < 10 ? 10 : itemsArray.count
+        return (cellHeight + cellSpacing)  * CGFloat(height)
+    }
+    
+    func addTask () {
+        itemsArray.append("Task-" + String(itemsArray.count + 1))
     }
     
     override init() {
@@ -42,7 +47,6 @@ class StageView: NSObject, UICollectionViewDelegate, UICollectionViewDataSource,
         
         collectionView.backgroundColor = .lightGray
         collectionView.register(TaskItemCollectionViewCell.self, forCellWithReuseIdentifier: "menuCell")
-        
     }
     
     public func setPosition(x: CGFloat, y: CGFloat){
@@ -64,7 +68,6 @@ class StageView: NSObject, UICollectionViewDelegate, UICollectionViewDataSource,
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "menuCell", for: indexPath) as! TaskItemCollectionViewCell
         cell.backgroundColor = .yellow;
         cell.textLabel.text = itemsArray[indexPath.row]
-        //cell.picture.image = UIImage(named: itemsArray[indexPath.row])
         return cell
     }
     
@@ -108,7 +111,6 @@ class StageView: NSObject, UICollectionViewDelegate, UICollectionViewDataSource,
             coordinator.drop(items.first!.dragItem, toItemAt: dIndexPath)
         }
     }
-
 }
 
 //Drag & Drop
@@ -122,13 +124,6 @@ extension StageView: UICollectionViewDragDelegate {
         
         return [dragItem]
     }
-    
-    //func collectionView(_ collectionView: UICollectionView, dragPreviewParametersForItemAt indexPath: IndexPath) -> UIDragPreviewParameters?
-    //{
-    //        let previewParameters = UIDragPreviewParameters()
-    //        previewParameters.visiblePath = UIBezierPath(rect: CGRect(x: 25, y: 25, width: 120, height: 120))
-    //        return previewParameters
-    //}
 }
 
 
@@ -141,6 +136,7 @@ extension StageView : UICollectionViewDropDelegate {
     
     func collectionView(_ collectionView: UICollectionView, dropSessionDidUpdate session: UIDropSession, withDestinationIndexPath destinationIndexPath: IndexPath?) -> UICollectionViewDropProposal
     {
+        //TODO так не дает переносить в соседний StageView
         if collectionView.hasActiveDrag
         {
             return UICollectionViewDropProposal(operation: .move, intent: .insertAtDestinationIndexPath)
@@ -149,6 +145,8 @@ extension StageView : UICollectionViewDropDelegate {
         {
             return UICollectionViewDropProposal(operation: .forbidden)
         }
+        // TODO а так дает переносить но не переносит реально
+//        return UICollectionViewDropProposal(operation: .move, intent: .insertAtDestinationIndexPath)
     }
     
     func collectionView(_ collectionView: UICollectionView, performDropWith coordinator: UICollectionViewDropCoordinator)

@@ -28,9 +28,6 @@ class TaskItemCollectionViewCell: UICollectionViewCell {
         textLabel.textAlignment = .center
         textLabel.textColor = .blue
         contentView.addSubview(textLabel)
-        
-        //        picture.frame = CGRect(x: 0, y: 0, width: frame.width, height: frame.height)
-        //        contentView.addSubview(picture)
     }
     
     required init?(coder aDecoder: NSCoder) {
