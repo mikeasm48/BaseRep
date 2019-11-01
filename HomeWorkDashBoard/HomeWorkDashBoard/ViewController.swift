@@ -32,9 +32,11 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         let stageViewUpperBound = navigationBar.frame.height + 10
         let stageViewWidth = (screenWidth + (stages.count))/stages.count
         var stageCounter = 0
+        let exchanhgeHeplper = ExchangeItemHelper()
         for stageHolder in stages {
             let deltaX = CGFloat(10 + stageViewWidth * stageCounter)
             stageHolder.stage?.setPosition(x: deltaX, y: stageViewUpperBound)
+            stageHolder.stage?.exchangeHelper = exchanhgeHeplper
             stageCounter += 1
             if (stageCounter == 1) {
                 stageHolder.stage?.addTask()

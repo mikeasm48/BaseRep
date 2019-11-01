@@ -12,6 +12,8 @@ class StageView: NSObject, UICollectionViewDelegate, UICollectionViewDataSource,
     
     //var delegate: ISSBottomMenuDelegate?
     
+    var exchangeHelper: ExchangeItemHelper?
+    
     var collectionView: UICollectionView!
     //var isToggled: Bool = false;
     //TODO изменяяем на 20 - треть экрана, ставим 50 - полэкрана, 100 - и на весь экран по вышине! разобраться
@@ -92,25 +94,7 @@ class StageView: NSObject, UICollectionViewDelegate, UICollectionViewDataSource,
     }
     
     //For Drag&Drop
-    private func reorderItems(coordinator: UICollectionViewDropCoordinator, destinationIndexPath: IndexPath, collectionView: UICollectionView)
-    {
-        let items = coordinator.items
-        if items.count == 1, let item = items.first, let sourceIndexPath = item.sourceIndexPath
-        {
-            var dIndexPath = destinationIndexPath
-            if dIndexPath.row >= collectionView.numberOfItems(inSection: 0)
-            {
-                dIndexPath.row = collectionView.numberOfItems(inSection: 0) - 1
-            }
-            collectionView.performBatchUpdates({
-                self.itemsArray.remove(at: sourceIndexPath.row)
-                self.itemsArray.insert(item.dragItem.localObject as! String, at: dIndexPath.row)
-                collectionView.deleteItems(at: [sourceIndexPath])
-                collectionView.insertItems(at: [dIndexPath])
-            })
-            coordinator.drop(items.first!.dragItem, toItemAt: dIndexPath)
-        }
-    }
+   
 }
 
 //Drag & Drop
@@ -121,7 +105,8 @@ extension StageView: UICollectionViewDragDelegate {
         let itemProvider = NSItemProvider(object: item as NSString)
         let dragItem = UIDragItem(itemProvider: itemProvider)
         dragItem.localObject = item
-        
+        exchangeHelper?.sourceStageView = self
+        exchangeHelper?.sourceIndexPath = indexPath
         return [dragItem]
     }
 }
@@ -136,17 +121,8 @@ extension StageView : UICollectionViewDropDelegate {
     
     func collectionView(_ collectionView: UICollectionView, dropSessionDidUpdate session: UIDropSession, withDestinationIndexPath destinationIndexPath: IndexPath?) -> UICollectionViewDropProposal
     {
-        //TODO так не дает переносить в соседний StageView
-        if collectionView.hasActiveDrag
-        {
-            return UICollectionViewDropProposal(operation: .move, intent: .insertAtDestinationIndexPath)
-        }
-        else
-        {
-            return UICollectionViewDropProposal(operation: .forbidden)
-        }
-        // TODO а так дает переносить но не переносит реально
-//        return UICollectionViewDropProposal(operation: .move, intent: .insertAtDestinationIndexPath)
+        exchangeHelper?.destinationStageView = self
+        return UICollectionViewDropProposal(operation: .move, intent: .insertAtDestinationIndexPath)
     }
     
     func collectionView(_ collectionView: UICollectionView, performDropWith coordinator: UICollectionViewDropCoordinator)
@@ -163,10 +139,14 @@ extension StageView : UICollectionViewDropDelegate {
             destinationIndexPath = IndexPath(row: row, section: section)
         }
         
+        guard let helper = exchangeHelper else {
+            return
+        }
+        
         switch coordinator.proposal.operation
         {
         case .move:
-            self.reorderItems(coordinator: coordinator, destinationIndexPath:destinationIndexPath, collectionView: collectionView)
+            helper.processTransaction(coordinator: coordinator, destinationIndexPath:destinationIndexPath)
             break
         default:
             return
