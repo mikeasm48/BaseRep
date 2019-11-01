@@ -10,14 +10,11 @@ import UIKit
 
 class StageView: NSObject, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout  {
     
-    //var delegate: ISSBottomMenuDelegate?
-    
     var exchangeHelper: ExchangeItemHelper?
     
     var collectionView: UICollectionView!
-    //var isToggled: Bool = false;
-    //TODO изменяяем на 20 - треть экрана, ставим 50 - полэкрана, 100 - и на весь экран по вышине! разобраться
-    let cellHeight: CGFloat = 100.0
+
+    let cellHeight: CGFloat = 90.0
     let cellSpacing: CGFloat = 10.0
     let cellSectionSpacing: CGFloat = 15.0
     
@@ -33,6 +30,17 @@ class StageView: NSObject, UICollectionViewDelegate, UICollectionViewDataSource,
     
     func addTask () {
         itemsArray.append("Task-" + String(itemsArray.count + 1))
+        collectionView.reloadData()
+    }
+    
+    func removeTask () {
+        guard let items = collectionView.indexPathsForSelectedItems else {
+            return
+        }
+        for item in  items {
+            itemsArray.remove(at: item.row)
+        }
+        collectionView.reloadData()
     }
     
     override init() {
@@ -68,6 +76,11 @@ class StageView: NSObject, UICollectionViewDelegate, UICollectionViewDataSource,
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "menuCell", for: indexPath) as! TaskItemCollectionViewCell
+        if (cell.isSelected){
+            cell.textLabel.textColor = .blue
+        } else {
+            cell.textLabel.textColor = .black
+        }
         cell.backgroundColor = .yellow;
         cell.textLabel.text = itemsArray[indexPath.row]
         return cell
@@ -75,7 +88,8 @@ class StageView: NSObject, UICollectionViewDelegate, UICollectionViewDataSource,
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let cellSize = collectionView.frame.width / 2 - 20
+        //let cellSize = collectionView.frame.width / 2 - 20
+        let cellSize = cellHeight
         return CGSize(width: cellSize, height: cellSize)
     }
     
@@ -92,9 +106,24 @@ class StageView: NSObject, UICollectionViewDelegate, UICollectionViewDataSource,
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: cellSectionSpacing, left: cellSectionSpacing, bottom: cellSectionSpacing, right: cellSectionSpacing)
     }
-    
-    //For Drag&Drop
    
+    //Переключаем выбор ячейки
+    private func swithCellSelection(_ collectionView: UICollectionView, indexPath: IndexPath) -> Bool {
+        guard let selected = collectionView.cellForItem(at: indexPath)?.isSelected else {
+            return true
+        }
+        if (selected) {
+            collectionView.deselectItem(at: indexPath, animated: false)
+            return false
+        }
+        return true
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+        let needSelect = swithCellSelection(collectionView, indexPath: indexPath)
+        collectionView.reloadData()
+        return needSelect
+    }
 }
 
 //Drag & Drop
@@ -110,7 +139,6 @@ extension StageView: UICollectionViewDragDelegate {
         return [dragItem]
     }
 }
-
 
 //Drop
 extension StageView : UICollectionViewDropDelegate {

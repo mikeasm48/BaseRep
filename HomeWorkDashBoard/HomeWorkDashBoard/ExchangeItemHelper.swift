@@ -16,7 +16,8 @@ class ExchangeItemHelper {
     //Для переноса между view, в координаторе в этом случае нет этих данных
     var sourceIndexPath: IndexPath?
     
-    func processTransaction (coordinator: UICollectionViewDropCoordinator, destinationIndexPath: IndexPath) {
+    func processTransaction (coordinator: UICollectionViewDropCoordinator, destinationIndexPath: IndexPath)
+    {
         guard let source = sourceStageView else {
             print("ExchangeItemHelper: источник не инициализирован")
             return
@@ -26,36 +27,10 @@ class ExchangeItemHelper {
             print("ExchangeItemHelper: приемник не инициализирован")
             return
         }
-        
-        if (source == destination) {
-            reorderItems(coordinator: coordinator, destinationIndexPath: destinationIndexPath, source: source)
-        } else {
-            print("ExchangeItemHelper: таскаем снаружи")
-            moveItems(coordinator: coordinator, destinationIndexPath: destinationIndexPath, source: source, destination: destination)
-        }
-    
+        moveItems(coordinator: coordinator, destinationIndexPath: destinationIndexPath, source: source, destination: destination)
     }
     
-    private func reorderItems(coordinator: UICollectionViewDropCoordinator, destinationIndexPath: IndexPath, source: StageView)
-    {
-        let items = coordinator.items
-        if items.count == 1, let item = items.first, let sourceIndexPath = item.sourceIndexPath
-        {
-            var dIndexPath = destinationIndexPath
-            if dIndexPath.row >= source.collectionView.numberOfItems(inSection: 0)
-            {
-                dIndexPath.row = source.collectionView.numberOfItems(inSection: 0) - 1
-            }
-            source.collectionView.performBatchUpdates({
-                source.itemsArray.remove(at: sourceIndexPath.row)
-                source.itemsArray.insert(item.dragItem.localObject as! String, at: dIndexPath.row)
-                source.collectionView.deleteItems(at: [sourceIndexPath])
-                source.collectionView.insertItems(at: [dIndexPath])
-            })
-            coordinator.drop(items.first!.dragItem, toItemAt: dIndexPath)
-        }
-    }
-    
+    //Переносит TaskItem между и внутри view
     private func moveItems(coordinator: UICollectionViewDropCoordinator, destinationIndexPath: IndexPath, source: StageView, destination: StageView)
     {
         let items = coordinator.items

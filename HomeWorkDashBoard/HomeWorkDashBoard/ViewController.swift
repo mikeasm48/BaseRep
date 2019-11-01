@@ -14,22 +14,31 @@ struct StageHolder {
 }
 
 class ViewController: UIViewController, UIScrollViewDelegate {
-
-    var stages = [StageHolder(stageName: "ToDo", stage: StageView.init()),
-    StageHolder(stageName: "InProgress", stage: StageView.init()),
-    StageHolder(stageName: "Done", stage: StageView.init())]
+    var stages =
+        [StageHolder(stageName: "ToDo", stage: StageView.init()),
+         StageHolder(stageName: "InProgress", stage: StageView.init()),
+         StageHolder(stageName: "Done", stage: StageView.init())]
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         // Do any additional setup after loading the view.
         let screenWidth:Int = Int(self.view.frame.width)
-        let navigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 50))
+
+        let navigationBar = UINavigationBar(frame: CGRect(x: 0, y: 40, width: screenWidth, height: 40))
         navigationBar.backgroundColor = .lightText
-        let addTaskButton = UINavigationItem(title: "Добавить задачу")
+//        let barItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.add, target: self, action: nil)
+        let barItemAdd = UIBarButtonItem(title: "Добавить", style: UIBarButtonItem.Style.plain, target: self, action: nil)
+         let barItemDel = UIBarButtonItem(title: "Удалить", style: UIBarButtonItem.Style.plain, target: self, action: nil)
+        barItemAdd.action = #selector(addTaskItemAction)
+        barItemDel.action = #selector(removeTaskItemAction)
+        let addTaskButton = UINavigationItem(title: "Баг трекер")
+        addTaskButton.leftBarButtonItems = [barItemAdd, barItemDel]
+
         navigationBar.items = [addTaskButton]
         self.view.addSubview(navigationBar)
+        
         //Init Stages
-        let stageViewUpperBound = navigationBar.frame.height + 10
+        let stageViewUpperBound = navigationBar.frame.minY + navigationBar.frame.height + 20
         let stageViewWidth = (screenWidth + (stages.count))/stages.count
         var stageCounter = 0
         let exchanhgeHeplper = ExchangeItemHelper()
@@ -47,7 +56,17 @@ class ViewController: UIViewController, UIScrollViewDelegate {
             }
         }
     }
-
-
+    
+    //Добавление задачи
+    @objc func addTaskItemAction() {
+        stages[0].stage?.addTask()
+    }
+    
+    //Удаление задачи
+    @objc func removeTaskItemAction() {
+        for stageHolder in stages {
+            stageHolder.stage?.removeTask()
+        }
+    }
 }
 
