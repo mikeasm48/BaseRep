@@ -27,13 +27,14 @@ class StageView: NSObject, UICollectionViewDelegate, UICollectionViewDataSource,
         let height = itemsArray.count < 10 ? 10 : itemsArray.count
         return (cellHeight + cellSpacing)  * CGFloat(height)
     }
-    
+    //Добавление задачи
     func addTask () {
         itemsArray.append("Task-" + String(itemsArray.count + 1))
         collectionView.reloadData()
     }
     
-    func removeTask () {
+    //Удаление выбранной задачи
+    func removeSelectedTask () {
         guard let items = collectionView.indexPathsForSelectedItems else {
             return
         }

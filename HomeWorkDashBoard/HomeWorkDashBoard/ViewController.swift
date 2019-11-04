@@ -65,7 +65,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     //Удаление задачи
     @objc func removeTaskItemAction() {
         for stageHolder in stages {
-            stageHolder.stage?.removeTask()
+            stageHolder.stage?.removeSelectedTask()
         }
     }
 }
