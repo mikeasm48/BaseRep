@@ -15,9 +15,9 @@ struct StageHolder {
 
 class ViewController: UIViewController, UIScrollViewDelegate {
     var stages =
-        [StageHolder(stageName: "ToDo", stage: StageView.init()),
-         StageHolder(stageName: "InProgress", stage: StageView.init()),
-         StageHolder(stageName: "Done", stage: StageView.init())]
+        [StageHolder(stageName: "Входящие задачи", stage: StageView.init()),
+         StageHolder(stageName: "В процессе", stage: StageView.init()),
+         StageHolder(stageName: "Готово", stage: StageView.init())]
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -42,8 +42,14 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         var stageCounter = 0
         let exchanhgeHeplper = ExchangeItemHelper()
         for stageHolder in stages {
+            
             let deltaX = CGFloat(10 + stageViewWidth * stageCounter)
-            stageHolder.stage?.setPosition(x: deltaX, y: stageViewUpperBound)
+            let stageViewWidth = self.view.frame.size.width / 4
+            let stageBar =  UINavigationBar(frame: CGRect(x: deltaX, y: stageViewUpperBound, width: stageViewWidth, height: 40))
+             let stageViewName = UINavigationItem(title: stageHolder.stageName)
+            stageBar.items = [stageViewName]
+            self.view.addSubview(stageBar)
+            stageHolder.stage?.setPosition(x: deltaX, y: stageViewUpperBound + 40, width: stageViewWidth)
             stageHolder.stage?.exchangeHelper = exchanhgeHeplper
             stageCounter += 1
             if (stageCounter == 1) {

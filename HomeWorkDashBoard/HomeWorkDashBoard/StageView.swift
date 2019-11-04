@@ -60,14 +60,11 @@ class StageView: NSObject, UICollectionViewDelegate, UICollectionViewDataSource,
         collectionView.register(TaskItemCollectionViewCell.self, forCellWithReuseIdentifier: "menuCell")
     }
     
-    public func setPosition(x: CGFloat, y: CGFloat){
-        var viewWidth: CGFloat = 0
+    public func setPosition(x: CGFloat, y: CGFloat, width: CGFloat){
         if let window = UIApplication.shared.windows.first {
             window.addSubview(collectionView)
-            //TODO calculate size better!
-            viewWidth = window.frame.size.width / 4
             let fitHeight = self.collectionViewHeight > window.frame.size.height ? window.frame.size.height : self.collectionViewHeight
-            collectionView.frame = CGRect(x: x, y: y, width: viewWidth, height: fitHeight - 100)
+            collectionView.frame = CGRect(x: x, y: y, width: width, height: fitHeight - 100)
         }
     }
     
