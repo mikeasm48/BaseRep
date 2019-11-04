@@ -26,7 +26,6 @@ class ViewController: UIViewController, UIScrollViewDelegate {
 
         let navigationBar = UINavigationBar(frame: CGRect(x: 0, y: 40, width: screenWidth, height: 40))
         navigationBar.backgroundColor = .lightText
-//        let barItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.add, target: self, action: nil)
         let barItemAdd = UIBarButtonItem(title: "Добавить", style: UIBarButtonItem.Style.plain, target: self, action: nil)
          let barItemDel = UIBarButtonItem(title: "Удалить", style: UIBarButtonItem.Style.plain, target: self, action: nil)
         barItemAdd.action = #selector(addTaskItemAction)
