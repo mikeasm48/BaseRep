@@ -17,6 +17,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     var stages =
         [StageHolder(stageName: "Входящие задачи", stage: StageView.init()),
          StageHolder(stageName: "В процессе", stage: StageView.init()),
+         StageHolder(stageName: "На проверке", stage: StageView.init()),
          StageHolder(stageName: "Готово", stage: StageView.init())]
 
     override func viewDidAppear(_ animated: Bool) {
@@ -42,9 +43,9 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         var stageCounter = 0
         let exchanhgeHeplper = ExchangeItemHelper()
         for stageHolder in stages {
-            
             let deltaX = CGFloat(10 + stageViewWidth * stageCounter)
-            let stageViewWidth = self.view.frame.size.width / 4
+            let stageViewCount = CGFloat(stages.count)
+            let stageViewWidth = (self.view.frame.size.width / stageViewCount) - 20
             
             let stageLabel = UILabel(frame: CGRect(x: deltaX, y: stageViewUpperBound, width: stageViewWidth, height: 40))
             stageLabel.backgroundColor = navigationBar.backgroundColor
