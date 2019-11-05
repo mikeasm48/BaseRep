@@ -64,7 +64,7 @@ class StageView: NSObject, UICollectionViewDelegate, UICollectionViewDataSource,
         if let window = UIApplication.shared.windows.first {
             window.addSubview(collectionView)
             let fitHeight = self.collectionViewHeight > window.frame.size.height ? window.frame.size.height : self.collectionViewHeight
-            collectionView.frame = CGRect(x: x, y: y, width: width, height: fitHeight - 100)
+            collectionView.frame = CGRect(x: x, y: y, width: width, height: fitHeight - 120)
         }
     }
     

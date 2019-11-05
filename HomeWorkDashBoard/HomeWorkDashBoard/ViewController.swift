@@ -45,10 +45,12 @@ class ViewController: UIViewController, UIScrollViewDelegate {
             
             let deltaX = CGFloat(10 + stageViewWidth * stageCounter)
             let stageViewWidth = self.view.frame.size.width / 4
-            let stageBar =  UINavigationBar(frame: CGRect(x: deltaX, y: stageViewUpperBound, width: stageViewWidth, height: 40))
-             let stageViewName = UINavigationItem(title: stageHolder.stageName)
-            stageBar.items = [stageViewName]
-            self.view.addSubview(stageBar)
+            
+            let stageLabel = UILabel(frame: CGRect(x: deltaX, y: stageViewUpperBound, width: stageViewWidth, height: 40))
+            stageLabel.backgroundColor = navigationBar.backgroundColor
+            stageLabel.textAlignment = .center
+            stageLabel.text = stageHolder.stageName
+            self.view.addSubview(stageLabel)
             stageHolder.stage?.setPosition(x: deltaX, y: stageViewUpperBound + 40, width: stageViewWidth)
             stageHolder.stage?.exchangeHelper = exchanhgeHeplper
             stageCounter += 1
