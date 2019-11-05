@@ -8,18 +8,29 @@
 
 import UIKit
 
+struct TaskItemType {
+    var taskName : String
+    var taskDescription: String
+    init(task: String, description: String) {
+        taskName = task
+        taskDescription = description
+    }
+}
+
 class StageView: NSObject, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout  {
     
     var exchangeHelper: ExchangeItemHelper?
     
     var collectionView: UICollectionView!
+    
+    var lastStageCounter = 0
 
     let cellHeight: CGFloat = 90.0
     let cellSpacing: CGFloat = 10.0
     let cellSectionSpacing: CGFloat = 15.0
     
-    var itemsArray: Array<String> = {
-        let array: Array<String> = []
+    var itemsArray: Array<TaskItemType> = {
+        let array: Array<TaskItemType> = []
         return array
     }()
     
@@ -29,7 +40,9 @@ class StageView: NSObject, UICollectionViewDelegate, UICollectionViewDataSource,
     }
     //Добавление задачи
     func addTask () {
-        itemsArray.append("Task-" + String(itemsArray.count + 1))
+        lastStageCounter += 1
+        itemsArray.append(TaskItemType(task: "Task-" + String(lastStageCounter), description: ""))
+        
         collectionView.reloadData()
     }
     
@@ -80,7 +93,11 @@ class StageView: NSObject, UICollectionViewDelegate, UICollectionViewDataSource,
             cell.textLabel.textColor = .black
         }
         cell.backgroundColor = .yellow;
-        cell.textLabel.text = itemsArray[indexPath.row]
+        
+        cell.currentRow = indexPath.row
+        cell.currentStageView = self
+        cell.textLabel.text = itemsArray[indexPath.row].taskName
+        cell.itemDescription.text = itemsArray[indexPath.row].taskDescription
         return cell
     }
     
@@ -128,7 +145,7 @@ class StageView: NSObject, UICollectionViewDelegate, UICollectionViewDataSource,
 //Drag
 extension StageView: UICollectionViewDragDelegate {
     func collectionView(_ collectionView: UICollectionView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
-        let item = self.itemsArray[indexPath.row]
+        let item = self.itemsArray[indexPath.row].taskName
         let itemProvider = NSItemProvider(object: item as NSString)
         let dragItem = UIDragItem(itemProvider: itemProvider)
         dragItem.localObject = item

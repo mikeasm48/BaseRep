@@ -31,7 +31,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
          let barItemDel = UIBarButtonItem(title: "Удалить", style: UIBarButtonItem.Style.plain, target: self, action: nil)
         barItemAdd.action = #selector(addTaskItemAction)
         barItemDel.action = #selector(removeTaskItemAction)
-        let addTaskButton = UINavigationItem(title: "Баг трекер")
+        let addTaskButton = UINavigationItem(title: "TreLoLo")
         addTaskButton.leftBarButtonItems = [barItemAdd, barItemDel]
 
         navigationBar.items = [addTaskButton]

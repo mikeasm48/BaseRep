@@ -34,7 +34,7 @@ class ExchangeItemHelper {
     private func moveItems(coordinator: UICollectionViewDropCoordinator, destinationIndexPath: IndexPath, source: StageView, destination: StageView)
     {
         let items = coordinator.items
-        if items.count == 1, let item = items.first, let sourceIndexPath = self.sourceIndexPath
+        if items.count == 1, let _ = items.first, let sourceIndexPath = self.sourceIndexPath
         {
             var dIndexPath = destinationIndexPath
             if dIndexPath.row >= destination.collectionView.numberOfItems(inSection: 0)
@@ -45,8 +45,10 @@ class ExchangeItemHelper {
                 dIndexPath.row = 0
             }
             destination.collectionView.performBatchUpdates({
+                let taskToMove = source.itemsArray[sourceIndexPath.row]
                 source.itemsArray.remove(at: sourceIndexPath.row)
-                destination.itemsArray.insert(item.dragItem.localObject as! String, at: dIndexPath.row)
+                
+                destination.itemsArray.insert(taskToMove, at: dIndexPath.row)
                 source.collectionView.deleteItems(at: [sourceIndexPath])
                 destination.collectionView.insertItems(at: [dIndexPath])
             })
