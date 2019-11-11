@@ -9,7 +9,7 @@
 import Foundation
 //Потокобезопасный массив
 //Метод синхронизации: синхронная очередь на запись и чтение
-public class SynchronizedArray<T> {
+public class SynchronizedArray<T: Equatable> {
     private var array: [T] = []
     private let accessQueue = DispatchQueue(label: "com.hw.syncronized.array")
     
@@ -17,6 +17,17 @@ public class SynchronizedArray<T> {
         accessQueue.async {
             self.array.append(newElement)
             print("SyncronizedArray append: \(newElement)")
+        }
+    }
+    
+    public func remove(element: T) {
+        accessQueue.async {
+            while self.array.contains(element) {
+                if let itemToRemoveIndex = self.array.firstIndex(of: element) {
+                    self.array.remove(at: itemToRemoveIndex)
+                    print("SyncronizedArray removed: \(element) at \(itemToRemoveIndex)")
+                }
+            }
         }
     }
     

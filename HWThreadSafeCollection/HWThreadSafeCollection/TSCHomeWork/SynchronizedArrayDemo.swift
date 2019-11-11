@@ -18,6 +18,12 @@ class SynchronizedArrayDemo {
     static let readQueue1 = DispatchQueue(label: "com.demo.read1.queue")
     static let readQueue2 = DispatchQueue(label: "com.demo.read2.queue")
     
+    static let removeQueue = DispatchQueue(label: "com.demo.remove.queue",
+                                          qos: .userInteractive,
+                                          attributes: [.concurrent],
+                                          autoreleaseFrequency: .never,
+                                          target: nil)
+    
     static func demo() {
         print(">>> Проверка SyncronizedArray")
         
@@ -39,6 +45,14 @@ class SynchronizedArrayDemo {
             for index in 0..<1000 {
                 _ = syncronizedArray[index]
             }
+        }
+        
+        //Поскольку проверку на границы тут не делал, без sleep крашится с асинхронным remove
+        sleep(1)
+        removeQueue.async {
+            for index in 0..<1000 {
+               syncronizedArray.remove(element: index)
+            }     
         }
     }
 }

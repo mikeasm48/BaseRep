@@ -12,14 +12,6 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    
-//    let writeQueue = DispatchQueue(label: "com.demo.write.queue",
-//                                   qos: .userInteractive,
-//                                   attributes: [.concurrent],
-//                                   autoreleaseFrequency: .never,
-//                                   target: nil)
-//    let readQueue1 = DispatchQueue(label: "com.demo.read1.queue")
-//    let readQueue2 = DispatchQueue(label: "com.demo.read2.queue")
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         

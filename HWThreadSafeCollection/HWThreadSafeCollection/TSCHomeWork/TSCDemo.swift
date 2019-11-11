@@ -25,10 +25,16 @@ class TSCDemo {
                                           autoreleaseFrequency: .never,
                                           target: nil)
     
+    static let removeQueue = DispatchQueue(label: "com.demo.remove.queue",
+                                         qos: .userInteractive,
+                                         attributes: [.concurrent],
+                                         autoreleaseFrequency: .never,
+                                         target: nil)
+    
     static func demo() {
         print(">>> Проверка TSC")
         
-        let syncronizedCollection = TSC()
+        let syncronizedCollection = TSC<Int>()
         
         appendQueue.async {
             for index in 0..<1000 {
@@ -50,5 +56,11 @@ class TSCDemo {
                 _ = syncronizedCollection.get(at: index)
             }
         }
+        
+        //Для того чтобы не было ошибок (get nil, out of bounds) - закомментировать
+        //Для того чтобы проверить удаление - раскомментировать
+//        removeQueue.async {
+//            syncronizedCollection.remove(object: 0)
+//        }
     }
 }
