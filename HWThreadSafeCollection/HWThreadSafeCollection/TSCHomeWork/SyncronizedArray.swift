@@ -14,14 +14,14 @@ public class SynchronizedArray<T: Equatable> {
     private let accessQueue = DispatchQueue(label: "com.hw.syncronized.array")
     
     public func append(newElement: T) {
-        accessQueue.async {
+        accessQueue.sync {
             self.array.append(newElement)
             print("SyncronizedArray append: \(newElement)")
         }
     }
     
     public func remove(element: T) {
-        accessQueue.async {
+        accessQueue.sync {
             while self.array.contains(element) {
                 if let itemToRemoveIndex = self.array.firstIndex(of: element) {
                     self.array.remove(at: itemToRemoveIndex)
@@ -33,7 +33,7 @@ public class SynchronizedArray<T: Equatable> {
     
     public subscript(index: Int) -> T {
         set {
-            accessQueue.async {
+            accessQueue.sync {
                 self.array[index] = newValue
                 print("SyncronizedArray set: \(newValue) at \(index)")
             }
