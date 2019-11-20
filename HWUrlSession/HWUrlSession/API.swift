@@ -8,9 +8,6 @@
 
 import UIKit
 
-/**https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=dab4052df3cc23ed39745a8cca163e0a&text=cat&extras=url_s&format=json&nojsoncallback=1
- */
-
 class API {
     private static let apiKey = "dab4052df3cc23ed39745a8cca163e0a"
     private static let baseUrl = "https://www.flickr.com/services/rest/"

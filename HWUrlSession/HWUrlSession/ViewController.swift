@@ -9,7 +9,10 @@
 import UIKit
 
 class ViewController: UIViewController {
+    let defaultSearchText = "Cat"
     let tableView = UITableView()
+    let searchView = UIView()
+    let searchInputField = UITextField()
     var images: [ImageViewModel] = []
     let reuseId = "UITableViewCellreuseId"
     let interactor: InteractorInput
@@ -24,41 +27,54 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(tableView)
+        view.addSubview(searchView)
+        searchView.backgroundColor = .darkGray
+        searchView.addSubview(searchInputField)
+        searchInputField.delegate = self
+        searchInputField.backgroundColor = .white
+        searchInputField.text = defaultSearchText
+        searchInputField.borderStyle = .roundedRect
+
+        searchInputField.translatesAutoresizingMaskIntoConstraints = false
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        searchView.translatesAutoresizingMaskIntoConstraints = false
+
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.topAnchor),
+            searchInputField.topAnchor.constraint(equalTo: searchView.topAnchor, constant: 50),
+            searchInputField.leftAnchor.constraint(equalTo: searchView.leftAnchor),
+            searchInputField.rightAnchor.constraint(equalTo: searchView.rightAnchor),
+            searchInputField.bottomAnchor.constraint(equalTo: searchView.bottomAnchor, constant: -20),
+
+            searchView.topAnchor.constraint(equalTo: view.topAnchor),
+            searchView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            searchView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            searchView.bottomAnchor.constraint(equalTo: tableView.topAnchor),
+
+            tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
             tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
             tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)])
+
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: reuseId)
         tableView.dataSource = self
-        loadImage()
-        search(by: "cat")
-    }
-
-    private func loadImage() {
-        let imagePath = "http://s16.stc.all.kpcdn.net/share/i/12/11048313/inx960x640.jpg"
-        interactor.loadImage(at: imagePath) { [weak self] image in
-            if let image = image {
-                let model = ImageViewModel(description: "Тестовая картинка", image: image)
-                self?.images = [model]
-                DispatchQueue.main.async {
-                    self?.tableView.reloadData()
-                }
-            }
-        }
+        search(by: defaultSearchText)
     }
 
     private func search(by searchString: String) {
+        clearImages(with: false)
         interactor.loadImageList(by: searchString) { [weak self] models in
-            //            self.images = models
             self?.loadImages(with: models)
         }
     }
 
-    private func loadImages(with models: [ImageModel]) {
-        let models = models.suffix(10)
+    private func clearImages(with refresh: Bool) {
+        self.images.removeAll()
+        if refresh {
+            self.tableView.reloadData()
+        }
+    }
 
+    private func loadImages(with models: [ImageModel]) {
         let group = DispatchGroup()
         for model in models {
             group.enter()
@@ -80,7 +96,7 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController: UITableViewDataSource {
+extension ViewController: UITableViewDataSource, UITextFieldDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return images.count
     }
@@ -91,5 +107,13 @@ extension ViewController: UITableViewDataSource {
         cell.imageView?.image = model.image
         cell.textLabel?.text = model.description
         return cell
+    }
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        guard let text = textField.text else {
+            return false
+        }
+        self.search(by: text)
+        return true
     }
 }
