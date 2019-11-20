@@ -16,6 +16,7 @@ class ViewController: UIViewController {
     var images: [ImageViewModel] = []
     let reuseId = "UITableViewCellreuseId"
     let interactor: InteractorInput
+    let imageViewController: ImageViewController = ImageViewController()
 
     init(interactor: InteractorInput) {
         self.interactor = interactor
@@ -26,6 +27,9 @@ class ViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        //Навигация
+        navigationItem.title = "Список"
+        //
         view.addSubview(tableView)
         view.addSubview(searchView)
         searchView.backgroundColor = .darkGray
@@ -40,23 +44,24 @@ class ViewController: UIViewController {
         searchView.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
-            searchInputField.topAnchor.constraint(equalTo: searchView.topAnchor, constant: 50),
+            searchInputField.topAnchor.constraint(equalTo: searchView.topAnchor, constant: 20),
             searchInputField.leftAnchor.constraint(equalTo: searchView.leftAnchor),
             searchInputField.rightAnchor.constraint(equalTo: searchView.rightAnchor),
             searchInputField.bottomAnchor.constraint(equalTo: searchView.bottomAnchor, constant: -20),
 
-            searchView.topAnchor.constraint(equalTo: view.topAnchor),
+            searchView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             searchView.leftAnchor.constraint(equalTo: view.leftAnchor),
             searchView.rightAnchor.constraint(equalTo: view.rightAnchor),
             searchView.bottomAnchor.constraint(equalTo: tableView.topAnchor),
 
-            tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
+            tableView.topAnchor.constraint(equalTo: searchView.bottomAnchor),
             tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
             tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)])
 
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: reuseId)
         tableView.dataSource = self
+        tableView.delegate = self
         search(by: defaultSearchText)
     }
 
@@ -96,7 +101,7 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController: UITableViewDataSource, UITextFieldDelegate {
+extension ViewController: UITableViewDataSource, UITextFieldDelegate, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return images.count
     }
@@ -115,5 +120,11 @@ extension ViewController: UITableViewDataSource, UITextFieldDelegate {
         }
         self.search(by: text)
         return true
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let model = images[indexPath.row]
+        imageViewController.setImage(image: model.image)
+        navigationController?.pushViewController(imageViewController, animated: true)
     }
 }

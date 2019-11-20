@@ -16,6 +16,8 @@
 		00C9EECF23853D6300962989 /* Interactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C9EECE23853D6300962989 /* Interactor.swift */; };
 		00C9EED123853D9200962989 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C9EED023853D9200962989 /* NetworkService.swift */; };
 		00C9EED323853DBB00962989 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C9EED223853DBB00962989 /* API.swift */; };
+		00C9EED82385467D00962989 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C9EED72385467D00962989 /* CoreDataStack.swift */; };
+		00C9EEDA23854AD500962989 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C9EED923854AD500962989 /* ImageViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		00C9EECE23853D6300962989 /* Interactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interactor.swift; sourceTree = "<group>"; };
 		00C9EED023853D9200962989 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		00C9EED223853DBB00962989 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		00C9EED72385467D00962989 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		00C9EED923854AD500962989 /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,14 +66,13 @@
 		00C9EEB223853C2A00962989 /* HWCoreData */ = {
 			isa = PBXGroup;
 			children = (
+				00C9EED62385465900962989 /* CoreData */,
+				00C9EED52385463900962989 /* Network */,
 				00C9EEC923853D1800962989 /* Models */,
 				00C9EEC823853CDF00962989 /* Module */,
 				00C9EEB323853C2A00962989 /* AppDelegate.swift */,
-				00C9EED023853D9200962989 /* NetworkService.swift */,
-				00C9EED223853DBB00962989 /* API.swift */,
 				00C9EEBD23853C2B00962989 /* Assets.xcassets */,
 				00C9EEC223853C2B00962989 /* Info.plist */,
-				00C9EEBA23853C2A00962989 /* HWCoreData.xcdatamodeld */,
 			);
 			path = HWCoreData;
 			sourceTree = "<group>";
@@ -78,8 +81,8 @@
 			isa = PBXGroup;
 			children = (
 				00C9EEB523853C2A00962989 /* ViewController.swift */,
+				00C9EED923854AD500962989 /* ImageViewController.swift */,
 				00C9EECE23853D6300962989 /* Interactor.swift */,
-				00C9EECC23853D4A00962989 /* SessionFactory.swift */,
 			);
 			name = Module;
 			sourceTree = "<group>";
@@ -90,6 +93,25 @@
 				00C9EECA23853D2A00962989 /* ImageModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		00C9EED52385463900962989 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				00C9EECC23853D4A00962989 /* SessionFactory.swift */,
+				00C9EED023853D9200962989 /* NetworkService.swift */,
+				00C9EED223853DBB00962989 /* API.swift */,
+			);
+			name = Network;
+			sourceTree = "<group>";
+		};
+		00C9EED62385465900962989 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				00C9EEBA23853C2A00962989 /* HWCoreData.xcdatamodeld */,
+				00C9EED72385467D00962989 /* CoreDataStack.swift */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -185,6 +207,8 @@
 				00C9EECF23853D6300962989 /* Interactor.swift in Sources */,
 				00C9EEB623853C2A00962989 /* ViewController.swift in Sources */,
 				00C9EEBC23853C2A00962989 /* HWCoreData.xcdatamodeld in Sources */,
+				00C9EED82385467D00962989 /* CoreDataStack.swift in Sources */,
+				00C9EEDA23854AD500962989 /* ImageViewController.swift in Sources */,
 				00C9EEB423853C2A00962989 /* AppDelegate.swift in Sources */,
 				00C9EECB23853D2A00962989 /* ImageModel.swift in Sources */,
 				00C9EECD23853D4A00962989 /* SessionFactory.swift in Sources */,

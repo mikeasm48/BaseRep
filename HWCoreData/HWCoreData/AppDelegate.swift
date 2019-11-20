@@ -21,8 +21,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let service = NetworkService(session: SessionFactory().createDefaultSession())
             let interactor = Interactor(networkService: service)
             let viewController = ViewController(interactor: interactor)
+            let navigationViewController = UINavigationController.init(rootViewController: viewController)
 
-            window?.rootViewController = viewController
+            window?.rootViewController = navigationViewController
             window?.makeKeyAndVisible()
             return true
     }
@@ -30,12 +31,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Core Data stack
 
     lazy var persistentContainer: NSPersistentContainer = {
-        /*
-         The persistent container for the application. This implementation
-         creates and returns a container, having loaded the store for the
-         application to it. This property is optional since there are legitimate
-         error conditions that could cause the creation of the store to fail.
-        */
         let container = NSPersistentContainer(name: "HWCoreData")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
@@ -58,5 +53,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
-
 }
