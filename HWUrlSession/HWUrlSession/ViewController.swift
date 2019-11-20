@@ -13,7 +13,7 @@ class ViewController: UIViewController {
     var images: [ImageViewModel] = []
     let reuseId = "UITableViewCellreuseId"
     let interactor: InteractorInput
-    
+
     init(interactor: InteractorInput) {
         self.interactor = interactor
         super.init(nibName: nil, bundle: nil)
@@ -35,7 +35,7 @@ class ViewController: UIViewController {
         loadImage()
         search(by: "cat")
     }
-    
+
     private func loadImage() {
         let imagePath = "http://s16.stc.all.kpcdn.net/share/i/12/11048313/inx960x640.jpg"
         interactor.loadImage(at: imagePath) { [weak self] image in
@@ -48,17 +48,17 @@ class ViewController: UIViewController {
             }
         }
     }
-    
+
     private func search(by searchString: String) {
         interactor.loadImageList(by: searchString) { [weak self] models in
             //            self.images = models
             self?.loadImages(with: models)
         }
     }
-    
+
     private func loadImages(with models: [ImageModel]) {
         let models = models.suffix(10)
-        
+
         let group = DispatchGroup()
         for model in models {
             group.enter()
@@ -72,9 +72,8 @@ class ViewController: UIViewController {
                 self?.images.append(viewModel)
                 group.leave()
             }
-            
         }
-        
+
         group.notify(queue: DispatchQueue.main) {
             self.tableView.reloadData()
         }
@@ -82,11 +81,10 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: UITableViewDataSource {
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return images.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseId, for: indexPath)
         let model = images[indexPath.row]
@@ -95,4 +93,3 @@ extension ViewController: UITableViewDataSource {
         return cell
     }
 }
-

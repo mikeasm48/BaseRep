@@ -15,4 +15,3 @@ class SessionFactory {
         return session
     }
 }
-
