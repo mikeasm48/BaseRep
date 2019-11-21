@@ -16,14 +16,20 @@ class ViewController: UIViewController {
     var images: [ImageViewModel] = []
     let reuseId = "UITableViewCellreuseId"
     let interactor: InteractorInput
+    //Нужно для подгрузки картинок частями
+    var models: [ImageModel] = []
+    //Количество загружаемых за один fetch картинок
+    let fetchModelsCount = 20
 
     init(interactor: InteractorInput) {
         self.interactor = interactor
         super.init(nibName: nil, bundle: nil)
     }
+
     required init?(coder: NSCoder) {
         fatalError("Метод не реализован")
     }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(tableView)
@@ -61,20 +67,15 @@ class ViewController: UIViewController {
     }
 
     private func search(by searchString: String) {
-        clearImages(with: false)
-        interactor.loadImageList(by: searchString) { [weak self] models in
-            self?.loadImages(with: models)
-        }
-    }
-
-    private func clearImages(with refresh: Bool) {
         self.images.removeAll()
-        if refresh {
-            self.tableView.reloadData()
+        interactor.loadImageList(by: searchString) { [weak self] models in
+            self?.models = models
+            self?.loadImages()
         }
     }
 
-    private func loadImages(with models: [ImageModel]) {
+    private func loadImages() {
+        let models = self.models.prefix(fetchModelsCount)
         let group = DispatchGroup()
         for model in models {
             group.enter()
@@ -91,7 +92,16 @@ class ViewController: UIViewController {
         }
 
         group.notify(queue: DispatchQueue.main) {
+            self.fetchModels()
             self.tableView.reloadData()
+        }
+    }
+
+    private func fetchModels() {
+        if fetchModelsCount > models.count {
+            models.removeAll()
+        } else {
+            models.removeFirst(fetchModelsCount)
         }
     }
 }
@@ -106,7 +116,14 @@ extension ViewController: UITableViewDataSource, UITextFieldDelegate {
         let model = images[indexPath.row]
         cell.imageView?.image = model.image
         cell.textLabel?.text = model.description
+        fetchImages(at: indexPath.row)
         return cell
+    }
+
+    private func fetchImages(at row: Int) {
+        if (row == images.count - 1) &&  (models.count) > 0 {
+            loadImages()
+        }
     }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
