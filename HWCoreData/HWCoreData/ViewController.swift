@@ -10,6 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
     let defaultSearchText = "Cat"
+    let easterEggText = "#clear_all_data"
     let tableView = UITableView()
     let searchView = UIView()
     let searchInputField = UITextField()
@@ -66,9 +67,19 @@ class ViewController: UIViewController {
     }
 
     private func search(by searchString: String) {
+        if easterEggText == searchString {
+            interactor.clearStoredImages()
+            return
+        }
+
         clearImages(with: false)
+        images = interactor.readImageListFromStore(by: searchString)
+        if images.count > 0 {
+            tableView.reloadData()
+            return
+        }
         interactor.loadImageList(by: searchString) { [weak self] models in
-            self?.loadImages(with: models)
+            self?.loadImages(with: models, tag: searchString)
         }
     }
 
@@ -79,7 +90,7 @@ class ViewController: UIViewController {
         }
     }
 
-    private func loadImages(with models: [ImageModel]) {
+    private func loadImages(with models: [ImageModel], tag: String) {
         let group = DispatchGroup()
         for model in models {
             group.enter()
@@ -97,6 +108,7 @@ class ViewController: UIViewController {
 
         group.notify(queue: DispatchQueue.main) {
             self.tableView.reloadData()
+            self.interactor.storeImageList(at: tag, images: self.images)
         }
     }
 }

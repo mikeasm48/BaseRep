@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0009DF722386B568001BDE65 /* MOImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0009DF712386B568001BDE65 /* MOImage.swift */; };
 		00C9EEB423853C2A00962989 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C9EEB323853C2A00962989 /* AppDelegate.swift */; };
 		00C9EEB623853C2A00962989 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C9EEB523853C2A00962989 /* ViewController.swift */; };
 		00C9EEBC23853C2A00962989 /* HWCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 00C9EEBA23853C2A00962989 /* HWCoreData.xcdatamodeld */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0009DF712386B568001BDE65 /* MOImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MOImage.swift; sourceTree = "<group>"; };
 		00C9EEB023853C2A00962989 /* HWCoreData.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HWCoreData.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00C9EEB323853C2A00962989 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		00C9EEB523853C2A00962989 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -80,8 +82,8 @@
 		00C9EEC823853CDF00962989 /* Module */ = {
 			isa = PBXGroup;
 			children = (
-				00C9EEB523853C2A00962989 /* ViewController.swift */,
 				00C9EED923854AD500962989 /* ImageViewController.swift */,
+				00C9EEB523853C2A00962989 /* ViewController.swift */,
 				00C9EECE23853D6300962989 /* Interactor.swift */,
 			);
 			name = Module;
@@ -110,6 +112,7 @@
 			children = (
 				00C9EEBA23853C2A00962989 /* HWCoreData.xcdatamodeld */,
 				00C9EED72385467D00962989 /* CoreDataStack.swift */,
+				0009DF712386B568001BDE65 /* MOImage.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -210,6 +213,7 @@
 				00C9EED82385467D00962989 /* CoreDataStack.swift in Sources */,
 				00C9EEDA23854AD500962989 /* ImageViewController.swift in Sources */,
 				00C9EEB423853C2A00962989 /* AppDelegate.swift in Sources */,
+				0009DF722386B568001BDE65 /* MOImage.swift in Sources */,
 				00C9EECB23853D2A00962989 /* ImageModel.swift in Sources */,
 				00C9EECD23853D4A00962989 /* SessionFactory.swift in Sources */,
 				00C9EED323853DBB00962989 /* API.swift in Sources */,

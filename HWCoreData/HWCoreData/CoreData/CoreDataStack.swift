@@ -20,9 +20,9 @@ internal final class CoreDataStack {
     private init() {
         let group = DispatchGroup()
 
-        persistentContainer = NSPersistentContainer(name: "Model")
+        persistentContainer = NSPersistentContainer(name: "HWCoreData")
         group.enter()
-        persistentContainer.loadPersistentStores { storeDescription, error in
+        persistentContainer.loadPersistentStores { _, error in
             if let error = error {
                 assertionFailure(error.localizedDescription)
             }
