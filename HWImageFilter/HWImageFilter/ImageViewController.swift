@@ -82,10 +82,10 @@ class ImageViewController: UIViewController, UINavigationControllerDelegate {
         guard let image = imageView.image else {
             return
         }
-        sampleImage[0].image = factory.image(afterFiltering: image, withIntensity: 1)
-        sampleImage[1].image = factory.image(afterFiltering: image, withIntensity: 2)
-        sampleImage[2].image = factory.image(afterFiltering: image, withIntensity: 3)
-        sampleImage[3].image = factory.image(afterFiltering: image, withIntensity: 4)
+        sampleImage[0].image = image
+        sampleImage[1].image = factory.sepiaTone(image, withIntensity: 5)
+        sampleImage[2].image = factory.sharpenLuminance(image, inputRadius: 5, inputSharpness: 5)
+        sampleImage[3].image = factory.gaussianBlur(image, inputRadius: 2)
     }
     
     private func applySelectedSample(with filterName: String) {

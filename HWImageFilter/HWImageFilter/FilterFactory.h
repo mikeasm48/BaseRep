@@ -12,7 +12,10 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface FilterFactory : NSObject
-- (UIImage *)imageAfterFiltering:(UIImage *)imageToFilter withIntensity: (NSNumber *) intensity;
+- (UIImage *)sepiaTone: (UIImage *) imageToFilter withIntensity: (NSNumber *) intensity;
+- (UIImage *) sharpenLuminance: (UIImage *) imageToFilter inputRadius: (NSNumber *) radius inputSharpness: (NSNumber *) sharpness;
+- (UIImage *) gaussianBlur: (UIImage *) imageToFilter inputRadius: (NSNumber *) radius;
+- (void) printImageFilters;
 @end
 
 NS_ASSUME_NONNULL_END
