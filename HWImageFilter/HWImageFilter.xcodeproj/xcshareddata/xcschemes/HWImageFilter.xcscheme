@@ -38,6 +38,16 @@
                ReferencedContainer = "container:HWImageFilter.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "004102BE238C3EC3005C646C"
+               BuildableName = "HWImageFilterSwiftTests.xctest"
+               BlueprintName = "HWImageFilterSwiftTests"
+               ReferencedContainer = "container:HWImageFilter.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
