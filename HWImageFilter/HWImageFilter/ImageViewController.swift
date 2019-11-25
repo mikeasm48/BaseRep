@@ -83,39 +83,35 @@ class ImageViewController: UIViewController, UINavigationControllerDelegate {
             return
         }
         
-        
         for sample in sampleImages {
             sample.image = image
         }
-        sampleImages[0].filteredImage = image
         
-        let group = DispatchGroup()
+        let queue = DispatchQueue(label: "com.hw.imagefilter.barrier",
+                                  qos: .unspecified,
+                                  attributes: .concurrent,
+                                  autoreleaseFrequency: .never,
+                                  target: nil)
         
-        DispatchQueue.main.async {
-            group.enter()
-            self.sampleImages[1].filteredImage = factory.sepiaTone(image, withIntensity: 5)
-            group.leave()
+        queue.async (flags: .barrier) {
+            let img = factory.sepiaTone(image, withIntensity: 5)
+            self.reloadSample(sample: self.sampleImages[1], newImage: img)
         }
         
-        DispatchQueue.main.async {
-            group.enter()
-            self.sampleImages[2].filteredImage = factory.sharpenLuminance(image, inputRadius: 5, inputSharpness: 5)
-            group.leave()
+        queue.async (flags: .barrier) {
+            let img = factory.sharpenLuminance(image, inputRadius: 5, inputSharpness: 5)
+            self.reloadSample(sample: self.sampleImages[2], newImage: img)
         }
         
-        DispatchQueue.main.async {
-            group.enter()
-            self.sampleImages[3].filteredImage = factory.gaussianBlur(image, inputRadius: 2)
-            group.leave()
+        queue.async (flags: .barrier) {
+            let img = factory.gaussianBlur(image, inputRadius: 2)
+            self.reloadSample(sample: self.sampleImages[3], newImage: img)
         }
-        
-        group.notify(queue: DispatchQueue.main) {
-            for sample in self.sampleImages {
-                guard let filteredImage = sample.filteredImage else {
-                    return
-                }
-                sample.image = filteredImage
-            }
+    }
+    
+    private func reloadSample(sample: SampleView, newImage: UIImage){
+        DispatchQueue.main.sync {
+            sample.image = newImage
         }
     }
     
