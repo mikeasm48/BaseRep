@@ -10,7 +10,8 @@ import UIKit
 
 @objc(SampleView)
 public class SampleView: UIImageView {
-    let filterName: String
+    private let filterName: String
+    var filteredImage: UIImage?
     
     init(with name: String) {
         self.filterName = name

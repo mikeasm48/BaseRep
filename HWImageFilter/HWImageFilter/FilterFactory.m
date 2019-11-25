@@ -88,12 +88,4 @@
     return normalizedImage;
 }
 
-- (void) printImageFilters
-{
-    NSArray *properties = [CIFilter filterNamesInCategory:kCICategoryBuiltIn]; for (NSString *filterName in properties)
-    {
-        CIFilter *fltr = [CIFilter filterWithName:filterName];
-        NSLog(@"%@", [fltr attributes]); }
-}
-
 @end

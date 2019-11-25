@@ -11,7 +11,7 @@ class ImageViewController: UIViewController, UINavigationControllerDelegate {
     
     let imageView = UIImageView()
     let imagePreView = UIView()
-    let sampleImage = [SampleView(with: "first"),SampleView(with:"second"),SampleView(with:"thrid"),SampleView(with:"last")]
+    let sampleImages = [SampleView(with: "noFilter"),SampleView(with:"SepiaTone"),SampleView(with:"SharpenLuminance"),SampleView(with:"GaussianBlur")]
     
     let previewSampleWidth:CGFloat = 100
     let previewSampleMargin:CGFloat = 10
@@ -25,7 +25,7 @@ class ImageViewController: UIViewController, UINavigationControllerDelegate {
         
         imagePreView.backgroundColor = .darkGray
 
-        for sample in sampleImage {
+        for sample in sampleImages {
             imagePreView.addSubview(sample)
             sample.translatesAutoresizingMaskIntoConstraints = false
             sample.isUserInteractionEnabled = true
@@ -33,7 +33,6 @@ class ImageViewController: UIViewController, UINavigationControllerDelegate {
             sample.addGestureRecognizer(tapRecognizer)
         }
         
-        //print(sampleImage[0].getName())
         imageView.backgroundColor = .darkGray
         imageView.contentMode = .scaleAspectFit
 
@@ -41,25 +40,25 @@ class ImageViewController: UIViewController, UINavigationControllerDelegate {
         imagePreView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            sampleImage[0].topAnchor.constraint(equalTo: imagePreView.topAnchor, constant: previewSampleMargin),
-            sampleImage[0].leftAnchor.constraint(equalTo: imagePreView.leftAnchor,constant: previewSampleMargin),
-            sampleImage[0].rightAnchor.constraint(equalTo: imagePreView.leftAnchor, constant: previewSampleWidth),
-            sampleImage[0].bottomAnchor.constraint(equalTo: imagePreView.bottomAnchor, constant: -previewSampleMargin),
+            sampleImages[0].topAnchor.constraint(equalTo: imagePreView.topAnchor, constant: previewSampleMargin),
+            sampleImages[0].leftAnchor.constraint(equalTo: imagePreView.leftAnchor,constant: previewSampleMargin),
+            sampleImages[0].rightAnchor.constraint(equalTo: imagePreView.leftAnchor, constant: previewSampleWidth),
+            sampleImages[0].bottomAnchor.constraint(equalTo: imagePreView.bottomAnchor, constant: -previewSampleMargin),
             //
-            sampleImage[1].topAnchor.constraint(equalTo: imagePreView.topAnchor, constant: previewSampleMargin),
-            sampleImage[1].leftAnchor.constraint(equalTo: sampleImage[0].rightAnchor),
-            sampleImage[1].rightAnchor.constraint(equalTo: sampleImage[0].rightAnchor, constant: previewSampleWidth),
-            sampleImage[1].bottomAnchor.constraint(equalTo: imagePreView.bottomAnchor, constant: -previewSampleMargin),
+            sampleImages[1].topAnchor.constraint(equalTo: imagePreView.topAnchor, constant: previewSampleMargin),
+            sampleImages[1].leftAnchor.constraint(equalTo: sampleImages[0].rightAnchor),
+            sampleImages[1].rightAnchor.constraint(equalTo: sampleImages[0].rightAnchor, constant: previewSampleWidth),
+            sampleImages[1].bottomAnchor.constraint(equalTo: imagePreView.bottomAnchor, constant: -previewSampleMargin),
             //
-            sampleImage[2].topAnchor.constraint(equalTo: imagePreView.topAnchor, constant: previewSampleMargin),
-            sampleImage[2].leftAnchor.constraint(equalTo: sampleImage[1].rightAnchor),
-            sampleImage[2].rightAnchor.constraint(equalTo: sampleImage[1].rightAnchor, constant: previewSampleWidth),
-            sampleImage[2].bottomAnchor.constraint(equalTo: imagePreView.bottomAnchor, constant: -previewSampleMargin),
+            sampleImages[2].topAnchor.constraint(equalTo: imagePreView.topAnchor, constant: previewSampleMargin),
+            sampleImages[2].leftAnchor.constraint(equalTo: sampleImages[1].rightAnchor),
+            sampleImages[2].rightAnchor.constraint(equalTo: sampleImages[1].rightAnchor, constant: previewSampleWidth),
+            sampleImages[2].bottomAnchor.constraint(equalTo: imagePreView.bottomAnchor, constant: -previewSampleMargin),
             //
-            sampleImage[3].topAnchor.constraint(equalTo: imagePreView.topAnchor, constant: previewSampleMargin),
-            sampleImage[3].leftAnchor.constraint(equalTo: sampleImage[2].rightAnchor),
-            sampleImage[3].rightAnchor.constraint(equalTo: sampleImage[2].rightAnchor, constant: previewSampleWidth),
-            sampleImage[3].bottomAnchor.constraint(equalTo: imagePreView.bottomAnchor, constant: -previewSampleMargin),
+            sampleImages[3].topAnchor.constraint(equalTo: imagePreView.topAnchor, constant: previewSampleMargin),
+            sampleImages[3].leftAnchor.constraint(equalTo: sampleImages[2].rightAnchor),
+            sampleImages[3].rightAnchor.constraint(equalTo: sampleImages[2].rightAnchor, constant: previewSampleWidth),
+            sampleImages[3].bottomAnchor.constraint(equalTo: imagePreView.bottomAnchor, constant: -previewSampleMargin),
             imagePreView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             imagePreView.leftAnchor.constraint(equalTo: view.leftAnchor),
             imagePreView.rightAnchor.constraint(equalTo: view.rightAnchor),
@@ -79,17 +78,49 @@ class ImageViewController: UIViewController, UINavigationControllerDelegate {
     
     func setImagePreviews () {
         let factory = FilterFactory()
+        
         guard let image = imageView.image else {
             return
         }
-        sampleImage[0].image = image
-        sampleImage[1].image = factory.sepiaTone(image, withIntensity: 5)
-        sampleImage[2].image = factory.sharpenLuminance(image, inputRadius: 5, inputSharpness: 5)
-        sampleImage[3].image = factory.gaussianBlur(image, inputRadius: 2)
+        
+        
+        for sample in sampleImages {
+            sample.image = image
+        }
+        sampleImages[0].filteredImage = image
+        
+        let group = DispatchGroup()
+        
+        DispatchQueue.main.async {
+            group.enter()
+            self.sampleImages[1].filteredImage = factory.sepiaTone(image, withIntensity: 5)
+            group.leave()
+        }
+        
+        DispatchQueue.main.async {
+            group.enter()
+            self.sampleImages[2].filteredImage = factory.sharpenLuminance(image, inputRadius: 5, inputSharpness: 5)
+            group.leave()
+        }
+        
+        DispatchQueue.main.async {
+            group.enter()
+            self.sampleImages[3].filteredImage = factory.gaussianBlur(image, inputRadius: 2)
+            group.leave()
+        }
+        
+        group.notify(queue: DispatchQueue.main) {
+            for sample in self.sampleImages {
+                guard let filteredImage = sample.filteredImage else {
+                    return
+                }
+                sample.image = filteredImage
+            }
+        }
     }
     
     private func applySelectedSample(with filterName: String) {
-        for sample in sampleImage {
+        for sample in sampleImages {
             if(sample.getFilterName() == filterName){
                 imageView.image = sample.image
             }
