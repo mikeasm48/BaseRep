@@ -17,7 +17,22 @@
 		00E159FC238BA4B9008D6590 /* SessionFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E159FB238BA4B9008D6590 /* SessionFactory.swift */; };
 		00E159FE238BA4D2008D6590 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E159FD238BA4D2008D6590 /* NetworkService.swift */; };
 		00E15A00238BA4F7008D6590 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E159FF238BA4F7008D6590 /* API.swift */; };
+		00E15A04238BC351008D6590 /* FilterFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E15A03238BC351008D6590 /* FilterFactory.m */; };
+		00E15A0F238BC833008D6590 /* HWImageFilterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E15A0E238BC833008D6590 /* HWImageFilterTests.m */; };
+		00E15A16238BC852008D6590 /* FilterFactoryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E15A06238BC80B008D6590 /* FilterFactoryTests.m */; };
+		00E15A18238BE989008D6590 /* SampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E15A17238BE989008D6590 /* SampleView.swift */; };
+		00E15A1A238BF54A008D6590 /* FilterTapRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E15A19238BF54A008D6590 /* FilterTapRecognizer.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		00E15A11238BC833008D6590 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 00E159D5238BA2B4008D6590 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 00E159DC238BA2B4008D6590;
+			remoteInfo = HWImageFilter;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		00E159DD238BA2B4008D6590 /* HWImageFilter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HWImageFilter.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -32,10 +47,26 @@
 		00E159FB238BA4B9008D6590 /* SessionFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionFactory.swift; sourceTree = "<group>"; };
 		00E159FD238BA4D2008D6590 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		00E159FF238BA4F7008D6590 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		00E15A01238BC351008D6590 /* HWImageFilter-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HWImageFilter-Bridging-Header.h"; sourceTree = "<group>"; };
+		00E15A02238BC351008D6590 /* FilterFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilterFactory.h; sourceTree = "<group>"; };
+		00E15A03238BC351008D6590 /* FilterFactory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FilterFactory.m; sourceTree = "<group>"; };
+		00E15A06238BC80B008D6590 /* FilterFactoryTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FilterFactoryTests.m; sourceTree = "<group>"; };
+		00E15A0C238BC833008D6590 /* HWImageFilterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HWImageFilterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00E15A0E238BC833008D6590 /* HWImageFilterTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HWImageFilterTests.m; sourceTree = "<group>"; };
+		00E15A10238BC833008D6590 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		00E15A17238BE989008D6590 /* SampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleView.swift; sourceTree = "<group>"; };
+		00E15A19238BF54A008D6590 /* FilterTapRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTapRecognizer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		00E159DA238BA2B4008D6590 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		00E15A09238BC833008D6590 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -49,6 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				00E159DF238BA2B4008D6590 /* HWImageFilter */,
+				00E15A0D238BC833008D6590 /* HWImageFilterTests */,
 				00E159DE238BA2B4008D6590 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -57,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				00E159DD238BA2B4008D6590 /* HWImageFilter.app */,
+				00E15A0C238BC833008D6590 /* HWImageFilterTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -64,6 +97,7 @@
 		00E159DF238BA2B4008D6590 /* HWImageFilter */ = {
 			isa = PBXGroup;
 			children = (
+				00E15A05238BC379008D6590 /* FilterFactory */,
 				00E159F4238BA3AE008D6590 /* Module */,
 				00E159F3238BA392008D6590 /* Models */,
 				00E159F2238BA35C008D6590 /* Network */,
@@ -99,8 +133,30 @@
 				00E159E2238BA2B4008D6590 /* ViewController.swift */,
 				00E159F7238BA424008D6590 /* ImageViewController.swift */,
 				00E159F9238BA442008D6590 /* Interactor.swift */,
+				00E15A17238BE989008D6590 /* SampleView.swift */,
+				00E15A19238BF54A008D6590 /* FilterTapRecognizer.swift */,
 			);
 			name = Module;
+			sourceTree = "<group>";
+		};
+		00E15A05238BC379008D6590 /* FilterFactory */ = {
+			isa = PBXGroup;
+			children = (
+				00E15A02238BC351008D6590 /* FilterFactory.h */,
+				00E15A03238BC351008D6590 /* FilterFactory.m */,
+				00E15A01238BC351008D6590 /* HWImageFilter-Bridging-Header.h */,
+			);
+			name = FilterFactory;
+			sourceTree = "<group>";
+		};
+		00E15A0D238BC833008D6590 /* HWImageFilterTests */ = {
+			isa = PBXGroup;
+			children = (
+				00E15A0E238BC833008D6590 /* HWImageFilterTests.m */,
+				00E15A06238BC80B008D6590 /* FilterFactoryTests.m */,
+				00E15A10238BC833008D6590 /* Info.plist */,
+			);
+			path = HWImageFilterTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -123,6 +179,24 @@
 			productReference = 00E159DD238BA2B4008D6590 /* HWImageFilter.app */;
 			productType = "com.apple.product-type.application";
 		};
+		00E15A0B238BC833008D6590 /* HWImageFilterTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 00E15A13238BC833008D6590 /* Build configuration list for PBXNativeTarget "HWImageFilterTests" */;
+			buildPhases = (
+				00E15A08238BC833008D6590 /* Sources */,
+				00E15A09238BC833008D6590 /* Frameworks */,
+				00E15A0A238BC833008D6590 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				00E15A12238BC833008D6590 /* PBXTargetDependency */,
+			);
+			name = HWImageFilterTests;
+			productName = HWImageFilterTests;
+			productReference = 00E15A0C238BC833008D6590 /* HWImageFilterTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -135,6 +209,11 @@
 				TargetAttributes = {
 					00E159DC238BA2B4008D6590 = {
 						CreatedOnToolsVersion = 10.3;
+						LastSwiftMigration = 1030;
+					};
+					00E15A0B238BC833008D6590 = {
+						CreatedOnToolsVersion = 10.3;
+						TestTargetID = 00E159DC238BA2B4008D6590;
 					};
 				};
 			};
@@ -152,6 +231,7 @@
 			projectRoot = "";
 			targets = (
 				00E159DC238BA2B4008D6590 /* HWImageFilter */,
+				00E15A0B238BC833008D6590 /* HWImageFilterTests */,
 			);
 		};
 /* End PBXProject section */
@@ -166,6 +246,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		00E15A0A238BC833008D6590 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -173,18 +260,38 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00E15A18238BE989008D6590 /* SampleView.swift in Sources */,
 				00E159E3238BA2B4008D6590 /* ViewController.swift in Sources */,
+				00E15A1A238BF54A008D6590 /* FilterTapRecognizer.swift in Sources */,
 				00E159F6238BA3D3008D6590 /* ImageModel.swift in Sources */,
 				00E159FA238BA442008D6590 /* Interactor.swift in Sources */,
 				00E159F8238BA424008D6590 /* ImageViewController.swift in Sources */,
 				00E159E1238BA2B4008D6590 /* AppDelegate.swift in Sources */,
+				00E15A04238BC351008D6590 /* FilterFactory.m in Sources */,
 				00E159FC238BA4B9008D6590 /* SessionFactory.swift in Sources */,
 				00E15A00238BA4F7008D6590 /* API.swift in Sources */,
 				00E159FE238BA4D2008D6590 /* NetworkService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		00E15A08238BC833008D6590 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00E15A16238BC852008D6590 /* FilterFactoryTests.m in Sources */,
+				00E15A0F238BC833008D6590 /* HWImageFilterTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		00E15A12238BC833008D6590 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 00E159DC238BA2B4008D6590 /* HWImageFilter */;
+			targetProxy = 00E15A11238BC833008D6590 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		00E159E9238BA2B6008D6590 /* LaunchScreen.storyboard */ = {
@@ -318,6 +425,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 26LWM2HSCG;
 				INFOPLIST_FILE = HWImageFilter/Info.plist;
@@ -327,6 +435,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "Home-Office.HWImageFilter";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "HWImageFilter/HWImageFilter-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -336,6 +446,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 26LWM2HSCG;
 				INFOPLIST_FILE = HWImageFilter/Info.plist;
@@ -345,8 +456,49 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "Home-Office.HWImageFilter";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "HWImageFilter/HWImageFilter-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		00E15A14238BC833008D6590 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 26LWM2HSCG;
+				INFOPLIST_FILE = HWImageFilterTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Home-Office.HWImageFilterTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HWImageFilter.app/HWImageFilter";
+			};
+			name = Debug;
+		};
+		00E15A15238BC833008D6590 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 26LWM2HSCG;
+				INFOPLIST_FILE = HWImageFilterTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Home-Office.HWImageFilterTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HWImageFilter.app/HWImageFilter";
 			};
 			name = Release;
 		};
@@ -367,6 +519,15 @@
 			buildConfigurations = (
 				00E159F0238BA2B6008D6590 /* Debug */,
 				00E159F1238BA2B6008D6590 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		00E15A13238BC833008D6590 /* Build configuration list for PBXNativeTarget "HWImageFilterTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				00E15A14238BC833008D6590 /* Debug */,
+				00E15A15238BC833008D6590 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

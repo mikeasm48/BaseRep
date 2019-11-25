@@ -7,12 +7,11 @@
 //
 
 import UIKit
-
 class ImageViewController: UIViewController, UINavigationControllerDelegate {
     
     let imageView = UIImageView()
     let imagePreView = UIView()
-    let sampleImage = [UIImageView(),UIImageView(),UIImageView(),UIImageView()]
+    let sampleImage = [SampleView(with: "first"),SampleView(with:"second"),SampleView(with:"thrid"),SampleView(with:"last")]
     
     let previewSampleWidth:CGFloat = 100
     let previewSampleMargin:CGFloat = 10
@@ -25,23 +24,19 @@ class ImageViewController: UIViewController, UINavigationControllerDelegate {
         view.addSubview(imagePreView)
         
         imagePreView.backgroundColor = .darkGray
-        imagePreView.addSubview(sampleImage[0])
-        imagePreView.addSubview(sampleImage[1])
-        imagePreView.addSubview(sampleImage[2])
-        imagePreView.addSubview(sampleImage[3])
+
+        for sample in sampleImage {
+            imagePreView.addSubview(sample)
+            sample.translatesAutoresizingMaskIntoConstraints = false
+            sample.isUserInteractionEnabled = true
+            let tapRecognizer = FilterTapRecognizer(target: self, action: #selector(choosePreview(recognizer:)),filter: sample.getFilterName())
+            sample.addGestureRecognizer(tapRecognizer)
+        }
         
-        sampleImage[0].backgroundColor = .red
-        sampleImage[1].backgroundColor = .green
-        sampleImage[2].backgroundColor = .yellow
-        sampleImage[3].backgroundColor = .blue
-        
+        //print(sampleImage[0].getName())
         imageView.backgroundColor = .darkGray
         imageView.contentMode = .scaleAspectFit
 
-        sampleImage[0].translatesAutoresizingMaskIntoConstraints = false
-        sampleImage[1].translatesAutoresizingMaskIntoConstraints = false
-        sampleImage[2].translatesAutoresizingMaskIntoConstraints = false
-        sampleImage[3].translatesAutoresizingMaskIntoConstraints = false
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imagePreView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -83,10 +78,25 @@ class ImageViewController: UIViewController, UINavigationControllerDelegate {
     }
     
     func setImagePreviews () {
-        var previewIndex = -1
-        for _ in sampleImage {
-            previewIndex += 1
-            sampleImage[previewIndex].image = imageView.image
+        let factory = FilterFactory()
+        guard let image = imageView.image else {
+            return
         }
+        sampleImage[0].image = factory.image(afterFiltering: image, withIntensity: 1)
+        sampleImage[1].image = factory.image(afterFiltering: image, withIntensity: 2)
+        sampleImage[2].image = factory.image(afterFiltering: image, withIntensity: 3)
+        sampleImage[3].image = factory.image(afterFiltering: image, withIntensity: 4)
+    }
+    
+    private func applySelectedSample(with filterName: String) {
+        for sample in sampleImage {
+            if(sample.getFilterName() == filterName){
+                imageView.image = sample.image
+            }
+        }
+    }
+    
+    @objc func choosePreview(recognizer: FilterTapRecognizer){
+        applySelectedSample(with: recognizer.filterName)
     }
 }
