@@ -9,7 +9,7 @@
 import XCTest
 
 class APITests: XCTestCase {
-    func testCanGenerateDefaultSearchPath() {
+    func testGenerateDefaultSearchPath() {
         //Arrange
         let goodResult = "https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=dab4052df3cc23ed39745a8cca163e0a&text=Cat&extras=url_m&format=json&nojsoncallback=1"
         let paramDefaultSearch = "Cat"
@@ -17,6 +17,7 @@ class APITests: XCTestCase {
         //Act
         let result = API.searchPath(text: paramDefaultSearch, extras: paramExtras)
         //Assert
-        XCTAssertTrue(result.absoluteString == goodResult)
+        XCTAssertEqual(result.absoluteString, goodResult,
+                       "API generated wrong url for default search string and extras")
     }
 }

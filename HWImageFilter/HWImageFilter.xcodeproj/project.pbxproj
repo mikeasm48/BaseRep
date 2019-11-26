@@ -7,12 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		000C28C8238CF8C70040A379 /* NetworkServiceStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000C28C7238CF8C70040A379 /* NetworkServiceStub.swift */; };
+		000C28CE238D10250040A379 /* testpicture.png in Resources */ = {isa = PBXBuildFile; fileRef = 000C28CD238D10250040A379 /* testpicture.png */; };
 		004102C9238C3FCD005C646C /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E159FF238BA4F7008D6590 /* API.swift */; };
 		004102CD238C42A5005C646C /* APITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004102CC238C42A5005C646C /* APITests.swift */; };
 		004102CF238C43D7005C646C /* InteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004102CE238C43D7005C646C /* InteractorTests.swift */; };
 		004102D0238C440B005C646C /* Interactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E159F9238BA442008D6590 /* Interactor.swift */; };
 		004102D1238C4925005C646C /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E159FD238BA4D2008D6590 /* NetworkService.swift */; };
 		004102D2238C4963005C646C /* ImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E159F5238BA3D3008D6590 /* ImageModel.swift */; };
+		00C6C791238D379F00F9E4B1 /* _photos.json in Resources */ = {isa = PBXBuildFile; fileRef = 00C6C790238D379F00F9E4B1 /* _photos.json */; };
 		00E159E1238BA2B4008D6590 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E159E0238BA2B4008D6590 /* AppDelegate.swift */; };
 		00E159E3238BA2B4008D6590 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E159E2238BA2B4008D6590 /* ViewController.swift */; };
 		00E159E8238BA2B6008D6590 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00E159E7238BA2B6008D6590 /* Assets.xcassets */; };
@@ -39,10 +42,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		000C28C7238CF8C70040A379 /* NetworkServiceStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceStub.swift; sourceTree = "<group>"; };
+		000C28CD238D10250040A379 /* testpicture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testpicture.png; sourceTree = "<group>"; };
 		004102BF238C3EC3005C646C /* HWImageFilterSwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HWImageFilterSwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		004102C3238C3EC3005C646C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		004102CC238C42A5005C646C /* APITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITests.swift; sourceTree = "<group>"; };
 		004102CE238C43D7005C646C /* InteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractorTests.swift; sourceTree = "<group>"; };
+		00C6C790238D379F00F9E4B1 /* _photos.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = _photos.json; sourceTree = "<group>"; };
 		00E159DD238BA2B4008D6590 /* HWImageFilter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HWImageFilter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E159E0238BA2B4008D6590 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		00E159E2238BA2B4008D6590 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -80,12 +86,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		000C28CF238D13310040A379 /* TestData */ = {
+			isa = PBXGroup;
+			children = (
+				00C6C790238D379F00F9E4B1 /* _photos.json */,
+				000C28CD238D10250040A379 /* testpicture.png */,
+			);
+			name = TestData;
+			sourceTree = "<group>";
+		};
 		004102C0238C3EC3005C646C /* HWImageFilterSwiftTests */ = {
 			isa = PBXGroup;
 			children = (
+				000C28CF238D13310040A379 /* TestData */,
 				004102C3238C3EC3005C646C /* Info.plist */,
 				004102CC238C42A5005C646C /* APITests.swift */,
 				004102CE238C43D7005C646C /* InteractorTests.swift */,
+				000C28C7238CF8C70040A379 /* NetworkServiceStub.swift */,
 			);
 			path = HWImageFilterSwiftTests;
 			sourceTree = "<group>";
@@ -191,6 +208,7 @@
 				00E159D9238BA2B4008D6590 /* Sources */,
 				00E159DA238BA2B4008D6590 /* Frameworks */,
 				00E159DB238BA2B4008D6590 /* Resources */,
+				000C28C9238CFB4E0040A379 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -245,6 +263,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00C6C791238D379F00F9E4B1 /* _photos.json in Resources */,
+				000C28CE238D10250040A379 /* testpicture.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,6 +279,26 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		000C28C9238CFB4E0040A379 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		004102BB238C3EC3005C646C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -267,6 +307,7 @@
 				004102D1238C4925005C646C /* NetworkService.swift in Sources */,
 				004102D2238C4963005C646C /* ImageModel.swift in Sources */,
 				004102C9238C3FCD005C646C /* API.swift in Sources */,
+				000C28C8238CF8C70040A379 /* NetworkServiceStub.swift in Sources */,
 				004102CD238C42A5005C646C /* APITests.swift in Sources */,
 				004102D0238C440B005C646C /* Interactor.swift in Sources */,
 				004102CF238C43D7005C646C /* InteractorTests.swift in Sources */,

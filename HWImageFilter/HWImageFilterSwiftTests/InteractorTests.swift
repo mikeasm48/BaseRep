@@ -12,7 +12,7 @@ import XCTest
 class InteractorTests: XCTestCase {
     var interactor: Interactor!
     var networkServiceStub: NetworkServiceStub!
-    
+
     override func setUp() {
         super.setUp()
         networkServiceStub = NetworkServiceStub()
@@ -20,24 +20,32 @@ class InteractorTests: XCTestCase {
     }
 
     override func tearDown() {
-        super.tearDown()
         networkServiceStub = nil
         interactor = nil
+        super.tearDown()
     }
 
     func testThatInteractorCanLoadImage() {
         //Arrange
+        let somePathForLoadImage = "https://www.flickr.com/services/rest/data"
+        var resultImage: UIImage?
         //Act
+        interactor.loadImage(at: somePathForLoadImage) { image in
+            resultImage = image
+        }
         //Assert
+        XCTAssertNotNil(resultImage)
     }
-
-    class NetworkServiceStub: NetworkServiceInput {
-        func getData(at path: String, parameters: [AnyHashable : Any]?, completion: @escaping (Data?) -> Void) {
-            //
+    
+    func testThatInteractorCanLoadImageList() {
+        //Arrange
+        var resultArray: [ImageModel] = []
+        //Act
+        interactor.loadImageList(by: "Cat") {models in
+            resultArray = models
         }
-        
-        func getData(at path: URL, completion: @escaping (Data?) -> Void) {
-            //
-        }
+        //Assert
+        XCTAssertNotNil(resultArray)
+        XCTAssertEqual(resultArray.count, 2, "Incorrect result count")
     }
 }

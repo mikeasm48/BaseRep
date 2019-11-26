@@ -8,40 +8,44 @@
 
 import UIKit
 class ImageViewController: UIViewController, UINavigationControllerDelegate {
-    
     let imageView = UIImageView()
     let imagePreView = UIView()
-    let sampleImages = [SampleView(with: "noFilter"),SampleView(with:"SepiaTone"),SampleView(with:"SharpenLuminance"),SampleView(with:"GaussianBlur")]
-    
-    let previewSampleWidth:CGFloat = 100
-    let previewSampleMargin:CGFloat = 10
-    
+    let sampleImages = [SampleView(with: "noFilter"),
+                        SampleView(with: "SepiaTone"),
+                        SampleView(with: "SharpenLuminance"),
+                        SampleView(with: "GaussianBlur")]
+
+    let previewSampleWidth: CGFloat = 100
+    let previewSampleMargin: CGFloat = 10
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.delegate = self
-        
+
         view.addSubview(imageView)
         view.addSubview(imagePreView)
-        
+
         imagePreView.backgroundColor = .darkGray
 
         for sample in sampleImages {
             imagePreView.addSubview(sample)
             sample.translatesAutoresizingMaskIntoConstraints = false
             sample.isUserInteractionEnabled = true
-            let tapRecognizer = FilterTapRecognizer(target: self, action: #selector(choosePreview(recognizer:)),filter: sample.getFilterName())
+            let tapRecognizer = FilterTapRecognizer(target: self,
+                                                    action: #selector(choosePreview(recognizer:)),
+                                                    filter: sample.getFilterName())
             sample.addGestureRecognizer(tapRecognizer)
         }
-        
+
         imageView.backgroundColor = .darkGray
         imageView.contentMode = .scaleAspectFit
 
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imagePreView.translatesAutoresizingMaskIntoConstraints = false
-        
+
         NSLayoutConstraint.activate([
             sampleImages[0].topAnchor.constraint(equalTo: imagePreView.topAnchor, constant: previewSampleMargin),
-            sampleImages[0].leftAnchor.constraint(equalTo: imagePreView.leftAnchor,constant: previewSampleMargin),
+            sampleImages[0].leftAnchor.constraint(equalTo: imagePreView.leftAnchor, constant: previewSampleMargin),
             sampleImages[0].rightAnchor.constraint(equalTo: imagePreView.leftAnchor, constant: previewSampleWidth),
             sampleImages[0].bottomAnchor.constraint(equalTo: imagePreView.bottomAnchor, constant: -previewSampleMargin),
             //
@@ -63,67 +67,66 @@ class ImageViewController: UIViewController, UINavigationControllerDelegate {
             imagePreView.leftAnchor.constraint(equalTo: view.leftAnchor),
             imagePreView.rightAnchor.constraint(equalTo: view.rightAnchor),
             imagePreView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 100),
-            
             imageView.topAnchor.constraint(equalTo: imagePreView.bottomAnchor),
             imageView.leftAnchor.constraint(equalTo: view.leftAnchor),
             imageView.rightAnchor.constraint(equalTo: view.rightAnchor),
             imageView.bottomAnchor.constraint(equalTo: view.bottomAnchor)])
-        
+
         setImagePreviews()
     }
-    
+
     func setImage(image: UIImage) {
         imageView.image = image
     }
-    
+
     func setImagePreviews () {
         let factory = FilterFactory()
-        
+
         guard let image = imageView.image else {
             return
         }
-        
+
         for sample in sampleImages {
             sample.image = image
         }
-        
+
         let queue = DispatchQueue(label: "com.hw.imagefilter.barrier",
                                   qos: .unspecified,
                                   attributes: .concurrent,
                                   autoreleaseFrequency: .never,
                                   target: nil)
-        
-        queue.async (flags: .barrier) {
+
+        queue.async(flags: .barrier) {
             let img = factory.sepiaTone(image, withIntensity: 5)
             self.reloadSample(sample: self.sampleImages[1], newImage: img)
         }
-        
-        queue.async (flags: .barrier) {
+
+        queue.async(flags: .barrier) {
             let img = factory.sharpenLuminance(image, inputRadius: 5, inputSharpness: 5)
             self.reloadSample(sample: self.sampleImages[2], newImage: img)
         }
-        
-        queue.async (flags: .barrier) {
+
+        queue.async(flags: .barrier) {
             let img = factory.gaussianBlur(image, inputRadius: 2)
             self.reloadSample(sample: self.sampleImages[3], newImage: img)
         }
     }
-    
-    private func reloadSample(sample: SampleView, newImage: UIImage){
+
+    private func reloadSample(sample: SampleView, newImage: UIImage) {
         DispatchQueue.main.sync {
             sample.image = newImage
         }
     }
-    
+
     private func applySelectedSample(with filterName: String) {
         for sample in sampleImages {
-            if(sample.getFilterName() == filterName){
+            if sample.getFilterName() == filterName {
                 imageView.image = sample.image
             }
         }
     }
-    
-    @objc func choosePreview(recognizer: FilterTapRecognizer){
+
+    @objc func choosePreview(recognizer: FilterTapRecognizer) {
         applySelectedSample(with: recognizer.filterName)
     }
 }

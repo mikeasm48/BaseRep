@@ -11,7 +11,7 @@ import UIKit
 class API {
     private static let apiKey = "dab4052df3cc23ed39745a8cca163e0a"
     private static let baseUrl = "https://www.flickr.com/services/rest/"
-    
+
     static func searchPath(text: String, extras: String) -> URL {
         guard var components = URLComponents(string: baseUrl) else {
             return URL(string: baseUrl)!
