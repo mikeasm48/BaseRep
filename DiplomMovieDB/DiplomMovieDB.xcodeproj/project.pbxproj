@@ -8,10 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		0030EF7E238E44CD00224006 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0030EF7D238E44CD00224006 /* AppDelegate.swift */; };
-		0030EF80238E44CD00224006 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0030EF7F238E44CD00224006 /* ViewController.swift */; };
+		0030EF80238E44CD00224006 /* MovieListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0030EF7F238E44CD00224006 /* MovieListViewController.swift */; };
 		0030EF85238E44CE00224006 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0030EF84238E44CE00224006 /* Assets.xcassets */; };
 		0030EF88238E44CE00224006 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0030EF86238E44CE00224006 /* LaunchScreen.storyboard */; };
 		0030EF93238E44CE00224006 /* DiplomMovieDBTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0030EF92238E44CE00224006 /* DiplomMovieDBTests.swift */; };
+		0030EFA2238E4BF700224006 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0030EFA1238E4BF700224006 /* API.swift */; };
+		0030EFA4238E4C0900224006 /* SessionFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0030EFA3238E4C0900224006 /* SessionFactory.swift */; };
+		0030EFA6238E4DF900224006 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0030EFA5238E4DF900224006 /* NetworkService.swift */; };
+		0030EFA8238E4E4E00224006 /* NetworkServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0030EFA7238E4E4E00224006 /* NetworkServiceTests.swift */; };
+		0030EFAA238E4E6700224006 /* APITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0030EFA9238E4E6700224006 /* APITests.swift */; };
+		0030EFAC238E4EF600224006 /* MovieDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0030EFAB238E4EF600224006 /* MovieDetailsViewController.swift */; };
+		0030EFAE238E500000224006 /* Interactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0030EFAD238E500000224006 /* Interactor.swift */; };
+		0030EFB3238E566400224006 /* MovieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0030EFB2238E566400224006 /* MovieModel.swift */; };
+		0030EFB6238E5AB800224006 /* NetworkServiceStubForLoadMovieList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0030EFB5238E5AB800224006 /* NetworkServiceStubForLoadMovieList.swift */; };
+		0030EFB8238E6A4600224006 /* TestMovieList.json in Resources */ = {isa = PBXBuildFile; fileRef = 0030EFB7238E6A4600224006 /* TestMovieList.json */; };
+		0030EFBA238E848100224006 /* TestPicture.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0030EFB9238E848100224006 /* TestPicture.jpg */; };
+		0030EFBC238E907B00224006 /* NetworkServiceStubForLoadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0030EFBB238E907B00224006 /* NetworkServiceStubForLoadImage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,13 +39,25 @@
 /* Begin PBXFileReference section */
 		0030EF7A238E44CD00224006 /* DiplomMovieDB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiplomMovieDB.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0030EF7D238E44CD00224006 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0030EF7F238E44CD00224006 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		0030EF7F238E44CD00224006 /* MovieListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListViewController.swift; sourceTree = "<group>"; };
 		0030EF84238E44CE00224006 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0030EF87238E44CE00224006 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0030EF89238E44CE00224006 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0030EF8E238E44CE00224006 /* DiplomMovieDBTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DiplomMovieDBTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0030EF92238E44CE00224006 /* DiplomMovieDBTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiplomMovieDBTests.swift; sourceTree = "<group>"; };
 		0030EF94238E44CE00224006 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0030EFA1238E4BF700224006 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		0030EFA3238E4C0900224006 /* SessionFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionFactory.swift; sourceTree = "<group>"; };
+		0030EFA5238E4DF900224006 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		0030EFA7238E4E4E00224006 /* NetworkServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceTests.swift; sourceTree = "<group>"; };
+		0030EFA9238E4E6700224006 /* APITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITests.swift; sourceTree = "<group>"; };
+		0030EFAB238E4EF600224006 /* MovieDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewController.swift; sourceTree = "<group>"; };
+		0030EFAD238E500000224006 /* Interactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interactor.swift; sourceTree = "<group>"; };
+		0030EFB2238E566400224006 /* MovieModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieModel.swift; sourceTree = "<group>"; };
+		0030EFB5238E5AB800224006 /* NetworkServiceStubForLoadMovieList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceStubForLoadMovieList.swift; sourceTree = "<group>"; };
+		0030EFB7238E6A4600224006 /* TestMovieList.json */ = {isa = PBXFileReference; explicitFileType = text.json; fileEncoding = 4; path = TestMovieList.json; sourceTree = "<group>"; };
+		0030EFB9238E848100224006 /* TestPicture.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = TestPicture.jpg; sourceTree = "<group>"; };
+		0030EFBB238E907B00224006 /* NetworkServiceStubForLoadImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceStubForLoadImage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,8 +99,11 @@
 		0030EF7C238E44CD00224006 /* DiplomMovieDB */ = {
 			isa = PBXGroup;
 			children = (
+				0030EF9D238E4B9B00224006 /* CoreData */,
+				0030EF9E238E4BB100224006 /* Network */,
+				0030EFA0238E4BCF00224006 /* Model */,
+				0030EF9F238E4BBD00224006 /* Module */,
 				0030EF7D238E44CD00224006 /* AppDelegate.swift */,
-				0030EF7F238E44CD00224006 /* ViewController.swift */,
 				0030EF84238E44CE00224006 /* Assets.xcassets */,
 				0030EF86238E44CE00224006 /* LaunchScreen.storyboard */,
 				0030EF89238E44CE00224006 /* Info.plist */,
@@ -87,10 +114,59 @@
 		0030EF91238E44CE00224006 /* DiplomMovieDBTests */ = {
 			isa = PBXGroup;
 			children = (
+				0030EFAF238E502D00224006 /* TestData */,
 				0030EF92238E44CE00224006 /* DiplomMovieDBTests.swift */,
+				0030EFA7238E4E4E00224006 /* NetworkServiceTests.swift */,
+				0030EFA9238E4E6700224006 /* APITests.swift */,
 				0030EF94238E44CE00224006 /* Info.plist */,
+				0030EFB5238E5AB800224006 /* NetworkServiceStubForLoadMovieList.swift */,
+				0030EFBB238E907B00224006 /* NetworkServiceStubForLoadImage.swift */,
 			);
 			path = DiplomMovieDBTests;
+			sourceTree = "<group>";
+		};
+		0030EF9D238E4B9B00224006 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = CoreData;
+			sourceTree = "<group>";
+		};
+		0030EF9E238E4BB100224006 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				0030EFA1238E4BF700224006 /* API.swift */,
+				0030EFA3238E4C0900224006 /* SessionFactory.swift */,
+				0030EFA5238E4DF900224006 /* NetworkService.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		0030EF9F238E4BBD00224006 /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				0030EF7F238E44CD00224006 /* MovieListViewController.swift */,
+				0030EFAB238E4EF600224006 /* MovieDetailsViewController.swift */,
+				0030EFAD238E500000224006 /* Interactor.swift */,
+			);
+			name = Module;
+			sourceTree = "<group>";
+		};
+		0030EFA0238E4BCF00224006 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0030EFB2238E566400224006 /* MovieModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0030EFAF238E502D00224006 /* TestData */ = {
+			isa = PBXGroup;
+			children = (
+				0030EFB9238E848100224006 /* TestPicture.jpg */,
+				0030EFB7238E6A4600224006 /* TestMovieList.json */,
+			);
+			name = TestData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -103,6 +179,7 @@
 				0030EF76238E44CD00224006 /* Sources */,
 				0030EF77238E44CD00224006 /* Frameworks */,
 				0030EF78238E44CD00224006 /* Resources */,
+				0030EFB4238E578400224006 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -183,18 +260,46 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0030EFB8238E6A4600224006 /* TestMovieList.json in Resources */,
+				0030EFBA238E848100224006 /* TestPicture.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0030EFB4238E578400224006 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		0030EF76238E44CD00224006 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0030EF80238E44CD00224006 /* ViewController.swift in Sources */,
+				0030EFA6238E4DF900224006 /* NetworkService.swift in Sources */,
+				0030EF80238E44CD00224006 /* MovieListViewController.swift in Sources */,
+				0030EFA2238E4BF700224006 /* API.swift in Sources */,
 				0030EF7E238E44CD00224006 /* AppDelegate.swift in Sources */,
+				0030EFB3238E566400224006 /* MovieModel.swift in Sources */,
+				0030EFAC238E4EF600224006 /* MovieDetailsViewController.swift in Sources */,
+				0030EFAE238E500000224006 /* Interactor.swift in Sources */,
+				0030EFA4238E4C0900224006 /* SessionFactory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -202,7 +307,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0030EFBC238E907B00224006 /* NetworkServiceStubForLoadImage.swift in Sources */,
+				0030EFA8238E4E4E00224006 /* NetworkServiceTests.swift in Sources */,
 				0030EF93238E44CE00224006 /* DiplomMovieDBTests.swift in Sources */,
+				0030EFB6238E5AB800224006 /* NetworkServiceStubForLoadMovieList.swift in Sources */,
+				0030EFAA238E4E6700224006 /* APITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
