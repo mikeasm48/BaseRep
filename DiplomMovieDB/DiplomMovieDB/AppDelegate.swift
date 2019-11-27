@@ -16,7 +16,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
-        let movieListViewController = MovieListViewController()
+        let service = NetworkService(session: SessionFactory().createDefaultSession())
+        let interactor = Interactor(networkService: service)
+        let presenter = Presenter(interactor: interactor)
+        let movieListViewController = MovieListViewController(presenter: presenter)
+        presenter.output = movieListViewController
         window?.rootViewController = movieListViewController
         window?.makeKeyAndVisible()
         return true

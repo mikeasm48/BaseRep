@@ -45,7 +45,7 @@ class NetworkServiceTests: XCTestCase {
 
     func testThatInteractorCanLoadDiscoverMovieListOrderedByPopularity() {
         //Arrange
-        var resultArray: [MovieListItemModel] = []
+        var resultArray: [MovieItemModel] = []
         //Act
         interactorForList.loadDiscoverMovieList(sortBy: "popularity.desc") {models in
             resultArray = models

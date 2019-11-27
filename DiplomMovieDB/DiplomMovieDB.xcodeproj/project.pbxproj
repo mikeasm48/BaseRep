@@ -24,6 +24,7 @@
 		0030EFB8238E6A4600224006 /* TestMovieList.json in Resources */ = {isa = PBXBuildFile; fileRef = 0030EFB7238E6A4600224006 /* TestMovieList.json */; };
 		0030EFBA238E848100224006 /* TestPicture.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0030EFB9238E848100224006 /* TestPicture.jpg */; };
 		0030EFBC238E907B00224006 /* NetworkServiceStubForLoadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0030EFBB238E907B00224006 /* NetworkServiceStubForLoadImage.swift */; };
+		006B65B7238EACDE007BB629 /* Presenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006B65B6238EACDE007BB629 /* Presenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		0030EFB7238E6A4600224006 /* TestMovieList.json */ = {isa = PBXFileReference; explicitFileType = text.json; fileEncoding = 4; path = TestMovieList.json; sourceTree = "<group>"; };
 		0030EFB9238E848100224006 /* TestPicture.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = TestPicture.jpg; sourceTree = "<group>"; };
 		0030EFBB238E907B00224006 /* NetworkServiceStubForLoadImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceStubForLoadImage.swift; sourceTree = "<group>"; };
+		006B65B6238EACDE007BB629 /* Presenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +150,7 @@
 				0030EF7F238E44CD00224006 /* MovieListViewController.swift */,
 				0030EFAB238E4EF600224006 /* MovieDetailsViewController.swift */,
 				0030EFAD238E500000224006 /* Interactor.swift */,
+				006B65B6238EACDE007BB629 /* Presenter.swift */,
 			);
 			name = Module;
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				006B65B7238EACDE007BB629 /* Presenter.swift in Sources */,
 				0030EFA6238E4DF900224006 /* NetworkService.swift in Sources */,
 				0030EF80238E44CD00224006 /* MovieListViewController.swift in Sources */,
 				0030EFA2238E4BF700224006 /* API.swift in Sources */,

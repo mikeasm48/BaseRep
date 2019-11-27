@@ -10,10 +10,16 @@ import UIKit
 
 protocol InteractorInput {
     func loadImage(imageName: String, completion: @escaping (UIImage?) -> Void)
-    func loadDiscoverMovieList(sortBy: String, completion: @escaping ([MovieListItemModel]) -> Void)
+    func loadDiscoverMovieList(sortBy: String, completion: @escaping ([MovieItemModel]) -> Void)
+}
+
+protocol InteractorOutput {
+   //TODO нужен?
 }
 
 class Interactor: InteractorInput {
+    //TODO нужен???
+    var interactorOutput: InteractorOutput?
     let networkService: NetworkServiceInput
 
     init(networkService: NetworkServiceInput) {
@@ -31,7 +37,7 @@ class Interactor: InteractorInput {
         }
     }
 
-    func loadDiscoverMovieList(sortBy: String, completion: @escaping ([MovieListItemModel]) -> Void) {
+    func loadDiscoverMovieList(sortBy: String, completion: @escaping ([MovieItemModel]) -> Void) {
         let url = API.discoverPath(sortBy: sortBy)
         networkService.getData(at: url) { data in
             guard let data = data else {
@@ -46,7 +52,7 @@ class Interactor: InteractorInput {
                     return
             }
 
-            let models = resultsArray.map { (object) -> MovieListItemModel in
+            let models = resultsArray.map { (object) -> MovieItemModel in
                 let movieId = object["id"] as? Int ?? -1
                 let title = object["original_title"] as? String ?? ""
                 let imdbId = object["imdb_id"] as? String ?? ""
@@ -54,7 +60,7 @@ class Interactor: InteractorInput {
                 let posterPath = object["poster_path"] as? String ?? ""
                 let homePage = object["homepage"] as? String ?? ""
                 let overview = object["overview"] as? String ?? ""
-                return MovieListItemModel(movieId: movieId,
+                return MovieItemModel(movieId: movieId,
                                           imdbId: imdbId,
                                           backdropPath: backdropPath,
                                           posterPath: posterPath,

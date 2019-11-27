@@ -9,9 +9,15 @@
 import UIKit
 
 class MovieDetailsViewController: UIViewController {
-
+    
+    var movieData: MovieDetailViewModel?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .green
+    }
+    
+    func setMovieData(detailModel: MovieDetailViewModel) {
+        movieData = detailModel
     }
 }
