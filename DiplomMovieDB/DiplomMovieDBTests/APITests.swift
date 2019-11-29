@@ -16,7 +16,7 @@ class APITests: XCTestCase {
         let goodResult = "https://image.tmdb.org/t/p/w500/5myQbDzw3l8K9yofUXRJ4UTVgam.jpg"
         let paramImageName = "/5myQbDzw3l8K9yofUXRJ4UTVgam.jpg"
         //Act
-        let result = API.loadImagePath(imageName: paramImageName)
+        let result = API.loadImagePath(imagePath: paramImageName)
         //Assert
         XCTAssertEqual(result.absoluteString, goodResult,
                        "API generated wrong url for load image")

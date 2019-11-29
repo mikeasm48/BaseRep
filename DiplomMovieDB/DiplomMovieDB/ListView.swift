@@ -8,18 +8,18 @@
 
 import UIKit
 
-class MovieListViewController: UIViewController {
+class ListView: UIViewController {
     let tableView = UITableView()
     let searchView = UIView()
     let searchInputField = UITextField()
     let reuseId = "UITableViewCellreuseId"
     //let interactor: InteractorInput
-    let presenter: PresenterInput
-    let detailViewController: MovieDetailsViewController = MovieDetailsViewController()
+    let presenter: PresenterInputProtocol
+    let detailViewController: DetailsView = DetailsView()
 
-    var movies: [MovieViewModel] = []
+    var movies: [PresenterOutputDataType] = []
 
-    init(presenter: PresenterInput) {
+    init(presenter: PresenterInputProtocol) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
     }
@@ -65,18 +65,14 @@ class MovieListViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         
-        presenter.showMovieDefaultList()
+        presenter.show()
     }
 }
 
-extension MovieListViewController: PresenterOutput, UITableViewDataSource, UITextFieldDelegate, UITableViewDelegate {
+extension ListView: PresenterOutputProtocol, UITableViewDataSource, UITextFieldDelegate, UITableViewDelegate {
 
-    func showMovieDetails(detailMovie: MovieDetailViewModel) {
-        //TODO
-    }
-
-    func reloadMovieList(movieViewList: [MovieViewModel]) {
-        self.movies = movieViewList
+    func didLoadData(data: [PresenterOutputDataType]) {
+        self.movies = data
         tableView.reloadData()
     }
 
@@ -101,8 +97,9 @@ extension MovieListViewController: PresenterOutput, UITableViewDataSource, UITex
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        presenter.showMovieDetails(movie: movies[indexPath.row].movie)
-        //TODO presentrer?.showMovieDetails
+        //TODO build details presenter and show details view
+        //presenter.showMovieDetails(movie: movies[indexPath.row].movie)
+        
 //        detailViewController.setImage(image: model.image)
 //        navigationController?.pushViewController(detailViewController, animated: true)
     }

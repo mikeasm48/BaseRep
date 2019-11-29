@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct MovieItemModel {
+struct MovieDataModel {
     let movieId: Int
     let imdbId: String
     let backdropPath: String
@@ -18,15 +18,13 @@ struct MovieItemModel {
     let overview: String
 }
 
-struct MovieViewModel {
-    let movie: MovieItemModel
+struct InteractorOutputDataType {
+    let movie: MovieDataModel
+    let imageData: Data
+}
+
+struct PresenterOutputDataType {
+    let movie: MovieDataModel
     let image: UIImage
 }
-
-struct MovieDetailViewModel {
-    let movie: MovieItemModel
-    let posterImage: UIImage
-    let backdropImage: UIImage
-}
-
 

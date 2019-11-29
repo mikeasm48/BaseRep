@@ -21,8 +21,8 @@ https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=836b
     private static let imageBaseUrl = "https://image.tmdb.org/t/p/w500"
 
     /**URL для загрузки картинки*/
-    static func loadImagePath(imageName: String) -> URL {
-        return URL(string: imageBaseUrl + imageName)!
+    static func loadImagePath(imagePath: String) -> URL {
+        return URL(string: imageBaseUrl + imagePath)!
     }
 
     /**URL для загрузки списка фильмов*/

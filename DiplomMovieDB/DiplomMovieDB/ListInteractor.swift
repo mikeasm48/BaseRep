@@ -6,38 +6,69 @@
 //  Copyright © 2019 Михаил Асмаковец. All rights reserved.
 //
 
-import UIKit
+//protocol ListInteractorInput {
+//    func loadImage(imageName: String, completion: @escaping (UIImage?) -> Void)
+//    func loadDiscoverMovieList(sortBy: String, completion: @escaping ([MovieDataModel]) -> Void)
+//}
 
-protocol InteractorInput {
-    func loadImage(imageName: String, completion: @escaping (UIImage?) -> Void)
-    func loadDiscoverMovieList(sortBy: String, completion: @escaping ([MovieItemModel]) -> Void)
+import  Foundation
+
+protocol ListInteractorOutput {
 }
 
-protocol InteractorOutput {
-   //TODO нужен?
-}
+class ListInteractor: InteractorInputProtocol {
 
-class Interactor: InteractorInput {
-    //TODO нужен???
-    var interactorOutput: InteractorOutput?
+    var interactorOutput: InteractorOutputProtocol?
     let networkService: NetworkServiceInput
 
     init(networkService: NetworkServiceInput) {
         self.networkService = networkService
     }
 
-    func loadImage(imageName: String, completion: @escaping (UIImage?) -> Void) {
-        let url = API.loadImagePath(imageName: imageName)
+    func setOutput(output: InteractorOutputProtocol) {
+        self.interactorOutput = output
+    }
+
+    func loadDataAsync() {
+        loadDiscoverMovieList(sortBy: "popularity.desc") { [weak self] models in
+            self?.loadMovieBackdropImages(with: models)
+        }
+    }
+
+    private func loadMovieBackdropImages(with models: [MovieDataModel]) {
+        var resultModel: [InteractorOutputDataType] = []
+        
+        let group = DispatchGroup()
+        for model in models {
+            group.enter()
+            self.loadImageData(imagePath: model.backdropPath) { [weak self] image in
+                guard let image = image else {
+                    group.leave()
+                    return
+                }
+                let viewModel = InteractorOutputDataType(movie: model, imageData: image)
+                resultModel.append(viewModel)
+                group.leave()
+            }
+        }
+
+        group.notify(queue: DispatchQueue.main) {
+           self.interactorOutput?.reloadData(data: resultModel)
+        }
+    }
+
+    private func loadImageData(imagePath: String, completion: @escaping (Data?) -> Void) {
+        let url = API.loadImagePath(imagePath: imagePath)
         networkService.getData(at: url) { data in
             guard let data = data else {
                 completion(nil)
                 return
             }
-            completion(UIImage(data: data))
+            completion(data)
         }
     }
 
-    func loadDiscoverMovieList(sortBy: String, completion: @escaping ([MovieItemModel]) -> Void) {
+    private func loadDiscoverMovieList(sortBy: String, completion: @escaping ([MovieDataModel]) -> Void) {
         let url = API.discoverPath(sortBy: sortBy)
         networkService.getData(at: url) { data in
             guard let data = data else {
@@ -52,7 +83,7 @@ class Interactor: InteractorInput {
                     return
             }
 
-            let models = resultsArray.map { (object) -> MovieItemModel in
+            let models = resultsArray.map { (object) -> MovieDataModel in
                 let movieId = object["id"] as? Int ?? -1
                 let title = object["original_title"] as? String ?? ""
                 let imdbId = object["imdb_id"] as? String ?? ""
@@ -60,7 +91,7 @@ class Interactor: InteractorInput {
                 let posterPath = object["poster_path"] as? String ?? ""
                 let homePage = object["homepage"] as? String ?? ""
                 let overview = object["overview"] as? String ?? ""
-                return MovieItemModel(movieId: movieId,
+                return MovieDataModel(movieId: movieId,
                                           imdbId: imdbId,
                                           backdropPath: backdropPath,
                                           posterPath: posterPath,

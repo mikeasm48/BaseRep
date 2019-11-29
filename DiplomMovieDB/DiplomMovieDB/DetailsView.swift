@@ -8,16 +8,16 @@
 
 import UIKit
 
-class MovieDetailsViewController: UIViewController {
+class DetailsView: UIViewController {
     
-    var movieData: MovieDetailViewModel?
+    var movieData: PresenterOutputDataType?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .green
     }
     
-    func setMovieData(detailModel: MovieDetailViewModel) {
+    func setMovieData(detailModel: PresenterOutputDataType) {
         movieData = detailModel
     }
 }
