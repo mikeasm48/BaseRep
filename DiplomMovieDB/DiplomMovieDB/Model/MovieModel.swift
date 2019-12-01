@@ -27,4 +27,3 @@ struct PresenterOutputDataType {
     let movie: MovieDataModel
     let image: UIImage
 }
-

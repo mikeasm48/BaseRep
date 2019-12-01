@@ -37,7 +37,7 @@ class ListInteractor: InteractorInputProtocol {
 
     private func loadMovieBackdropImages(with models: [MovieDataModel]) {
         var resultModel: [InteractorOutputDataType] = []
-        
+
         let group = DispatchGroup()
         for model in models {
             group.enter()

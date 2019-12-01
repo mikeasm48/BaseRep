@@ -9,14 +9,14 @@
 import UIKit
 
 class DetailsView: UIViewController {
-    
+
     var movieData: PresenterOutputDataType?
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .green
     }
-    
+
     func setMovieData(detailModel: PresenterOutputDataType) {
         movieData = detailModel
     }

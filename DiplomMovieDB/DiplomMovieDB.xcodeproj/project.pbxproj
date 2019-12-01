@@ -24,10 +24,14 @@
 		0030EFBA238E848100224006 /* TestPicture.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0030EFB9238E848100224006 /* TestPicture.jpg */; };
 		0030EFBC238E907B00224006 /* NetworkServiceStubForLoadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0030EFBB238E907B00224006 /* NetworkServiceStubForLoadImage.swift */; };
 		006B65B7238EACDE007BB629 /* ListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006B65B6238EACDE007BB629 /* ListPresenter.swift */; };
-		008C7DAD238EDEAF00533948 /* BuilderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008C7DAC238EDEAF00533948 /* BuilderProtocol.swift */; };
 		008C7DAF238F7CA700533948 /* InteractorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008C7DAE238F7CA700533948 /* InteractorProtocol.swift */; };
 		008C7DB1238F7D1A00533948 /* PresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008C7DB0238F7D1A00533948 /* PresenterProtocol.swift */; };
 		008C7DB6238F8C1700533948 /* MainModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008C7DB5238F8C1700533948 /* MainModule.swift */; };
+		00ED1BB823926E9100644E4D /* DetailsModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00ED1BB723926E9100644E4D /* DetailsModule.swift */; };
+		00ED1BBB2392741D00644E4D /* DetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00ED1BBA2392741D00644E4D /* DetailsInteractor.swift */; };
+		00ED1BBD2392759100644E4D /* DetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00ED1BBC2392759100644E4D /* DetailsPresenter.swift */; };
+		00ED1BBF2392788300644E4D /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00ED1BBE2392788300644E4D /* Router.swift */; };
+		00ED1BC123927C3000644E4D /* Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00ED1BC023927C3000644E4D /* Module.swift */; };
 		00F7371C23913DFB00874356 /* PresenterSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F7371B23913DFB00874356 /* PresenterSpy.swift */; };
 /* End PBXBuildFile section */
 
@@ -63,10 +67,14 @@
 		0030EFB9238E848100224006 /* TestPicture.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = TestPicture.jpg; sourceTree = "<group>"; };
 		0030EFBB238E907B00224006 /* NetworkServiceStubForLoadImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceStubForLoadImage.swift; sourceTree = "<group>"; };
 		006B65B6238EACDE007BB629 /* ListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPresenter.swift; sourceTree = "<group>"; };
-		008C7DAC238EDEAF00533948 /* BuilderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuilderProtocol.swift; sourceTree = "<group>"; };
 		008C7DAE238F7CA700533948 /* InteractorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractorProtocol.swift; sourceTree = "<group>"; };
 		008C7DB0238F7D1A00533948 /* PresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenterProtocol.swift; sourceTree = "<group>"; };
 		008C7DB5238F8C1700533948 /* MainModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainModule.swift; sourceTree = "<group>"; };
+		00ED1BB723926E9100644E4D /* DetailsModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsModule.swift; sourceTree = "<group>"; };
+		00ED1BBA2392741D00644E4D /* DetailsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsInteractor.swift; sourceTree = "<group>"; };
+		00ED1BBC2392759100644E4D /* DetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsPresenter.swift; sourceTree = "<group>"; };
+		00ED1BBE2392788300644E4D /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		00ED1BC023927C3000644E4D /* Module.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Module.swift; sourceTree = "<group>"; };
 		00F7371B23913DFB00874356 /* PresenterSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenterSpy.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -122,14 +130,12 @@
 		0030EF91238E44CE00224006 /* DiplomMovieDBTests */ = {
 			isa = PBXGroup;
 			children = (
+				00ED1BB92392720500644E4D /* Implementation */,
 				0030EFAF238E502D00224006 /* TestData */,
 				0030EF92238E44CE00224006 /* DiplomMovieDBTests.swift */,
 				0030EFA7238E4E4E00224006 /* ListInteractorTests.swift */,
 				0030EFA9238E4E6700224006 /* APITests.swift */,
 				0030EF94238E44CE00224006 /* Info.plist */,
-				0030EFB5238E5AB800224006 /* NetworkServiceStub.swift */,
-				0030EFBB238E907B00224006 /* NetworkServiceStubForLoadImage.swift */,
-				00F7371B23913DFB00874356 /* PresenterSpy.swift */,
 			);
 			path = DiplomMovieDBTests;
 			sourceTree = "<group>";
@@ -180,9 +186,9 @@
 		008C7DAA238EDE3A00533948 /* Interface */ = {
 			isa = PBXGroup;
 			children = (
-				008C7DAC238EDEAF00533948 /* BuilderProtocol.swift */,
 				008C7DAE238F7CA700533948 /* InteractorProtocol.swift */,
 				008C7DB0238F7D1A00533948 /* PresenterProtocol.swift */,
+				00ED1BC023927C3000644E4D /* Module.swift */,
 			);
 			name = Interface;
 			sourceTree = "<group>";
@@ -193,6 +199,7 @@
 				008C7DBA238F931900533948 /* Details */,
 				008C7DB9238F930300533948 /* List */,
 				008C7DB5238F8C1700533948 /* MainModule.swift */,
+				00ED1BBE2392788300644E4D /* Router.swift */,
 			);
 			name = Implementation;
 			sourceTree = "<group>";
@@ -220,8 +227,21 @@
 			isa = PBXGroup;
 			children = (
 				0030EFAB238E4EF600224006 /* DetailsView.swift */,
+				00ED1BBA2392741D00644E4D /* DetailsInteractor.swift */,
+				00ED1BB723926E9100644E4D /* DetailsModule.swift */,
+				00ED1BBC2392759100644E4D /* DetailsPresenter.swift */,
 			);
 			name = Details;
+			sourceTree = "<group>";
+		};
+		00ED1BB92392720500644E4D /* Implementation */ = {
+			isa = PBXGroup;
+			children = (
+				0030EFB5238E5AB800224006 /* NetworkServiceStub.swift */,
+				0030EFBB238E907B00224006 /* NetworkServiceStubForLoadImage.swift */,
+				00F7371B23913DFB00874356 /* PresenterSpy.swift */,
+			);
+			name = Implementation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -347,18 +367,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				006B65B7238EACDE007BB629 /* ListPresenter.swift in Sources */,
+				00ED1BC123927C3000644E4D /* Module.swift in Sources */,
 				0030EFA6238E4DF900224006 /* NetworkService.swift in Sources */,
 				0030EF80238E44CD00224006 /* ListView.swift in Sources */,
 				0030EFA2238E4BF700224006 /* API.swift in Sources */,
 				008C7DAF238F7CA700533948 /* InteractorProtocol.swift in Sources */,
 				0030EF7E238E44CD00224006 /* AppDelegate.swift in Sources */,
-				008C7DAD238EDEAF00533948 /* BuilderProtocol.swift in Sources */,
 				008C7DB6238F8C1700533948 /* MainModule.swift in Sources */,
 				0030EFB3238E566400224006 /* MovieModel.swift in Sources */,
 				008C7DB1238F7D1A00533948 /* PresenterProtocol.swift in Sources */,
+				00ED1BBB2392741D00644E4D /* DetailsInteractor.swift in Sources */,
+				00ED1BBF2392788300644E4D /* Router.swift in Sources */,
+				00ED1BB823926E9100644E4D /* DetailsModule.swift in Sources */,
 				0030EFAC238E4EF600224006 /* DetailsView.swift in Sources */,
 				0030EFAE238E500000224006 /* ListInteractor.swift in Sources */,
 				0030EFA4238E4C0900224006 /* SessionFactory.swift in Sources */,
+				00ED1BBD2392759100644E4D /* DetailsPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

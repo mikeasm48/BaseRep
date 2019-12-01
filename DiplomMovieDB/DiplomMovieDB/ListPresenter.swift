@@ -34,7 +34,7 @@ class ListPresenter: PresenterInputProtocol, InteractorOutputProtocol {
 
     func reloadData(data: [InteractorOutputDataType]) {
             var listModel: [PresenterOutputDataType] = []
-            
+
             for dataItem in data {
                 guard let image = UIImage(data: dataItem.imageData) else {
                     continue
@@ -45,7 +45,7 @@ class ListPresenter: PresenterInputProtocol, InteractorOutputProtocol {
             output?.didLoadData(data: listModel)
     }
 
-    func search(by: String){
+    func search(by text: String) {
         //TODO
     }
 }

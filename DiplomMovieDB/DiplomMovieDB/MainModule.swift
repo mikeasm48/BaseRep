@@ -8,14 +8,32 @@
 
 import UIKit
 
-class MainModule: BuilderProtocol {
-    static func build() -> UIViewController {
+class MainModule: ModuleProtocol {
+    var navigationController: UINavigationController?
+    private var presenter: PresenterInputProtocol?
+
+    func buildModule() -> ModuleProtocol {
         let service = NetworkService(session: SessionFactory().createDefaultSession())
         let interactor: InteractorInputProtocol = ListInteractor(networkService: service)
-        let presenter = ListPresenter(interactor: interactor)
-        interactor.setOutput(output: presenter)
-        let movieListViewController = ListView(presenter: presenter)
-        presenter.output = movieListViewController
-        return movieListViewController
+        let listPresenter = ListPresenter(interactor: interactor)
+        interactor.setOutput(output: listPresenter)
+        let movieListViewController = ListView(presenter: listPresenter)
+        listPresenter.output = movieListViewController
+        self.presenter = listPresenter
+        let navigationViewController = UINavigationController.init(rootViewController: movieListViewController)
+        navigationController = navigationViewController
+        return self
+    }
+
+    func getView() -> UIViewController? {
+        return navigationController
+    }
+
+    func getPresenter() -> PresenterInputProtocol? {
+        return presenter
+    }
+
+    func getNavigationController() -> UINavigationController? {
+        return navigationController
     }
 }

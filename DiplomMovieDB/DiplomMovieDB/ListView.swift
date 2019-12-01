@@ -15,7 +15,6 @@ class ListView: UIViewController {
     let reuseId = "UITableViewCellreuseId"
     //let interactor: InteractorInput
     let presenter: PresenterInputProtocol
-    let detailViewController: DetailsView = DetailsView()
 
     var movies: [PresenterOutputDataType] = []
 
@@ -64,7 +63,7 @@ class ListView: UIViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: reuseId)
         tableView.dataSource = self
         tableView.delegate = self
-        
+
         presenter.show()
     }
 }
@@ -84,7 +83,7 @@ extension ListView: PresenterOutputProtocol, UITableViewDataSource, UITextFieldD
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseId, for: indexPath)
         let model = movies[indexPath.row]
         cell.imageView?.image = model.image
-        cell.textLabel?.text = model.movie.overview
+        cell.textLabel?.text = model.movie.originalTitle
         return cell
     }
 
@@ -97,9 +96,7 @@ extension ListView: PresenterOutputProtocol, UITableViewDataSource, UITextFieldD
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //TODO build details presenter and show details view
-        //presenter.showMovieDetails(movie: movies[indexPath.row].movie)
-        
+       Router.shared.showDetails()
 //        detailViewController.setImage(image: model.image)
 //        navigationController?.pushViewController(detailViewController, animated: true)
     }
