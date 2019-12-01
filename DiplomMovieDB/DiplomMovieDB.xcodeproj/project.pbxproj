@@ -10,7 +10,6 @@
 		0030EF7E238E44CD00224006 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0030EF7D238E44CD00224006 /* AppDelegate.swift */; };
 		0030EF80238E44CD00224006 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0030EF7F238E44CD00224006 /* ListView.swift */; };
 		0030EF85238E44CE00224006 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0030EF84238E44CE00224006 /* Assets.xcassets */; };
-		0030EF93238E44CE00224006 /* DiplomMovieDBTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0030EF92238E44CE00224006 /* DiplomMovieDBTests.swift */; };
 		0030EFA2238E4BF700224006 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0030EFA1238E4BF700224006 /* API.swift */; };
 		0030EFA4238E4C0900224006 /* SessionFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0030EFA3238E4C0900224006 /* SessionFactory.swift */; };
 		0030EFA6238E4DF900224006 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0030EFA5238E4DF900224006 /* NetworkService.swift */; };
@@ -52,7 +51,6 @@
 		0030EF84238E44CE00224006 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0030EF89238E44CE00224006 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0030EF8E238E44CE00224006 /* DiplomMovieDBTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DiplomMovieDBTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		0030EF92238E44CE00224006 /* DiplomMovieDBTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiplomMovieDBTests.swift; sourceTree = "<group>"; };
 		0030EF94238E44CE00224006 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0030EFA1238E4BF700224006 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		0030EFA3238E4C0900224006 /* SessionFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionFactory.swift; sourceTree = "<group>"; };
@@ -132,7 +130,6 @@
 			children = (
 				00ED1BB92392720500644E4D /* Implementation */,
 				0030EFAF238E502D00224006 /* TestData */,
-				0030EF92238E44CE00224006 /* DiplomMovieDBTests.swift */,
 				0030EFA7238E4E4E00224006 /* ListInteractorTests.swift */,
 				0030EFA9238E4E6700224006 /* APITests.swift */,
 				0030EF94238E44CE00224006 /* Info.plist */,
@@ -392,7 +389,6 @@
 			files = (
 				0030EFBC238E907B00224006 /* NetworkServiceStubForLoadImage.swift in Sources */,
 				0030EFA8238E4E4E00224006 /* ListInteractorTests.swift in Sources */,
-				0030EF93238E44CE00224006 /* DiplomMovieDBTests.swift in Sources */,
 				00F7371C23913DFB00874356 /* PresenterSpy.swift in Sources */,
 				0030EFB6238E5AB800224006 /* NetworkServiceStub.swift in Sources */,
 				0030EFAA238E4E6700224006 /* APITests.swift in Sources */,

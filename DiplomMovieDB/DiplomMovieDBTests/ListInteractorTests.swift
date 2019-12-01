@@ -19,6 +19,7 @@ class ListInteractorTests: XCTestCase {
         super.setUp()
         networkServiceStub = NetworkServiceStub()
         presenter = PresenterSpy()
+        presenter.expect = expectation(description: "Expect for data loading")
         interactor = ListInteractor(networkService: networkServiceStub)
         interactor.setOutput(output: presenter)
     }
@@ -29,26 +30,15 @@ class ListInteractorTests: XCTestCase {
         super.tearDown()
     }
 
-//    func testThatInteractorCanLoadImage() {
-//        //Arrange
-//        let pathForLoadPicture =  "/5myQbDzw3l8K9yofUXRJ4UTVgam.jpg"
-//
-//        let interactor = ListInteractor(networkService: networkServiceStubForLoadImage)
-//        interactor.interactorOutput = presenter
-//        Act
-//        interactor.loadDataAsync()
-//
-//        Assert
-//        XCTAssertEqual(presenter?.countData, 20, "Incorrect result count")
-//    }
-
     func testThatInteractorCanLoadData() {
-        //Arrange
         //Act
         interactor.loadDataAsync()
         //Assert
-        //sleep(20)
-        print("Spy before assert: \(presenter.countData)")
+        waitForExpectations(timeout: 1) { (error) in
+            if let error = error {
+                XCTFail("WaitForExpectationsWithTimeout error: \(error)")
+            }
+        }
         XCTAssertEqual(presenter.countData, 20, "Incorrect result count")
     }
 }
