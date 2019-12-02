@@ -14,11 +14,11 @@ class ListView: UIViewController {
     let searchInputField = UITextField()
     let reuseId = "UITableViewCellreuseId"
     //let interactor: InteractorInput
-    let presenter: PresenterInputProtocol
+    let presenter: ListPresenterInputProtocol
 
-    var movies: [PresenterOutputDataType] = []
+    var movies: [ListPresenterOutputDataType] = []
 
-    init(presenter: PresenterInputProtocol) {
+    init(presenter: ListPresenterInputProtocol) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
     }
@@ -68,9 +68,9 @@ class ListView: UIViewController {
     }
 }
 
-extension ListView: PresenterOutputProtocol, UITableViewDataSource, UITextFieldDelegate, UITableViewDelegate {
+extension ListView: ListPresenterOutputProtocol, UITableViewDataSource, UITextFieldDelegate, UITableViewDelegate {
 
-    func didLoadData(data: [PresenterOutputDataType]) {
+    func didLoadData(data: [ListPresenterOutputDataType]) {
         self.movies = data
         tableView.reloadData()
     }
@@ -97,7 +97,5 @@ extension ListView: PresenterOutputProtocol, UITableViewDataSource, UITextFieldD
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
        Router.shared.showDetails()
-//        detailViewController.setImage(image: model.image)
-//        navigationController?.pushViewController(detailViewController, animated: true)
     }
 }
