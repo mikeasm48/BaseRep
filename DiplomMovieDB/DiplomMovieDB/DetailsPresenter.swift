@@ -8,26 +8,14 @@
 
 import UIKit
 
-class DetailsPresenter: PresenterInputProtocol {
-    let interactor: InteractorInputProtocol
-    var output: PresenterOutputProtocol?
-
-    init (interactor: InteractorInputProtocol) {
-        self.interactor = interactor
-        self.output = nil
-    }
-
-    func show() {
-        //TODO
-    }
-
-    func search(by text: String) {
-        //Stub
-    }
+protocol DetailsPresenterProtocol {
+    func showDetails(at movieId: Int, imageData: Data)
 }
 
-extension DetailsPresenter: InteractorOutputProtocol {
-    func reloadData(data: [InteractorOutputDataType]) {
+class DetailsPresenter: DetailsPresenterProtocol{
+    var viewController: DetailsViewController?
+    func showDetails(at movieId: Int, imageData: Data) {
         //TODO
     }
 }
+

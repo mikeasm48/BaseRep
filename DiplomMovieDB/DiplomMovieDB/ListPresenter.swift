@@ -8,44 +8,24 @@
 
 import UIKit
 
-//protocol ListPresenterInput {
-//    func showMovieDetails(movie: MovieDataModel)
-//    func showMovieDefaultList()
-//    func search(by: String)
-//}
-//
-//protocol ListPresenterOutput {
-//    func showMovieDetails(detailMovie: DetailViewModel)
-//    func reloadMovieList(movieViewList: [MovieDataModel])
-//}
+protocol ListPresenterProtocol {
+    func reloadData(data: [ListMovieImageDataModel])
+}
 
-class ListPresenter: PresenterInputProtocol, InteractorOutputProtocol {
-    let interactor: InteractorInputProtocol
-    var output: PresenterOutputProtocol?
+class ListPresenter: ListPresenterProtocol {
+    weak var viewController: ListViewController?
 
-    init (interactor: InteractorInputProtocol) {
-        self.interactor = interactor
-        self.output = nil
-    }
-
-    func show() {
-        interactor.loadDataAsync()
-    }
-
-    func reloadData(data: [InteractorOutputDataType]) {
-            var listModel: [PresenterOutputDataType] = []
+    func reloadData(data: [ListMovieImageDataModel]) {
+            var listModel: [ListMovieModel] = []
 
             for dataItem in data {
-                guard let image = UIImage(data: dataItem.imageData) else {
+                guard let image = UIImage(data: dataItem.image) else {
                     continue
                 }
-                let model = PresenterOutputDataType(movie: dataItem.movie, image: image)
+                let model = ListMovieModel(movie: dataItem.movie, image: image)
                 listModel.append(model)
             }
-            output?.didLoadData(data: listModel)
-    }
-
-    func search(by text: String) {
-        //TODO
+            MovieModel.shared.setMovies(list: listModel)
+            viewController?.tableView.reloadData()
     }
 }

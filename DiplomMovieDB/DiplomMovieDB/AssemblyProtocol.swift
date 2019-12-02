@@ -6,4 +6,7 @@
 //  Copyright © 2019 Михаил Асмаковец. All rights reserved.
 //
 
-import Foundation
+import UIKit
+protocol AssemblyProtocol {
+    static func build() -> UIViewController
+}

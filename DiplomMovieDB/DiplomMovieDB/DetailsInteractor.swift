@@ -8,19 +8,20 @@
 
 import Foundation
 
-class DetailsInteractor: InteractorInputProtocol {
-    var interactorOutput: InteractorOutputProtocol?
+protocol DetailsInteractorProtocol {
+    func showData (data: DetailsMovieModel)
+}
+
+
+class DetailsInteractor: DetailsInteractorProtocol {
+    var presenter: DetailsPresenterProtocol?
     let networkService: NetworkServiceInput
 
     init(networkService: NetworkServiceInput) {
         self.networkService = networkService
     }
-
-    func setOutput(output: InteractorOutputProtocol) {
-        self.interactorOutput = output
-    }
-
-    func loadDataAsync() {
-        //TODO
+    
+    func showData(data: DetailsMovieModel) {
+        //
     }
 }

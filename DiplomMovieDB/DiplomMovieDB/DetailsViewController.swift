@@ -8,16 +8,15 @@
 
 import UIKit
 
-class DetailsView: UIViewController {
+protocol DetailsViewControllerProtocol {
+    
+}
 
-    var movieData: PresenterOutputDataType?
-
+class DetailsViewController: UIViewController, DetailsViewControllerProtocol {
+    var interactor: DetailsInteractorProtocol?
+ 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .green
-    }
-
-    func setMovieData(detailModel: PresenterOutputDataType) {
-        movieData = detailModel
     }
 }

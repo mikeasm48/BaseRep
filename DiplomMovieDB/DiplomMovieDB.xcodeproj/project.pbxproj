@@ -8,14 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		0030EF7E238E44CD00224006 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0030EF7D238E44CD00224006 /* AppDelegate.swift */; };
-		0030EF80238E44CD00224006 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0030EF7F238E44CD00224006 /* ListView.swift */; };
+		0030EF80238E44CD00224006 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0030EF7F238E44CD00224006 /* ListViewController.swift */; };
 		0030EF85238E44CE00224006 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0030EF84238E44CE00224006 /* Assets.xcassets */; };
 		0030EFA2238E4BF700224006 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0030EFA1238E4BF700224006 /* API.swift */; };
 		0030EFA4238E4C0900224006 /* SessionFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0030EFA3238E4C0900224006 /* SessionFactory.swift */; };
 		0030EFA6238E4DF900224006 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0030EFA5238E4DF900224006 /* NetworkService.swift */; };
 		0030EFA8238E4E4E00224006 /* ListInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0030EFA7238E4E4E00224006 /* ListInteractorTests.swift */; };
 		0030EFAA238E4E6700224006 /* APITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0030EFA9238E4E6700224006 /* APITests.swift */; };
-		0030EFAC238E4EF600224006 /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0030EFAB238E4EF600224006 /* DetailsView.swift */; };
+		0030EFAC238E4EF600224006 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0030EFAB238E4EF600224006 /* DetailsViewController.swift */; };
 		0030EFAE238E500000224006 /* ListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0030EFAD238E500000224006 /* ListInteractor.swift */; };
 		0030EFB3238E566400224006 /* MovieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0030EFB2238E566400224006 /* MovieModel.swift */; };
 		0030EFB6238E5AB800224006 /* NetworkServiceStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0030EFB5238E5AB800224006 /* NetworkServiceStub.swift */; };
@@ -23,14 +23,13 @@
 		0030EFBA238E848100224006 /* TestPicture.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0030EFB9238E848100224006 /* TestPicture.jpg */; };
 		0030EFBC238E907B00224006 /* NetworkServiceStubForLoadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0030EFBB238E907B00224006 /* NetworkServiceStubForLoadImage.swift */; };
 		006B65B7238EACDE007BB629 /* ListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006B65B6238EACDE007BB629 /* ListPresenter.swift */; };
-		008C7DAF238F7CA700533948 /* InteractorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008C7DAE238F7CA700533948 /* InteractorProtocol.swift */; };
-		008C7DB1238F7D1A00533948 /* PresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008C7DB0238F7D1A00533948 /* PresenterProtocol.swift */; };
-		008C7DB6238F8C1700533948 /* MainModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008C7DB5238F8C1700533948 /* MainModule.swift */; };
-		00ED1BB823926E9100644E4D /* DetailsModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00ED1BB723926E9100644E4D /* DetailsModule.swift */; };
 		00ED1BBB2392741D00644E4D /* DetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00ED1BBA2392741D00644E4D /* DetailsInteractor.swift */; };
 		00ED1BBD2392759100644E4D /* DetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00ED1BBC2392759100644E4D /* DetailsPresenter.swift */; };
-		00ED1BBF2392788300644E4D /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00ED1BBE2392788300644E4D /* Router.swift */; };
-		00ED1BC123927C3000644E4D /* Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00ED1BC023927C3000644E4D /* Module.swift */; };
+		00EFC3B52395140B000F39DE /* ListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFC3B42395140B000F39DE /* ListRouter.swift */; };
+		00EFC3B723951507000F39DE /* DetailsAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFC3B623951507000F39DE /* DetailsAssembly.swift */; };
+		00EFC3B923951574000F39DE /* AssemblyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFC3B823951574000F39DE /* AssemblyProtocol.swift */; };
+		00EFC3BD2395175A000F39DE /* DetailsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFC3BC2395175A000F39DE /* DetailsRouter.swift */; };
+		00EFC3BF23951D80000F39DE /* ListAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFC3BE23951D80000F39DE /* ListAssembly.swift */; };
 		00F7371C23913DFB00874356 /* PresenterSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F7371B23913DFB00874356 /* PresenterSpy.swift */; };
 /* End PBXBuildFile section */
 
@@ -47,7 +46,7 @@
 /* Begin PBXFileReference section */
 		0030EF7A238E44CD00224006 /* DiplomMovieDB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiplomMovieDB.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0030EF7D238E44CD00224006 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0030EF7F238E44CD00224006 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
+		0030EF7F238E44CD00224006 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		0030EF84238E44CE00224006 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0030EF89238E44CE00224006 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0030EF8E238E44CE00224006 /* DiplomMovieDBTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DiplomMovieDBTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -57,7 +56,7 @@
 		0030EFA5238E4DF900224006 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		0030EFA7238E4E4E00224006 /* ListInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListInteractorTests.swift; sourceTree = "<group>"; };
 		0030EFA9238E4E6700224006 /* APITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITests.swift; sourceTree = "<group>"; };
-		0030EFAB238E4EF600224006 /* DetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsView.swift; sourceTree = "<group>"; };
+		0030EFAB238E4EF600224006 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		0030EFAD238E500000224006 /* ListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListInteractor.swift; sourceTree = "<group>"; };
 		0030EFB2238E566400224006 /* MovieModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieModel.swift; sourceTree = "<group>"; };
 		0030EFB5238E5AB800224006 /* NetworkServiceStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceStub.swift; sourceTree = "<group>"; };
@@ -65,14 +64,13 @@
 		0030EFB9238E848100224006 /* TestPicture.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = TestPicture.jpg; sourceTree = "<group>"; };
 		0030EFBB238E907B00224006 /* NetworkServiceStubForLoadImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceStubForLoadImage.swift; sourceTree = "<group>"; };
 		006B65B6238EACDE007BB629 /* ListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPresenter.swift; sourceTree = "<group>"; };
-		008C7DAE238F7CA700533948 /* InteractorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractorProtocol.swift; sourceTree = "<group>"; };
-		008C7DB0238F7D1A00533948 /* PresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenterProtocol.swift; sourceTree = "<group>"; };
-		008C7DB5238F8C1700533948 /* MainModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainModule.swift; sourceTree = "<group>"; };
-		00ED1BB723926E9100644E4D /* DetailsModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsModule.swift; sourceTree = "<group>"; };
 		00ED1BBA2392741D00644E4D /* DetailsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsInteractor.swift; sourceTree = "<group>"; };
 		00ED1BBC2392759100644E4D /* DetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsPresenter.swift; sourceTree = "<group>"; };
-		00ED1BBE2392788300644E4D /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
-		00ED1BC023927C3000644E4D /* Module.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Module.swift; sourceTree = "<group>"; };
+		00EFC3B42395140B000F39DE /* ListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListRouter.swift; sourceTree = "<group>"; };
+		00EFC3B623951507000F39DE /* DetailsAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsAssembly.swift; sourceTree = "<group>"; };
+		00EFC3B823951574000F39DE /* AssemblyProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssemblyProtocol.swift; sourceTree = "<group>"; };
+		00EFC3BC2395175A000F39DE /* DetailsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsRouter.swift; sourceTree = "<group>"; };
+		00EFC3BE23951D80000F39DE /* ListAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListAssembly.swift; sourceTree = "<group>"; };
 		00F7371B23913DFB00874356 /* PresenterSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenterSpy.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -183,9 +181,7 @@
 		008C7DAA238EDE3A00533948 /* Interface */ = {
 			isa = PBXGroup;
 			children = (
-				008C7DAE238F7CA700533948 /* InteractorProtocol.swift */,
-				008C7DB0238F7D1A00533948 /* PresenterProtocol.swift */,
-				00ED1BC023927C3000644E4D /* Module.swift */,
+				00EFC3B823951574000F39DE /* AssemblyProtocol.swift */,
 			);
 			name = Interface;
 			sourceTree = "<group>";
@@ -195,8 +191,6 @@
 			children = (
 				008C7DBA238F931900533948 /* Details */,
 				008C7DB9238F930300533948 /* List */,
-				008C7DB5238F8C1700533948 /* MainModule.swift */,
-				00ED1BBE2392788300644E4D /* Router.swift */,
 			);
 			name = Implementation;
 			sourceTree = "<group>";
@@ -213,9 +207,11 @@
 		008C7DB9238F930300533948 /* List */ = {
 			isa = PBXGroup;
 			children = (
-				0030EF7F238E44CD00224006 /* ListView.swift */,
+				0030EF7F238E44CD00224006 /* ListViewController.swift */,
 				0030EFAD238E500000224006 /* ListInteractor.swift */,
 				006B65B6238EACDE007BB629 /* ListPresenter.swift */,
+				00EFC3B42395140B000F39DE /* ListRouter.swift */,
+				00EFC3BE23951D80000F39DE /* ListAssembly.swift */,
 			);
 			name = List;
 			sourceTree = "<group>";
@@ -223,10 +219,11 @@
 		008C7DBA238F931900533948 /* Details */ = {
 			isa = PBXGroup;
 			children = (
-				0030EFAB238E4EF600224006 /* DetailsView.swift */,
+				0030EFAB238E4EF600224006 /* DetailsViewController.swift */,
+				00EFC3BC2395175A000F39DE /* DetailsRouter.swift */,
 				00ED1BBA2392741D00644E4D /* DetailsInteractor.swift */,
-				00ED1BB723926E9100644E4D /* DetailsModule.swift */,
 				00ED1BBC2392759100644E4D /* DetailsPresenter.swift */,
+				00EFC3B623951507000F39DE /* DetailsAssembly.swift */,
 			);
 			name = Details;
 			sourceTree = "<group>";
@@ -364,19 +361,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				006B65B7238EACDE007BB629 /* ListPresenter.swift in Sources */,
-				00ED1BC123927C3000644E4D /* Module.swift in Sources */,
+				00EFC3B52395140B000F39DE /* ListRouter.swift in Sources */,
+				00EFC3B723951507000F39DE /* DetailsAssembly.swift in Sources */,
+				00EFC3BF23951D80000F39DE /* ListAssembly.swift in Sources */,
 				0030EFA6238E4DF900224006 /* NetworkService.swift in Sources */,
-				0030EF80238E44CD00224006 /* ListView.swift in Sources */,
+				0030EF80238E44CD00224006 /* ListViewController.swift in Sources */,
 				0030EFA2238E4BF700224006 /* API.swift in Sources */,
-				008C7DAF238F7CA700533948 /* InteractorProtocol.swift in Sources */,
+				00EFC3B923951574000F39DE /* AssemblyProtocol.swift in Sources */,
+				00EFC3BD2395175A000F39DE /* DetailsRouter.swift in Sources */,
 				0030EF7E238E44CD00224006 /* AppDelegate.swift in Sources */,
-				008C7DB6238F8C1700533948 /* MainModule.swift in Sources */,
 				0030EFB3238E566400224006 /* MovieModel.swift in Sources */,
-				008C7DB1238F7D1A00533948 /* PresenterProtocol.swift in Sources */,
 				00ED1BBB2392741D00644E4D /* DetailsInteractor.swift in Sources */,
-				00ED1BBF2392788300644E4D /* Router.swift in Sources */,
-				00ED1BB823926E9100644E4D /* DetailsModule.swift in Sources */,
-				0030EFAC238E4EF600224006 /* DetailsView.swift in Sources */,
+				0030EFAC238E4EF600224006 /* DetailsViewController.swift in Sources */,
 				0030EFAE238E500000224006 /* ListInteractor.swift in Sources */,
 				0030EFA4238E4C0900224006 /* SessionFactory.swift in Sources */,
 				00ED1BBD2392759100644E4D /* DetailsPresenter.swift in Sources */,

@@ -13,30 +13,27 @@
 
 import  Foundation
 
-protocol ListInteractorOutput {
+protocol ListInteractorProtocol {
+    func loadDataAsync()
 }
 
-class ListInteractor: InteractorInputProtocol {
-
-    var interactorOutput: InteractorOutputProtocol?
+class ListInteractor: ListInteractorProtocol {
+    var presenter: ListPresenterProtocol?
     let networkService: NetworkServiceInput
 
     init(networkService: NetworkServiceInput) {
         self.networkService = networkService
     }
 
-    func setOutput(output: InteractorOutputProtocol) {
-        self.interactorOutput = output
-    }
-
     func loadDataAsync() {
         loadDiscoverMovieList(sortBy: "popularity.desc") { [weak self] models in
-            self?.loadMovieBackdropImages(with: models)
+            //self?.loadMovieBackdropImages(with: models)
+            self?.loadMoviePosterImages(with: models)
         }
     }
 
     private func loadMovieBackdropImages(with models: [MovieDataModel]) {
-        var resultModel: [InteractorOutputDataType] = []
+        var resultModel: [ListMovieImageDataModel] = []
 
         let group = DispatchGroup()
         for model in models {
@@ -46,14 +43,37 @@ class ListInteractor: InteractorInputProtocol {
                     group.leave()
                     return
                 }
-                let viewModel = InteractorOutputDataType(movie: model, imageData: image)
+                
+                let viewModel = ListMovieImageDataModel(movie: model, image: image)
                 resultModel.append(viewModel)
                 group.leave()
             }
         }
 
         group.notify(queue: DispatchQueue.main) {
-           self.interactorOutput?.reloadData(data: resultModel)
+           self.presenter?.reloadData(data: resultModel)
+        }
+    }
+    
+    private func loadMoviePosterImages(with models: [MovieDataModel]) {
+        var resultModel: [ListMovieImageDataModel] = []
+        
+        let group = DispatchGroup()
+        for model in models {
+            group.enter()
+            self.loadImageData(imagePath: model.posterPath) { [weak self] image in
+                guard let image = image else {
+                    group.leave()
+                    return
+                }
+                let viewModel = ListMovieImageDataModel(movie: model, image: image)
+                resultModel.append(viewModel)
+                group.leave()
+            }
+        }
+        
+        group.notify(queue: DispatchQueue.main) {
+            self.presenter?.reloadData(data: resultModel)
         }
     }
 

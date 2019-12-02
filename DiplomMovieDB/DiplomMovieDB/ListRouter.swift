@@ -6,4 +6,17 @@
 //  Copyright © 2019 Михаил Асмаковец. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+protocol ListRouterProtocol {
+    func openDetailsModule()
+}
+
+final class ListRouter: ListRouterProtocol {
+    weak var viewController: (ListViewControllerProtocol & UIViewController)?
+
+    func openDetailsModule() {
+        let detailsController = DetailsAssembly.build()
+        viewController?.navigationController?.pushViewController(detailsController, animated: true)
+    }
+}

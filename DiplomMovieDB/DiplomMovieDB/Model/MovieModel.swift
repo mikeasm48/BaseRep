@@ -18,12 +18,48 @@ struct MovieDataModel {
     let overview: String
 }
 
-struct InteractorOutputDataType {
+struct ListMovieImageDataModel {
     let movie: MovieDataModel
-    let imageData: Data
+    let image: Data
 }
 
-struct PresenterOutputDataType {
+struct ListMovieModel {
     let movie: MovieDataModel
     let image: UIImage
+}
+
+struct DetailsMovieModel {
+    let movie: MovieDataModel
+    let posterImage: UIImage
+    let backdropImage: UIImage
+}
+
+protocol MovieModelProtocol {
+    func getMovies() -> [ListMovieModel]
+    func setMovies(list: [ListMovieModel])
+    func moviesCount() -> Int
+}
+
+final class MovieModel: MovieModelProtocol{
+    static let shared = MovieModel()
+    private var movies: [ListMovieModel] = []
+
+    private init() {}
+
+    func setMovies(list: [ListMovieModel]){
+        movies = list
+    }
+
+    func getMovies() -> [ListMovieModel] {
+        return movies
+    }
+    func moviesCount() -> Int {
+        return movies.count
+    }
+}
+
+extension MovieModel: NSCopying {
+    func copy(with zone: NSZone? = nil) -> Any {
+        return self
+    }
 }

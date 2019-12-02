@@ -17,7 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
 
-        let viewController = Router.shared.getDefaultModule().getView()
+        //let viewController = Router.shared.getDefaultModule().getView()
+        let viewController = ListAssembly.build()
         window?.rootViewController = viewController
         window?.makeKeyAndVisible()
         return true

@@ -8,24 +8,18 @@
 
 import UIKit
 
-class ListView: UIViewController {
+protocol ListViewControllerProtocol: AnyObject {
+    
+}
+
+class ListViewController: UIViewController, ListViewControllerProtocol {
+    var interactor: ListInteractorProtocol?
+    var router: ListRouterProtocol?
+    //View
     let tableView = UITableView()
     let searchView = UIView()
     let searchInputField = UITextField()
     let reuseId = "UITableViewCellreuseId"
-    //let interactor: InteractorInput
-    let presenter: ListPresenterInputProtocol
-
-    var movies: [ListPresenterOutputDataType] = []
-
-    init(presenter: ListPresenterInputProtocol) {
-        self.presenter = presenter
-        super.init(nibName: nil, bundle: nil)
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("Метод не реализован")
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,23 +58,19 @@ class ListView: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
 
-        presenter.show()
+        interactor?.loadDataAsync()
     }
 }
 
-extension ListView: ListPresenterOutputProtocol, UITableViewDataSource, UITextFieldDelegate, UITableViewDelegate {
-
-    func didLoadData(data: [ListPresenterOutputDataType]) {
-        self.movies = data
-        tableView.reloadData()
-    }
+extension ListViewController:  UITableViewDataSource, UITextFieldDelegate, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return movies.count
+        return MovieModel.shared.moviesCount()
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseId, for: indexPath)
+        let movies = MovieModel.shared.getMovies()
         let model = movies[indexPath.row]
         cell.imageView?.image = model.image
         cell.textLabel?.text = model.movie.originalTitle
@@ -91,11 +81,16 @@ extension ListView: ListPresenterOutputProtocol, UITableViewDataSource, UITextFi
         guard let text = textField.text else {
             return false
         }
-        presenter.search(by: text)
+        //TODO
+        //presenter.search(by: text)
         return true
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-       Router.shared.showDetails()
+        guard let navi = self.navigationController else {
+            print("out of navigationController")
+            return
+        }
+       router?.openDetailsModule()
     }
 }

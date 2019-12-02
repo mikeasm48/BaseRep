@@ -6,4 +6,22 @@
 //  Copyright © 2019 Михаил Асмаковец. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+final class DetailsAssembly: AssemblyProtocol {
+    static func build() -> UIViewController {
+        let viewController = DetailsViewController()
+        //TODO одна сессия на каждый модуль или одна на всех?
+        let service = NetworkService(session: SessionFactory().createDefaultSession())
+        let interactor = DetailsInteractor(networkService: service)
+        let presenter = DetailsPresenter()
+        let router = DetailsRouter()
+
+        interactor.presenter = presenter
+        presenter.viewController = viewController
+        viewController.interactor = interactor
+        router.viewController = viewController
+
+        return viewController
+    }
+}
