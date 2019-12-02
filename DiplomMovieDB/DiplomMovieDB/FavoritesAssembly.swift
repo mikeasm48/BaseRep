@@ -1,5 +1,5 @@
 //
-//  ListAssembly.swift
+//  FavoritesAssembly.swift
 //  DiplomMovieDB
 //
 //  Created by Михаил Асмаковец on 02.12.2019.
@@ -8,20 +8,20 @@
 
 import UIKit
 
-final class ListAssembly: AssemblyProtocol {
+final class FavoritesAssembly: AssemblyProtocol {
     static func build() -> UIViewController {
+        let viewController = FavoritesViewController()
+        //TODO одна сессия на каждый модуль или одна на всех?
         let service = NetworkService(session: SessionFactory().createDefaultSession())
-        let interactor = ListInteractor(networkService: service)
-        let presenter = ListPresenter()
-        let router = ListRouter()
-        let viewController = ListViewController()
+        let interactor = FavoritesInteractor(networkService: service)
+        let presenter = FavoritesPresenter()
+        let router = FavoritesRouter()
 
+        interactor.presenter = presenter
+        presenter.viewController = viewController
         viewController.interactor = interactor
         viewController.router = router
-        presenter.viewController = viewController
         router.viewController = viewController
-        interactor.presenter = presenter
-        _ = UINavigationController.init(rootViewController: viewController)
 
         return viewController
     }

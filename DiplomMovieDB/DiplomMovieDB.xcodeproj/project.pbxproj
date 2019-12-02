@@ -31,6 +31,12 @@
 		00EFC3BF23951D80000F39DE /* ListAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFC3BE23951D80000F39DE /* ListAssembly.swift */; };
 		00EFC3C4239543C3000F39DE /* ListAssemblyTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFC3C3239543C3000F39DE /* ListAssemblyTest.swift */; };
 		00EFC3C6239549CE000F39DE /* DetailsAssemblyTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFC3C5239549CE000F39DE /* DetailsAssemblyTest.swift */; };
+		00EFC3C923955C77000F39DE /* FavoritesAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFC3C823955C77000F39DE /* FavoritesAssembly.swift */; };
+		00EFC3CB23955C8F000F39DE /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFC3CA23955C8F000F39DE /* FavoritesViewController.swift */; };
+		00EFC3CD23955CA6000F39DE /* FavoritesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFC3CC23955CA6000F39DE /* FavoritesInteractor.swift */; };
+		00EFC3CF23955CB4000F39DE /* FavoritesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFC3CE23955CB4000F39DE /* FavoritesPresenter.swift */; };
+		00EFC3D123955CCF000F39DE /* FavoritesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFC3D023955CCF000F39DE /* FavoritesRouter.swift */; };
+		00EFC3D423955F00000F39DE /* FavoritesAssemblyTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFC3D323955F00000F39DE /* FavoritesAssemblyTest.swift */; };
 		00F7371C23913DFB00874356 /* PresenterSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F7371B23913DFB00874356 /* PresenterSpy.swift */; };
 /* End PBXBuildFile section */
 
@@ -73,6 +79,12 @@
 		00EFC3BE23951D80000F39DE /* ListAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListAssembly.swift; sourceTree = "<group>"; };
 		00EFC3C3239543C3000F39DE /* ListAssemblyTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListAssemblyTest.swift; sourceTree = "<group>"; };
 		00EFC3C5239549CE000F39DE /* DetailsAssemblyTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsAssemblyTest.swift; sourceTree = "<group>"; };
+		00EFC3C823955C77000F39DE /* FavoritesAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesAssembly.swift; sourceTree = "<group>"; };
+		00EFC3CA23955C8F000F39DE /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
+		00EFC3CC23955CA6000F39DE /* FavoritesInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesInteractor.swift; sourceTree = "<group>"; };
+		00EFC3CE23955CB4000F39DE /* FavoritesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesPresenter.swift; sourceTree = "<group>"; };
+		00EFC3D023955CCF000F39DE /* FavoritesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesRouter.swift; sourceTree = "<group>"; };
+		00EFC3D323955F00000F39DE /* FavoritesAssemblyTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesAssemblyTest.swift; sourceTree = "<group>"; };
 		00F7371B23913DFB00874356 /* PresenterSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenterSpy.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -128,6 +140,7 @@
 		0030EF91238E44CE00224006 /* DiplomMovieDBTests */ = {
 			isa = PBXGroup;
 			children = (
+				00EFC3D223955EDD000F39DE /* Favorites */,
 				00EFC3C22395437D000F39DE /* Network */,
 				00EFC3C123954300000F39DE /* Details */,
 				00EFC3C0239542F1000F39DE /* List */,
@@ -192,6 +205,7 @@
 		008C7DAB238EDE5600533948 /* Implementation */ = {
 			isa = PBXGroup;
 			children = (
+				00EFC3C723955B86000F39DE /* Favorites */,
 				008C7DBA238F931900533948 /* Details */,
 				008C7DB9238F930300533948 /* List */,
 			);
@@ -263,6 +277,26 @@
 				0030EFA9238E4E6700224006 /* APITests.swift */,
 			);
 			name = Network;
+			sourceTree = "<group>";
+		};
+		00EFC3C723955B86000F39DE /* Favorites */ = {
+			isa = PBXGroup;
+			children = (
+				00EFC3C823955C77000F39DE /* FavoritesAssembly.swift */,
+				00EFC3CA23955C8F000F39DE /* FavoritesViewController.swift */,
+				00EFC3CC23955CA6000F39DE /* FavoritesInteractor.swift */,
+				00EFC3CE23955CB4000F39DE /* FavoritesPresenter.swift */,
+				00EFC3D023955CCF000F39DE /* FavoritesRouter.swift */,
+			);
+			name = Favorites;
+			sourceTree = "<group>";
+		};
+		00EFC3D223955EDD000F39DE /* Favorites */ = {
+			isa = PBXGroup;
+			children = (
+				00EFC3D323955F00000F39DE /* FavoritesAssemblyTest.swift */,
+			);
+			name = Favorites;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -388,6 +422,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				006B65B7238EACDE007BB629 /* ListPresenter.swift in Sources */,
+				00EFC3C923955C77000F39DE /* FavoritesAssembly.swift in Sources */,
 				00EFC3B52395140B000F39DE /* ListRouter.swift in Sources */,
 				00EFC3B723951507000F39DE /* DetailsAssembly.swift in Sources */,
 				00EFC3BF23951D80000F39DE /* ListAssembly.swift in Sources */,
@@ -396,8 +431,12 @@
 				0030EFA2238E4BF700224006 /* API.swift in Sources */,
 				00EFC3B923951574000F39DE /* AssemblyProtocol.swift in Sources */,
 				00EFC3BD2395175A000F39DE /* DetailsRouter.swift in Sources */,
+				00EFC3CF23955CB4000F39DE /* FavoritesPresenter.swift in Sources */,
+				00EFC3CB23955C8F000F39DE /* FavoritesViewController.swift in Sources */,
 				0030EF7E238E44CD00224006 /* AppDelegate.swift in Sources */,
+				00EFC3CD23955CA6000F39DE /* FavoritesInteractor.swift in Sources */,
 				0030EFB3238E566400224006 /* MovieModel.swift in Sources */,
+				00EFC3D123955CCF000F39DE /* FavoritesRouter.swift in Sources */,
 				00ED1BBB2392741D00644E4D /* DetailsInteractor.swift in Sources */,
 				0030EFAC238E4EF600224006 /* DetailsViewController.swift in Sources */,
 				0030EFAE238E500000224006 /* ListInteractor.swift in Sources */,
@@ -413,6 +452,7 @@
 				00EFC3C6239549CE000F39DE /* DetailsAssemblyTest.swift in Sources */,
 				00EFC3C4239543C3000F39DE /* ListAssemblyTest.swift in Sources */,
 				0030EFA8238E4E4E00224006 /* ListInteractorTests.swift in Sources */,
+				00EFC3D423955F00000F39DE /* FavoritesAssemblyTest.swift in Sources */,
 				00F7371C23913DFB00874356 /* PresenterSpy.swift in Sources */,
 				0030EFB6238E5AB800224006 /* NetworkServiceStub.swift in Sources */,
 				0030EFAA238E4E6700224006 /* APITests.swift in Sources */,

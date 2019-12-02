@@ -17,10 +17,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
 
-        //let viewController = Router.shared.getDefaultModule().getView()
-        let viewController = ListAssembly.build()
-        window?.rootViewController = viewController.navigationController
+        let listViewController = ListAssembly.build()
+        let favoritesViewController = FavoritesAssembly.build()
+        window?.rootViewController = initTabBar(root: getRoot(viewController: listViewController),
+                                                favorite: favoritesViewController)
         window?.makeKeyAndVisible()
         return true
+    }
+
+    private func getRoot(viewController: UIViewController) -> UIViewController {
+        guard let navigationController = viewController.navigationController else {
+            return viewController
+        }
+        return navigationController
+    }
+
+    private func initTabBar(root: UIViewController, favorite: UIViewController) -> UITabBarController {
+        let tabBarController = UITabBarController()
+
+        root.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 1)
+        favorite.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 2)
+
+        tabBarController.viewControllers = [root, favorite]
+
+        return tabBarController
     }
 }
