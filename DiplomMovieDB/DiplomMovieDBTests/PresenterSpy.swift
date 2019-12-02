@@ -8,11 +8,11 @@
 import XCTest
 @testable import DiplomMovieDB
 
-class PresenterSpy: InteractorOutputProtocol {
+class PresenterSpy: ListPresenterProtocol {
     var countData = 0
     var expect: XCTestExpectation?
 
-    func reloadData(data: [InteractorOutputDataType]) {
+    func reloadData(data: [ListMovieImageDataModel]) {
         countData += data.count
         print("PresenterSpy: \(countData)")
         expect?.fulfill()

@@ -13,7 +13,7 @@ class ListInteractorTests: XCTestCase {
     var networkServiceStub: NetworkServiceStub!
     var networkServiceStubForLoadImage: NetworkServiceStubForLoadImage!
     var presenter: PresenterSpy!
-    var interactor: InteractorInputProtocol!
+    var interactor: ListInteractor!
 
     override func setUp() {
         super.setUp()
@@ -21,7 +21,7 @@ class ListInteractorTests: XCTestCase {
         presenter = PresenterSpy()
         presenter.expect = expectation(description: "Expect for data loading")
         interactor = ListInteractor(networkService: networkServiceStub)
-        interactor.setOutput(output: presenter)
+        interactor.presenter = presenter
     }
 
     override func tearDown() {
