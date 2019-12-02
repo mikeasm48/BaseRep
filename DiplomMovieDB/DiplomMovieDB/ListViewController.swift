@@ -9,7 +9,6 @@
 import UIKit
 
 protocol ListViewControllerProtocol: AnyObject {
-    
 }
 
 class ListViewController: UIViewController, ListViewControllerProtocol {
@@ -62,7 +61,7 @@ class ListViewController: UIViewController, ListViewControllerProtocol {
     }
 }
 
-extension ListViewController:  UITableViewDataSource, UITextFieldDelegate, UITableViewDelegate {
+extension ListViewController: UITableViewDataSource, UITextFieldDelegate, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return MovieModel.shared.moviesCount()
@@ -87,10 +86,6 @@ extension ListViewController:  UITableViewDataSource, UITextFieldDelegate, UITab
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let navi = self.navigationController else {
-            print("out of navigationController")
-            return
-        }
        router?.openDetailsModule()
     }
 }

@@ -9,12 +9,12 @@
 import UIKit
 
 protocol DetailsViewControllerProtocol {
-    
 }
 
 class DetailsViewController: UIViewController, DetailsViewControllerProtocol {
     var interactor: DetailsInteractorProtocol?
- 
+    var router: DetailsRouterProtocol?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .green

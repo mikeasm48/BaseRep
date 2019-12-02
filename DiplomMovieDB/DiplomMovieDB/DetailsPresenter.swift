@@ -12,10 +12,9 @@ protocol DetailsPresenterProtocol {
     func showDetails(at movieId: Int, imageData: Data)
 }
 
-class DetailsPresenter: DetailsPresenterProtocol{
+class DetailsPresenter: DetailsPresenterProtocol {
     var viewController: DetailsViewController?
     func showDetails(at movieId: Int, imageData: Data) {
         //TODO
     }
 }
-

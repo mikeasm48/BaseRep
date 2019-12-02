@@ -14,7 +14,6 @@ class PresenterSpy: ListPresenterProtocol {
 
     func reloadData(data: [ListMovieImageDataModel]) {
         countData += data.count
-        print("PresenterSpy: \(countData)")
         expect?.fulfill()
     }
 }

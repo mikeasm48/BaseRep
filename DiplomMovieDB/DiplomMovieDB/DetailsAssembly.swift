@@ -20,6 +20,7 @@ final class DetailsAssembly: AssemblyProtocol {
         interactor.presenter = presenter
         presenter.viewController = viewController
         viewController.interactor = interactor
+        viewController.router = router
         router.viewController = viewController
 
         return viewController

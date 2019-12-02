@@ -12,7 +12,6 @@ protocol DetailsInteractorProtocol {
     func showData (data: DetailsMovieModel)
 }
 
-
 class DetailsInteractor: DetailsInteractorProtocol {
     var presenter: DetailsPresenterProtocol?
     let networkService: NetworkServiceInput
@@ -20,7 +19,7 @@ class DetailsInteractor: DetailsInteractorProtocol {
     init(networkService: NetworkServiceInput) {
         self.networkService = networkService
     }
-    
+
     func showData(data: DetailsMovieModel) {
         //
     }

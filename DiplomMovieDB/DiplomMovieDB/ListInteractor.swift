@@ -6,11 +6,6 @@
 //  Copyright © 2019 Михаил Асмаковец. All rights reserved.
 //
 
-//protocol ListInteractorInput {
-//    func loadImage(imageName: String, completion: @escaping (UIImage?) -> Void)
-//    func loadDiscoverMovieList(sortBy: String, completion: @escaping ([MovieDataModel]) -> Void)
-//}
-
 import  Foundation
 
 protocol ListInteractorProtocol {
@@ -43,7 +38,7 @@ class ListInteractor: ListInteractorProtocol {
                     group.leave()
                     return
                 }
-                
+
                 let viewModel = ListMovieImageDataModel(movie: model, image: image)
                 resultModel.append(viewModel)
                 group.leave()
@@ -54,10 +49,10 @@ class ListInteractor: ListInteractorProtocol {
            self.presenter?.reloadData(data: resultModel)
         }
     }
-    
+
     private func loadMoviePosterImages(with models: [MovieDataModel]) {
         var resultModel: [ListMovieImageDataModel] = []
-        
+
         let group = DispatchGroup()
         for model in models {
             group.enter()
@@ -71,7 +66,7 @@ class ListInteractor: ListInteractorProtocol {
                 group.leave()
             }
         }
-        
+
         group.notify(queue: DispatchQueue.main) {
             self.presenter?.reloadData(data: resultModel)
         }

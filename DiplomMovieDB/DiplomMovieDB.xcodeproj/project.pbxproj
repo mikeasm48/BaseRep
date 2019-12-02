@@ -21,7 +21,6 @@
 		0030EFB6238E5AB800224006 /* NetworkServiceStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0030EFB5238E5AB800224006 /* NetworkServiceStub.swift */; };
 		0030EFB8238E6A4600224006 /* TestMovieList.json in Resources */ = {isa = PBXBuildFile; fileRef = 0030EFB7238E6A4600224006 /* TestMovieList.json */; };
 		0030EFBA238E848100224006 /* TestPicture.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0030EFB9238E848100224006 /* TestPicture.jpg */; };
-		0030EFBC238E907B00224006 /* NetworkServiceStubForLoadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0030EFBB238E907B00224006 /* NetworkServiceStubForLoadImage.swift */; };
 		006B65B7238EACDE007BB629 /* ListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006B65B6238EACDE007BB629 /* ListPresenter.swift */; };
 		00ED1BBB2392741D00644E4D /* DetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00ED1BBA2392741D00644E4D /* DetailsInteractor.swift */; };
 		00ED1BBD2392759100644E4D /* DetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00ED1BBC2392759100644E4D /* DetailsPresenter.swift */; };
@@ -30,6 +29,8 @@
 		00EFC3B923951574000F39DE /* AssemblyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFC3B823951574000F39DE /* AssemblyProtocol.swift */; };
 		00EFC3BD2395175A000F39DE /* DetailsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFC3BC2395175A000F39DE /* DetailsRouter.swift */; };
 		00EFC3BF23951D80000F39DE /* ListAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFC3BE23951D80000F39DE /* ListAssembly.swift */; };
+		00EFC3C4239543C3000F39DE /* ListAssemblyTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFC3C3239543C3000F39DE /* ListAssemblyTest.swift */; };
+		00EFC3C6239549CE000F39DE /* DetailsAssemblyTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFC3C5239549CE000F39DE /* DetailsAssemblyTest.swift */; };
 		00F7371C23913DFB00874356 /* PresenterSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F7371B23913DFB00874356 /* PresenterSpy.swift */; };
 /* End PBXBuildFile section */
 
@@ -62,7 +63,6 @@
 		0030EFB5238E5AB800224006 /* NetworkServiceStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceStub.swift; sourceTree = "<group>"; };
 		0030EFB7238E6A4600224006 /* TestMovieList.json */ = {isa = PBXFileReference; explicitFileType = text.json; fileEncoding = 4; path = TestMovieList.json; sourceTree = "<group>"; };
 		0030EFB9238E848100224006 /* TestPicture.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = TestPicture.jpg; sourceTree = "<group>"; };
-		0030EFBB238E907B00224006 /* NetworkServiceStubForLoadImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceStubForLoadImage.swift; sourceTree = "<group>"; };
 		006B65B6238EACDE007BB629 /* ListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPresenter.swift; sourceTree = "<group>"; };
 		00ED1BBA2392741D00644E4D /* DetailsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsInteractor.swift; sourceTree = "<group>"; };
 		00ED1BBC2392759100644E4D /* DetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsPresenter.swift; sourceTree = "<group>"; };
@@ -71,6 +71,8 @@
 		00EFC3B823951574000F39DE /* AssemblyProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssemblyProtocol.swift; sourceTree = "<group>"; };
 		00EFC3BC2395175A000F39DE /* DetailsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsRouter.swift; sourceTree = "<group>"; };
 		00EFC3BE23951D80000F39DE /* ListAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListAssembly.swift; sourceTree = "<group>"; };
+		00EFC3C3239543C3000F39DE /* ListAssemblyTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListAssemblyTest.swift; sourceTree = "<group>"; };
+		00EFC3C5239549CE000F39DE /* DetailsAssemblyTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsAssemblyTest.swift; sourceTree = "<group>"; };
 		00F7371B23913DFB00874356 /* PresenterSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenterSpy.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -126,10 +128,11 @@
 		0030EF91238E44CE00224006 /* DiplomMovieDBTests */ = {
 			isa = PBXGroup;
 			children = (
+				00EFC3C22395437D000F39DE /* Network */,
+				00EFC3C123954300000F39DE /* Details */,
+				00EFC3C0239542F1000F39DE /* List */,
 				00ED1BB92392720500644E4D /* Implementation */,
 				0030EFAF238E502D00224006 /* TestData */,
-				0030EFA7238E4E4E00224006 /* ListInteractorTests.swift */,
-				0030EFA9238E4E6700224006 /* APITests.swift */,
 				0030EF94238E44CE00224006 /* Info.plist */,
 			);
 			path = DiplomMovieDBTests;
@@ -232,10 +235,34 @@
 			isa = PBXGroup;
 			children = (
 				0030EFB5238E5AB800224006 /* NetworkServiceStub.swift */,
-				0030EFBB238E907B00224006 /* NetworkServiceStubForLoadImage.swift */,
 				00F7371B23913DFB00874356 /* PresenterSpy.swift */,
 			);
 			name = Implementation;
+			sourceTree = "<group>";
+		};
+		00EFC3C0239542F1000F39DE /* List */ = {
+			isa = PBXGroup;
+			children = (
+				0030EFA7238E4E4E00224006 /* ListInteractorTests.swift */,
+				00EFC3C3239543C3000F39DE /* ListAssemblyTest.swift */,
+			);
+			name = List;
+			sourceTree = "<group>";
+		};
+		00EFC3C123954300000F39DE /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				00EFC3C5239549CE000F39DE /* DetailsAssemblyTest.swift */,
+			);
+			name = Details;
+			sourceTree = "<group>";
+		};
+		00EFC3C22395437D000F39DE /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				0030EFA9238E4E6700224006 /* APITests.swift */,
+			);
+			name = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -383,7 +410,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0030EFBC238E907B00224006 /* NetworkServiceStubForLoadImage.swift in Sources */,
+				00EFC3C6239549CE000F39DE /* DetailsAssemblyTest.swift in Sources */,
+				00EFC3C4239543C3000F39DE /* ListAssemblyTest.swift in Sources */,
 				0030EFA8238E4E4E00224006 /* ListInteractorTests.swift in Sources */,
 				00F7371C23913DFB00874356 /* PresenterSpy.swift in Sources */,
 				0030EFB6238E5AB800224006 /* NetworkServiceStub.swift in Sources */,

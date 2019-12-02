@@ -11,7 +11,6 @@ import XCTest
 
 class ListInteractorTests: XCTestCase {
     var networkServiceStub: NetworkServiceStub!
-    var networkServiceStubForLoadImage: NetworkServiceStubForLoadImage!
     var presenter: PresenterSpy!
     var interactor: ListInteractor!
 
@@ -25,7 +24,7 @@ class ListInteractorTests: XCTestCase {
     }
 
     override func tearDown() {
-        networkServiceStubForLoadImage = nil
+        networkServiceStub = nil
         presenter = nil
         super.tearDown()
     }

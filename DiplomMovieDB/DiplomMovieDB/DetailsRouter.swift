@@ -6,7 +6,10 @@
 //  Copyright © 2019 Михаил Асмаковец. All rights reserved.
 //
 import UIKit
-final class DetailsRouter {
+
+protocol DetailsRouterProtocol {
+}
+
+final class DetailsRouter: DetailsRouterProtocol {
     weak var viewController: (DetailsViewControllerProtocol & UIViewController)?
-    //TODO: нужен?
 }

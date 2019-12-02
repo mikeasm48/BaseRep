@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         //let viewController = Router.shared.getDefaultModule().getView()
         let viewController = ListAssembly.build()
-        window?.rootViewController = viewController
+        window?.rootViewController = viewController.navigationController
         window?.makeKeyAndVisible()
         return true
     }

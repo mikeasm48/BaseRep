@@ -40,13 +40,13 @@ protocol MovieModelProtocol {
     func moviesCount() -> Int
 }
 
-final class MovieModel: MovieModelProtocol{
+final class MovieModel: MovieModelProtocol {
     static let shared = MovieModel()
     private var movies: [ListMovieModel] = []
 
     private init() {}
 
-    func setMovies(list: [ListMovieModel]){
+    func setMovies(list: [ListMovieModel]) {
         movies = list
     }
 
