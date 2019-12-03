@@ -21,7 +21,7 @@ final class ListAssembly: AssemblyProtocol {
         presenter.viewController = viewController
         router.viewController = viewController
         interactor.presenter = presenter
-        _ = UINavigationController.init(rootViewController: viewController)
+        //_ = UINavigationController.init(rootViewController: viewController)
 
         return viewController
     }

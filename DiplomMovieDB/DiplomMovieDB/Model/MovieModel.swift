@@ -35,17 +35,23 @@ struct DetailsMovieModel {
 }
 
 protocol MovieModelProtocol {
+    //List
     func getMovies() -> [ListMovieModel]
     func setMovies(list: [ListMovieModel])
     func moviesCount() -> Int
+    //TopRated
+    func getTopRated() -> [ListMovieModel]
+    func setTopRated(list: [ListMovieModel])
 }
 
 final class MovieModel: MovieModelProtocol {
     static let shared = MovieModel()
     private var movies: [ListMovieModel] = []
+    private var topRated: [ListMovieModel] = []
 
     private init() {}
 
+    //Movies
     func setMovies(list: [ListMovieModel]) {
         movies = list
     }
@@ -53,8 +59,17 @@ final class MovieModel: MovieModelProtocol {
     func getMovies() -> [ListMovieModel] {
         return movies
     }
+
     func moviesCount() -> Int {
         return movies.count
+    }
+    //TopRated
+    func setTopRated(list: [ListMovieModel]) {
+        topRated = list
+    }
+
+    func getTopRated() -> [ListMovieModel] {
+        return topRated
     }
 }
 

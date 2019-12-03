@@ -17,9 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
 
-        let listViewController = ListAssembly.build()
+        let mainViewController = MainAssembly.build()
         let favoritesViewController = FavoritesAssembly.build()
-        window?.rootViewController = initTabBar(root: getRoot(viewController: listViewController),
+        window?.rootViewController = initTabBar(root: getRoot(viewController: mainViewController),
                                                 favorite: favoritesViewController)
         window?.makeKeyAndVisible()
         return true

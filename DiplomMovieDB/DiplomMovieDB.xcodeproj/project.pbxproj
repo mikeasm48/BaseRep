@@ -21,6 +21,18 @@
 		0030EFB6238E5AB800224006 /* NetworkServiceStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0030EFB5238E5AB800224006 /* NetworkServiceStub.swift */; };
 		0030EFB8238E6A4600224006 /* TestMovieList.json in Resources */ = {isa = PBXBuildFile; fileRef = 0030EFB7238E6A4600224006 /* TestMovieList.json */; };
 		0030EFBA238E848100224006 /* TestPicture.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0030EFB9238E848100224006 /* TestPicture.jpg */; };
+		006B16242396134D00D388E0 /* MainAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006B16232396134D00D388E0 /* MainAssembly.swift */; };
+		006B16262396137100D388E0 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006B16252396137100D388E0 /* MainViewController.swift */; };
+		006B16292396264700D388E0 /* TopRatedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006B16282396264700D388E0 /* TopRatedViewController.swift */; };
+		006B162B2396265D00D388E0 /* TopRatedAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006B162A2396265D00D388E0 /* TopRatedAssembly.swift */; };
+		006B162D2396267C00D388E0 /* TopRatedInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006B162C2396267C00D388E0 /* TopRatedInteractor.swift */; };
+		006B162F2396269500D388E0 /* TopRatedPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006B162E2396269500D388E0 /* TopRatedPresenter.swift */; };
+		006B16322396288600D388E0 /* SearchAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006B16312396288600D388E0 /* SearchAssembly.swift */; };
+		006B16342396289400D388E0 /* SearchViewControllert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006B16332396289400D388E0 /* SearchViewControllert.swift */; };
+		006B1636239628AE00D388E0 /* SearchRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006B1635239628AE00D388E0 /* SearchRouter.swift */; };
+		006B1638239629D300D388E0 /* MainRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006B1637239629D300D388E0 /* MainRouter.swift */; };
+		006B163A23962D3B00D388E0 /* SearchInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006B163923962D3B00D388E0 /* SearchInteractor.swift */; };
+		006B163C23962D7D00D388E0 /* SearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006B163B23962D7D00D388E0 /* SearchPresenter.swift */; };
 		006B65B7238EACDE007BB629 /* ListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006B65B6238EACDE007BB629 /* ListPresenter.swift */; };
 		00ED1BBB2392741D00644E4D /* DetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00ED1BBA2392741D00644E4D /* DetailsInteractor.swift */; };
 		00ED1BBD2392759100644E4D /* DetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00ED1BBC2392759100644E4D /* DetailsPresenter.swift */; };
@@ -37,6 +49,8 @@
 		00EFC3CF23955CB4000F39DE /* FavoritesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFC3CE23955CB4000F39DE /* FavoritesPresenter.swift */; };
 		00EFC3D123955CCF000F39DE /* FavoritesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFC3D023955CCF000F39DE /* FavoritesRouter.swift */; };
 		00EFC3D423955F00000F39DE /* FavoritesAssemblyTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFC3D323955F00000F39DE /* FavoritesAssemblyTest.swift */; };
+		00EFC3D723956788000F39DE /* TopRatedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFC3D623956788000F39DE /* TopRatedView.swift */; };
+		00EFC3D923956A85000F39DE /* TopRatedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFC3D823956A85000F39DE /* TopRatedCollectionViewCell.swift */; };
 		00F7371C23913DFB00874356 /* PresenterSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F7371B23913DFB00874356 /* PresenterSpy.swift */; };
 /* End PBXBuildFile section */
 
@@ -69,6 +83,18 @@
 		0030EFB5238E5AB800224006 /* NetworkServiceStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceStub.swift; sourceTree = "<group>"; };
 		0030EFB7238E6A4600224006 /* TestMovieList.json */ = {isa = PBXFileReference; explicitFileType = text.json; fileEncoding = 4; path = TestMovieList.json; sourceTree = "<group>"; };
 		0030EFB9238E848100224006 /* TestPicture.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = TestPicture.jpg; sourceTree = "<group>"; };
+		006B16232396134D00D388E0 /* MainAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainAssembly.swift; sourceTree = "<group>"; };
+		006B16252396137100D388E0 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		006B16282396264700D388E0 /* TopRatedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopRatedViewController.swift; sourceTree = "<group>"; };
+		006B162A2396265D00D388E0 /* TopRatedAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopRatedAssembly.swift; sourceTree = "<group>"; };
+		006B162C2396267C00D388E0 /* TopRatedInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopRatedInteractor.swift; sourceTree = "<group>"; };
+		006B162E2396269500D388E0 /* TopRatedPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopRatedPresenter.swift; sourceTree = "<group>"; };
+		006B16312396288600D388E0 /* SearchAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAssembly.swift; sourceTree = "<group>"; };
+		006B16332396289400D388E0 /* SearchViewControllert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewControllert.swift; sourceTree = "<group>"; };
+		006B1635239628AE00D388E0 /* SearchRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRouter.swift; sourceTree = "<group>"; };
+		006B1637239629D300D388E0 /* MainRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRouter.swift; sourceTree = "<group>"; };
+		006B163923962D3B00D388E0 /* SearchInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchInteractor.swift; sourceTree = "<group>"; };
+		006B163B23962D7D00D388E0 /* SearchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPresenter.swift; sourceTree = "<group>"; };
 		006B65B6238EACDE007BB629 /* ListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPresenter.swift; sourceTree = "<group>"; };
 		00ED1BBA2392741D00644E4D /* DetailsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsInteractor.swift; sourceTree = "<group>"; };
 		00ED1BBC2392759100644E4D /* DetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsPresenter.swift; sourceTree = "<group>"; };
@@ -85,6 +111,8 @@
 		00EFC3CE23955CB4000F39DE /* FavoritesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesPresenter.swift; sourceTree = "<group>"; };
 		00EFC3D023955CCF000F39DE /* FavoritesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesRouter.swift; sourceTree = "<group>"; };
 		00EFC3D323955F00000F39DE /* FavoritesAssemblyTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesAssemblyTest.swift; sourceTree = "<group>"; };
+		00EFC3D623956788000F39DE /* TopRatedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopRatedView.swift; sourceTree = "<group>"; };
+		00EFC3D823956A85000F39DE /* TopRatedCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopRatedCollectionViewCell.swift; sourceTree = "<group>"; };
 		00F7371B23913DFB00874356 /* PresenterSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenterSpy.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -194,6 +222,40 @@
 			name = TestData;
 			sourceTree = "<group>";
 		};
+		006B16222396132300D388E0 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				006B16232396134D00D388E0 /* MainAssembly.swift */,
+				006B16252396137100D388E0 /* MainViewController.swift */,
+				006B1637239629D300D388E0 /* MainRouter.swift */,
+			);
+			name = Main;
+			sourceTree = "<group>";
+		};
+		006B16272396261000D388E0 /* TopRated */ = {
+			isa = PBXGroup;
+			children = (
+				00EFC3D523956726000F39DE /* Views */,
+				006B16282396264700D388E0 /* TopRatedViewController.swift */,
+				006B162E2396269500D388E0 /* TopRatedPresenter.swift */,
+				006B162A2396265D00D388E0 /* TopRatedAssembly.swift */,
+				006B162C2396267C00D388E0 /* TopRatedInteractor.swift */,
+			);
+			name = TopRated;
+			sourceTree = "<group>";
+		};
+		006B16302396286900D388E0 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				006B16312396288600D388E0 /* SearchAssembly.swift */,
+				006B16332396289400D388E0 /* SearchViewControllert.swift */,
+				006B1635239628AE00D388E0 /* SearchRouter.swift */,
+				006B163923962D3B00D388E0 /* SearchInteractor.swift */,
+				006B163B23962D7D00D388E0 /* SearchPresenter.swift */,
+			);
+			name = Search;
+			sourceTree = "<group>";
+		};
 		008C7DAA238EDE3A00533948 /* Interface */ = {
 			isa = PBXGroup;
 			children = (
@@ -205,9 +267,12 @@
 		008C7DAB238EDE5600533948 /* Implementation */ = {
 			isa = PBXGroup;
 			children = (
-				00EFC3C723955B86000F39DE /* Favorites */,
-				008C7DBA238F931900533948 /* Details */,
+				006B16222396132300D388E0 /* Main */,
+				006B16302396286900D388E0 /* Search */,
 				008C7DB9238F930300533948 /* List */,
+				006B16272396261000D388E0 /* TopRated */,
+				008C7DBA238F931900533948 /* Details */,
+				00EFC3C723955B86000F39DE /* Favorites */,
 			);
 			name = Implementation;
 			sourceTree = "<group>";
@@ -297,6 +362,15 @@
 				00EFC3D323955F00000F39DE /* FavoritesAssemblyTest.swift */,
 			);
 			name = Favorites;
+			sourceTree = "<group>";
+		};
+		00EFC3D523956726000F39DE /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				00EFC3D623956788000F39DE /* TopRatedView.swift */,
+				00EFC3D823956A85000F39DE /* TopRatedCollectionViewCell.swift */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -421,25 +495,39 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				006B163A23962D3B00D388E0 /* SearchInteractor.swift in Sources */,
 				006B65B7238EACDE007BB629 /* ListPresenter.swift in Sources */,
+				006B16322396288600D388E0 /* SearchAssembly.swift in Sources */,
+				006B162D2396267C00D388E0 /* TopRatedInteractor.swift in Sources */,
+				00EFC3D723956788000F39DE /* TopRatedView.swift in Sources */,
+				006B1636239628AE00D388E0 /* SearchRouter.swift in Sources */,
 				00EFC3C923955C77000F39DE /* FavoritesAssembly.swift in Sources */,
 				00EFC3B52395140B000F39DE /* ListRouter.swift in Sources */,
+				006B162B2396265D00D388E0 /* TopRatedAssembly.swift in Sources */,
 				00EFC3B723951507000F39DE /* DetailsAssembly.swift in Sources */,
+				00EFC3D923956A85000F39DE /* TopRatedCollectionViewCell.swift in Sources */,
+				006B162F2396269500D388E0 /* TopRatedPresenter.swift in Sources */,
 				00EFC3BF23951D80000F39DE /* ListAssembly.swift in Sources */,
 				0030EFA6238E4DF900224006 /* NetworkService.swift in Sources */,
 				0030EF80238E44CD00224006 /* ListViewController.swift in Sources */,
 				0030EFA2238E4BF700224006 /* API.swift in Sources */,
+				006B16242396134D00D388E0 /* MainAssembly.swift in Sources */,
 				00EFC3B923951574000F39DE /* AssemblyProtocol.swift in Sources */,
+				006B16342396289400D388E0 /* SearchViewControllert.swift in Sources */,
 				00EFC3BD2395175A000F39DE /* DetailsRouter.swift in Sources */,
 				00EFC3CF23955CB4000F39DE /* FavoritesPresenter.swift in Sources */,
+				006B1638239629D300D388E0 /* MainRouter.swift in Sources */,
+				006B16262396137100D388E0 /* MainViewController.swift in Sources */,
 				00EFC3CB23955C8F000F39DE /* FavoritesViewController.swift in Sources */,
 				0030EF7E238E44CD00224006 /* AppDelegate.swift in Sources */,
 				00EFC3CD23955CA6000F39DE /* FavoritesInteractor.swift in Sources */,
 				0030EFB3238E566400224006 /* MovieModel.swift in Sources */,
+				006B163C23962D7D00D388E0 /* SearchPresenter.swift in Sources */,
 				00EFC3D123955CCF000F39DE /* FavoritesRouter.swift in Sources */,
 				00ED1BBB2392741D00644E4D /* DetailsInteractor.swift in Sources */,
 				0030EFAC238E4EF600224006 /* DetailsViewController.swift in Sources */,
 				0030EFAE238E500000224006 /* ListInteractor.swift in Sources */,
+				006B16292396264700D388E0 /* TopRatedViewController.swift in Sources */,
 				0030EFA4238E4C0900224006 /* SessionFactory.swift in Sources */,
 				00ED1BBD2392759100644E4D /* DetailsPresenter.swift in Sources */,
 			);

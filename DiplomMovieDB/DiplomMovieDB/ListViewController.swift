@@ -16,39 +16,18 @@ class ListViewController: UIViewController, ListViewControllerProtocol {
     var router: ListRouterProtocol?
     //View
     let tableView = UITableView()
-    let searchView = UIView()
-    let searchInputField = UITextField()
+    //let searchView = UIView()
+    //let searchInputField = UITextField()
     let reuseId = "UITableViewCellreuseId"
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .darkGray
-        navigationItem.title = "Список фильмов"
-
+        //view.backgroundColor = .darkGray
         view.addSubview(tableView)
-        view.addSubview(searchView)
-        searchView.backgroundColor = .darkGray
-        searchView.addSubview(searchInputField)
-        searchInputField.delegate = self
-        searchInputField.backgroundColor = .white
-        searchInputField.borderStyle = .roundedRect
-
-        searchInputField.translatesAutoresizingMaskIntoConstraints = false
+        
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        searchView.translatesAutoresizingMaskIntoConstraints = false
-
         NSLayoutConstraint.activate([
-            searchInputField.topAnchor.constraint(equalTo: searchView.topAnchor, constant: 20),
-            searchInputField.leftAnchor.constraint(equalTo: searchView.leftAnchor),
-            searchInputField.rightAnchor.constraint(equalTo: searchView.rightAnchor),
-            searchInputField.bottomAnchor.constraint(equalTo: searchView.bottomAnchor, constant: -20),
-
-            searchView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            searchView.leftAnchor.constraint(equalTo: view.leftAnchor),
-            searchView.rightAnchor.constraint(equalTo: view.rightAnchor),
-            searchView.bottomAnchor.constraint(equalTo: tableView.topAnchor),
-
-            tableView.topAnchor.constraint(equalTo: searchView.bottomAnchor),
+            tableView.topAnchor.constraint(equalTo: view.topAnchor),
             tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
             tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)])
@@ -61,7 +40,7 @@ class ListViewController: UIViewController, ListViewControllerProtocol {
     }
 }
 
-extension ListViewController: UITableViewDataSource, UITextFieldDelegate, UITableViewDelegate {
+extension ListViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return MovieModel.shared.moviesCount()
@@ -76,14 +55,14 @@ extension ListViewController: UITableViewDataSource, UITextFieldDelegate, UITabl
         return cell
     }
 
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        guard let text = textField.text else {
-            return false
-        }
-        //TODO
-        //presenter.search(by: text)
-        return true
-    }
+//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+//        guard let _ = textField.text else {
+//            return false
+//        }
+//        //TODO
+//        //presenter.search(by: text)
+//        return true
+//    }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
        router?.openDetailsModule()
