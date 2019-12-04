@@ -17,6 +17,7 @@ final class TopRatedAssembly: AssemblyProtocol {
         let router = TopRatedRouter()
 
         interactor.presenter = presenter
+        interactor.dataModel = MovieModel.shared
         presenter.viewController = viewController
         viewController.interactor = interactor
         viewController.router = router

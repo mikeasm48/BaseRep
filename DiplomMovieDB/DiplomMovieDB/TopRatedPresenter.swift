@@ -8,13 +8,13 @@
 import UIKit
 
 protocol TopRatedPresenterProtocol {
-    func reloadData(data: [ListMovieImageDataModel])
+    func reloadData(fetchData: FetchData, data: [ListMovieImageDataModel])
 }
 
 class TopRatedPresenter: TopRatedPresenterProtocol {
     var viewController: TopRatedViewController?
 
-    func reloadData(data: [ListMovieImageDataModel]){
+    func reloadData(fetchData: FetchData, data: [ListMovieImageDataModel]){
         var listModel: [ListMovieModel] = []
         
         for dataItem in data {
@@ -25,7 +25,7 @@ class TopRatedPresenter: TopRatedPresenterProtocol {
             listModel.append(model)
         }
         
-        MovieModel.shared.setTopRated(list: listModel)
+        MovieModel.shared.setTopRated(fetchData: fetchData, list: listModel)
         viewController?.reloadData()
     }
 }

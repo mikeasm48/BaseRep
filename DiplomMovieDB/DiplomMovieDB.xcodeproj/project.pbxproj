@@ -34,9 +34,9 @@
 		006B163A23962D3B00D388E0 /* SearchInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006B163923962D3B00D388E0 /* SearchInteractor.swift */; };
 		006B163C23962D7D00D388E0 /* SearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006B163B23962D7D00D388E0 /* SearchPresenter.swift */; };
 		006B163E23963EF300D388E0 /* TopRatedRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006B163D23963EF300D388E0 /* TopRatedRouter.swift */; };
-		006B1640239685E500D388E0 /* InteractorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006B163F239685E500D388E0 /* InteractorProtocol.swift */; };
 		006B16422396860F00D388E0 /* Interactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006B16412396860F00D388E0 /* Interactor.swift */; };
 		006B65B7238EACDE007BB629 /* ListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006B65B6238EACDE007BB629 /* ListPresenter.swift */; };
+		00AAAF3323973B9500C05039 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AAAF3223973B9500C05039 /* DataModel.swift */; };
 		00ED1BBB2392741D00644E4D /* DetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00ED1BBA2392741D00644E4D /* DetailsInteractor.swift */; };
 		00ED1BBD2392759100644E4D /* DetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00ED1BBC2392759100644E4D /* DetailsPresenter.swift */; };
 		00EFC3B52395140B000F39DE /* ListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFC3B42395140B000F39DE /* ListRouter.swift */; };
@@ -98,9 +98,9 @@
 		006B163923962D3B00D388E0 /* SearchInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchInteractor.swift; sourceTree = "<group>"; };
 		006B163B23962D7D00D388E0 /* SearchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPresenter.swift; sourceTree = "<group>"; };
 		006B163D23963EF300D388E0 /* TopRatedRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopRatedRouter.swift; sourceTree = "<group>"; };
-		006B163F239685E500D388E0 /* InteractorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractorProtocol.swift; sourceTree = "<group>"; };
 		006B16412396860F00D388E0 /* Interactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interactor.swift; sourceTree = "<group>"; };
 		006B65B6238EACDE007BB629 /* ListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPresenter.swift; sourceTree = "<group>"; };
+		00AAAF3223973B9500C05039 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		00ED1BBA2392741D00644E4D /* DetailsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsInteractor.swift; sourceTree = "<group>"; };
 		00ED1BBC2392759100644E4D /* DetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsPresenter.swift; sourceTree = "<group>"; };
 		00EFC3B42395140B000F39DE /* ListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListRouter.swift; sourceTree = "<group>"; };
@@ -205,10 +205,10 @@
 		0030EF9F238E4BBD00224006 /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				008C7DB9238F930300533948 /* List */,
+				006B16272396261000D388E0 /* TopRated */,
 				00EFC3C723955B86000F39DE /* Favorites */,
 				008C7DBA238F931900533948 /* Details */,
-				006B16272396261000D388E0 /* TopRated */,
-				008C7DB9238F930300533948 /* List */,
 				006B16302396286900D388E0 /* Search */,
 				006B16222396132300D388E0 /* Main */,
 			);
@@ -219,6 +219,7 @@
 			isa = PBXGroup;
 			children = (
 				0030EFB2238E566400224006 /* MovieModel.swift */,
+				00AAAF3223973B9500C05039 /* DataModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -271,7 +272,6 @@
 			isa = PBXGroup;
 			children = (
 				00EFC3B823951574000F39DE /* AssemblyProtocol.swift */,
-				006B163F239685E500D388E0 /* InteractorProtocol.swift */,
 			);
 			name = Interface;
 			sourceTree = "<group>";
@@ -531,10 +531,10 @@
 				006B163C23962D7D00D388E0 /* SearchPresenter.swift in Sources */,
 				00EFC3D123955CCF000F39DE /* FavoritesRouter.swift in Sources */,
 				00ED1BBB2392741D00644E4D /* DetailsInteractor.swift in Sources */,
+				00AAAF3323973B9500C05039 /* DataModel.swift in Sources */,
 				0030EFAC238E4EF600224006 /* DetailsViewController.swift in Sources */,
 				0030EFAE238E500000224006 /* ListInteractor.swift in Sources */,
 				006B16422396860F00D388E0 /* Interactor.swift in Sources */,
-				006B1640239685E500D388E0 /* InteractorProtocol.swift in Sources */,
 				006B16292396264700D388E0 /* TopRatedViewController.swift in Sources */,
 				0030EFA4238E4C0900224006 /* SessionFactory.swift in Sources */,
 				00ED1BBD2392759100644E4D /* DetailsPresenter.swift in Sources */,

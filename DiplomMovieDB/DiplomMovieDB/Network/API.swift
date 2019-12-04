@@ -26,13 +26,14 @@ https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=836b
     }
 
     /**URL для загрузки списка фильмов*/
-    static func discoverPath(sortBy: String) -> URL {
+    static func discoverPath(sortBy: String, page: Int) -> URL {
         guard var components = URLComponents(string: dicoverBaseUrl) else {
             return URL(string: dicoverBaseUrl)!
         }
         let sortBy = URLQueryItem(name: "sort_by", value: sortBy)
         let apiKeyItem = URLQueryItem(name: "api_key", value: apiKey)
-        components.queryItems = [sortBy, apiKeyItem]
+        let page = URLQueryItem(name: "page", value: String(page))
+        components.queryItems = [sortBy, apiKeyItem, page]
         return components.url!
     }
 }

@@ -9,13 +9,13 @@
 import UIKit
 
 protocol ListPresenterProtocol {
-    func reloadData(data: [ListMovieImageDataModel])
+    func reloadData(fetchData: FetchData, data: [ListMovieImageDataModel])
 }
 
 class ListPresenter: ListPresenterProtocol {
     weak var viewController: ListViewController?
 
-    func reloadData(data: [ListMovieImageDataModel]) {
+    func reloadData(fetchData: FetchData, data: [ListMovieImageDataModel]) {
             var listModel: [ListMovieModel] = []
 
             for dataItem in data {
@@ -25,7 +25,7 @@ class ListPresenter: ListPresenterProtocol {
                 let model = ListMovieModel(movie: dataItem.movie, image: image)
                 listModel.append(model)
             }
-            MovieModel.shared.setMovies(list: listModel)
+            MovieModel.shared.setMovies(fetchData: fetchData, list: listModel)
             viewController?.tableView.reloadData()
     }
 }
