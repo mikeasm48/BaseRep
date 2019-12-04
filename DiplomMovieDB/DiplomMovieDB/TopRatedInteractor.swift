@@ -14,15 +14,19 @@ protocol TopRatedInteractorProtocol {
 
 class TopRatedInteractor: Interactor, TopRatedInteractorProtocol {
     var presenter: TopRatedPresenterProtocol?
-    var dataModel: MovieModel?
 
     func loadDataAsync() {
         let url = API.discoverPath(sortBy: "popularity.desc",
-                                   page: getNextFetchedPage(fetchData: dataModel?.getTopRatedFetchData()))
-        loadMovieList(url: url) { [weak self] (fetchData, models) in
-            self?.loadMoviePosterImages(with: models) { [weak self] results in
-                self?.presenter?.reloadData(fetchData: fetchData, data: results)
-            }
+                                   page: DataModel.shared.getNextFetchPage(list: ListType.topRated))
+
+        loadMovieList(list: ListType.topRated, url: url) { [weak self] (models) in
+            self?.loadImages(with: models.map{model in model.posterPath})
+        }
+    }
+
+    private func loadImages(with names: [String]){
+        self.loadMovieImages(with: names) { [weak self] in
+            self?.presenter?.reloadData()
         }
     }
 }

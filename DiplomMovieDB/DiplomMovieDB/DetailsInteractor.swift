@@ -9,7 +9,7 @@
 import Foundation
 
 protocol DetailsInteractorProtocol {
-    func showData (data: DetailsMovieModel)
+    func showData ()
 }
 
 class DetailsInteractor: DetailsInteractorProtocol {
@@ -20,7 +20,7 @@ class DetailsInteractor: DetailsInteractorProtocol {
         self.networkService = networkService
     }
 
-    func showData(data: DetailsMovieModel) {
+    func showData() {
         //
     }
 }

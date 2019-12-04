@@ -12,18 +12,22 @@ protocol ListInteractorProtocol {
     func loadDataAsync()
 }
 
-class ListInteractor: Interactor, ListInteractorProtocol {
+class ListInteractor: Interactor, ListInteractorProtocol{
+    
     var presenter: ListPresenterProtocol?
-    var dataModel: MovieModel?
 
     func loadDataAsync() {
          let url = API.discoverPath(sortBy: "popularity.desc",
-                                    page: getNextFetchedPage(fetchData: dataModel?.getMoviesFetchData()))
+                                    page: DataModel.shared.getNextFetchPage(list: ListType.lastRecent))
 
-        loadMovieList(url: url) { [weak self] (fetchData, models) in
-            self?.loadMovieBackdropImages(with: models) { [weak self] results in
-                self?.presenter?.reloadData(fetchData: fetchData, data: results)
-            }
+        loadMovieList(list: ListType.lastRecent, url: url) { [weak self] (models) in
+            self?.loadImages(with: models.map{model in model.backdropPath})
+        }
+    }
+
+    private func loadImages(with names: [String]){
+        self.loadMovieImages(with: names) { [weak self] in
+            self?.presenter?.reloadData()
         }
     }
 }

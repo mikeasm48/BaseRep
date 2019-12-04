@@ -21,7 +21,7 @@ final class ListAssembly: AssemblyProtocol {
         presenter.viewController = viewController
         router.viewController = viewController
         interactor.presenter = presenter
-        interactor.dataModel = MovieModel.shared
+        interactor.dataModel = DataModel.shared
 
         return viewController
     }

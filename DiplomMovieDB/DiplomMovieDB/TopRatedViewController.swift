@@ -51,20 +51,23 @@ class TopRatedViewController: UIViewController, TopRatedViewControllerProtocol {
 
 extension TopRatedViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let count = MovieModel.shared.getTopRated().count
-        return count
+        return DataModel.shared.getListCount(list: ListType.topRated)
     }
 
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "topRatedCell", for: indexPath) as? TopRatedCollectionViewCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "topRatedCell",
+                                                            for: indexPath) as? TopRatedCollectionViewCell else {
             return UICollectionViewCell(frame: CGRect(x: 0, y: 0, width: 20, height: 10))
-        } 
-        cell.picture.image = MovieModel.shared.getTopRated()[indexPath.row].image
+        }
+        let model = DataModel.shared.getMovie(list: ListType.lastRecent, index: indexPath.row)
+        cell.picture.image = ImageFactory().getImage(for: model.backdropPath)
         return cell
     }
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
         let cellSize = cellHeight
         return CGSize(width: cellSize, height: cellSize)
     }

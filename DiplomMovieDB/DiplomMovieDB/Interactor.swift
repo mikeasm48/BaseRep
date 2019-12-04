@@ -9,25 +9,22 @@
 import Foundation
 
 protocol InteractorProtocol {
-    func loadMovieList(url: URL, completion: @escaping (FetchData, [MovieDataModel]) -> Void)
-    func loadMoviePosterImages(with models: [MovieDataModel],
-                               completion: @escaping ([ListMovieImageDataModel]) -> Void)
-    func loadMovieBackdropImages(with models: [MovieDataModel],
-                                 completion: @escaping ([ListMovieImageDataModel]) -> Void)
+    func loadMovieList(list: ListType, url: URL, completion: @escaping ([MovieDataModel]) -> Void)
+    func loadMovieImages(with names: [String],
+                                 completion: @escaping () -> Void)
 }
 
 class Interactor: InteractorProtocol {
     let networkService: NetworkServiceInput
+    var dataModel: DataModel?
 
     init(networkService: NetworkServiceInput) {
         self.networkService = networkService
     }
 
-    func loadMovieList(url: URL, completion: @escaping (FetchData, [MovieDataModel]) -> Void) {
-        let emptyFetchData = FetchData(currentPage: 0, totalPages: 0, totalResults: 0)
+    func loadMovieList(list: ListType, url: URL, completion: @escaping ([MovieDataModel]) -> Void) {
         networkService.getData(at: url) { data in
             guard let data = data else {
-                completion(emptyFetchData, [])
                 return
             }
             let responseDictionary = try? JSONSerialization.jsonObject(with: data, options: .init()) as? [String: Any]
@@ -40,7 +37,8 @@ class Interactor: InteractorProtocol {
 
             let models = resultsArray.map { (object) -> MovieDataModel in
                 let movieId = object["id"] as? Int ?? -1
-                let title = object["original_title"] as? String ?? ""
+                let originalTitle = object["original_title"] as? String ?? ""
+                let title = object["title"] as? String ?? ""
                 let imdbId = object["imdb_id"] as? String ?? ""
                 let backdropPath = object["backdrop_path"] as? String ?? ""
                 let posterPath = object["poster_path"] as? String ?? ""
@@ -50,65 +48,62 @@ class Interactor: InteractorProtocol {
                                       imdbId: imdbId,
                                       backdropPath: backdropPath,
                                       posterPath: posterPath,
-                                      originalTitle: title,
+                                      title: title,
+                                      originalTitle: originalTitle,
                                       homePage: homePage,
                                       overview: overview)
             }
-            completion(resultFetchData, models)
+            self.dataModel?.updateModel(list: list, data: models, fetchData: resultFetchData)
+            completion(models)
         }
     }
 
-    func loadMovieBackdropImages(with models: [MovieDataModel],
-                                 completion: @escaping ([ListMovieImageDataModel]) -> Void) {
-        var resultModel: [ListMovieImageDataModel] = []
+    func loadMovieImages(with names: [String],
+                                 completion: @escaping () -> Void) {
         let group = DispatchGroup()
-        for model in models {
-            group.enter()
-            self.loadImageData(imagePath: model.backdropPath) { [weak self] image in
-                guard let image = image else {
+        for imageName in names {
+            if !DataModel.shared.isPictureLoaded(for: imageName){
+                group.enter()
+                self.loadImageData(imagePath: imageName) { [weak self] image in
+                    guard let image = image else {
+                        group.leave()
+                        return
+                    }
+                    self?.dataModel?.updatePicture(for: imageName, data: image)
                     group.leave()
-                    return
                 }
-                let viewModel = ListMovieImageDataModel(movie: model, image: image)
-                resultModel.append(viewModel)
-                group.leave()
             }
+
         }
 
         group.notify(queue: DispatchQueue.main) {
-            completion(resultModel)
+            completion()
         }
     }
 
-    func loadMoviePosterImages(with models: [MovieDataModel],
-                               completion: @escaping ([ListMovieImageDataModel]) -> Void) {
-        var resultModel: [ListMovieImageDataModel] = []
-        let group = DispatchGroup()
-        for model in models {
-            group.enter()
-            self.loadImageData(imagePath: model.posterPath) { [weak self] image in
-                guard let image = image else {
-                    completion([])
-                    group.leave()
-                    return
-                }
-                let viewModel = ListMovieImageDataModel(movie: model, image: image)
-                resultModel.append(viewModel)
-                group.leave()
-            }
-        }
-
-        group.notify(queue: DispatchQueue.main) {
-            completion(resultModel)
-        }
-    }
+//    func loadMoviePosterImages(with models: [MovieDataModel],
+//                               completion: @escaping ([ListMovieImageDataModel]) -> Void) {
+//        var resultModel: [ListMovieImageDataModel] = []
+//        let group = DispatchGroup()
+//        for model in models {
+//            group.enter()
+//            self.loadImageData(imagePath: model.posterPath) { [weak self] image in
+//                guard let image = image else {
+//                    completion([])
+//                    group.leave()
+//                    return
+//                }
+//                let viewModel = ListMovieImageDataModel(movie: model, image: image)
+//                resultModel.append(viewModel)
+//                group.leave()
+//            }
+//        }
+//
+//        group.notify(queue: DispatchQueue.main) {
+//            completion(resultModel)
+//        }
+//    }
     
-    func getNextFetchedPage(fetchData: FetchData?) -> Int {
-        guard let page = fetchData?.currentPage else {
-            return 1
-        }
-        return page + 1
-    }
 
     private func loadImageData(imagePath: String, completion: @escaping (Data?) -> Void) {
         let url = API.loadImagePath(imagePath: imagePath)

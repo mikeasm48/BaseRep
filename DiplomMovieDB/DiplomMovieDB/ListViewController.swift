@@ -43,26 +43,16 @@ class ListViewController: UIViewController, ListViewControllerProtocol {
 extension ListViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return MovieModel.shared.moviesCount()
+        return DataModel.shared.getListCount(list: ListType.lastRecent)
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseId, for: indexPath)
-        let movies = MovieModel.shared.getMovies()
-        let model = movies[indexPath.row]
-        cell.imageView?.image = model.image
-        cell.textLabel?.text = model.movie.originalTitle
+        let model = DataModel.shared.getMovie(list: ListType.lastRecent, index: indexPath.row)
+        cell.imageView?.image = ImageFactory().getImage(for: model.backdropPath)
+        cell.textLabel?.text = model.title
         return cell
     }
-
-//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-//        guard let _ = textField.text else {
-//            return false
-//        }
-//        //TODO
-//        //presenter.search(by: text)
-//        return true
-//    }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
        router?.openDetailsModule()
