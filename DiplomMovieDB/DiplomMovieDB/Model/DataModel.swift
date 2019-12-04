@@ -85,9 +85,12 @@ final class DataModel {
         return true
     }
 
-    //Picture - private
     func getPicture(for name: String) -> Data? {
-        return pictures[name]
+        var results: Data?
+        queue.sync {
+            results = pictures[name]
+        }
+        return results
     }
 
     //List FetchData
