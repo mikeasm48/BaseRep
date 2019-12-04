@@ -21,6 +21,13 @@ class ViewController: UIViewController {
     //Количество загружаемых за один fetch картинок
     let fetchModelsCount = 20
 
+    lazy var loadQueue: OperationQueue = {
+        var queue = OperationQueue()
+        queue.name = "load image queue"
+        queue.maxConcurrentOperationCount = 1
+        return queue
+    }()
+
     init(interactor: InteractorInput) {
         self.interactor = interactor
         super.init(nibName: nil, bundle: nil)
@@ -63,18 +70,31 @@ class ViewController: UIViewController {
 
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: reuseId)
         tableView.dataSource = self
-        search(by: defaultSearchText)
+        search(by: defaultSearchText, delay: 0)
     }
 
-    private func search(by searchString: String) {
+    private func search(by searchString: String, delay: Int) {
+        loadQueue.cancelAllOperations()
+        //Вариант 1
+        loadQueue.addOperation {
+            sleep(UInt32(delay))
+            self.doSearch(by: searchString)
+        }
+        //Вариант 2
+//        let operation = LoadOperation(viewCntroller: self, text: searchString)
+//        loadQueue.addOperation(operation)
+    }
+
+    func doSearch(by searchString: String) {
+        print("doSearch start: \(searchString)")
         self.images.removeAll()
-        interactor.loadImageList(by: searchString) { [weak self] models in
+        self.interactor.loadImageList(by: searchString) { [weak self] models in
             self?.models = models
             self?.loadImages()
         }
     }
 
-    private func loadImages() {
+    func loadImages() {
         let models = self.models.prefix(fetchModelsCount)
         let group = DispatchGroup()
         for model in models {
@@ -130,7 +150,7 @@ extension ViewController: UITableViewDataSource, UITextFieldDelegate {
         guard let text = textField.text else {
             return false
         }
-        self.search(by: text)
+        self.search(by: text, delay: 4)
         return true
     }
 }
