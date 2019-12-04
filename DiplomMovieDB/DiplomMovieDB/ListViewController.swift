@@ -14,6 +14,7 @@ protocol ListViewControllerProtocol: AnyObject {
 class ListViewController: UIViewController, ListViewControllerProtocol {
     var interactor: ListInteractorProtocol?
     var router: ListRouterProtocol?
+    var recordsCount = 0
     //View
     let tableView = UITableView()
     //let searchView = UIView()
@@ -24,7 +25,7 @@ class ListViewController: UIViewController, ListViewControllerProtocol {
         super.viewDidLoad()
         //view.backgroundColor = .darkGray
         view.addSubview(tableView)
-        
+
         tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -43,14 +44,20 @@ class ListViewController: UIViewController, ListViewControllerProtocol {
 extension ListViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return DataModel.shared.getListCount(list: ListType.lastRecent)
+        recordsCount = DataModel.shared.getListCount(list: ListType.lastRecent)
+        return recordsCount
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseId, for: indexPath)
-        let model = DataModel.shared.getMovie(list: ListType.lastRecent, index: indexPath.row)
-        cell.imageView?.image = ImageFactory().getImage(for: model.backdropPath)
-        cell.textLabel?.text = model.title
+
+        let model = DataModel.shared
+        let movie = model.getMovie(list: ListType.lastRecent, index: indexPath.row)
+        cell.imageView?.image = ImageFactory().getImage(for: movie.backdropPath)
+        cell.textLabel?.text = movie.title
+        if model.needListFetch(list: ListType.lastRecent, currentRecord: indexPath.row) {
+            interactor?.loadDataAsync()
+        }
         return cell
     }
 

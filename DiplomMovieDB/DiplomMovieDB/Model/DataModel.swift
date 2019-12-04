@@ -93,7 +93,7 @@ final class DataModel {
     //List FetchData
     func getFetchData(list: ListType) -> FetchData {
         var resultData = FetchData(currentPage: 0, totalPages: 0, totalResults: 0)
-        queue.async(flags: .barrier) {
+        queue.sync {
             guard let fetchData = self.listFetchData[list] else {
                 let newFetchData = FetchData(currentPage: 0, totalPages: 0, totalResults: 0)
                 self.listFetchData.updateValue(newFetchData, forKey: list)
@@ -112,11 +112,18 @@ final class DataModel {
     }
 
     func getNextFetchPage(list: ListType) -> Int {
-        var resultFetchPage: Int = 0
-        queue.sync {
-            resultFetchPage = getFetchData(list: list).currentPage + 1
+        let fetchData = getFetchData(list: list)
+        let returnValue = fetchData.currentPage + 1
+        print("return fetch = \(returnValue) from \(fetchData.totalPages)")
+        return returnValue
+    }
+    
+    func needListFetch(list: ListType, currentRecord: Int) -> Bool{
+        let listCount = getListCount(list: list)
+        if (currentRecord  == listCount - 1 ) {
+            return true
         }
-        return resultFetchPage
+        return false
     }
 
     //Lists - private
