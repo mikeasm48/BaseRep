@@ -16,6 +16,8 @@
 		0030034B237ED1FD00E73875 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0030034A237ED1FD00E73875 /* NetworkService.swift */; };
 		0030034D237ED24700E73875 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0030034C237ED24700E73875 /* API.swift */; };
 		0030034F237ED2B300E73875 /* SessionFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0030034E237ED2B300E73875 /* SessionFactory.swift */; };
+		003262AE23991F6C003A953D /* DelayOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003262AD23991F6C003A953D /* DelayOperation.swift */; };
+		003262B0239922D0003A953D /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003262AF239922D0003A953D /* AsyncOperation.swift */; };
 		0060562923980E8800FC34E4 /* LoadOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0060562823980E8800FC34E4 /* LoadOperation.swift */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +33,8 @@
 		0030034A237ED1FD00E73875 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		0030034C237ED24700E73875 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		0030034E237ED2B300E73875 /* SessionFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionFactory.swift; sourceTree = "<group>"; };
+		003262AD23991F6C003A953D /* DelayOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelayOperation.swift; sourceTree = "<group>"; };
+		003262AF239922D0003A953D /* AsyncOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncOperation.swift; sourceTree = "<group>"; };
 		0060562823980E8800FC34E4 /* LoadOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadOperation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -83,6 +87,8 @@
 				0030034E237ED2B300E73875 /* SessionFactory.swift */,
 				00300345237ED11200E73875 /* Interactor.swift */,
 				0060562823980E8800FC34E4 /* LoadOperation.swift */,
+				003262AD23991F6C003A953D /* DelayOperation.swift */,
+				003262AF239922D0003A953D /* AsyncOperation.swift */,
 			);
 			name = Module;
 			sourceTree = "<group>";
@@ -188,11 +194,13 @@
 			files = (
 				0030034B237ED1FD00E73875 /* NetworkService.swift in Sources */,
 				00300346237ED11200E73875 /* Interactor.swift in Sources */,
+				003262AE23991F6C003A953D /* DelayOperation.swift in Sources */,
 				00300335237ECF8200E73875 /* ViewController.swift in Sources */,
 				00300349237ED18F00E73875 /* ImageModel.swift in Sources */,
 				0030034D237ED24700E73875 /* API.swift in Sources */,
 				0030034F237ED2B300E73875 /* SessionFactory.swift in Sources */,
 				00300333237ECF8200E73875 /* AppDelegate.swift in Sources */,
+				003262B0239922D0003A953D /* AsyncOperation.swift in Sources */,
 				0060562923980E8800FC34E4 /* LoadOperation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

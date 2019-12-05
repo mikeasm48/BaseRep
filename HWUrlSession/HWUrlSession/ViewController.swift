@@ -76,13 +76,16 @@ class ViewController: UIViewController {
     private func search(by searchString: String, delay: Int) {
         loadQueue.cancelAllOperations()
         //Вариант 1
-        loadQueue.addOperation {
-            sleep(UInt32(delay))
-            self.doSearch(by: searchString)
-        }
+//        loadQueue.addOperation {
+//            sleep(UInt32(delay))
+//            self.doSearch(by: searchString)
+//        }
         //Вариант 2
 //        let operation = LoadOperation(viewCntroller: self, text: searchString)
 //        loadQueue.addOperation(operation)
+        //Вариант 3
+        let operation = DelayOperation(viewCntroller: self, text: searchString, delay: 4)
+        loadQueue.addOperation (operation)
     }
 
     func doSearch(by searchString: String) {
