@@ -28,7 +28,7 @@ final class MainAssembly: AssemblyProtocol {
             topRatedViewController.view.leftAnchor.constraint(equalTo: mainViewController.view.leftAnchor),
             topRatedViewController.view.rightAnchor.constraint(equalTo: mainViewController.view.rightAnchor),
             topRatedViewController.view.bottomAnchor.constraint(equalTo: mainViewController.view.safeAreaLayoutGuide.topAnchor,
-                                                                constant: 150),
+                                                                constant: 280),
             //List
             listViewController.view.topAnchor.constraint(equalTo: topRatedViewController.view.bottomAnchor),
             listViewController.view.leftAnchor.constraint(equalTo: mainViewController.view.leftAnchor),

@@ -34,5 +34,5 @@ class TopRatedCollectionViewCell: UICollectionViewCell {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        //picture.frame = CGRect(x: 0, y: 0, width: frame.width, height: frame.height)
+        picture.frame = CGRect(x: 0, y: 0, width: frame.width, height: frame.height)
     }}

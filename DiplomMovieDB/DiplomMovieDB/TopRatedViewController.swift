@@ -18,6 +18,7 @@ class TopRatedViewController: MovieListViewController, TopRatedViewControllerPro
     var router: TopRatedRouterProtocol?
     //Collection
     var collectionView: UICollectionView!
+    let cellReuseId = "TopRatedCell"
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,8 +28,8 @@ class TopRatedViewController: MovieListViewController, TopRatedViewControllerPro
         collectionView = UICollectionView.init(frame: view.frame, collectionViewLayout: flowLayout)
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.backgroundColor = .white
-        collectionView.register(TopRatedCollectionViewCell.self, forCellWithReuseIdentifier: "topRatedCell")
+        collectionView.backgroundColor = .darkGray
+        collectionView.register(TopRatedCollectionViewCell.self, forCellWithReuseIdentifier: cellReuseId)
         view.addSubview(collectionView)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -57,23 +58,28 @@ extension TopRatedViewController: UICollectionViewDelegate, UICollectionViewData
 
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "topRatedCell",
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellReuseId,
                                                             for: indexPath) as? TopRatedCollectionViewCell else {
-            return UICollectionViewCell(frame: CGRect(x: 0, y: 0, width: view.frame.height, height: view.frame.height))
+            return TopRatedCollectionViewCell(frame: CGRect(x: 0, y: 0, width: view.frame.height, height: view.frame.height))
         }
+
         let model = getDataHolder().getMovie(index: indexPath.row)
         cell.picture.image = getDataHolder().getImage(path: model.backdropPath)
+        //cell.picture
         return cell
     }
 
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.height, height: view.frame.height)
+        let model =  getDataHolder().getMovie(index: indexPath.row)
+        let image = getDataHolder().getImage(path: model.backdropPath)
+        let imageView = UIImageView(image: image)
+        return imageView.frame.size
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
+        return 10
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

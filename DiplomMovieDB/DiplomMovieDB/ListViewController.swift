@@ -75,7 +75,7 @@ extension ListViewController: UITableViewDataSource, UITableViewDelegate {
 
         let movie = getDataHolder().getMovie(index: indexPath.row)
         cell.backgroundColor = .white
-        cell.imageView?.image = getDataHolder().getImage(path: movie.backdropPath)
+        cell.imageView?.image = getDataHolder().getImage(path: movie.posterPath)
         cell.textLabel?.text =  movie.title
         cell.textLabel?.numberOfLines = 2
         cell.detailTextLabel?.text = movie.overview

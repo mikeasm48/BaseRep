@@ -25,7 +25,7 @@ class ListInteractor: Interactor, ListInteractorProtocol {
     }
 
     private func loadImages(models: [MovieDataModel]) {
-        let names = models.map {model in model.backdropPath}
+        let names = models.map {model in model.posterPath}
         self.loadMovieImages(with: names) {[weak self] data in
             self?.presenter?.reloadData(data: models, imageData: data)
         }
