@@ -9,7 +9,7 @@
 import Foundation
 
 protocol InteractorProtocol {
-    func loadMovieList(list: ListType, url: URL, completion: @escaping ([MovieDataModel]) -> Void)
+    func loadMovieList(url: URL, completion: @escaping ([MovieDataModel]) -> Void)
     func loadMovieImages(with names: [String],
                                  completion: @escaping ([String: Data]) -> Void)
 }
@@ -18,12 +18,13 @@ class Interactor: InteractorProtocol {
     
     let networkService: NetworkServiceInput
     var dataModel: DataModelProtocol?
+    var fetchData: FetchData?
 
     init(networkService: NetworkServiceInput) {
         self.networkService = networkService
     }
 
-    func loadMovieList(list: ListType, url: URL, completion: @escaping ([MovieDataModel]) -> Void) {
+    func loadMovieList(url: URL, completion: @escaping ([MovieDataModel]) -> Void) {
         networkService.getData(at: url) { data in
             guard let data = data else {
                 return
@@ -54,7 +55,8 @@ class Interactor: InteractorProtocol {
                                       homePage: homePage,
                                       overview: overview)
             }
-            self.dataModel?.updateModel(list: list, data: models, fetchData: resultFetchData)
+            //self.dataModel?.updateModel(list: list, data: models, fetchData: resultFetchData)
+            self.setFetchData(fetchData: resultFetchData)
             completion(models)
         }
     }
@@ -85,29 +87,6 @@ class Interactor: InteractorProtocol {
         }
     }
 
-//    func loadMoviePosterImages(with models: [MovieDataModel],
-//                               completion: @escaping ([ListMovieImageDataModel]) -> Void) {
-//        var resultModel: [ListMovieImageDataModel] = []
-//        let group = DispatchGroup()
-//        for model in models {
-//            group.enter()
-//            self.loadImageData(imagePath: model.posterPath) { [weak self] image in
-//                guard let image = image else {
-//                    completion([])
-//                    group.leave()
-//                    return
-//                }
-//                let viewModel = ListMovieImageDataModel(movie: model, image: image)
-//                resultModel.append(viewModel)
-//                group.leave()
-//            }
-//        }
-//
-//        group.notify(queue: DispatchQueue.main) {
-//            completion(resultModel)
-//        }
-//    }
-    
     private func loadImageData(imagePath: String, completion: @escaping (Data?) -> Void) {
         let url = API.loadImagePath(imagePath: imagePath)
         networkService.getData(at: url) { data in
@@ -118,7 +97,22 @@ class Interactor: InteractorProtocol {
             completion(data)
         }
     }
+    
+    func getNextFetchPage() -> Int {
+        guard let fetchData = self.fetchData else {
+            print("empty fetch data, return page = 1")
+            return 1
+        }
+        let returnValue = fetchData.currentPage + 1
+        print("fetch page = \(returnValue) from \(fetchData.totalPages)")
+        return returnValue
+    }
+    
+    private func setFetchData(fetchData: FetchData) {
+        self.fetchData = fetchData
+    }
 
+    
     private func getFetchedInt(named: String, from: [String: Any]) -> Int {
         guard let resultAny = from[named] else {
             return 0
@@ -130,7 +124,6 @@ class Interactor: InteractorProtocol {
             return 0
         }
     }
-
     private func mapFetchData(dictionary: [String: Any]) -> FetchData {
         let page = getFetchedInt(named: "page", from: dictionary)
         let totalPages = getFetchedInt(named: "total_pages", from: dictionary)

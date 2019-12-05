@@ -40,7 +40,7 @@ class ListViewController: MovieListViewController, ListViewControllerProtocol {
     }
 
     private func loadData() {
-        interactor?.loadDataAsync(list: ListType.lastRecent)
+        interactor?.loadDataAsync()
     }
 
     func didLoadData(movies: [MovieDataModel], images: [String: UIImage?]) {

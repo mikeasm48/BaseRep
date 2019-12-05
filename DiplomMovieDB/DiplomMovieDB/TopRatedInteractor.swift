@@ -9,16 +9,16 @@
 import Foundation
 
 protocol TopRatedInteractorProtocol {
-    func loadDataAsync(list: ListType)
+    func loadDataAsync()
 }
 
 class TopRatedInteractor: Interactor, TopRatedInteractorProtocol {
     var presenter: TopRatedPresenterProtocol?
 
-    func loadDataAsync(list: ListType) {
+    func loadDataAsync() {
         let url = API.discoverPath(sortBy: "popularity.desc",
-                                   page: DataModel.shared.getNextFetchPage(list: list))
-        loadMovieList(list: list, url: url) { [weak self] models in
+                                   page: getNextFetchPage())
+        loadMovieList(url: url) { [weak self] models in
             self?.loadImages(models: models)
         }
     }

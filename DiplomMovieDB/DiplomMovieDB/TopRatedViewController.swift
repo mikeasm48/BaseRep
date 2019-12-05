@@ -50,7 +50,7 @@ class TopRatedViewController: MovieListViewController, TopRatedViewControllerPro
     }
 
     private func loadData() {
-        interactor?.loadDataAsync(list: .topRated)
+       interactor?.loadDataAsync()
     }
 }
 

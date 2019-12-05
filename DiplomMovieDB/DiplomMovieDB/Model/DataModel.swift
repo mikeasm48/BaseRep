@@ -8,13 +8,6 @@
 
 import UIKit
 
-enum ListType {
-    case lastRecent
-    case topRated
-    case favorites
-    case search
-}
-
 struct MovieDataModel {
     let movieId: Int
     let imdbId: String
@@ -26,34 +19,20 @@ struct MovieDataModel {
     let overview: String
 }
 
-struct ImageModel {
-    let path: String
-    let image: UIImage?
-}
-
 struct FetchData {
     let currentPage: Int
     let totalPages: Int
     let totalResults: Int
 }
+
 protocol DataModelProtocol {
-    func updateModel(list: ListType, data: [MovieDataModel], fetchData: FetchData)
     func updatePicture(for name: String, data: Data)
-    func getListCount(list: ListType) -> Int
     func isPictureLoaded(for name: String) -> Bool
     func getPicture(for name: String) -> Data?
-    func getFetchData(list: ListType) -> FetchData
-    func setFetchData(list: ListType, fetchData: FetchData)
-    func getNextFetchPage(list: ListType) -> Int
-    func needListFetch(list: ListType, currentRecord: Int) -> Bool
 }
 final class DataModel: DataModelProtocol {
     static let shared = DataModel()
-
-    private var movies: [Int: MovieDataModel] = [ : ]
     private var pictures: [String: Data] = [ : ]
-    private var lists: [ListType: [Int]] = [ : ]
-    private var listFetchData: [ListType: FetchData] = [ : ]
 
     private let queue = DispatchQueue(label: "com.dm.barrier",
                                       qos: .unspecified,
@@ -62,31 +41,14 @@ final class DataModel: DataModelProtocol {
                                       target: nil)
 
     private init() {}
-//https://metanit.com/swift/tutorial/2.12.php
 
     //Model interface
-    func updateModel(list: ListType, data: [MovieDataModel], fetchData: FetchData) {
-        queue.async(flags: .barrier) {
-            self.setFetchData(list: list, fetchData: fetchData)
-            self.appendList(list: list, data: data.map {$0.movieId})
-            for movie in data {
-                self.appendMovie(movieData: movie)
-            }
-        }
-    }
-
     func updatePicture(for name: String, data: Data) {
         queue.async(flags: .barrier) {
             self.pictures.updateValue(data, forKey: name)
         }
     }
 
-    func getListCount(list: ListType) -> Int {
-            guard let result = lists[list] else {
-                return 0
-            }
-        return result.count
-    }
 
     func isPictureLoaded(for name: String) -> Bool {
         if getPicture(for: name) == nil {
@@ -101,76 +63,6 @@ final class DataModel: DataModelProtocol {
             results = pictures[name]
         }
         return results
-    }
-
-    //List FetchData
-    func getFetchData(list: ListType) -> FetchData {
-        var resultData = FetchData(currentPage: 0, totalPages: 0, totalResults: 0)
-        queue.sync {
-            guard let fetchData = self.listFetchData[list] else {
-                let newFetchData = FetchData(currentPage: 0, totalPages: 0, totalResults: 0)
-                self.listFetchData.updateValue(newFetchData, forKey: list)
-                resultData = newFetchData
-                return
-            }
-            resultData = fetchData
-        }
-        return resultData
-    }
-
-    func setFetchData(list: ListType, fetchData: FetchData) {
-        queue.async(flags: .barrier) {
-            self.listFetchData.updateValue(fetchData, forKey: list)
-        }
-    }
-
-    func getNextFetchPage(list: ListType) -> Int {
-        let fetchData = getFetchData(list: list)
-        let returnValue = fetchData.currentPage + 1
-        print("return fetch = \(returnValue) from \(fetchData.totalPages)")
-        return returnValue
-    }
-    
-    func needListFetch(list: ListType, currentRecord: Int) -> Bool{
-        let listCount = getListCount(list: list)
-        if (currentRecord  == listCount - 1 ) {
-            return true
-        }
-        return false
-    }
-
-    //Lists - private
-    private func appendList(list: ListType, data: [Int]) {
-        guard let listData = lists[list] else {
-            lists.updateValue(data, forKey: list)
-            return
-        }
-      lists[list] = listData + data
-    }
-
-    private func getMovieList(list: ListType) -> [MovieDataModel] {
-        guard let listIds = lists[list] else {
-            return []
-        }
-        var movieList: [MovieDataModel] = []
-        //TODO узнать как правильно маппить опционалы (movies[movieId] может быть nil)
-        for movieId in listIds {
-            guard let movie = movies[movieId] else {
-                continue
-            }
-            movieList.append(movie)
-        }
-        return movieList
-    }
-    
-    //Movies - private
-    private func getMovie(list: ListType, index: Int) -> MovieDataModel {
-        let movies = self.getMovieList(list: list)
-        return movies[index]
-    }
-    
-    private func appendMovie(movieData: MovieDataModel) {
-        movies.updateValue(movieData, forKey: movieData.movieId)
     }
 }
 

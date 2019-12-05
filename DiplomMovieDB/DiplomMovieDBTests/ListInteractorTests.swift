@@ -31,7 +31,7 @@ class ListInteractorTests: XCTestCase {
 
     func testThatInteractorCanLoadData() {
         //Act
-        interactor.loadDataAsync(list: .lastRecent)
+        interactor.loadDataAsync()
         //Assert
         waitForExpectations(timeout: 1) { (error) in
             if let error = error {

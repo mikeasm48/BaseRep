@@ -9,17 +9,17 @@
 import  Foundation
 
 protocol ListInteractorProtocol {
-    func loadDataAsync(list: ListType)
+    func loadDataAsync()
 }
 
 class ListInteractor: Interactor, ListInteractorProtocol {
     var presenter: ListPresenterProtocol?
 
-    func loadDataAsync(list: ListType) {
+    func loadDataAsync() {
          let url = API.discoverPath(sortBy: "popularity.desc",
-                                    page: DataModel.shared.getNextFetchPage(list: list))
+                                    page: getNextFetchPage())
 
-        loadMovieList(list: list, url: url) { [weak self] models in
+        loadMovieList(url: url) { [weak self] models in
             self?.loadImages(models: models)
         }
     }
