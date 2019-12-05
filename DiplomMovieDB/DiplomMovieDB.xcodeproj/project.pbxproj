@@ -161,14 +161,14 @@
 		0030EF7C238E44CD00224006 /* DiplomMovieDB */ = {
 			isa = PBXGroup;
 			children = (
+				0030EF7D238E44CD00224006 /* AppDelegate.swift */,
 				008C7DAA238EDE3A00533948 /* Interface */,
 				008C7DAB238EDE5600533948 /* Implementation */,
-				008C7DB4238F8BD200533948 /* Assets */,
 				0030EF9F238E4BBD00224006 /* Module */,
 				0030EF9D238E4B9B00224006 /* CoreData */,
 				0030EF9E238E4BB100224006 /* Network */,
 				0030EFA0238E4BCF00224006 /* Model */,
-				0030EF7D238E44CD00224006 /* AppDelegate.swift */,
+				008C7DB4238F8BD200533948 /* Assets */,
 			);
 			path = DiplomMovieDB;
 			sourceTree = "<group>";
@@ -247,7 +247,7 @@
 		006B16272396261000D388E0 /* TopRated */ = {
 			isa = PBXGroup;
 			children = (
-				00EFC3D523956726000F39DE /* Views */,
+				00EFC3D823956A85000F39DE /* TopRatedCollectionViewCell.swift */,
 				006B16282396264700D388E0 /* TopRatedViewController.swift */,
 				006B162E2396269500D388E0 /* TopRatedPresenter.swift */,
 				006B162A2396265D00D388E0 /* TopRatedAssembly.swift */,
@@ -372,14 +372,6 @@
 				00EFC3D323955F00000F39DE /* FavoritesAssemblyTest.swift */,
 			);
 			name = Favorites;
-			sourceTree = "<group>";
-		};
-		00EFC3D523956726000F39DE /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				00EFC3D823956A85000F39DE /* TopRatedCollectionViewCell.swift */,
-			);
-			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

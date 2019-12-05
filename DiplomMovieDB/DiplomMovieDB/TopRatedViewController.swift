@@ -18,20 +18,16 @@ class TopRatedViewController: MovieListViewController, TopRatedViewControllerPro
     var router: TopRatedRouterProtocol?
     //Collection
     var collectionView: UICollectionView!
-    let cellHeight: CGFloat = 90.0
-    let cellSpacing: CGFloat = 10.0
-    let cellSectionSpacing: CGFloat = 15.0
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .green
         //Init collection
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .horizontal
         collectionView = UICollectionView.init(frame: view.frame, collectionViewLayout: flowLayout)
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.backgroundColor = .lightGray
+        collectionView.backgroundColor = .white
         collectionView.register(TopRatedCollectionViewCell.self, forCellWithReuseIdentifier: "topRatedCell")
         view.addSubview(collectionView)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -63,7 +59,7 @@ extension TopRatedViewController: UICollectionViewDelegate, UICollectionViewData
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "topRatedCell",
                                                             for: indexPath) as? TopRatedCollectionViewCell else {
-            return UICollectionViewCell(frame: CGRect(x: 0, y: 0, width: 20, height: 10))
+            return UICollectionViewCell(frame: CGRect(x: 0, y: 0, width: view.frame.height, height: view.frame.height))
         }
         let model = getDataHolder().getMovie(index: indexPath.row)
         cell.picture.image = getDataHolder().getImage(path: model.backdropPath)
@@ -73,19 +69,18 @@ extension TopRatedViewController: UICollectionViewDelegate, UICollectionViewData
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let cellSize = cellHeight
-        return CGSize(width: cellSize, height: cellSize)
+        return CGSize(width: view.frame.height, height: view.frame.height)
     }
 
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-//        return cellSpacing
-//    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         router?.openDetailsModule()
     }
 
 //    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-//        return UIEdgeInsets(top: cellSectionSpacing, left: cellSectionSpacing, bottom: cellSectionSpacing, right: cellSectionSpacing)
+//        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
 //    }
 }

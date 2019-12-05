@@ -19,8 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         let mainViewController = MainAssembly.build()
         let favoritesViewController = FavoritesAssembly.build()
+        let searchViewController = SearchAssembly.build()
         window?.rootViewController = initTabBar(root: getRoot(viewController: mainViewController),
-                                                favorite: favoritesViewController)
+                                                favorite: favoritesViewController, search: searchViewController)
         window?.makeKeyAndVisible()
         return true
     }
@@ -32,13 +33,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return navigationController
     }
 
-    private func initTabBar(root: UIViewController, favorite: UIViewController) -> UITabBarController {
+    private func initTabBar(root: UIViewController, favorite: UIViewController, search: UIViewController) -> UITabBarController {
         let tabBarController = UITabBarController()
 
-        root.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 1)
+        root.tabBarItem = UITabBarItem(tabBarSystemItem: .mostRecent, tag: 1)
         favorite.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 2)
+        search.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 3)
 
-        tabBarController.viewControllers = [root, favorite]
+        tabBarController.viewControllers = [root, favorite, search]
 
         return tabBarController
     }

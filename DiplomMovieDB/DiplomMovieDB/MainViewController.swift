@@ -17,7 +17,8 @@ class MainViewController: UIViewController, MainViewControllerProtocol {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .darkGray
-        navigationItem.title = "Список фильмов"
+        //TODO поставить .white чтобы не заморачиваться с ресайзом разных объектов типа UITextView в заголовке листа на главном экране
+        view.backgroundColor = .white
+        navigationItem.title = "Популярные"
     }
 }
