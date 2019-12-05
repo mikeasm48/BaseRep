@@ -9,25 +9,25 @@
 import  Foundation
 
 protocol ListInteractorProtocol {
-    func loadDataAsync()
+    func loadDataAsync(list: ListType)
 }
 
-class ListInteractor: Interactor, ListInteractorProtocol{
-    
+class ListInteractor: Interactor, ListInteractorProtocol {
     var presenter: ListPresenterProtocol?
 
-    func loadDataAsync() {
+    func loadDataAsync(list: ListType) {
          let url = API.discoverPath(sortBy: "popularity.desc",
-                                    page: DataModel.shared.getNextFetchPage(list: ListType.lastRecent))
+                                    page: DataModel.shared.getNextFetchPage(list: list))
 
-        loadMovieList(list: ListType.lastRecent, url: url) { [weak self] (models) in
-            self?.loadImages(with: models.map{model in model.backdropPath})
+        loadMovieList(list: list, url: url) { [weak self] models in
+            self?.loadImages(models: models)
         }
     }
 
-    private func loadImages(with names: [String]){
-        self.loadMovieImages(with: names) { [weak self] in
-            self?.presenter?.reloadData()
+    private func loadImages(models: [MovieDataModel]) {
+        let names = models.map {model in model.backdropPath}
+        self.loadMovieImages(with: names) {[weak self] data in
+            self?.presenter?.reloadData(data: models, imageData: data)
         }
     }
 }

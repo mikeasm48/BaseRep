@@ -6,13 +6,13 @@
 //  Copyright © 2019 Михаил Асмаковец. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 enum ListType {
     case lastRecent
     case topRated
     case favorites
-    case found
+    case search
 }
 
 struct MovieDataModel {
@@ -26,13 +26,28 @@ struct MovieDataModel {
     let overview: String
 }
 
+struct ImageModel {
+    let path: String
+    let image: UIImage?
+}
+
 struct FetchData {
     let currentPage: Int
     let totalPages: Int
     let totalResults: Int
 }
-
-final class DataModel {
+protocol DataModelProtocol {
+    func updateModel(list: ListType, data: [MovieDataModel], fetchData: FetchData)
+    func updatePicture(for name: String, data: Data)
+    func getListCount(list: ListType) -> Int
+    func isPictureLoaded(for name: String) -> Bool
+    func getPicture(for name: String) -> Data?
+    func getFetchData(list: ListType) -> FetchData
+    func setFetchData(list: ListType, fetchData: FetchData)
+    func getNextFetchPage(list: ListType) -> Int
+    func needListFetch(list: ListType, currentRecord: Int) -> Bool
+}
+final class DataModel: DataModelProtocol {
     static let shared = DataModel()
 
     private var movies: [Int: MovieDataModel] = [ : ]
@@ -64,11 +79,6 @@ final class DataModel {
         queue.async(flags: .barrier) {
             self.pictures.updateValue(data, forKey: name)
         }
-    }
-
-    func getMovie(list: ListType, index: Int) -> MovieDataModel {
-        let movies = self.getMovieList(list: list)
-        return movies[index]
     }
 
     func getListCount(list: ListType) -> Int {
@@ -152,8 +162,13 @@ final class DataModel {
         }
         return movieList
     }
-
+    
     //Movies - private
+    private func getMovie(list: ListType, index: Int) -> MovieDataModel {
+        let movies = self.getMovieList(list: list)
+        return movies[index]
+    }
+    
     private func appendMovie(movieData: MovieDataModel) {
         movies.updateValue(movieData, forKey: movieData.movieId)
     }

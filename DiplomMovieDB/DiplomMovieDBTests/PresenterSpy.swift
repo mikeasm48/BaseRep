@@ -11,8 +11,7 @@ import XCTest
 class PresenterSpy: ListPresenterProtocol {
     var countData = 0
     var expect: XCTestExpectation?
-
-    func reloadData(data: [ListMovieImageDataModel]) {
+    func reloadData(data: [MovieDataModel], imageData: [String : Data]) {
         countData += data.count
         expect?.fulfill()
     }

@@ -11,8 +11,7 @@ import UIKit
 final class FavoritesAssembly: AssemblyProtocol {
     static func build() -> UIViewController {
         let viewController = FavoritesViewController()
-        //TODO одна сессия на каждый модуль или одна на всех?
-        let service = NetworkService(session: SessionFactory().createDefaultSession())
+        let service = NetworkService(session: SessionFactory.getDefaultSession())
         let interactor = FavoritesInteractor(networkService: service)
         let presenter = FavoritesPresenter()
         let router = FavoritesRouter()

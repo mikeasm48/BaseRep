@@ -8,17 +8,16 @@
 
 import UIKit
 
-protocol ListViewControllerProtocol: AnyObject {
+protocol ListViewControllerProtocol {
+    func didLoadData(movies: [MovieDataModel], images: [String: UIImage?])
 }
 
-class ListViewController: UIViewController, ListViewControllerProtocol {
+class ListViewController: MovieListViewController, ListViewControllerProtocol {
     var interactor: ListInteractorProtocol?
     var router: ListRouterProtocol?
     var recordsCount = 0
     //View
     let tableView = UITableView()
-    //let searchView = UIView()
-    //let searchInputField = UITextField()
     let reuseId = "UITableViewCellreuseId"
 
     override func viewDidLoad() {
@@ -36,27 +35,33 @@ class ListViewController: UIViewController, ListViewControllerProtocol {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: reuseId)
         tableView.dataSource = self
         tableView.delegate = self
+        //Load data
+        loadData()
+    }
 
-        interactor?.loadDataAsync()
+    private func loadData() {
+        interactor?.loadDataAsync(list: ListType.lastRecent)
+    }
+
+    func didLoadData(movies: [MovieDataModel], images: [String: UIImage?]) {
+        dataHolder?.setData(movies: movies, images: images)
+        tableView.reloadData()
     }
 }
 
 extension ListViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        recordsCount = DataModel.shared.getListCount(list: ListType.lastRecent)
-        return recordsCount
+        return getDataHolder().getCount()
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseId, for: indexPath)
-
-        let model = DataModel.shared
-        let movie = model.getMovie(list: ListType.lastRecent, index: indexPath.row)
-        cell.imageView?.image = ImageFactory().getImage(for: movie.backdropPath)
-        cell.textLabel?.text = movie.title
-        if model.needListFetch(list: ListType.lastRecent, currentRecord: indexPath.row) {
-            interactor?.loadDataAsync()
+        let movie = getDataHolder().getMovie(index: indexPath.row)
+        cell.imageView?.image = getDataHolder().getImage(path: movie.backdropPath)
+        cell.textLabel?.text =  movie.title
+        if getDataHolder().needFetch(currentIndex: indexPath.row) {
+            loadData()
         }
         return cell
     }

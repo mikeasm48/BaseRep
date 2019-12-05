@@ -12,7 +12,7 @@ final class SearchAssembly: AssemblyProtocol {
     static func build() -> UIViewController {
         let viewController = SearchViewController()
         //TODO одна сессия на каждый модуль или одна на всех?
-        let service = NetworkService(session: SessionFactory().createDefaultSession())
+        let service = NetworkService(session: SessionFactory.getDefaultSession())
         let interactor = SearchInteractor(networkService: service)
         let presenter = SearchPresenter()
         let router = SearchRouter()

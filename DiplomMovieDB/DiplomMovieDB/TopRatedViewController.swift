@@ -9,9 +9,10 @@
 import UIKit
 
 protocol TopRatedViewControllerProtocol {
+    func didLoadData(movies: [MovieDataModel], images: [String: UIImage?])
 }
 
-class TopRatedViewController: UIViewController, TopRatedViewControllerProtocol {
+class TopRatedViewController: MovieListViewController, TopRatedViewControllerProtocol {
     //Module
     var interactor: TopRatedInteractorProtocol?
     var router: TopRatedRouterProtocol?
@@ -28,7 +29,6 @@ class TopRatedViewController: UIViewController, TopRatedViewControllerProtocol {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .horizontal
         collectionView = UICollectionView.init(frame: view.frame, collectionViewLayout: flowLayout)
-        //        collectionView.frame = view.frame
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.backgroundColor = .lightGray
@@ -41,17 +41,22 @@ class TopRatedViewController: UIViewController, TopRatedViewControllerProtocol {
             collectionView.rightAnchor.constraint(equalTo: view.rightAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)])
         //Load data
-        interactor?.loadDataAsync()
+        loadData()
     }
 
-    func reloadData() {
+    func didLoadData(movies: [MovieDataModel], images: [String: UIImage?]) {
+        dataHolder?.setData(movies: movies, images: images)
         collectionView?.reloadData()
+    }
+
+    private func loadData() {
+        interactor?.loadDataAsync(list: .topRated)
     }
 }
 
 extension TopRatedViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return DataModel.shared.getListCount(list: ListType.topRated)
+        return getDataHolder().getCount()
     }
 
     func collectionView(_ collectionView: UICollectionView,
@@ -60,8 +65,8 @@ extension TopRatedViewController: UICollectionViewDelegate, UICollectionViewData
                                                             for: indexPath) as? TopRatedCollectionViewCell else {
             return UICollectionViewCell(frame: CGRect(x: 0, y: 0, width: 20, height: 10))
         }
-        let model = DataModel.shared.getMovie(list: ListType.lastRecent, index: indexPath.row)
-        cell.picture.image = ImageFactory().getImage(for: model.backdropPath)
+        let model = getDataHolder().getMovie(index: indexPath.row)
+        cell.picture.image = getDataHolder().getImage(path: model.backdropPath)
         return cell
     }
 

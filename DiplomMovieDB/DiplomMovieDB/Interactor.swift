@@ -11,12 +11,13 @@ import Foundation
 protocol InteractorProtocol {
     func loadMovieList(list: ListType, url: URL, completion: @escaping ([MovieDataModel]) -> Void)
     func loadMovieImages(with names: [String],
-                                 completion: @escaping () -> Void)
+                                 completion: @escaping ([String: Data]) -> Void)
 }
 
 class Interactor: InteractorProtocol {
+    
     let networkService: NetworkServiceInput
-    var dataModel: DataModel?
+    var dataModel: DataModelProtocol?
 
     init(networkService: NetworkServiceInput) {
         self.networkService = networkService
@@ -59,25 +60,28 @@ class Interactor: InteractorProtocol {
     }
 
     func loadMovieImages(with names: [String],
-                                 completion: @escaping () -> Void) {
+                         completion: @escaping ([String: Data]) -> Void) {
+        var pictures:[String: Data] = [ : ]
         let group = DispatchGroup()
         for imageName in names {
-            if !DataModel.shared.isPictureLoaded(for: imageName){
+            guard let image = dataModel?.getPicture(for: imageName) else {
                 group.enter()
                 self.loadImageData(imagePath: imageName) { [weak self] image in
                     guard let image = image else {
                         group.leave()
                         return
                     }
+                    pictures.updateValue(image, forKey: imageName)
                     self?.dataModel?.updatePicture(for: imageName, data: image)
                     group.leave()
                 }
+                continue
             }
-
+            pictures.updateValue(image, forKey: imageName)
         }
 
         group.notify(queue: DispatchQueue.main) {
-            completion()
+            completion(pictures)
         }
     }
 
@@ -104,7 +108,6 @@ class Interactor: InteractorProtocol {
 //        }
 //    }
     
-
     private func loadImageData(imagePath: String, completion: @escaping (Data?) -> Void) {
         let url = API.loadImagePath(imagePath: imagePath)
         networkService.getData(at: url) { data in

@@ -12,7 +12,7 @@ final class DetailsAssembly: AssemblyProtocol {
     static func build() -> UIViewController {
         let viewController = DetailsViewController()
         //TODO одна сессия на каждый модуль или одна на всех?
-        let service = NetworkService(session: SessionFactory().createDefaultSession())
+        let service = NetworkService(session: SessionFactory.getDefaultSession())
         let interactor = DetailsInteractor(networkService: service)
         let presenter = DetailsPresenter()
         let router = DetailsRouter()

@@ -10,14 +10,16 @@ import UIKit
 
 final class ListAssembly: AssemblyProtocol {
     static func build() -> UIViewController {
-        let service = NetworkService(session: SessionFactory().createDefaultSession())
+        let service = NetworkService(session: SessionFactory.getDefaultSession())
         let interactor = ListInteractor(networkService: service)
         let presenter = ListPresenter()
         let router = ListRouter()
         let viewController = ListViewController()
+        let dataHolder = MovieDataHolder()
 
         viewController.interactor = interactor
         viewController.router = router
+        viewController.dataHolder = dataHolder
         presenter.viewController = viewController
         router.viewController = viewController
         interactor.presenter = presenter

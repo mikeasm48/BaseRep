@@ -9,9 +9,14 @@
 import Foundation
 
 class SessionFactory {
-    func createDefaultSession() -> URLSession {
+    private static let  defaultSession = createDefaultSession()
+    private static func createDefaultSession() -> URLSession {
         let configuration = URLSessionConfiguration.default
         let session = URLSession(configuration: configuration)
         return session
+    }
+    
+    static func getDefaultSession() -> URLSession {
+        return defaultSession
     }
 }

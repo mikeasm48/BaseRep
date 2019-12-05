@@ -28,7 +28,7 @@ class APITests: XCTestCase {
         let goodResult = "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=836b9e978d31e45e403551bf7773f47d"
         let paramSortBy = "popularity.desc"
         //Act
-        let result = API.discoverPath(sortBy: paramSortBy)
+        let result = API.discoverPath(sortBy: paramSortBy, page: 1)
         //Assert
         XCTAssertEqual(result.absoluteString, goodResult,
                        "API generated wrong url discover popular sorted movie list")
