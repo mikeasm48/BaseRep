@@ -9,18 +9,17 @@
 import Foundation
 
 protocol DetailsInteractorProtocol {
-    func showData ()
+    func loadPictures(posterPath: String, backdropPath: String)
 }
 
-class DetailsInteractor: DetailsInteractorProtocol {
+class DetailsInteractor: Interactor, DetailsInteractorProtocol {
     var presenter: DetailsPresenterProtocol?
-    let networkService: NetworkServiceInput
 
-    init(networkService: NetworkServiceInput) {
-        self.networkService = networkService
-    }
-
-    func showData() {
-        //
+    func loadPictures(posterPath: String, backdropPath: String) {
+        self.loadMovieImages(with: [posterPath, backdropPath]) {[weak self] data in
+            let poster = data[posterPath]
+            let backdrop = data[backdropPath]
+            self?.presenter?.setPictures(posterData: poster, backdropData: backdrop)
+        }
     }
 }

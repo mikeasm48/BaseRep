@@ -18,6 +18,7 @@ final class DetailsAssembly: AssemblyProtocol {
         let router = DetailsRouter()
 
         interactor.presenter = presenter
+        interactor.dataModel = DataModel.shared
         presenter.viewController = viewController
         viewController.interactor = interactor
         viewController.router = router

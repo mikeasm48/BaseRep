@@ -9,12 +9,21 @@
 import UIKit
 
 protocol DetailsPresenterProtocol {
-    func showDetails(at movieId: Int, imageData: Data)
+    func setPictures(posterData: Data?, backdropData: Data?)
 }
 
 class DetailsPresenter: DetailsPresenterProtocol {
     var viewController: DetailsViewController?
-    func showDetails(at movieId: Int, imageData: Data) {
-        //TODO
+    
+   func setPictures(posterData: Data?, backdropData: Data?) {
+    guard let poster = posterData else {
+        return
+    }
+
+    guard let backdrop = backdropData else {
+        return
+    }
+    
+    viewController?.showMoviePictures(poster: UIImage(data: poster), backdrop: UIImage(data: backdrop))
     }
 }

@@ -9,13 +9,14 @@
 import UIKit
 
 protocol ListRouterProtocol {
-    func openDetailsModule()
+    func openDetailsModule(movie: MovieDataModel)
 }
 
 final class ListRouter: ListRouterProtocol {
     weak var viewController: (ListViewControllerProtocol & UIViewController)?
 
-    func openDetailsModule() {
+    func openDetailsModule(movie: MovieDataModel) {
+        MovieDataHolder.setMovie(movie: movie)
         let detailsController = DetailsAssembly.build()
         viewController?.navigationController?.pushViewController(detailsController, animated: true)
     }

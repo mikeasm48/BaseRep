@@ -46,6 +46,7 @@ class Interactor: InteractorProtocol {
                 let posterPath = object["poster_path"] as? String ?? ""
                 let homePage = object["homepage"] as? String ?? ""
                 let overview = object["overview"] as? String ?? ""
+                let releaseDate = object["release_date"] as? String ?? ""
                 return MovieDataModel(movieId: movieId,
                                       imdbId: imdbId,
                                       backdropPath: backdropPath,
@@ -53,7 +54,8 @@ class Interactor: InteractorProtocol {
                                       title: title,
                                       originalTitle: originalTitle,
                                       homePage: homePage,
-                                      overview: overview)
+                                      overview: overview,
+                                        releaseDate: releaseDate)
             }
             //self.dataModel?.updateModel(list: list, data: models, fetchData: resultFetchData)
             self.setFetchData(fetchData: resultFetchData)

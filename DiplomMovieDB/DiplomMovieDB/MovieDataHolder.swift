@@ -8,6 +8,8 @@
 import UIKit
 
 protocol MovieDataHolderProtocol {
+    static func getMovie() -> MovieDataModel?
+    static func setMovie(movie: MovieDataModel)
     func setData(movies: [MovieDataModel], images: [String: UIImage?])
     func getMovie(index: Int) -> MovieDataModel
     func getImage(path: String) -> UIImage?
@@ -16,8 +18,18 @@ protocol MovieDataHolderProtocol {
 }
 
 final class MovieDataHolder: MovieDataHolderProtocol {
+    private static var movie: MovieDataModel?
     private var movies: [MovieDataModel] = []
     private var images: [String: UIImage?] = [ : ]
+    
+    static func getMovie() -> MovieDataModel? {
+        return movie
+    }
+    
+    static func setMovie(movie: MovieDataModel) {
+        self.movie = movie
+    }
+
 
     func setData(movies: [MovieDataModel], images: [String: UIImage?]) {
         self.movies += movies

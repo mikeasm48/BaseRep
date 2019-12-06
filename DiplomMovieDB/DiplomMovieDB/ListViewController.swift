@@ -91,6 +91,6 @@ extension ListViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-       router?.openDetailsModule()
+       router?.openDetailsModule(movie: getDataHolder().getMovie(index: indexPath.row))
     }
 }

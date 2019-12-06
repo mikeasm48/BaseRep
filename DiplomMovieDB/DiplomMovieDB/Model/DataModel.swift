@@ -17,6 +17,7 @@ struct MovieDataModel {
     let originalTitle: String
     let homePage: String
     let overview: String
+    let releaseDate: String
 }
 
 struct FetchData {
