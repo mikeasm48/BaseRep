@@ -14,11 +14,13 @@ protocol ListInteractorProtocol {
 
 class ListInteractor: Interactor, ListInteractorProtocol {
     var presenter: ListPresenterProtocol?
-
+    
     func loadDataAsync() {
-         let url = API.discoverPath(sortBy: "popularity.desc",
-                                    page: getNextFetchPage())
-
+        // Шакальские без картинок и описаний, для отладки
+        //         let url = API.discoverPath(sortBy: "release_date.desc",
+        //                                    page: getNextFetchPage())
+        let url = API.discoverPath(sortBy: "popularity.desc",
+                                   page: getNextFetchPage())
         loadMovieList(url: url) { [weak self] models in
             self?.loadImages(models: models)
         }
