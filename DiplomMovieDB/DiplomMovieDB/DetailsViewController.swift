@@ -25,15 +25,13 @@ class DetailsViewController: UIViewController, DetailsViewControllerProtocol {
     private let viewShiftY: CGFloat = 30
     private let viewShiftX: CGFloat = 30
 
-    //var scrollView = UIScrollView()
+    var scrollView = UIScrollView()
 
     var lastFrame: CGRect?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = backgroundColor
-//        scrollView = getScrollView()
-//        view.addSubview(scrollView)
         showDetails()
     }
 
@@ -48,7 +46,6 @@ class DetailsViewController: UIViewController, DetailsViewControllerProtocol {
     private func getScrollView () -> UIScrollView {
         let scrollView = UIScrollView()
         scrollView.isPagingEnabled = false
-        scrollView.contentSize = CGSize(width: view.frame.width, height: view.frame.height)
         return scrollView
     }
 
@@ -58,11 +55,8 @@ class DetailsViewController: UIViewController, DetailsViewControllerProtocol {
 
     private func getBackdropImageView(image: UIImage) -> UIImageView {
         let imageView = UIImageView(frame: getFrame())
-        //imageView.contentMode = .center
         imageView.contentMode = .scaleToFill
         imageView.image = image
-//        view.addSubview(imageView)
-        //scrollView.addSubview(imageView)
         return imageView
     }
 
@@ -70,8 +64,6 @@ class DetailsViewController: UIViewController, DetailsViewControllerProtocol {
         let imageView = UIImageView(frame: getFrame())
         imageView.contentMode = .scaleAspectFill
         imageView.image = image
-        //scrollView.addSubview(imageView)
-//        view.addSubview(imageView)
         return imageView
     }
 
@@ -84,8 +76,6 @@ class DetailsViewController: UIViewController, DetailsViewControllerProtocol {
         titleView.lineBreakMode = .byWordWrapping
         titleView.numberOfLines = 2
         titleView.sizeToFit()
-        //scrollView.addSubview(titleView)
-//        view.addSubview(titleView)
         return titleView
     }
 
@@ -98,8 +88,6 @@ class DetailsViewController: UIViewController, DetailsViewControllerProtocol {
         labelView.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
         labelView.lineBreakMode = .byWordWrapping
         labelView.sizeToFit()
-//        scrollView.addSubview(labelView)
-//        view.addSubview(labelView)
         return labelView
     }
 
@@ -113,8 +101,6 @@ class DetailsViewController: UIViewController, DetailsViewControllerProtocol {
             button.frame = getFrame()
             return button
         }()
-//        scrollView.addSubview(buttonView)
-//        view.addSubview(buttonView)
         return buttonView
     }
 
@@ -130,8 +116,6 @@ class DetailsViewController: UIViewController, DetailsViewControllerProtocol {
         labelView.textColor = titleColor
         labelView.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
         labelView.sizeToFit()
-//        scrollView.addSubview(labelView)
-//        view.addSubview(labelView)
         return labelView
     }
 
@@ -144,8 +128,6 @@ class DetailsViewController: UIViewController, DetailsViewControllerProtocol {
         labelView.lineBreakMode = .byWordWrapping
         labelView.numberOfLines = 0
         labelView.sizeToFit()
-//        scrollView.addSubview(labelView)
-//        view.addSubview(labelView)
         return labelView
     }
 
@@ -166,9 +148,9 @@ class DetailsViewController: UIViewController, DetailsViewControllerProtocol {
         guard let movieData = self.movie else {
             return
         }
-        
-        let scrollView = getScrollView()
+
         let backdropImageView  = getBackdropImageView(image: backdropImage)
+         scrollView = getScrollView()
         let posterImageView = getPosterImageView(image: posterImage)
         let titleView = getMovieTitle(movie: movieData)
         let releaseView = getMovieReleaseDate(movie: movieData)
@@ -183,22 +165,22 @@ class DetailsViewController: UIViewController, DetailsViewControllerProtocol {
         scrollView.addSubview(releaseView)
         scrollView.addSubview(descriptionTitleView)
         scrollView.addSubview(descriptionView)
+        scrollView.addSubview(saveButtonView)
 
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         backdropImageView.translatesAutoresizingMaskIntoConstraints = false
         posterImageView.translatesAutoresizingMaskIntoConstraints = false
         titleView.translatesAutoresizingMaskIntoConstraints = false
         releaseView.translatesAutoresizingMaskIntoConstraints = false
-        saveButtonView.translatesAutoresizingMaskIntoConstraints = false
         descriptionTitleView.translatesAutoresizingMaskIntoConstraints = false
         descriptionView.translatesAutoresizingMaskIntoConstraints = false
+        saveButtonView.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
             //Backdrop image
             backdropImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             backdropImageView.leftAnchor.constraint(equalTo: view.leftAnchor),
             backdropImageView.rightAnchor.constraint(equalTo: view.rightAnchor),
-            
             //Scroll view
             scrollView.topAnchor.constraint(equalTo: backdropImageView.bottomAnchor,constant: viewShiftY),
             scrollView.leftAnchor.constraint(equalTo: view.leftAnchor),
@@ -218,18 +200,26 @@ class DetailsViewController: UIViewController, DetailsViewControllerProtocol {
             releaseView.leftAnchor.constraint(equalTo: posterImageView.rightAnchor, constant: viewShiftX),
             releaseView.rightAnchor.constraint(equalTo: backdropImageView.rightAnchor),
             //Overview Title
-            //descriptionTitleView.topAnchor.constraint(equalTo: releaseView.bottomAnchor),
             descriptionTitleView.topAnchor.constraint(equalTo: posterImageView.bottomAnchor, constant: viewShiftY),
             descriptionTitleView.leftAnchor.constraint(equalTo: view.leftAnchor),
             //Overview
             descriptionView.topAnchor.constraint(equalTo: descriptionTitleView.bottomAnchor),
             descriptionView.leftAnchor.constraint(equalTo: view.leftAnchor),
-            descriptionView.rightAnchor.constraint(equalTo: view.rightAnchor)
+            descriptionView.rightAnchor.constraint(equalTo: view.rightAnchor),
             //Save button
-//            saveButtonView.topAnchor.constraint(equalTo: descriptionView.bottomAnchor, constant: viewShiftY),
-//            saveButtonView.leftAnchor.constraint(equalTo: view.leftAnchor),
-//            saveButtonView.rightAnchor.constraint(equalTo: view.rightAnchor),
-//            saveButtonView.bottomAnchor.constraint(equalTo:  view.bottomAnchor)
+            saveButtonView.topAnchor.constraint(equalTo: descriptionView.bottomAnchor, constant: viewShiftY),
+            saveButtonView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            saveButtonView.rightAnchor.constraint(equalTo: view.rightAnchor),
             ])
+    }
+
+    override func viewDidLayoutSubviews() {
+        scrollView.updateContentView()
+    }
+}
+
+extension UIScrollView {
+    func updateContentView() {
+        contentSize.height = subviews.sorted(by: { $0.frame.maxY < $1.frame.maxY }).last?.frame.maxY ?? contentSize.height
     }
 }
