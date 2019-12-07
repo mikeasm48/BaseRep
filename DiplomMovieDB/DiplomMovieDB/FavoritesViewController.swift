@@ -8,15 +8,33 @@
 
 import UIKit
 
-protocol FavoritesViewControllerProtocol {
+protocol FavoritesViewControllerProtocol: TableViewControllerProtocol {
 }
 
-class FavoritesViewController: UIViewController, FavoritesViewControllerProtocol {
+class FavoritesViewController: AbstractTableViewController, FavoritesViewControllerProtocol {
     var interactor: FavoritesInteractorProtocol?
     var router: FavoritesRouterProtocol?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .blue
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+         interactor?.loadSavedMovies()
+    }
+
+    override func getCaption() -> String {
+        return "Сохраненные"
+    }
+    
+    override func selectRow(indexPath: IndexPath) {
+        router?.openDetailsModule(movie: getDataHolder().getMovie(index: indexPath.row))
+    }
+
+    override func didLoadData(movies: [MovieDataModel], images: [String : UIImage?]) {
+        dataHolder?.resetData()
+        dataHolder?.setData(movies: movies, images: images)
+        tableView.reloadData()
     }
 }

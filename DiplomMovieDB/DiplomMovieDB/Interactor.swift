@@ -39,25 +39,18 @@ class Interactor: InteractorProtocol {
 
             let models = resultsArray.map { (object) -> MovieDataModel in
                 let movieId = object["id"] as? Int ?? -1
-                let originalTitle = object["original_title"] as? String ?? ""
                 let title = object["title"] as? String ?? ""
-                let imdbId = object["imdb_id"] as? String ?? ""
                 let backdropPath = object["backdrop_path"] as? String ?? ""
                 let posterPath = object["poster_path"] as? String ?? ""
-                let homePage = object["homepage"] as? String ?? ""
                 let overview = object["overview"] as? String ?? ""
                 let releaseDate = object["release_date"] as? String ?? ""
                 return MovieDataModel(movieId: movieId,
-                                      imdbId: imdbId,
                                       backdropPath: backdropPath,
                                       posterPath: posterPath,
                                       title: title,
-                                      originalTitle: originalTitle,
-                                      homePage: homePage,
                                       overview: overview,
-                                        releaseDate: releaseDate)
+                                      releaseDate: releaseDate)
             }
-            //self.dataModel?.updateModel(list: list, data: models, fetchData: resultFetchData)
             self.setFetchData(fetchData: resultFetchData)
             completion(models)
         }
@@ -65,7 +58,7 @@ class Interactor: InteractorProtocol {
 
     func loadMovieImages(with names: [String],
                          completion: @escaping ([String: Data]) -> Void) {
-        var pictures:[String: Data] = [ : ]
+        var pictures: [String: Data] = [ : ]
         let group = DispatchGroup()
         for imageName in names {
             guard let image = dataModel?.getPicture(for: imageName) else {

@@ -10,12 +10,9 @@ import UIKit
 
 struct MovieDataModel {
     let movieId: Int
-    let imdbId: String
     let backdropPath: String
     let posterPath: String
     let title: String
-    let originalTitle: String
-    let homePage: String
     let overview: String
     let releaseDate: String
 }

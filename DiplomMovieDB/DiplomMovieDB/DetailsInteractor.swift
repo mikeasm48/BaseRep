@@ -43,6 +43,8 @@ class DetailsInteractor: Interactor, DetailsInteractorProtocol {
             dataObject.releaseDate = movie.releaseDate
             dataObject.backdropImage = dataBackdrop
             dataObject.posterImage = dataPoster
+            dataObject.posterPath = movie.posterPath
+            dataObject.backdropPath = movie.backdropPath
             do {
                 try context.save()
             } catch {

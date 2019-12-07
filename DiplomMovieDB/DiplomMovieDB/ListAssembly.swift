@@ -15,7 +15,7 @@ final class ListAssembly: AssemblyProtocol {
         let presenter = ListPresenter()
         let router = ListRouter()
         let viewController = ListViewController()
-        let dataHolder = MovieDataHolder()
+        let dataHolder = DataHolder()
 
         viewController.interactor = interactor
         viewController.router = router

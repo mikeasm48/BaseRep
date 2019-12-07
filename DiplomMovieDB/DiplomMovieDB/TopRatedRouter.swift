@@ -16,7 +16,7 @@ final class TopRatedRouter: TopRatedRouterProtocol {
     weak var viewController: (TopRatedViewControllerProtocol & UIViewController)?
     
     func openDetailsModule(movie: MovieDataModel) {
-        MovieDataHolder.setMovie(movie: movie)
+        DataHolder.setMovie(movie: movie)
         let detailsController = DetailsAssembly.build()
         viewController?.navigationController?.pushViewController(detailsController, animated: true)
     }

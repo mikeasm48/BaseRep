@@ -7,12 +7,12 @@
 //
 import UIKit
 
-class MovieListViewController: UIViewController {
-    var dataHolder: MovieDataHolderProtocol?
+class DataHolderViewController: UIViewController {
+    var dataHolder: DataHolderProtocol?
     
-    func getDataHolder() -> MovieDataHolderProtocol{
+    func getDataHolder() -> DataHolderProtocol{
         guard let dataHolder = self.dataHolder else {
-            return MovieDataHolder()
+            return DataHolder()
         }
         return dataHolder
     }

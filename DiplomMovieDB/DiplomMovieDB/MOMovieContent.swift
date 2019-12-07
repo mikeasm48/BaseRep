@@ -16,7 +16,8 @@ internal class MOMovieContent: NSManagedObject {
     @NSManaged var title: String
     @NSManaged var overview: String
     @NSManaged var releaseDate: String
+    @NSManaged var posterPath: String
+    @NSManaged var backdropPath: String
     @NSManaged var posterImage: NSData
     @NSManaged var backdropImage: NSData
-    
 }

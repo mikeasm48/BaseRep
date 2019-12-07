@@ -15,11 +15,14 @@ final class FavoritesAssembly: AssemblyProtocol {
         let interactor = FavoritesInteractor(networkService: service)
         let presenter = FavoritesPresenter()
         let router = FavoritesRouter()
+        let dataHolder = DataHolder()
 
         interactor.presenter = presenter
+        interactor.dataModel = DataModel.shared
         presenter.viewController = viewController
         viewController.interactor = interactor
         viewController.router = router
+        viewController.dataHolder = dataHolder
         router.viewController = viewController
 
         return viewController

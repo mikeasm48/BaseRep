@@ -7,17 +7,18 @@
 //
 import UIKit
 
-protocol MovieDataHolderProtocol {
+protocol DataHolderProtocol {
     static func getMovie() -> MovieDataModel?
     static func setMovie(movie: MovieDataModel)
     func setData(movies: [MovieDataModel], images: [String: UIImage?])
+    func resetData()
     func getMovie(index: Int) -> MovieDataModel
     func getImage(path: String) -> UIImage?
     func getCount() -> Int
     func needFetch(currentIndex: Int) -> Bool
 }
 
-final class MovieDataHolder: MovieDataHolderProtocol {
+final class DataHolder: DataHolderProtocol {
     private static var movie: MovieDataModel?
     private var movies: [MovieDataModel] = []
     private var images: [String: UIImage?] = [ : ]
@@ -30,6 +31,10 @@ final class MovieDataHolder: MovieDataHolderProtocol {
         self.movie = movie
     }
 
+    func resetData() {
+        self.movies = []
+        self.images = [ : ]
+    }
 
     func setData(movies: [MovieDataModel], images: [String: UIImage?]) {
         self.movies += movies

@@ -15,7 +15,7 @@ final class TopRatedAssembly: AssemblyProtocol {
         let interactor = TopRatedInteractor(networkService: service)
         let presenter = TopRatedPresenter()
         let router = TopRatedRouter()
-        let dataHolder = MovieDataHolder()
+        let dataHolder = DataHolder()
 
         interactor.presenter = presenter
         interactor.dataModel = DataModel.shared

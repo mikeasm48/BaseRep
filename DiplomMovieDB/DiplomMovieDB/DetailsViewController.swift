@@ -39,7 +39,7 @@ class DetailsViewController: UIViewController, DetailsViewControllerProtocol {
     }
 
     func showDetails() {
-        guard let movieData = MovieDataHolder.getMovie() else {
+        guard let movieData = DataHolder.getMovie() else {
             return
         }
         self.movie = movieData

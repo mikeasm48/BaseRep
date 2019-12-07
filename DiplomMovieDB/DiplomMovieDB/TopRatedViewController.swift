@@ -12,7 +12,7 @@ protocol TopRatedViewControllerProtocol {
     func didLoadData(movies: [MovieDataModel], images: [String: UIImage?])
 }
 
-class TopRatedViewController: MovieListViewController, TopRatedViewControllerProtocol {
+class TopRatedViewController: DataHolderViewController, TopRatedViewControllerProtocol {
     //Module
     var interactor: TopRatedInteractorProtocol?
     var router: TopRatedRouterProtocol?
