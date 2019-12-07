@@ -24,6 +24,6 @@ class DetailsPresenter: DetailsPresenterProtocol {
         return
     }
     
-    viewController?.showMoviePictures(poster: UIImage(data: poster), backdrop: UIImage(data: backdrop))
+    viewController?.didShowDetails(poster: UIImage(data: poster), backdrop: UIImage(data: backdrop))
     }
 }

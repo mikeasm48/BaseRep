@@ -9,7 +9,7 @@
 import UIKit
 
 protocol DetailsViewControllerProtocol {
-    func showMoviePictures(poster: UIImage?, backdrop: UIImage?)
+    func didShowDetails(poster: UIImage?, backdrop: UIImage?)
 }
 
 class DetailsViewController: UIViewController, DetailsViewControllerProtocol {
@@ -25,7 +25,7 @@ class DetailsViewController: UIViewController, DetailsViewControllerProtocol {
     private let viewShiftY: CGFloat = 30
     private let viewShiftX: CGFloat = 30
 
-    var scrollView = UIScrollView()
+    //var scrollView = UIScrollView()
 
     var lastFrame: CGRect?
 
@@ -46,9 +46,9 @@ class DetailsViewController: UIViewController, DetailsViewControllerProtocol {
     }
 
     private func getScrollView () -> UIScrollView {
-        let scrollView = UIScrollView(frame: self.view.frame)
+        let scrollView = UIScrollView()
         scrollView.isPagingEnabled = false
-        scrollView.contentSize = CGSize(width: view.frame.width, height: view.frame.height * 3)
+        scrollView.contentSize = CGSize(width: view.frame.width, height: view.frame.height)
         return scrollView
     }
 
@@ -61,7 +61,7 @@ class DetailsViewController: UIViewController, DetailsViewControllerProtocol {
         //imageView.contentMode = .center
         imageView.contentMode = .scaleToFill
         imageView.image = image
-        view.addSubview(imageView)
+//        view.addSubview(imageView)
         //scrollView.addSubview(imageView)
         return imageView
     }
@@ -71,7 +71,7 @@ class DetailsViewController: UIViewController, DetailsViewControllerProtocol {
         imageView.contentMode = .scaleAspectFill
         imageView.image = image
         //scrollView.addSubview(imageView)
-        view.addSubview(imageView)
+//        view.addSubview(imageView)
         return imageView
     }
 
@@ -85,7 +85,7 @@ class DetailsViewController: UIViewController, DetailsViewControllerProtocol {
         titleView.numberOfLines = 2
         titleView.sizeToFit()
         //scrollView.addSubview(titleView)
-        view.addSubview(titleView)
+//        view.addSubview(titleView)
         return titleView
     }
 
@@ -99,7 +99,7 @@ class DetailsViewController: UIViewController, DetailsViewControllerProtocol {
         labelView.lineBreakMode = .byWordWrapping
         labelView.sizeToFit()
 //        scrollView.addSubview(labelView)
-        view.addSubview(labelView)
+//        view.addSubview(labelView)
         return labelView
     }
 
@@ -114,7 +114,7 @@ class DetailsViewController: UIViewController, DetailsViewControllerProtocol {
             return button
         }()
 //        scrollView.addSubview(buttonView)
-        view.addSubview(buttonView)
+//        view.addSubview(buttonView)
         return buttonView
     }
 
@@ -131,7 +131,7 @@ class DetailsViewController: UIViewController, DetailsViewControllerProtocol {
         labelView.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
         labelView.sizeToFit()
 //        scrollView.addSubview(labelView)
-        view.addSubview(labelView)
+//        view.addSubview(labelView)
         return labelView
     }
 
@@ -145,7 +145,7 @@ class DetailsViewController: UIViewController, DetailsViewControllerProtocol {
         labelView.numberOfLines = 0
         labelView.sizeToFit()
 //        scrollView.addSubview(labelView)
-        view.addSubview(labelView)
+//        view.addSubview(labelView)
         return labelView
     }
 
@@ -156,7 +156,7 @@ class DetailsViewController: UIViewController, DetailsViewControllerProtocol {
         return existImage
     }
 
-    func showMoviePictures (poster: UIImage?, backdrop: UIImage?) {
+    func didShowDetails (poster: UIImage?, backdrop: UIImage?) {
         guard let backdropImage = getPictureWithDefault(image: backdrop) else {
             return
         }
@@ -166,7 +166,8 @@ class DetailsViewController: UIViewController, DetailsViewControllerProtocol {
         guard let movieData = self.movie else {
             return
         }
-
+        
+        let scrollView = getScrollView()
         let backdropImageView  = getBackdropImageView(image: backdropImage)
         let posterImageView = getPosterImageView(image: posterImage)
         let titleView = getMovieTitle(movie: movieData)
@@ -175,6 +176,15 @@ class DetailsViewController: UIViewController, DetailsViewControllerProtocol {
         let descriptionTitleView = getDescriptionTitle(movie: movieData)
         let descriptionView = getDescription(movie: movieData)
 
+        view.addSubview(scrollView)
+        view.addSubview(backdropImageView)
+        scrollView.addSubview(posterImageView)
+        scrollView.addSubview(titleView)
+        scrollView.addSubview(releaseView)
+        scrollView.addSubview(descriptionTitleView)
+        scrollView.addSubview(descriptionView)
+
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
         backdropImageView.translatesAutoresizingMaskIntoConstraints = false
         posterImageView.translatesAutoresizingMaskIntoConstraints = false
         titleView.translatesAutoresizingMaskIntoConstraints = false
@@ -188,9 +198,14 @@ class DetailsViewController: UIViewController, DetailsViewControllerProtocol {
             backdropImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             backdropImageView.leftAnchor.constraint(equalTo: view.leftAnchor),
             backdropImageView.rightAnchor.constraint(equalTo: view.rightAnchor),
-//            backdropImageView.bottomAnchor.constraint(equalTo: view.topAnchor, constant: 280),
+            
+            //Scroll view
+            scrollView.topAnchor.constraint(equalTo: backdropImageView.bottomAnchor,constant: viewShiftY),
+            scrollView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            scrollView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             //Poster Image
-            posterImageView.topAnchor.constraint(equalTo: backdropImageView.bottomAnchor, constant: viewShiftY ),
+            posterImageView.topAnchor.constraint(equalTo: scrollView.topAnchor),
             posterImageView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: viewShiftX),
             posterImageView.rightAnchor.constraint(equalTo: posterImageView.leftAnchor, constant: 100),
             posterImageView.bottomAnchor.constraint(equalTo: posterImageView.topAnchor, constant: 200),
@@ -199,7 +214,7 @@ class DetailsViewController: UIViewController, DetailsViewControllerProtocol {
             titleView.leftAnchor.constraint(equalTo: posterImageView.rightAnchor, constant: viewShiftX),
             titleView.rightAnchor.constraint(equalTo: backdropImageView.rightAnchor),
             //Release date
-            releaseView.topAnchor.constraint(equalTo: posterImageView.bottomAnchor, constant: -20),
+            releaseView.topAnchor.constraint(equalTo: titleView.bottomAnchor),
             releaseView.leftAnchor.constraint(equalTo: posterImageView.rightAnchor, constant: viewShiftX),
             releaseView.rightAnchor.constraint(equalTo: backdropImageView.rightAnchor),
             //Overview Title
@@ -217,9 +232,4 @@ class DetailsViewController: UIViewController, DetailsViewControllerProtocol {
 //            saveButtonView.bottomAnchor.constraint(equalTo:  view.bottomAnchor)
             ])
     }
-
-//    private func getImageOriginalSize(image: UIImage) -> CGRect {
-//        let imageView = UIImageView(image: image)
-//        return imageView.frame
-//    }
 }
