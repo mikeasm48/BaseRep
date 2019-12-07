@@ -10,18 +10,21 @@ import UIKit
 
 protocol DetailsViewControllerProtocol {
     func didShowDetails(poster: UIImage?, backdrop: UIImage?)
+    func didCheckCoreDataState(_ saved: Bool)
 }
 
 class DetailsViewController: UIViewController, DetailsViewControllerProtocol {
+
     var interactor: DetailsInteractorProtocol?
     var router: DetailsRouterProtocol?
 
     private var movie: MovieDataModel?
+    private var movieSaveState = false
 
     private let backgroundColor = UIColor.black
     private let textColor = UIColor.white
     private let titleColor = UIColor.cyan
-    
+
     private let viewShiftY: CGFloat = 30
     private let viewShiftX: CGFloat = 30
 
@@ -106,7 +109,14 @@ class DetailsViewController: UIViewController, DetailsViewControllerProtocol {
 
     //Пошли в CoreData
     @objc func tapButtonSave () {
-        print("let's go CoreData now!")
+        guard let movieData = movie else {
+            return
+        }
+        if movieSaveState {
+            interactor?.deleteSavedMovie(movie: movieData)
+        } else {
+            interactor?.saveMovie(movie: movieData)
+        }
     }
 
     private func getDescriptionTitle (movie: MovieDataModel) -> UILabel {
@@ -136,6 +146,24 @@ class DetailsViewController: UIViewController, DetailsViewControllerProtocol {
             return UIImage(named: "LogoMovieDB")
         }
         return existImage
+    }
+
+    func didCheckCoreDataState(_ saved: Bool) {
+        self.movieSaveState = saved
+        setSaveButtonState(saved: saved)
+    }
+
+    private func setSaveButtonState(saved: Bool) {
+        for subview in scrollView.subviews {
+            guard let button  = subview as? UIButton else {
+                continue
+            }
+            if saved {
+                button.setTitle("Удалить сохраненный", for: .normal)
+            } else {
+                button.setTitle("Сохранить", for: .normal)
+            }
+        }
     }
 
     func didShowDetails (poster: UIImage?, backdrop: UIImage?) {
@@ -182,7 +210,7 @@ class DetailsViewController: UIViewController, DetailsViewControllerProtocol {
             backdropImageView.leftAnchor.constraint(equalTo: view.leftAnchor),
             backdropImageView.rightAnchor.constraint(equalTo: view.rightAnchor),
             //Scroll view
-            scrollView.topAnchor.constraint(equalTo: backdropImageView.bottomAnchor,constant: viewShiftY),
+            scrollView.topAnchor.constraint(equalTo: backdropImageView.bottomAnchor, constant: viewShiftY),
             scrollView.leftAnchor.constraint(equalTo: view.leftAnchor),
             scrollView.rightAnchor.constraint(equalTo: view.rightAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
@@ -209,8 +237,16 @@ class DetailsViewController: UIViewController, DetailsViewControllerProtocol {
             //Save button
             saveButtonView.topAnchor.constraint(equalTo: descriptionView.bottomAnchor, constant: viewShiftY),
             saveButtonView.leftAnchor.constraint(equalTo: view.leftAnchor),
-            saveButtonView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            saveButtonView.rightAnchor.constraint(equalTo: view.rightAnchor)
             ])
+        checkSaveState()
+    }
+
+    private func checkSaveState() {
+        guard let movieData = movie else {
+            return
+        }
+        interactor?.checkMovieSaved(movie: movieData)
     }
 
     override func viewDidLayoutSubviews() {
@@ -220,6 +256,7 @@ class DetailsViewController: UIViewController, DetailsViewControllerProtocol {
 
 extension UIScrollView {
     func updateContentView() {
-        contentSize.height = subviews.sorted(by: { $0.frame.maxY < $1.frame.maxY }).last?.frame.maxY ?? contentSize.height
+        contentSize.height = subviews.sorted(by: {$0.frame.maxY < $1.frame.maxY })
+            .last?.frame.maxY ?? contentSize.height
     }
 }

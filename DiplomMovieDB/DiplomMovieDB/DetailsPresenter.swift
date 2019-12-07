@@ -10,20 +10,23 @@ import UIKit
 
 protocol DetailsPresenterProtocol {
     func setPictures(posterData: Data?, backdropData: Data?)
+    func setMovieSavedState(_ state: Bool)
 }
 
 class DetailsPresenter: DetailsPresenterProtocol {
     var viewController: DetailsViewController?
-    
-   func setPictures(posterData: Data?, backdropData: Data?) {
-    guard let poster = posterData else {
-        return
+
+    func setPictures(posterData: Data?, backdropData: Data?) {
+        guard let poster = posterData else {
+            return
+        }
+        guard let backdrop = backdropData else {
+            return
+        }
+        viewController?.didShowDetails(poster: UIImage(data: poster), backdrop: UIImage(data: backdrop))
     }
 
-    guard let backdrop = backdropData else {
-        return
-    }
-    
-    viewController?.didShowDetails(poster: UIImage(data: poster), backdrop: UIImage(data: backdrop))
+    func setMovieSavedState(_ state: Bool) {
+        viewController?.didCheckCoreDataState(state)
     }
 }
