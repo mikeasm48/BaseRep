@@ -18,7 +18,6 @@ final class FavoritesRouter: FavoritesRouterProtocol {
     func openDetailsModule(movie: MovieDataModel) {
         DataHolder.setMovie(movie: movie)
         let detailsController = DetailsAssembly.build()
-        //TODO
-        //viewController?.navigationController?.pushViewController(detailsController, animated: true)
+        viewController?.navigationController?.pushViewController(detailsController, animated: true)
     }
 }

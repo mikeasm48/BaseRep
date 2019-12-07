@@ -24,6 +24,8 @@ final class FavoritesAssembly: AssemblyProtocol {
         viewController.router = router
         viewController.dataHolder = dataHolder
         router.viewController = viewController
+        
+        _ = UINavigationController.init(rootViewController: viewController)
 
         return viewController
     }

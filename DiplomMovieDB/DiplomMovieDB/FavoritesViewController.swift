@@ -17,6 +17,7 @@ class FavoritesViewController: AbstractTableViewController, FavoritesViewControl
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = "Избранное"
     }
     
     override func viewDidAppear(_ animated: Bool) {
