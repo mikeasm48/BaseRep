@@ -65,8 +65,6 @@ extension SearchViewController: UITextFieldDelegate {
         guard let textToSearch = textField.text else {
             return false
         }
-        dataHolder?.resetData()
-        tableView.reloadData()
         if textToSearch.isEmpty {
             return false
         }
@@ -78,6 +76,8 @@ extension SearchViewController: UITextFieldDelegate {
         searchQueue.cancelAllOperations()
         let operation = DelayOperation(delay: 2) {_ in
             print("Searching: " + searchText)
+            self.dataHolder?.resetData()
+            self.tableView.reloadData()
             self.interactor?.search(text: searchText)
         }
         searchQueue.addOperation(operation)

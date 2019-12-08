@@ -19,6 +19,8 @@ class DetailsViewController: UIViewController, DetailsViewControllerProtocol {
     var router: DetailsRouterProtocol?
 
     private var movie: MovieDataModel?
+    private var poster: UIImage?
+    private var zoomedPosterView: UIView?
     private var movieSaveState = false
 
     private let backgroundColor = UIColor.black
@@ -67,7 +69,15 @@ class DetailsViewController: UIViewController, DetailsViewControllerProtocol {
         let imageView = UIImageView(frame: getFrame())
         imageView.contentMode = .scaleAspectFill
         imageView.image = image
+        let posterTapGestureRecognizer = UITapGestureRecognizer(target: self, action:  #selector (self.actionUITapGestureRecognizer))
+        imageView.isUserInteractionEnabled = true
+        imageView.addGestureRecognizer(posterTapGestureRecognizer)
         return imageView
+    }
+    
+    //Клик на постер
+    @objc func actionUITapGestureRecognizer (){
+        zoomPosterImage()
     }
 
     private func getMovieTitle(movie: MovieDataModel) -> UILabel {
@@ -107,7 +117,6 @@ class DetailsViewController: UIViewController, DetailsViewControllerProtocol {
         return buttonView
     }
 
-    //Пошли в CoreData
     @objc func tapButtonSave () {
         guard let movieData = movie else {
             return
@@ -117,6 +126,41 @@ class DetailsViewController: UIViewController, DetailsViewControllerProtocol {
         } else {
             interactor?.saveMovie(movie: movieData)
         }
+    }
+    @objc func tapPoster () {
+        print("tap poster!")
+        zoomPosterImage()
+    }
+    @objc func tapZoomedPoster () {
+        print("tap zoomed!")
+    }
+
+    func zoomPosterImage() {
+        let zoomedView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: view.frame.height))
+        let imageView = UIImageView(image: self.poster)
+        imageView.frame = zoomedView.frame
+        imageView.contentMode = .scaleAspectFit
+        let zoomedPosterTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(closePosterZoomImage))
+        imageView.isUserInteractionEnabled = true
+        imageView.addGestureRecognizer(zoomedPosterTapGestureRecognizer)
+        zoomedView.addSubview(imageView)
+        view.addSubview(zoomedView)
+        self.zoomedPosterView = zoomedView
+    }
+
+    @objc func closePosterZoomImage(){
+        zoomedPosterView?.layer.add(getZoomOutAnimation(), forKey: "out")
+    }
+
+    private func getZoomOutAnimation() -> CABasicAnimation {
+        let animationBasicOpacity = CABasicAnimation(keyPath: "opacity")
+        animationBasicOpacity.fromValue = 1.0
+        animationBasicOpacity.toValue = 0.0
+        animationBasicOpacity.duration = 0.5
+        animationBasicOpacity.autoreverses = false
+        animationBasicOpacity.repeatCount = 1
+        animationBasicOpacity.delegate = self
+        return animationBasicOpacity
     }
 
     private func getDescriptionTitle (movie: MovieDataModel) -> UILabel {
@@ -176,6 +220,9 @@ class DetailsViewController: UIViewController, DetailsViewControllerProtocol {
         guard let movieData = self.movie else {
             return
         }
+
+        //Прихраниваем постер для детального отображения по клику на нем
+        self.poster = posterImage
 
         let backdropImageView  = getBackdropImageView(image: backdropImage)
          scrollView = getScrollView()
@@ -258,5 +305,12 @@ extension UIScrollView {
     func updateContentView() {
         contentSize.height = subviews.sorted(by: {$0.frame.maxY < $1.frame.maxY })
             .last?.frame.maxY ?? contentSize.height
+    }
+}
+
+extension DetailsViewController: CAAnimationDelegate {
+    public func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+        print(anim)
+        zoomedPosterView?.removeFromSuperview()
     }
 }
