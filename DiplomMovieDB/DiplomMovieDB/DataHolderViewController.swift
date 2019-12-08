@@ -10,7 +10,7 @@ import UIKit
 class DataHolderViewController: UIViewController {
     var dataHolder: DataHolderProtocol?
     
-    func getDataHolder() -> DataHolderProtocol{
+    func getDataHolder() -> DataHolderProtocol {
         guard let dataHolder = self.dataHolder else {
             return DataHolder()
         }

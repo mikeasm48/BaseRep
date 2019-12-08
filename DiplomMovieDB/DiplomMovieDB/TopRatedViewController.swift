@@ -84,7 +84,7 @@ extension TopRatedViewController: UICollectionViewDelegate, UICollectionViewData
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        router?.openDetailsModule(movie: getDataHolder().getMovie(index: indexPath.row))
+        router?.openDetails(movie: getDataHolder().getMovie(index: indexPath.row))
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {

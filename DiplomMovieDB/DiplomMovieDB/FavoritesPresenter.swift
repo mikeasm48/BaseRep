@@ -8,14 +8,13 @@
 
 import UIKit
 
-protocol FavoritesPresenterProtocol {
-    func didLoadMovies(movies: [MovieDataModel], imageData: [String: Data])
+protocol FavoritesPresenterProtocol: ModulePresenterProtocol {
 }
 
 class FavoritesPresenter: FavoritesPresenterProtocol {
     var viewController: FavoritesViewController?
-    
-    func didLoadMovies(movies: [MovieDataModel], imageData: [String: Data]) {
-        viewController?.didLoadData(movies: movies, images: imageData.mapValues{UIImage(data: $0)})
+
+    func presentData(data: [MovieDataModel], imageData: [String: Data]) {
+        viewController?.didLoadData(movies: data, images: imageData.mapValues{UIImage(data: $0)})
     }
 }

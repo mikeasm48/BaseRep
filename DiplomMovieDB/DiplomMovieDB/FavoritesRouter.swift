@@ -8,14 +8,13 @@
 
 import UIKit
 
-protocol FavoritesRouterProtocol {
-    func openDetailsModule(movie: MovieDataModel)
+protocol FavoritesRouterProtocol: ModuleRouterProtocol {
 }
 
 final class FavoritesRouter: FavoritesRouterProtocol {
     weak var viewController: (FavoritesViewControllerProtocol & UIViewController)?
     
-    func openDetailsModule(movie: MovieDataModel) {
+    func openDetails(movie: MovieDataModel) {
         DataHolder.setMovie(movie: movie)
         let detailsController = DetailsAssembly.build()
         viewController?.navigationController?.pushViewController(detailsController, animated: true)

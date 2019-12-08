@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class MainAssembly: AssemblyProtocol {
+final class MainAssembly: ModuleAssemblyProtocol {
     static func build() -> UIViewController {
         let mainViewController = MainViewController()
         let recentListViewController = ListAssembly.build()

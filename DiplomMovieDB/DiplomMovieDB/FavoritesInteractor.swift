@@ -9,8 +9,7 @@
 //import Foundation
 import CoreData
 
-protocol FavoritesInteractorProtocol {
-    func loadSavedMovies ()
+protocol FavoritesInteractorProtocol: ModuleInteractorProtocol {
 }
 
 class FavoritesInteractor: FavoritesInteractorProtocol {
@@ -22,7 +21,7 @@ class FavoritesInteractor: FavoritesInteractorProtocol {
         self.networkService = networkService
     }
 
-    func loadSavedMovies () {
+    func loadDataAsync() {
         let context = CoreDataStack.shared.persistentContainer.newBackgroundContext()
         let fetchRequest = NSFetchRequest<MOMovieContent>(entityName: "MovieContent")
         var models: [MovieDataModel] = []
@@ -57,6 +56,6 @@ class FavoritesInteractor: FavoritesInteractorProtocol {
         } catch {
             print("CoreData: failed to get images list")
         }
-        presenter?.didLoadMovies(movies: models, imageData: images)
+        presenter?.presentData(data: models, imageData: images)
     }
 }

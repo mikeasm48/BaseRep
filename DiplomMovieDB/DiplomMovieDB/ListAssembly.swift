@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class ListAssembly: AssemblyProtocol {
+final class ListAssembly: ModuleAssemblyProtocol {
     static func build() -> UIViewController {
         let service = NetworkService(session: SessionFactory.getDefaultSession())
         let interactor = ListInteractor(networkService: service)

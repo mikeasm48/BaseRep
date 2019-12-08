@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class FavoritesAssembly: AssemblyProtocol {
+final class FavoritesAssembly: ModuleAssemblyProtocol {
     static func build() -> UIViewController {
         let viewController = FavoritesViewController()
         let service = NetworkService(session: SessionFactory.getDefaultSession())

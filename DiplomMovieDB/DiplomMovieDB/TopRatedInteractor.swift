@@ -8,8 +8,7 @@
 
 import Foundation
 
-protocol TopRatedInteractorProtocol {
-    func loadDataAsync()
+protocol TopRatedInteractorProtocol: ModuleInteractorProtocol {
 }
 
 class TopRatedInteractor: Interactor, TopRatedInteractorProtocol {
@@ -28,7 +27,7 @@ class TopRatedInteractor: Interactor, TopRatedInteractorProtocol {
     private func loadImages(models: [MovieDataModel]) {
         let names = models.map {model in model.backdropPath}
         self.loadMovieImages(with: names) {[weak self] data in
-            self?.presenter?.reloadData(data: models, imageData: data)
+            self?.presenter?.presentData(data: models, imageData: data)
         }
     }
 }

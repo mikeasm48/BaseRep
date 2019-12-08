@@ -8,8 +8,7 @@
 
 import  Foundation
 
-protocol ListInteractorProtocol {
-    func loadDataAsync()
+protocol ListInteractorProtocol: ModuleInteractorProtocol {
 }
 
 class ListInteractor: Interactor, ListInteractorProtocol {
@@ -29,7 +28,7 @@ class ListInteractor: Interactor, ListInteractorProtocol {
     private func loadImages(models: [MovieDataModel]) {
         let names = models.map {model in model.posterPath}
         self.loadMovieImages(with: names) {[weak self] data in
-            self?.presenter?.reloadData(data: models, imageData: data)
+            self?.presenter?.presentData(data: models, imageData: data)
         }
     }
 }

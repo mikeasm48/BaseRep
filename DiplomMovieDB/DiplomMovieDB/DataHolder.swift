@@ -22,11 +22,11 @@ final class DataHolder: DataHolderProtocol {
     private static var movie: MovieDataModel?
     private var movies: [MovieDataModel] = []
     private var images: [String: UIImage?] = [ : ]
-    
+
     static func getMovie() -> MovieDataModel? {
         return movie
     }
-    
+
     static func setMovie(movie: MovieDataModel) {
         self.movie = movie
     }

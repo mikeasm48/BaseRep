@@ -92,22 +92,26 @@ class Interactor: InteractorProtocol {
             completion(data)
         }
     }
-    
+
     func getNextFetchPage() -> Int {
         guard let fetchData = self.fetchData else {
             print("empty fetch data, return page = 1")
             return 1
         }
+
         let returnValue = fetchData.currentPage + 1
         print("fetch page = \(returnValue) from \(fetchData.totalPages)")
         return returnValue
     }
-    
+
+    func resetFetchData() {
+        self.fetchData = nil
+    }
+
     private func setFetchData(fetchData: FetchData) {
         self.fetchData = fetchData
     }
 
-    
     private func getFetchedInt(named: String, from: [String: Any]) -> Int {
         guard let resultAny = from[named] else {
             return 0

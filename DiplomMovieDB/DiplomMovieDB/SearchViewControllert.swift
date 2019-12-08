@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol SearchViewControllerProtocol {
+protocol SearchViewControllerProtocol: TableViewControllerProtocol {
 }
 
 class SearchViewController: AbstractTableViewController, SearchViewControllerProtocol {
@@ -19,10 +19,9 @@ class SearchViewController: AbstractTableViewController, SearchViewControllerPro
 
     override func viewDidLoad() {
         super.viewDidLoad()
-//        view.backgroundColor = .darkGray
         navigationItem.title = "Поиск"
     }
-    
+
     override func initAdditionalControlsWithLayoutConstraints() {
         view.addSubview(searchInputField)
         searchInputField.delegate = self
@@ -44,15 +43,28 @@ class SearchViewController: AbstractTableViewController, SearchViewControllerPro
             ])
     }
 
+    override func didLoadData(movies: [MovieDataModel], images: [String: UIImage?]) {
+        dataHolder?.setData(movies: movies, images: images)
+        tableView.reloadData()
+    }
+
+    override func selectRow(indexPath: IndexPath) {
+        router?.openDetails(movie: getDataHolder().getMovie(index: indexPath.row))
+    }
 }
 
 extension SearchViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        guard let _ = textField.text else {
+        guard let textToSearch = textField.text else {
             return false
         }
-        //TODO
-        //presenter.search(by: text)
+        dataHolder?.resetData()
+        tableView.reloadData()
+        if (textToSearch.isEmpty){
+            return false
+        }
+        print("Searching: " + textToSearch)
+        interactor?.search(text: textToSearch)
         return true
     }
 }

@@ -8,14 +8,13 @@
 
 import UIKit
 
-protocol ListPresenterProtocol {
-    func reloadData(data: [MovieDataModel], imageData: [String: Data])
+protocol ListPresenterProtocol: ModulePresenterProtocol {
 }
 
 class ListPresenter: ListPresenterProtocol {
     weak var viewController: ListViewController?
 
-    func reloadData(data: [MovieDataModel], imageData: [String: Data]) {
+    func presentData (data: [MovieDataModel], imageData: [String: Data]) {
         viewController?.didLoadData(movies: data, images: imageData.mapValues{UIImage(data: $0)})
     }
 }

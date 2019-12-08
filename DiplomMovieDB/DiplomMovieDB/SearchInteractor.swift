@@ -9,14 +9,24 @@
 import Foundation
 
 protocol SearchInteractorProtocol {
-    
+    func search(text: String)
+//    func fetch()
 }
 
-class SearchInteractor: SearchInteractorProtocol {
+class SearchInteractor: Interactor, SearchInteractorProtocol {
     var presenter: SearchPresenterProtocol?
-    let networkService: NetworkServiceInput
 
-    init(networkService: NetworkServiceInput) {
-        self.networkService = networkService
+    func search(text: String) {
+        let url = API.searchPath(queryText: text, page: 1)
+        loadMovieList(url: url) { [weak self] models in
+            self?.loadImages(models: models)
+        }
+    }
+
+    private func loadImages(models: [MovieDataModel]) {
+        let names = models.map {model in model.posterPath}
+        self.loadMovieImages(with: names) {[weak self] data in
+            self?.presenter?.presentData(data: models, imageData: data)
+        }
     }
 }

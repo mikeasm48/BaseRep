@@ -7,7 +7,7 @@
 //
 import UIKit
 
-final class TopRatedAssembly: AssemblyProtocol {
+final class TopRatedAssembly: ModuleAssemblyProtocol {
     static func build() -> UIViewController {
         let viewController = TopRatedViewController()
         //TODO одна сессия на каждый модуль или одна на всех?

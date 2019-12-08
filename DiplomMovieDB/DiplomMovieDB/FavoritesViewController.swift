@@ -22,11 +22,11 @@ class FavoritesViewController: AbstractTableViewController, FavoritesViewControl
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-         interactor?.loadSavedMovies()
+         interactor?.loadDataAsync()
     }
 
     override func selectRow(indexPath: IndexPath) {
-        router?.openDetailsModule(movie: getDataHolder().getMovie(index: indexPath.row))
+        router?.openDetails(movie: getDataHolder().getMovie(index: indexPath.row))
     }
 
     override func didLoadData(movies: [MovieDataModel], images: [String : UIImage?]) {

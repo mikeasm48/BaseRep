@@ -7,6 +7,6 @@
 //
 
 import UIKit
-protocol AssemblyProtocol {
+protocol ModuleAssemblyProtocol {
     static func build() -> UIViewController
 }

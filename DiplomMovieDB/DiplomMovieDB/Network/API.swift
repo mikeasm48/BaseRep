@@ -18,6 +18,7 @@ https://api.themoviedb.org/3/movie/550?api_key=836b9e978d31e45e403551bf7773f47d
 https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=836b9e978d31e45e403551bf7773f47d
 */
     private static let dicoverBaseUrl = "https://api.themoviedb.org/3/discover/movie"
+    private static let searchBaseUrl = "https://api.themoviedb.org/3/search/movie"
     private static let imageBaseUrl = "https://image.tmdb.org/t/p/w500"
     static let topRatedBaseUrl = "https://api.themoviedb.org/3/movie/top_rated"
     static let popularBaseUrl = "https://api.themoviedb.org/3/movie/popular"
@@ -43,7 +44,7 @@ https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=836b
         components.queryItems = [apiKeyItem, lang, sortBy, vote, year, page]
         return components.url!
     }
-    
+
     //Нужен для отладки, если раскоментить год и vote то получаетс] то же что сортировка
     //по "popularity.desc"
     //без этих фильтров лезет всякая грязь, нужно только для отладки
@@ -70,6 +71,18 @@ https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=836b
         let lang = URLQueryItem(name: "language", value: "ru-RU")
         let page = URLQueryItem(name: "page", value: String(page))
         components.queryItems = [apiKeyItem, lang, page]
+        return components.url!
+    }
+
+    static func searchPath(queryText: String, page: Int) -> URL {
+        guard var components = URLComponents(string: searchBaseUrl) else {
+            return URL(string: searchBaseUrl)!
+        }
+        let apiKeyItem = URLQueryItem(name: "api_key", value: apiKey)
+        let lang = URLQueryItem(name: "language", value: "ru-RU")
+        let query = URLQueryItem(name: "query", value: queryText)
+        let page = URLQueryItem(name: "page", value: String(page))
+        components.queryItems = [apiKeyItem, lang, query, page]
         return components.url!
     }
 }

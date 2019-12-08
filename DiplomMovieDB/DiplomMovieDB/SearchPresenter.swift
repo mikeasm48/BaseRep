@@ -6,11 +6,16 @@
 //  Copyright © 2019 Михаил Асмаковец. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
-protocol SearchPresenterProtocol {
+protocol SearchPresenterProtocol: ModulePresenterProtocol {
 }
 
 class SearchPresenter: SearchPresenterProtocol {
     var viewController: SearchViewController?
+
+    func presentData(data: [MovieDataModel], imageData: [String: Data]) {
+        viewController?.didLoadData(movies: data,
+                                    images: imageData.mapValues{UIImage(data: $0)})
+    }
 }

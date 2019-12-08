@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class DetailsAssembly: AssemblyProtocol {
+final class DetailsAssembly: ModuleAssemblyProtocol {
     static func build() -> UIViewController {
         let viewController = DetailsViewController()
         //TODO одна сессия на каждый модуль или одна на всех?

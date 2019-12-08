@@ -7,14 +7,13 @@
 //
 import UIKit
 
-protocol TopRatedPresenterProtocol {
-    func reloadData(data: [MovieDataModel], imageData: [String: Data])
+protocol TopRatedPresenterProtocol: ModulePresenterProtocol {
 }
 
 class TopRatedPresenter: TopRatedPresenterProtocol {
     var viewController: TopRatedViewController?
 
-    func reloadData(data: [MovieDataModel], imageData: [String: Data]) {
+    func presentData(data: [MovieDataModel], imageData: [String: Data]) {
         viewController?.didLoadData(movies: data,
                                     images: imageData.mapValues{UIImage(data: $0)})
     }
