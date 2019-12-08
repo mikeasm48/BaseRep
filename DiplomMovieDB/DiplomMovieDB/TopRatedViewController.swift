@@ -75,6 +75,7 @@ extension TopRatedViewController: UICollectionViewDelegate, UICollectionViewData
         let model =  getDataHolder().getMovie(index: indexPath.row)
         let image = getDataHolder().getImage(path: model.backdropPath)
         let imageView = UIImageView(image: image)
+        imageView.contentMode = .scaleAspectFit
         return imageView.frame.size
     }
 

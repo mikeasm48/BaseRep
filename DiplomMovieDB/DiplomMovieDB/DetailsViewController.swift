@@ -58,7 +58,7 @@ class DetailsViewController: UIViewController, DetailsViewControllerProtocol {
 
     private func getBackdropImageView(image: UIImage) -> UIImageView {
         let imageView = UIImageView(frame: getFrame())
-        imageView.contentMode = .scaleToFill
+        imageView.contentMode = .center
         imageView.image = image
         return imageView
     }

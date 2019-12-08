@@ -25,10 +25,6 @@ class FavoritesViewController: AbstractTableViewController, FavoritesViewControl
          interactor?.loadSavedMovies()
     }
 
-    override func getCaption() -> String {
-        return "Сохраненные"
-    }
-    
     override func selectRow(indexPath: IndexPath) {
         router?.openDetailsModule(movie: getDataHolder().getMovie(index: indexPath.row))
     }

@@ -11,7 +11,7 @@ import UIKit
 protocol SearchViewControllerProtocol {
 }
 
-class SearchViewController: UIViewController, SearchViewControllerProtocol {
+class SearchViewController: AbstractTableViewController, SearchViewControllerProtocol {
     var interactor: SearchInteractorProtocol?
     var router: SearchRouterProtocol?
 
@@ -19,20 +19,31 @@ class SearchViewController: UIViewController, SearchViewControllerProtocol {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .darkGray
+//        view.backgroundColor = .darkGray
+        navigationItem.title = "Поиск"
+    }
+    
+    override func initAdditionalControlsWithLayoutConstraints() {
         view.addSubview(searchInputField)
-        searchInputField.backgroundColor = .white
-
         searchInputField.delegate = self
         searchInputField.backgroundColor = .white
         searchInputField.borderStyle = .roundedRect
+
         searchInputField.translatesAutoresizingMaskIntoConstraints = false
+        tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            searchInputField.topAnchor.constraint(equalTo: view.topAnchor, constant: 10),
+            searchInputField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
             searchInputField.leftAnchor.constraint(equalTo: view.leftAnchor),
-            searchInputField.rightAnchor.constraint(equalTo: view.rightAnchor),
-            searchInputField.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -10)])
+            searchInputField.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
+            searchInputField.bottomAnchor.constraint(equalTo: searchInputField.topAnchor, constant: 30),
+            //Table
+            tableView.topAnchor.constraint(equalTo: searchInputField.bottomAnchor, constant: 10),
+            tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            ])
     }
+
 }
 
 extension SearchViewController: UITextFieldDelegate {

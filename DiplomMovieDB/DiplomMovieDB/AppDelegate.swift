@@ -21,7 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let favoritesViewController = FavoritesAssembly.build()
         let searchViewController = SearchAssembly.build()
         window?.rootViewController = initTabBar(root: getRoot(viewController: mainViewController),
-                                                favorite: getRoot(viewController: favoritesViewController), search: searchViewController)
+                                                favorite: getRoot(viewController: favoritesViewController),
+                                                search: getRoot(viewController: searchViewController))
         window?.makeKeyAndVisible()
         return true
     }

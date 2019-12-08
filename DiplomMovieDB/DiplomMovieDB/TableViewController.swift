@@ -10,7 +10,6 @@ import UIKit
 
 protocol TableViewControllerProtocol {
     func loadData()
-    func getCaption() -> String
     func didLoadData(movies: [MovieDataModel], images: [String: UIImage?])
     func selectRow(indexPath: IndexPath)
     func fetchData()
@@ -18,43 +17,38 @@ protocol TableViewControllerProtocol {
 
 class AbstractTableViewController: DataHolderViewController, TableViewControllerProtocol {
     let tableView = UITableView()
+
     let reuseId = "UITableViewCellreuseId"
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(tableView)
         tableView.backgroundColor = .darkGray
-        let caption = getCaptionView()
-        caption.text = getCaption()
-        view.addSubview(caption)
-
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        caption.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            caption.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            caption.leftAnchor.constraint(equalTo: view.leftAnchor),
-            caption.rightAnchor.constraint(equalTo: view.rightAnchor),
-            caption.bottomAnchor.constraint(equalTo: view.topAnchor, constant: 40),
-            tableView.topAnchor.constraint(equalTo: caption.bottomAnchor),
-            tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
-            tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)])
-
+        initAdditionalControlsWithLayoutConstraints()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: reuseId)
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.translatesAutoresizingMaskIntoConstraints = false
         //Load data
         loadData()
     }
 
-    // MARK: - TableViewControllerProtocol Stubs
-    func getCaption()  -> String {
-        return "Just override getCaption() method"
+    //Метод может быть переопределен в наследниках для добавления дополнительных элементов
+    //с установкой для них новых layout constraints относительно tableView
+    func initAdditionalControlsWithLayoutConstraints() {
+
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)])
     }
+
+    // MARK: - TableViewControllerProtocol Stubs
 
     func loadData() {
     }
-    
+
     func fetchData() {
     }
 
@@ -63,22 +57,13 @@ class AbstractTableViewController: DataHolderViewController, TableViewController
 
     func selectRow(indexPath: IndexPath) {
     }
-
-    // MARK: - Private methods
-    private func getCaptionView() -> UITextView {
-        let caption = UITextView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 40))
-        caption.backgroundColor = .white
-        caption.textColor = .black
-        caption.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
-        return caption
-    }
 }
 
 extension AbstractTableViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return getDataHolder().getCount()
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: UITableViewCell.CellStyle.subtitle, reuseIdentifier: reuseId)
         let movie = getDataHolder().getMovie(index: indexPath.row)

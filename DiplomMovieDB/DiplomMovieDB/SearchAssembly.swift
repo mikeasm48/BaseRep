@@ -11,7 +11,6 @@ import UIKit
 final class SearchAssembly: AssemblyProtocol {
     static func build() -> UIViewController {
         let viewController = SearchViewController()
-        //TODO одна сессия на каждый модуль или одна на всех?
         let service = NetworkService(session: SessionFactory.getDefaultSession())
         let interactor = SearchInteractor(networkService: service)
         let presenter = SearchPresenter()
@@ -22,6 +21,8 @@ final class SearchAssembly: AssemblyProtocol {
         viewController.interactor = interactor
         viewController.router = router
         router.viewController = viewController
+
+        _ = UINavigationController.init(rootViewController: viewController)
 
         return viewController
     }
