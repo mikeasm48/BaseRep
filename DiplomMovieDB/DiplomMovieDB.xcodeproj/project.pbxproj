@@ -25,6 +25,7 @@
 		003EBD89239CBC9D00D27029 /* ModuleInteractorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003EBD88239CBC9D00D27029 /* ModuleInteractorProtocol.swift */; };
 		003EBD8B239CBEC000D27029 /* ModulePresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003EBD8A239CBEC000D27029 /* ModulePresenterProtocol.swift */; };
 		003EBD8D239CD27800D27029 /* ModuleRouterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003EBD8C239CD27800D27029 /* ModuleRouterProtocol.swift */; };
+		003EBD8F239CE7DA00D27029 /* DelayOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003EBD8E239CE7DA00D27029 /* DelayOperation.swift */; };
 		006B16242396134D00D388E0 /* MainAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006B16232396134D00D388E0 /* MainAssembly.swift */; };
 		006B16262396137100D388E0 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006B16252396137100D388E0 /* MainViewController.swift */; };
 		006B16292396264700D388E0 /* TopRatedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006B16282396264700D388E0 /* TopRatedViewController.swift */; };
@@ -97,6 +98,7 @@
 		003EBD88239CBC9D00D27029 /* ModuleInteractorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleInteractorProtocol.swift; sourceTree = "<group>"; };
 		003EBD8A239CBEC000D27029 /* ModulePresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModulePresenterProtocol.swift; sourceTree = "<group>"; };
 		003EBD8C239CD27800D27029 /* ModuleRouterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleRouterProtocol.swift; sourceTree = "<group>"; };
+		003EBD8E239CE7DA00D27029 /* DelayOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelayOperation.swift; sourceTree = "<group>"; };
 		006B16232396134D00D388E0 /* MainAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainAssembly.swift; sourceTree = "<group>"; };
 		006B16252396137100D388E0 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		006B16282396264700D388E0 /* TopRatedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopRatedViewController.swift; sourceTree = "<group>"; };
@@ -304,6 +306,7 @@
 				003262A92398CE02003A953D /* DataHolder.swift */,
 				003262AB2398D1C8003A953D /* DataHolderViewController.swift */,
 				006E419A239BACC400D151DF /* TableViewController.swift */,
+				003EBD8E239CE7DA00D27029 /* DelayOperation.swift */,
 			);
 			name = Implementation;
 			sourceTree = "<group>";
@@ -551,6 +554,7 @@
 				00EFC3CD23955CA6000F39DE /* FavoritesInteractor.swift in Sources */,
 				006B163C23962D7D00D388E0 /* SearchPresenter.swift in Sources */,
 				003EBD89239CBC9D00D27029 /* ModuleInteractorProtocol.swift in Sources */,
+				003EBD8F239CE7DA00D27029 /* DelayOperation.swift in Sources */,
 				00EFC3D123955CCF000F39DE /* FavoritesRouter.swift in Sources */,
 				00ED1BBB2392741D00644E4D /* DetailsInteractor.swift in Sources */,
 				00AAAF3323973B9500C05039 /* DataModel.swift in Sources */,

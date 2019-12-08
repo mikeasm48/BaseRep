@@ -16,6 +16,13 @@ class SearchViewController: AbstractTableViewController, SearchViewControllerPro
     var router: SearchRouterProtocol?
 
     let searchInputField = UITextField()
+    //Для задержки поиска
+    lazy var searchQueue: OperationQueue = {
+        var queue = OperationQueue()
+        queue.name = "search_queue"
+        queue.maxConcurrentOperationCount = 1
+        return queue
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,11 +67,19 @@ extension SearchViewController: UITextFieldDelegate {
         }
         dataHolder?.resetData()
         tableView.reloadData()
-        if (textToSearch.isEmpty){
+        if textToSearch.isEmpty {
             return false
         }
-        print("Searching: " + textToSearch)
-        interactor?.search(text: textToSearch)
+        executeSearchWithDelay(searchText: textToSearch)
         return true
+    }
+
+    private func executeSearchWithDelay(searchText: String) {
+        searchQueue.cancelAllOperations()
+        let operation = DelayOperation(delay: 2) {_ in
+            print("Searching: " + searchText)
+            self.interactor?.search(text: searchText)
+        }
+        searchQueue.addOperation(operation)
     }
 }
