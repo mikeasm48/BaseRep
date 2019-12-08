@@ -7,22 +7,25 @@
 //
 import UIKit
 class LoadOperation: Operation {
-    let controller: ViewController
-    let text: String
-    let delay: Int
+    public typealias Closure = (LoadOperation) -> ()
+    let closure: Closure
+    let delay: TimeInterval
 
-    init(viewCntroller: ViewController, text: String, delay: Int) {
-        self.controller = viewCntroller
-        self.text = text
-        self.delay = delay
+    init(delay: TimeInterval, closure: @escaping Closure) {
+       self.delay = delay
+        self.closure = closure
     }
 
     override func main() {
         if isCancelled {
             return
         }
+        let delayTime = DispatchTime.now() + Double(Int64(self.delay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
         sleep(UInt32(self.delay))
-        controller.doSearch(by: text)
+        self.closure(self)
+//        DispatchQueue.main.asyncAfter(deadline: delayTime) {
+//            self.closure(self)
+//        }
 
     }
 }

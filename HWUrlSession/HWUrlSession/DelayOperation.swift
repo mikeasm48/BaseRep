@@ -9,20 +9,21 @@
 import UIKit
 
 class DelayOperation: AsyncOperation {
+    public typealias Closure = (DelayOperation) -> ()
+    let closure: Closure
+    
     let delay: TimeInterval
-    let controller: ViewController
-    let text: String
-    init(viewCntroller: ViewController, text: String, delay: TimeInterval) {
+
+    init(delay: TimeInterval, closure: @escaping Closure) {
         self.delay = delay
-        self.controller = viewCntroller
-        self.text = text
+        self.closure = closure
     }
+    
     override func main() {
         self.state = .executing
         let delayTime = DispatchTime.now() + Double(Int64(self.delay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
         DispatchQueue.main.asyncAfter(deadline: delayTime) {
-            print("DelayOperation!!!")
-            self.controller.doSearch(by: self.text)
+            self.closure(self)
             self.state = .finished
         }
     }

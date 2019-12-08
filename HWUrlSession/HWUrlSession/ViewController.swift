@@ -81,10 +81,15 @@ class ViewController: UIViewController {
 //            self.doSearch(by: searchString)
 //        }
         //Вариант 2
-//        let operation = LoadOperation(viewCntroller: self, text: searchString)
+//        let operation = LoadOperation(delay: 4) {_ in
+//            self.doSearch(by: searchString)
+//        }
+//
 //        loadQueue.addOperation(operation)
         //Вариант 3
-        let operation = DelayOperation(viewCntroller: self, text: searchString, delay: 4)
+        let operation = DelayOperation(delay: 2) {_ in
+            self.doSearch(by: searchString)
+        }
         loadQueue.addOperation (operation)
     }
 
