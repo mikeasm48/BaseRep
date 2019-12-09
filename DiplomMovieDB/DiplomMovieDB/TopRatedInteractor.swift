@@ -15,10 +15,7 @@ class TopRatedInteractor: Interactor, TopRatedInteractorProtocol {
     var presenter: TopRatedPresenterProtocol?
 
     func loadDataAsync() {
-        //Вечная классика
         let url = API.listPath(baseUrl: API.topRatedBaseUrl, page: 1)
-//        let url = API.discoverPath(sortBy: "popularity.desc",
-//                                   page: getNextFetchPage())
         loadMovieList(url: url) { [weak self] models in
             self?.loadImages(models: models)
         }

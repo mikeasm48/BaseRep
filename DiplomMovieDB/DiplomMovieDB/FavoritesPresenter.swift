@@ -15,6 +15,6 @@ class FavoritesPresenter: FavoritesPresenterProtocol {
     var viewController: FavoritesViewController?
 
     func presentData(data: [MovieDataModel], imageData: [String: Data]) {
-        viewController?.didLoadData(movies: data, images: imageData.mapValues{UIImage(data: $0)})
+        viewController?.didLoadData(movies: data, images: imageData.mapValues {UIImage(data: $0)})
     }
 }

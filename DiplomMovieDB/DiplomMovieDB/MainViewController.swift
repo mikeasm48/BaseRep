@@ -16,7 +16,7 @@ class MainViewController: UIViewController, MainViewControllerProtocol {
     var router: MainRouterProtocol?
     var topRatedViewController: UIViewController?
     var recentListViewController: UIViewController?
-    
+
     private var needSplash = true
 
     override func viewDidAppear(_ animated: Bool) {
@@ -68,9 +68,10 @@ class MainViewController: UIViewController, MainViewControllerProtocol {
         splashScreenController.view.addSubview(logoImageView)
 
         self.present(splashScreenController, animated: false, completion: nil)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            splashScreenController.dismiss(animated: true) {
-                self.showModule()
+        self.showModule()
+        DispatchQueue.global().asyncAfter(deadline: .now() + 3) {
+            DispatchQueue.main.sync {
+                splashScreenController.dismiss(animated: true, completion: nil)
             }
         }
     }
