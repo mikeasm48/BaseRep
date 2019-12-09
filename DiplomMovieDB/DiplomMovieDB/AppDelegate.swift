@@ -34,17 +34,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return navigationController
     }
 
-    private func initTabBar(root: UIViewController, favorite: UIViewController, search: UIViewController) -> UITabBarController {
+    private func initTabBar(root: UIViewController,
+                            favorite: UIViewController,
+                            search: UIViewController) -> UITabBarController {
         let tabBarController = UITabBarController()
-        let selectedColor   = UIColor(red: 246.0/255.0, green: 155.0/255.0, blue: 13.0/255.0, alpha: 1.0)
-
-        root.tabBarItem = UITabBarItem(tabBarSystemItem: .mostRecent, tag: 1)
-        root.tabBarItem.badgeColor = selectedColor
-        favorite.tabBarItem.
-        search.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 3)
-
+        let filmImage = UIImage(named: "Film")
+        let starImage = UIImage(named: "Star")
+        let searchImage = UIImage(named: "Search")
+        root.tabBarItem = UITabBarItem(title: "Фильмы", image: filmImage, selectedImage: filmImage)
+        favorite.tabBarItem = UITabBarItem(title: "Избранное", image: starImage, selectedImage: starImage)
+        search.tabBarItem = UITabBarItem(title: "Поиск", image: searchImage, selectedImage: searchImage)
         tabBarController.viewControllers = [root, favorite, search]
-
         return tabBarController
     }
 }
