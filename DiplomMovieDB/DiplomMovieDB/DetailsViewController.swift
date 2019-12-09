@@ -78,7 +78,7 @@ class DetailsViewController: UIViewController, DetailsViewControllerProtocol {
         return imageView
     }
 
-    @objc func actionUITapGestureRecognizer (){
+    @objc func actionUITapGestureRecognizer () {
         zoomPosterImage()
     }
 
@@ -96,14 +96,25 @@ class DetailsViewController: UIViewController, DetailsViewControllerProtocol {
 
     private func getMovieReleaseDate(movie: MovieDataModel) -> UILabel {
         let labelView = UILabel(frame: getFrame())
-        //TODO привести шакальскую дату в человечий вид
-        labelView.text = "Дата релиза: " + movie.releaseDate
+        labelView.text = "Дата релиза: " + convertLocalDateString(from: movie.releaseDate)
         labelView.backgroundColor = backgroundColor
         labelView.textColor = titleColor
         labelView.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
         labelView.lineBreakMode = .byWordWrapping
         labelView.sizeToFit()
         return labelView
+    }
+
+    private func convertLocalDateString(from movieDate: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let dateToConvert = dateFormatter.date(from: movieDate)
+        guard let date = dateToConvert else {
+            return ""
+        }
+        dateFormatter.dateFormat = "dd.MM.yyyy"
+        let dateResult = dateFormatter.string(from: date)
+        return dateResult + " г."
     }
 
     private func getSaveButton (movie: MovieDataModel) -> UIButton {
@@ -128,6 +139,7 @@ class DetailsViewController: UIViewController, DetailsViewControllerProtocol {
         } else {
             interactor?.saveMovie(movie: movieData)
         }
+        self.navigationController?.popViewController(animated: true)
     }
 
     func zoomPosterImage() {
