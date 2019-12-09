@@ -22,10 +22,13 @@ class DetailsViewController: UIViewController, DetailsViewControllerProtocol {
     private var poster: UIImage?
     private var zoomedPosterView: UIView?
     private var movieSaveState = false
+    private var isDefaultPoster = false
 
     private let backgroundColor = UIColor.black
     private let textColor = UIColor.white
     private let titleColor = UIColor.cyan
+    private let defaultPosterImageName = "DefaultPoster"
+    private let defaultBackdropImageName = "LogoMovieDB"
 
     private let viewShiftY: CGFloat = 30
     private let viewShiftX: CGFloat = 30
@@ -69,13 +72,12 @@ class DetailsViewController: UIViewController, DetailsViewControllerProtocol {
         let imageView = UIImageView(frame: getFrame())
         imageView.contentMode = .scaleAspectFill
         imageView.image = image
-        let posterTapGestureRecognizer = UITapGestureRecognizer(target: self, action:  #selector (self.actionUITapGestureRecognizer))
+        let posterTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector (self.actionUITapGestureRecognizer))
         imageView.isUserInteractionEnabled = true
         imageView.addGestureRecognizer(posterTapGestureRecognizer)
         return imageView
     }
-    
-    //Клик на постер
+
     @objc func actionUITapGestureRecognizer (){
         zoomPosterImage()
     }
@@ -110,7 +112,7 @@ class DetailsViewController: UIViewController, DetailsViewControllerProtocol {
             button.setTitle("Сохранить", for: .normal)
             button.backgroundColor = backgroundColor
             button.setTitleColor(.cyan, for: .normal)
-            button.addTarget(self, action:  #selector(tapButtonSave), for:.touchDown)
+            button.addTarget(self, action: #selector(tapButtonSave), for: .touchDown)
             button.frame = getFrame()
             return button
         }()
@@ -127,15 +129,11 @@ class DetailsViewController: UIViewController, DetailsViewControllerProtocol {
             interactor?.saveMovie(movie: movieData)
         }
     }
-    @objc func tapPoster () {
-        print("tap poster!")
-        zoomPosterImage()
-    }
-    @objc func tapZoomedPoster () {
-        print("tap zoomed!")
-    }
 
     func zoomPosterImage() {
+        if isDefaultPoster {
+            return
+        }
         let zoomedView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: view.frame.height))
         let imageView = UIImageView(image: self.poster)
         imageView.frame = zoomedView.frame
@@ -148,7 +146,7 @@ class DetailsViewController: UIViewController, DetailsViewControllerProtocol {
         self.zoomedPosterView = zoomedView
     }
 
-    @objc func closePosterZoomImage(){
+    @objc func closePosterZoomImage() {
         zoomedPosterView?.layer.add(getZoomOutAnimation(), forKey: "out")
     }
 
@@ -185,9 +183,12 @@ class DetailsViewController: UIViewController, DetailsViewControllerProtocol {
         return labelView
     }
 
-    private func getPictureWithDefault(image: UIImage?) -> UIImage? {
+    private func getPictureWithDefault(image: UIImage?, defaultName: String) -> UIImage? {
         guard let existImage = image else {
-            return UIImage(named: "LogoMovieDB")
+            if defaultPosterImageName == defaultName {
+                isDefaultPoster = true
+            }
+            return UIImage(named: defaultName)
         }
         return existImage
     }
@@ -211,10 +212,11 @@ class DetailsViewController: UIViewController, DetailsViewControllerProtocol {
     }
 
     func didShowDetails (poster: UIImage?, backdrop: UIImage?) {
-        guard let backdropImage = getPictureWithDefault(image: backdrop) else {
+        isDefaultPoster = false
+        guard let backdropImage = getPictureWithDefault(image: backdrop, defaultName: defaultBackdropImageName) else {
             return
         }
-        guard let posterImage = getPictureWithDefault(image: poster) else {
+        guard let posterImage = getPictureWithDefault(image: poster, defaultName: defaultPosterImageName) else {
             return
         }
         guard let movieData = self.movie else {
@@ -310,7 +312,6 @@ extension UIScrollView {
 
 extension DetailsViewController: CAAnimationDelegate {
     public func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
-        print(anim)
         zoomedPosterView?.removeFromSuperview()
     }
 }

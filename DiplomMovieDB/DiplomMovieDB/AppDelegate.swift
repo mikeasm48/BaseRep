@@ -36,9 +36,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     private func initTabBar(root: UIViewController, favorite: UIViewController, search: UIViewController) -> UITabBarController {
         let tabBarController = UITabBarController()
+        let selectedColor   = UIColor(red: 246.0/255.0, green: 155.0/255.0, blue: 13.0/255.0, alpha: 1.0)
 
         root.tabBarItem = UITabBarItem(tabBarSystemItem: .mostRecent, tag: 1)
-        favorite.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 2)
+        root.tabBarItem.badgeColor = selectedColor
+        favorite.tabBarItem.
         search.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 3)
 
         tabBarController.viewControllers = [root, favorite, search]

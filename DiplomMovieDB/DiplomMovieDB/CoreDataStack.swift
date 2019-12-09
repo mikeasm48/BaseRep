@@ -14,12 +14,10 @@ internal final class CoreDataStack {
         let coreDataStack = CoreDataStack()
         return coreDataStack
     }()
-    
     let persistentContainer: NSPersistentContainer
-    
+
     private init() {
         let group = DispatchGroup()
-        
         persistentContainer = NSPersistentContainer(name: "MovieCoreData")
         group.enter()
         persistentContainer.loadPersistentStores { _, error in

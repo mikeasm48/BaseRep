@@ -12,12 +12,22 @@ protocol MainViewControllerProtocol {
 }
 
 class MainViewController: UIViewController, MainViewControllerProtocol {
+
     var router: MainRouterProtocol?
     var topRatedViewController: UIViewController?
     var recentListViewController: UIViewController?
+    
+    private var needSplash = true
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if needSplash {
+            needSplash = false
+            showSplashScreen()
+        }
+    }
+
+    private func showModule() {
         view.backgroundColor = .white
         navigationItem.title = "Популярные"
         guard let top = topRatedViewController else {
@@ -40,11 +50,28 @@ class MainViewController: UIViewController, MainViewControllerProtocol {
             top.view.leftAnchor.constraint(equalTo: view.leftAnchor),
             top.view.rightAnchor.constraint(equalTo: view.rightAnchor),
             top.view.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,
-                                                                constant: view.frame.height / 3),
+                                             constant: view.frame.height / 3),
             //List
             list.view.topAnchor.constraint(equalTo: top.view.bottomAnchor),
             list.view.leftAnchor.constraint(equalTo: view.leftAnchor),
             list.view.rightAnchor.constraint(equalTo: view.rightAnchor),
             list.view.bottomAnchor.constraint(equalTo: view.bottomAnchor)])
+    }
+
+    private func showSplashScreen() {
+        let splashScreenController = UIViewController()
+        splashScreenController.view.backgroundColor = .black
+        let logoImage = UIImage(named: "LogoMovieDB")
+        let logoImageView = UIImageView(image: logoImage)
+        logoImageView.contentMode = .center
+        logoImageView.frame = splashScreenController.view.frame
+        splashScreenController.view.addSubview(logoImageView)
+
+        self.present(splashScreenController, animated: false, completion: nil)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            splashScreenController.dismiss(animated: true) {
+                self.showModule()
+            }
+        }
     }
 }

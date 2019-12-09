@@ -27,6 +27,8 @@ class SearchViewController: AbstractTableViewController, SearchViewControllerPro
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Поиск"
+        view.backgroundColor = .darkGray
+        tableView.backgroundColor = .white
     }
 
     override func initAdditionalControlsWithLayoutConstraints() {
