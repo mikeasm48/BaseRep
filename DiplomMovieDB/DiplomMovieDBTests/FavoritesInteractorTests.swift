@@ -11,34 +11,37 @@ import CoreData
 @testable import DiplomMovieDB
 
 class FavoritesInteractorTests: XCTestCase {
-//    var networkServiceStub: NetworkServiceStub!
+    var networkServiceStub: NetworkServiceStub!
+    var coreDataStub: CoreDataStackProtocol!
     var presenter: FavoritesPresenterSpy!
     var interactor: FavoritesInteractor!
-    
+
     override func setUp() {
         super.setUp()
-//        networkServiceStub = NetworkServiceStub()
+        networkServiceStub = NetworkServiceStub()
         presenter = FavoritesPresenterSpy()
         presenter.expect = expectation(description: "Expect for data loading")
-//        interactor = TopRatedInteractor(networkService: networkServiceStub)
-//        interactor.presenter = presenter
+        coreDataStub = MockCoreDataStack()
+        interactor = FavoritesInteractor(networkService: networkServiceStub, coreDataStack: coreDataStub)
+        interactor.presenter = presenter
     }
-    
+
     override func tearDown() {
-//        networkServiceStub = nil
+        networkServiceStub = nil
+        coreDataStub = nil
         presenter = nil
         super.tearDown()
     }
-    
-//    func testThatInteractorCanLoadData() {
+
+    func testThatInteractorCanLoadData() {
         //Act
-        //interactor.loadDataAsync()
+        interactor.loadDataAsync()
         //Assert
-//        waitForExpectations(timeout: 1) { (error) in
-//            if let error = error {
-//                XCTFail("WaitForExpectationsWithTimeout error: \(error)")
-//            }
-//        }
-//        XCTAssertEqual(presenter.countData, 20, "Incorrect result count")
-//    }
+        waitForExpectations(timeout: 1) { (error) in
+            if let error = error {
+                XCTFail("WaitForExpectationsWithTimeout error: \(error)")
+            }
+        }
+        XCTAssertEqual(presenter.countData, 1, "Incorrect result count")
+    }
 }

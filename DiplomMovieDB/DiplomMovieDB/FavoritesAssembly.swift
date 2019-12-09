@@ -12,7 +12,7 @@ final class FavoritesAssembly: ModuleAssemblyProtocol {
     static func build() -> UIViewController {
         let viewController = FavoritesViewController()
         let service = NetworkService(session: SessionFactory.getDefaultSession())
-        let interactor = FavoritesInteractor(networkService: service)
+        let interactor = FavoritesInteractor(networkService: service, coreDataStack: CoreDataStack())
         let presenter = FavoritesPresenter()
         let router = FavoritesRouter()
         let dataHolder = DataHolder()

@@ -11,9 +11,9 @@ import UIKit
 final class DetailsAssembly: ModuleAssemblyProtocol {
     static func build() -> UIViewController {
         let viewController = DetailsViewController()
-        //TODO одна сессия на каждый модуль или одна на всех?
         let service = NetworkService(session: SessionFactory.getDefaultSession())
-        let interactor = DetailsInteractor(networkService: service)
+        let coreDataStack = CoreDataStack()
+        let interactor = DetailsInteractor(networkService: service, coreDataStack: coreDataStack)
         let presenter = DetailsPresenter()
         let router = DetailsRouter()
 

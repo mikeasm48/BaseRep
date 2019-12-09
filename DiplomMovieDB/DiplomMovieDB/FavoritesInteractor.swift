@@ -15,14 +15,16 @@ protocol FavoritesInteractorProtocol: ModuleInteractorProtocol {
 class FavoritesInteractor: FavoritesInteractorProtocol {
     var presenter: FavoritesPresenterProtocol?
     let networkService: NetworkServiceInput
+    let coreDataStack: CoreDataStackProtocol
     var dataModel: DataModelProtocol?
 
-    init(networkService: NetworkServiceInput) {
+    init(networkService: NetworkServiceInput, coreDataStack: CoreDataStackProtocol) {
         self.networkService = networkService
+        self.coreDataStack = coreDataStack
     }
 
     func loadDataAsync() {
-        let context = CoreDataStack.shared.persistentContainer.newBackgroundContext()
+        let context = coreDataStack.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<MOMovieContent>(entityName: "MovieContent")
         var models: [MovieDataModel] = []
         var images: [String: Data] = [ : ]

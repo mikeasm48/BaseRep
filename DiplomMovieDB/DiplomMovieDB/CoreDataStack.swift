@@ -9,14 +9,14 @@
 import Foundation
 import CoreData
 
-internal final class CoreDataStack {
-    static let shared: CoreDataStack = {
-        let coreDataStack = CoreDataStack()
-        return coreDataStack
-    }()
-    let persistentContainer: NSPersistentContainer
+protocol CoreDataStackProtocol {
+    var persistentContainer: NSPersistentContainer {get}
+}
 
-    private init() {
+internal final class CoreDataStack: CoreDataStackProtocol {
+    var persistentContainer: NSPersistentContainer
+
+    init() {
         let group = DispatchGroup()
         persistentContainer = NSPersistentContainer(name: "MovieCoreData")
         group.enter()

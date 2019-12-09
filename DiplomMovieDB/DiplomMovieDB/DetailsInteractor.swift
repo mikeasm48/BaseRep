@@ -18,7 +18,12 @@ protocol DetailsInteractorProtocol {
 
 class DetailsInteractor: Interactor, DetailsInteractorProtocol {
     var presenter: DetailsPresenterProtocol?
-
+    let coreDataStack: CoreDataStackProtocol
+    
+    init(networkService: NetworkServiceInput, coreDataStack: CoreDataStackProtocol) {
+        self.coreDataStack = coreDataStack
+        super.init(networkService: networkService)
+    }
     func loadPictures(posterPath: String, backdropPath: String) {
         self.loadMovieImages(with: [posterPath, backdropPath]) {[weak self] data in
             let poster = data[posterPath]
@@ -29,7 +34,7 @@ class DetailsInteractor: Interactor, DetailsInteractorProtocol {
 
     //Сохраняем данные в CoreData
     func saveMovie(movie: MovieDataModel) {
-        CoreDataStack.shared.persistentContainer.performBackgroundTask { (context) in
+        coreDataStack.persistentContainer.performBackgroundTask { (context) in
             guard let dataBackdrop = self.dataModel?.getPicture(for: movie.backdropPath) as NSData? else {
                 return
             }
@@ -56,7 +61,7 @@ class DetailsInteractor: Interactor, DetailsInteractorProtocol {
     }
 
     func checkMovieSaved(movie: MovieDataModel) {
-        let context = CoreDataStack.shared.persistentContainer.viewContext
+        let context = coreDataStack.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<MOMovieContent>(entityName: "MovieContent")
         let sortBySearchTag = NSSortDescriptor(key: "movieId", ascending: true)
         fetchRequest.sortDescriptors = [sortBySearchTag]
@@ -77,7 +82,7 @@ class DetailsInteractor: Interactor, DetailsInteractorProtocol {
     }
 
     func deleteSavedMovie(movie: MovieDataModel) {
-        let context = CoreDataStack.shared.persistentContainer.newBackgroundContext()
+        let context = coreDataStack.persistentContainer.newBackgroundContext()
         let fetchRequest = NSFetchRequest<MOMovieContent>(entityName: "MovieContent")
         var deletedCount = 0
         do {

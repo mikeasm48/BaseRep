@@ -28,7 +28,7 @@ class TopRatedInteractorTests: XCTestCase {
         presenter = nil
         super.tearDown()
     }
-    
+
     func testThatInteractorCanLoadData() {
         //Act
         interactor.loadDataAsync()
