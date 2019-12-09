@@ -25,10 +25,11 @@ class APITests: XCTestCase {
     //Проверка формирования URL списка загрузки популярных фильмов
     func testGenerateDiscoverPath() {
         //Arrange
-        let goodResult = "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=836b9e978d31e45e403551bf7773f47d"
+        let goodResult = "https://api.themoviedb.org/3/discover/movie?api_key=836b9e978d31e45e403551bf7773f47d&language=ru-RU&sort_by=popularity.desc&release_date.lte=2019-12-09&page=1"
         let paramSortBy = "popularity.desc"
+        let paramReleaseDate = "2019-12-09"
         //Act
-        let result = API.discoverPath(sortBy: paramSortBy, page: 1)
+        let result = API.discoverPathByYear(sortBy: paramSortBy, maxReleaseDate: paramReleaseDate, page: 1)
         //Assert
         XCTAssertEqual(result.absoluteString, goodResult,
                        "API generated wrong url discover popular sorted movie list")

@@ -13,13 +13,9 @@ protocol ListInteractorProtocol: ModuleInteractorProtocol {
 
 class ListInteractor: Interactor, ListInteractorProtocol {
     var presenter: ListPresenterProtocol?
-    
+
     func loadDataAsync() {
-        // Шакальские без картинок и описаний, для отладки
-        //         let url = API.discoverPath(sortBy: "release_date.desc",
-        //                                    page: getNextFetchPage())
-        let url = API.discoverPath(sortBy: "popularity.desc",
-                                   page: getNextFetchPage())
+        let url = API.discoverPathByYear(sortBy: "popularity.desc", maxReleaseDate: getCurrentReleaseDate(), page: getNextFetchPage())
         loadMovieList(url: url) { [weak self] models in
             self?.loadImages(models: models)
         }
@@ -30,5 +26,12 @@ class ListInteractor: Interactor, ListInteractorProtocol {
         self.loadMovieImages(with: names) {[weak self] data in
             self?.presenter?.presentData(data: models, imageData: data)
         }
+    }
+
+    private func getCurrentReleaseDate() -> String {
+        let currentDate = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        return dateFormatter.string(from: currentDate)
     }
 }
