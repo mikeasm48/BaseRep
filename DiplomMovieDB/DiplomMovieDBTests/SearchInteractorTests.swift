@@ -1,25 +1,25 @@
 //
-//  NetworkServiceTests.swift
+//  SearchInteractorTests.swift
 //  DiplomMovieDBTests
 //
-//  Created by Михаил Асмаковец on 27.11.2019.
+//  Created by Михаил Асмаковец on 09.12.2019.
 //  Copyright © 2019 Михаил Асмаковец. All rights reserved.
 //
 
 import XCTest
 @testable import DiplomMovieDB
 
-class ListInteractorTests: XCTestCase {
+class SearchInteractorTests: XCTestCase {
     var networkServiceStub: NetworkServiceStub!
-    var presenter: ListPresenterSpy!
-    var interactor: ListInteractor!
+    var presenter: SearchPresenterSpy!
+    var interactor: SearchInteractor!
 
     override func setUp() {
         super.setUp()
         networkServiceStub = NetworkServiceStub()
-        presenter = ListPresenterSpy()
+        presenter = SearchPresenterSpy()
         presenter.expect = expectation(description: "Expect for data loading")
-        interactor = ListInteractor(networkService: networkServiceStub)
+        interactor = SearchInteractor(networkService: networkServiceStub)
         interactor.presenter = presenter
     }
 
@@ -28,10 +28,12 @@ class ListInteractorTests: XCTestCase {
         presenter = nil
         super.tearDown()
     }
-
-    func testThatInteractorCanLoadData() {
+    
+    func testThatInteractorCanSearch() {
+        //Arrange
+        let searchText = "Some Movie To Search"
         //Act
-        interactor.loadDataAsync()
+        interactor.search(text: searchText)
         //Assert
         waitForExpectations(timeout: 1) { (error) in
             if let error = error {

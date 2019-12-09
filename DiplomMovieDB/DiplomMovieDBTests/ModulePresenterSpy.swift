@@ -1,14 +1,15 @@
 //
-//  PresenterSpy.swift
+//  ModulePresenterSpy.swift
 //  DiplomMovieDBTests
 //
-//  Created by Михаил Асмаковец on 29.11.2019.
+//  Created by Михаил Асмаковец on 09.12.2019.
 //  Copyright © 2019 Михаил Асмаковец. All rights reserved.
 //
+
 import XCTest
 @testable import DiplomMovieDB
 
-class PresenterSpy: ListPresenterProtocol {
+class ModulePresenterSpy: ModulePresenterProtocol {
     var countData = 0
     var expect: XCTestExpectation?
     func presentData(data: [MovieDataModel], imageData: [String: Data]) {

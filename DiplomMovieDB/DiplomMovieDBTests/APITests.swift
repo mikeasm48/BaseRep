@@ -23,7 +23,7 @@ class APITests: XCTestCase {
     }
 
     //Проверка формирования URL списка загрузки популярных фильмов
-    func testGenerateDiscoverPath() {
+    func testGenerateDiscoverPathByYear() {
         //Arrange
         let goodResult = "https://api.themoviedb.org/3/discover/movie?api_key=836b9e978d31e45e403551bf7773f47d&language=ru-RU&sort_by=popularity.desc&release_date.lte=2019-12-09&page=1"
         let paramSortBy = "popularity.desc"
