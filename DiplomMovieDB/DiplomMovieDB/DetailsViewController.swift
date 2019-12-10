@@ -106,6 +106,7 @@ class DetailsViewController: UIViewController, DetailsViewControllerProtocol {
             backdropImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             backdropImageView.leftAnchor.constraint(equalTo: view.leftAnchor),
             backdropImageView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            backdropImageView.bottomAnchor.constraint(equalTo: backdropImageView.topAnchor, constant: view.frame.height/4),
             //Scroll view
             scrollView.topAnchor.constraint(equalTo: backdropImageView.bottomAnchor, constant: viewShiftY),
             scrollView.leftAnchor.constraint(equalTo: view.leftAnchor),
@@ -152,7 +153,7 @@ class DetailsViewController: UIViewController, DetailsViewControllerProtocol {
 
     private func getBackdropImageView(image: UIImage) -> UIImageView {
         let imageView = UIImageView(frame: getFrame())
-        imageView.contentMode = .center
+        imageView.contentMode = .scaleAspectFill
         imageView.image = image
         return imageView
     }
@@ -190,6 +191,7 @@ class DetailsViewController: UIViewController, DetailsViewControllerProtocol {
         labelView.textColor = titleColor
         labelView.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
         labelView.lineBreakMode = .byWordWrapping
+        labelView.numberOfLines = 2
         labelView.sizeToFit()
         return labelView
     }
