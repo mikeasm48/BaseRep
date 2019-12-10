@@ -12,7 +12,7 @@ protocol ListPresenterProtocol: ModulePresenterProtocol {
 }
 
 class ListPresenter: ListPresenterProtocol {
-    weak var viewController: ListViewController?
+    var viewController: ListViewControllerProtocol?
 
     func presentData (data: [MovieDataModel], imageData: [String: Data]) {
         viewController?.didLoadData(movies: data, images: imageData.mapValues {UIImage(data: $0)})

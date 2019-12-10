@@ -12,7 +12,7 @@ protocol FavoritesPresenterProtocol: ModulePresenterProtocol {
 }
 
 class FavoritesPresenter: FavoritesPresenterProtocol {
-    var viewController: FavoritesViewController?
+    var viewController: FavoritesViewControllerProtocol?
 
     func presentData(data: [MovieDataModel], imageData: [String: Data]) {
         viewController?.didLoadData(movies: data, images: imageData.mapValues {UIImage(data: $0)})

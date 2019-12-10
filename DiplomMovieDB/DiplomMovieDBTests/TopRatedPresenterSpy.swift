@@ -10,5 +10,4 @@ import XCTest
 @testable import DiplomMovieDB
 
 class TopRatedPresenterSpy: ModulePresenterSpy, TopRatedPresenterProtocol {
-
 }

@@ -10,6 +10,14 @@ import XCTest
 @testable import DiplomMovieDB
 
 class APITests: XCTestCase {
+    override func setUp() {
+        super.setUp()
+    }
+
+    override func tearDown() {
+        super.tearDown()
+    }
+
     //Проверка формирования URL списка загрузки изображения
     func testGenerateLoadImagePath() {
         //Arrange
@@ -33,5 +41,27 @@ class APITests: XCTestCase {
         //Assert
         XCTAssertEqual(result.absoluteString, goodResult,
                        "API generated wrong url discover popular sorted movie list")
+    }
+
+    func testGenerateTopRatedPath() {
+        //Arrange
+        let goodResult = "https://api.themoviedb.org/3/movie/top_rated?api_key=836b9e978d31e45e403551bf7773f47d&language=ru-RU&page=1"
+        let baseUrlParam = API.topRatedBaseUrl
+        //Act
+        let result = API.listPath(baseUrl: baseUrlParam, page: 1)
+        //Assert
+        XCTAssertEqual(result.absoluteString, goodResult,
+                       "API generated wrong url top rated movie list")
+    }
+
+    func testGenerateSearchPath() {
+        //Arrange
+        let goodResult = "https://api.themoviedb.org/3/search/movie?api_key=836b9e978d31e45e403551bf7773f47d&language=ru-RU&query=Some%20Movie&page=1"
+        let queryText = "Some Movie"
+        //Act
+        let result = API.searchPath(queryText: queryText, page: 1)
+        //Assert
+        XCTAssertEqual(result.absoluteString, goodResult,
+                       "API generated wrong url search movie list")
     }
 }

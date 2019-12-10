@@ -22,10 +22,10 @@ class MockCoreDataStack: CoreDataStackProtocol {
         persistentContainer.loadPersistentStores { (description, error) in
             precondition(description.type == NSInMemoryStoreType)
         }
-        saveDataTestData()
+        saveTestData()
     }
 
-    func saveDataTestData() {
+    func saveTestData() {
         let context = self.persistentContainer.viewContext
         let movieContent = NSEntityDescription.insertNewObject(forEntityName: "MovieContent", into: context) as? MOMovieContent
         guard let movie = movieContent else {

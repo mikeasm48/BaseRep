@@ -12,10 +12,10 @@ protocol SearchPresenterProtocol: ModulePresenterProtocol {
 }
 
 class SearchPresenter: SearchPresenterProtocol {
-    var viewController: SearchViewController?
+    var viewController: SearchViewControllerProtocol?
 
     func presentData(data: [MovieDataModel], imageData: [String: Data]) {
         viewController?.didLoadData(movies: data,
-                                    images: imageData.mapValues{UIImage(data: $0)})
+                                    images: imageData.mapValues {UIImage(data: $0)})
     }
 }

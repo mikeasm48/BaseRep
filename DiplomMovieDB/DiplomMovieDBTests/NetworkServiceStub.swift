@@ -19,11 +19,7 @@ class NetworkServiceStub: NetworkServiceInput {
     }
 
     private func loadImageData() -> Data? {
-        let testBundle = Bundle(for: type(of: self))
-        let filePath = testBundle.path(forResource: "TestPicture", ofType: "jpg")
-        let image = UIImage(contentsOfFile: filePath!)
-        let data = image?.pngData()
-        return data
+        return TestPictureLoader().loadTestPicture()
     }
 
     private func loadList() -> Data? {

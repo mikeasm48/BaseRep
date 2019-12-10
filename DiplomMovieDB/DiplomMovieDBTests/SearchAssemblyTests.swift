@@ -9,7 +9,7 @@
 import XCTest
 @testable import DiplomMovieDB
 
-final class SearchAssemblyTest: XCTestCase {
+final class SearchAssemblyTests: XCTestCase {
 
     override func setUp() {
         super.setUp()

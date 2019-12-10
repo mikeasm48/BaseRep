@@ -11,7 +11,7 @@ protocol TopRatedPresenterProtocol: ModulePresenterProtocol {
 }
 
 class TopRatedPresenter: TopRatedPresenterProtocol {
-    var viewController: TopRatedViewController?
+    var viewController: TopRatedViewControllerProtocol?
 
     func presentData(data: [MovieDataModel], imageData: [String: Data]) {
         viewController?.didLoadData(movies: data,

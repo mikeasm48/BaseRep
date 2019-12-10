@@ -14,7 +14,7 @@ protocol DetailsPresenterProtocol {
 }
 
 class DetailsPresenter: DetailsPresenterProtocol {
-    var viewController: DetailsViewController?
+    var viewController: DetailsViewControllerProtocol?
 
     func setPictures(posterData: Data?, backdropData: Data?) {
         guard let poster = posterData else {
