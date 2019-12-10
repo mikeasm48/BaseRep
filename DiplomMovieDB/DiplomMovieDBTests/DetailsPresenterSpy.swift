@@ -11,10 +11,15 @@ import XCTest
 
 class DetailsPresenterSpy: DetailsPresenterProtocol {
     var presentedState: Bool?
+    var posterData: Data?
+    var backdropData: Data?
     var expect: XCTestExpectation?
 
-    func setPictures(posterData: Data?, backdropData: Data?) {
-        //
+    func setDetails(posterData: Data?, backdropData: Data?, savedState: Bool) {
+        self.posterData = posterData
+        self.backdropData = backdropData
+        self.presentedState = savedState
+        expect?.fulfill()
     }
 
     func setMovieSavedState(_ state: Bool) {

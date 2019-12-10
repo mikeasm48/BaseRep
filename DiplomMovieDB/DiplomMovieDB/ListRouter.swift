@@ -8,12 +8,17 @@
 
 import UIKit
 
+/// Протокол роутера модуля последних поступлений
 protocol ListRouterProtocol: ModuleRouterProtocol {
 }
 
+/// Роутер последних поступлений
 final class ListRouter: ListRouterProtocol {
     weak var viewController: (ListViewControllerProtocol & UIViewController)?
 
+    /// Открывает модуль простомтра деталей фильма
+    ///
+    /// - Parameter movie: фильм для простора деталей
     func openDetails (movie: MovieDataModel) {
         DataHolder.setMovie(movie: movie)
         let detailsController = DetailsAssembly.build()

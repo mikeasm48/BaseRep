@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// Сборка модуля поиска фильмов
 final class SearchAssembly: ModuleAssemblyProtocol {
     static func build() -> UIViewController {
         let viewController = SearchViewController()

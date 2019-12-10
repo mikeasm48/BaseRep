@@ -8,12 +8,16 @@
 
 import UIKit
 
+/// Протокол роутера модуля сохраненных в избранном фильмов
 protocol FavoritesRouterProtocol: ModuleRouterProtocol {
 }
-
+/// Роутер модуля сохраненных в избранном фильмов
 final class FavoritesRouter: FavoritesRouterProtocol {
     weak var viewController: (FavoritesViewControllerProtocol & UIViewController)?
-    
+
+    /// Открывает детали фильма
+    ///
+    /// - Parameter movie: данные фильма
     func openDetails(movie: MovieDataModel) {
         DataHolder.setMovie(movie: movie)
         let detailsController = DetailsAssembly.build()

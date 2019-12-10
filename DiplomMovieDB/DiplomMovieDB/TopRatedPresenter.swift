@@ -7,9 +7,11 @@
 //
 import UIKit
 
+/// Протокол презентера модуля поплялных фильмов
 protocol TopRatedPresenterProtocol: ModulePresenterProtocol {
 }
 
+/// Презентер модуля популярных фильмов
 class TopRatedPresenter: TopRatedPresenterProtocol {
     var viewController: TopRatedViewControllerProtocol?
 

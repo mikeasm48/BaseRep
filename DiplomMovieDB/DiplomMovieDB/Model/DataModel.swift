@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// Модель: данные фильма
 struct MovieDataModel {
     let movieId: Int
     let backdropPath: String
@@ -17,17 +18,39 @@ struct MovieDataModel {
     let releaseDate: String
 }
 
+/// Структура данных для постраничной подгрузки
 struct FetchData {
     let currentPage: Int
     let totalPages: Int
     let totalResults: Int
 }
 
+/// Пртокол модели данных
 protocol DataModelProtocol {
+    
+    /// Обновление данных изображений в модели
+    ///
+    /// - Parameters:
+    ///   - name: путь (имя) изображение. Уникальный идентификатор, который используется для загрузки изображения из сети
+    ///   - data: данные изображения
+    /// - Returns: <#return value description#>
     func updatePicture(for name: String, data: Data)
+    
+    /// Изобращжение есть в модели
+    ///
+    /// - Parameter name: путь (имя) изображения
+    /// - Returns: изображение уже загружено в модель?
     func isPictureLoaded(for name: String) -> Bool
+    
+    /// Получаем изображение из модели
+    ///
+    /// - Parameter name: путь (имя) изображения
+    /// - Returns: изображение
     func getPicture(for name: String) -> Data?
 }
+
+
+/// Модель: реализация
 final class DataModel: DataModelProtocol {
     static let shared = DataModel()
     private var pictures: [String: Data] = [ : ]
@@ -40,14 +63,23 @@ final class DataModel: DataModelProtocol {
 
     private init() {}
 
-    //Model interface
+    // MARK: - Private methods
+    
+    ///  Обновление данных изображений в модели
+    ///
+    /// - Parameters:
+    ///   - name: путь
+    ///   - data: данные
     func updatePicture(for name: String, data: Data) {
         queue.async(flags: .barrier) {
             self.pictures.updateValue(data, forKey: name)
         }
     }
 
-
+    /// Изображение есть в модели?
+    ///
+    /// - Parameter name: путь
+    /// - Returns: есть?
     func isPictureLoaded(for name: String) -> Bool {
         if getPicture(for: name) == nil {
             return false
@@ -55,6 +87,10 @@ final class DataModel: DataModelProtocol {
         return true
     }
 
+    /// Получение изображения из модели
+    ///
+    /// - Parameter name: путь
+    /// - Returns: изображение
     func getPicture(for name: String) -> Data? {
         var results: Data?
         queue.sync {
@@ -64,6 +100,7 @@ final class DataModel: DataModelProtocol {
     }
 }
 
+// MARK: - чтобы не копировали синглтон
 extension DataModel: NSCopying {
     func copy(with zone: NSZone? = nil) -> Any {
         return self

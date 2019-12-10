@@ -8,9 +8,12 @@
 
 import UIKit
 
+/// Протокол модуля со списком последних поступлений
 protocol ListViewControllerProtocol: TableViewControllerProtocol {
 }
 
+
+/// Контроллер модуля списка последних поступлений
 class ListViewController: AbstractTableViewController, ListViewControllerProtocol {
     var interactor: ListInteractorProtocol?
     var router: ListRouterProtocol?
@@ -21,6 +24,7 @@ class ListViewController: AbstractTableViewController, ListViewControllerProtoco
         super.viewDidLoad()
     }
 
+    /// Переопределено: точка расширения для добавления подзаголовка
     override func initAdditionalControlsWithLayoutConstraints() {
         setCaptionView()
         view.addSubview(caption)
@@ -36,18 +40,29 @@ class ListViewController: AbstractTableViewController, ListViewControllerProtoco
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)])
     }
 
+    /// Переопределено: начальная загрузка данных
     override func loadData() {
         interactor?.loadDataAsync()
     }
 
+    /// Переопределено: страничная подгрузка данных
     override func fetchData() {
         loadData()
     }
 
+    /// Переопределено: выбор строки для загрузки модуля деталей
+    ///
+    /// - Parameter indexPath: строка в формате делегата таблицы
     override func selectRow(indexPath: IndexPath) {
         router?.openDetails(movie: getDataHolder().getMovie(index: indexPath.row))
     }
 
+    /// Переопределено: получение данных от презентера
+    ///- сохраняем в буфер для делегата таблицы
+    ///-обновляем таблицы
+    /// - Parameters:
+    ///   - movies: фильмы
+    ///   - images: изображения
     override func didLoadData(movies: [MovieDataModel], images: [String: UIImage?]) {
         dataHolder?.setData(movies: movies, images: images)
         tableView.reloadData()

@@ -8,9 +8,11 @@
 
 import UIKit
 
+/// Протокол роутера главного модуля
 protocol MainRouterProtocol {
 }
 
+/// Не используется в текущей реализации, оставлен для единообразия модулей
 final class MainRouter: MainRouterProtocol {
     weak var viewController: (MainViewControllerProtocol & UIViewController)?
 }

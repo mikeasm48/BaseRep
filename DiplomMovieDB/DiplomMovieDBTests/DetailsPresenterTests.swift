@@ -21,18 +21,18 @@ class DetailsPresenterTests: XCTestCase {
         presenter = DetailsPresenter()
         presenter.viewController = viewController
     }
-    
+
     override func tearDown() {
         viewController = nil
         presenter = nil
         super.tearDown()
     }
-    
-    func testThatPresenterCanSetPictures() {
+
+    func testThatPresenterCanSetDetails() {
         //Arrange
         let imageData = TestPictureLoader().loadTestPicture()
         //Act
-        presenter.setPictures(posterData: imageData, backdropData: imageData)
+        presenter.setDetails(posterData: imageData, backdropData: imageData, savedState: true)
         //Assert
         waitForExpectations(timeout: 1) { (error) in
             if let error = error {
@@ -41,6 +41,7 @@ class DetailsPresenterTests: XCTestCase {
         }
         XCTAssertNotNil(viewController?.posterImage, "Incorrect poster result  == nil")
         XCTAssertNotNil(viewController?.backdropImage, "Incorrect backdrop result == nil")
+        XCTAssertNotNil(viewController?.movieSavedStated, "Incorrect movied saved state  == nil")
     }
 
     func testThatPresenterCanSetMovieSavedState() {

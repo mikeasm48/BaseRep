@@ -8,14 +8,28 @@
 
 import Foundation
 
+/// Протокол интерактора модуля
 protocol InteractorProtocol {
+    /// Загрузка списка фильмоы
+    ///
+    /// - Parameters:
+    ///   - url: адрес списка
+    ///   - completion: возвращает массив моделей фильма
+    /// - Returns: массив моделей фильма
     func loadMovieList(url: URL, completion: @escaping ([MovieDataModel]) -> Void)
+    
+    /// Загрузка изображений
+    /// изображения загружаются отдельно от списка фильмов
+    /// - Parameters:
+    ///   - names: пути к изхображениям
+    ///   - completion: словарь: путь: бинарные данные фильма
     func loadMovieImages(with names: [String],
                                  completion: @escaping ([String: Data]) -> Void)
 }
 
+
+/// Базовый интерактор, предок интеракторов модулей, реализующих списки (таблицы или коллекции)
 class Interactor: InteractorProtocol {
-    
     let networkService: NetworkServiceInput
     var dataModel: DataModelProtocol?
     var fetchData: FetchData?
@@ -24,6 +38,11 @@ class Interactor: InteractorProtocol {
         self.networkService = networkService
     }
 
+    ///Асинхронная загрузка списка фильмов
+    ///
+    /// - Parameters:
+    ///   - url: путь к списку
+    ///   - completion: список фильмов в JSON для маппинга
     func loadMovieList(url: URL, completion: @escaping ([MovieDataModel]) -> Void) {
         networkService.getData(at: url) { data in
             guard let data = data else {
@@ -56,6 +75,12 @@ class Interactor: InteractorProtocol {
         }
     }
 
+    /// Асинхронная загрузка изображений
+    /// формирует спсок заруженых ихображений в виде используемого в UI словаря
+    ///  дополнительно кэширует загруженые изображеия в модели, для повторного использования модулями
+    /// - Parameters:
+    ///   - names: путь к изображению
+    ///   - completion: изображения в виде словаря путь:изображение
     func loadMovieImages(with names: [String],
                          completion: @escaping ([String: Data]) -> Void) {
         var pictures: [String: Data] = [ : ]
@@ -82,6 +107,11 @@ class Interactor: InteractorProtocol {
         }
     }
 
+    /// Загружает одно изображение
+    ///
+    /// - Parameters:
+    ///   - imagePath: путь к изображению
+    ///   - completion: изображение в бинарном виде
     private func loadImageData(imagePath: String, completion: @escaping (Data?) -> Void) {
         let url = API.loadImagePath(imagePath: imagePath)
         networkService.getData(at: url) { data in
@@ -93,6 +123,9 @@ class Interactor: InteractorProtocol {
         }
     }
 
+    /// Поддрежка постраничной подгрузки данных
+    /// возвражает следующую страницу для подгрузки
+    /// - Returns: страница для загрузки
     func getNextFetchPage() -> Int {
         guard let fetchData = self.fetchData else {
             print("empty fetch data, return page = 1")
@@ -104,10 +137,13 @@ class Interactor: InteractorProtocol {
         return returnValue
     }
 
+    
+    /// Обнуляет счетчик подгружаемых страниц
     func resetFetchData() {
         self.fetchData = nil
     }
 
+    //MARK: - приватные методы
     private func setFetchData(fetchData: FetchData) {
         self.fetchData = fetchData
     }
@@ -123,6 +159,7 @@ class Interactor: InteractorProtocol {
             return 0
         }
     }
+
     private func mapFetchData(dictionary: [String: Any]) -> FetchData {
         let page = getFetchedInt(named: "page", from: dictionary)
         let totalPages = getFetchedInt(named: "total_pages", from: dictionary)

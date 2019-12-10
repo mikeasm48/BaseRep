@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Иницализация сетевой сессии
 class SessionFactory {
     private static let  defaultSession = createDefaultSession()
     private static func createDefaultSession() -> URLSession {

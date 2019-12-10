@@ -8,14 +8,13 @@
 
 import Foundation
 import CoreData
-
+/// Протокол интерактора модуля отображения деталей фильма
 protocol DetailsInteractorProtocol {
-    func loadPictures(posterPath: String, backdropPath: String)
+    func loadDetails(movie: MovieDataModel)
     func saveMovie(movie: MovieDataModel)
-    func checkMovieSaved(movie: MovieDataModel)
     func deleteSavedMovie(movie: MovieDataModel)
 }
-
+/// Интерактор модуля отображения деталей фильма
 class DetailsInteractor: Interactor, DetailsInteractorProtocol {
     var presenter: DetailsPresenterProtocol?
     let coreDataStack: CoreDataStackProtocol
@@ -24,15 +23,23 @@ class DetailsInteractor: Interactor, DetailsInteractorProtocol {
         self.coreDataStack = coreDataStack
         super.init(networkService: networkService)
     }
-    func loadPictures(posterPath: String, backdropPath: String) {
-        self.loadMovieImages(with: [posterPath, backdropPath]) {[weak self] data in
-            let poster = data[posterPath]
-            let backdrop = data[backdropPath]
-            self?.presenter?.setPictures(posterData: poster, backdropData: backdrop)
+    
+    /// Загрузка деталей
+    ///загружаются только картинки, при возможности - уже сохраненные в модели данных
+    ///если в модели нет, тогда идем в сеть
+    /// - Parameter movie: <#movie description#>
+    func loadDetails(movie: MovieDataModel) {
+        let savedState = getMovieSavedState(movie: movie)
+        self.loadMovieImages(with: [movie.posterPath, movie.backdropPath]) {[weak self] data in
+            let poster = data[movie.posterPath]
+            let backdrop = data[movie.backdropPath]
+            self?.presenter?.setDetails(posterData: poster, backdropData: backdrop, savedState: savedState)
         }
     }
 
-    //Сохраняем данные в CoreData
+    /// Сохраняем данные избранного фильма в CoreData
+    ///созхраняем с картинками, картинки берем кэшированные из модели
+    /// - Parameter movie: данные фильма
     func saveMovie(movie: MovieDataModel) {
         coreDataStack.persistentContainer.performBackgroundTask { (context) in
             guard let dataBackdrop = self.dataModel?.getPicture(for: movie.backdropPath) as NSData? else {
@@ -63,27 +70,9 @@ class DetailsInteractor: Interactor, DetailsInteractorProtocol {
         }
     }
 
-    func checkMovieSaved(movie: MovieDataModel) {
-        let context = coreDataStack.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<MOMovieContent>(entityName: "MovieContent")
-        let sortBySearchTag = NSSortDescriptor(key: "movieId", ascending: true)
-        fetchRequest.sortDescriptors = [sortBySearchTag]
-        fetchRequest.predicate = NSPredicate(format: "movieId = %@", String(movie.movieId))
-        let controller = NSFetchedResultsController(fetchRequest: fetchRequest,
-                                                    managedObjectContext: context,
-                                                    sectionNameKeyPath: nil,
-                                                    cacheName: nil)
-        do {
-            try controller.performFetch()
-            let fetchedCount = controller.fetchedObjects?.count ?? 0
-            print("CoreData: fetched \(fetchedCount)")
-            presenter?.setMovieSavedState(fetchedCount > 0)
-        } catch {
-            print("CoreData: failed to load context Image for filter movieId = \(movie.movieId))")
-            presenter?.setMovieSavedState(false)
-        }
-    }
-
+    /// Удалем сохраненный в избранном фильм
+    ///
+    /// - Parameter movie: данные фильма
     func deleteSavedMovie(movie: MovieDataModel) {
         let context = coreDataStack.persistentContainer.newBackgroundContext()
         let fetchRequest = NSFetchRequest<MOMovieContent>(entityName: "MovieContent")
@@ -105,6 +94,29 @@ class DetailsInteractor: Interactor, DetailsInteractorProtocol {
             }
         } catch {
             print("CoreData: failed to get images list for delete")
+        }
+    }
+
+ // MARK: - детали реализации
+
+    private func getMovieSavedState(movie: MovieDataModel) -> Bool {
+        let context = coreDataStack.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<MOMovieContent>(entityName: "MovieContent")
+        let sortBySearchTag = NSSortDescriptor(key: "movieId", ascending: true)
+        fetchRequest.sortDescriptors = [sortBySearchTag]
+        fetchRequest.predicate = NSPredicate(format: "movieId = %@", String(movie.movieId))
+        let controller = NSFetchedResultsController(fetchRequest: fetchRequest,
+                                                    managedObjectContext: context,
+                                                    sectionNameKeyPath: nil,
+                                                    cacheName: nil)
+        do {
+            try controller.performFetch()
+            let fetchedCount = controller.fetchedObjects?.count ?? 0
+            print("CoreData: fetched \(fetchedCount)")
+            return (fetchedCount > 0)
+        } catch {
+            print("CoreData: failed to load context Image for filter movieId = \(movie.movieId))")
+            return false
         }
     }
 

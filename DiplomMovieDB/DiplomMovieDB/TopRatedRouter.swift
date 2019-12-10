@@ -8,12 +8,16 @@
 
 import UIKit
 
+/// Протокол роутера популярных фильмов
 protocol TopRatedRouterProtocol: ModuleRouterProtocol {
 }
-
+/// Роутер популярных фильмов
 final class TopRatedRouter: TopRatedRouterProtocol {
     weak var viewController: (TopRatedViewControllerProtocol & UIViewController)?
     
+    /// Открывает модуль просмотра деталей
+    ///
+    /// - Parameter movie: данные фильма для просмотра деталей
     func openDetails(movie: MovieDataModel) {
         DataHolder.setMovie(movie: movie)
         let detailsController = DetailsAssembly.build()

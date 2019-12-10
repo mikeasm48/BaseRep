@@ -9,9 +9,11 @@
 //import Foundation
 import CoreData
 
+/// Протокол инерактора модуля сохраненных в избранном фильмов
 protocol FavoritesInteractorProtocol: ModuleInteractorProtocol {
 }
 
+/// Инерактор модуля сохраненных в избранном фильмов
 class FavoritesInteractor: FavoritesInteractorProtocol {
     var presenter: FavoritesPresenterProtocol?
     let networkService: NetworkServiceInput
@@ -23,6 +25,7 @@ class FavoritesInteractor: FavoritesInteractorProtocol {
         self.coreDataStack = coreDataStack
     }
 
+    /// Загрузка данных модуля
     func loadDataAsync() {
         let context = coreDataStack.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<MOMovieContent>(entityName: "MovieContent")

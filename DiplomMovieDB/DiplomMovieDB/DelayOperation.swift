@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Класс для задержки поиска при поьзовательском вводе в строке поиска
 class DelayOperation: AsyncOperation {
     public typealias Closure = (DelayOperation) -> ()
     let closure: Closure
@@ -29,6 +30,8 @@ class DelayOperation: AsyncOperation {
     }
 }
 
+
+/// Асинхронная операция для задержки ввода
 class AsyncOperation: Operation {
     public enum State: String {
         case waiting = "isWaiting"

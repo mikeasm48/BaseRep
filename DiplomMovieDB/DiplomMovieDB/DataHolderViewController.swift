@@ -7,9 +7,14 @@
 //
 import UIKit
 
+/// Контроллер с буфером
 class DataHolderViewController: UIViewController {
+    /// Буфер, устанавливается в ассемблере модуля
     var dataHolder: DataHolderProtocol?
-    
+
+    /// Получить буфер
+    ///
+    /// - Returns: возвращает буфер котнтролера
     func getDataHolder() -> DataHolderProtocol {
         guard let dataHolder = self.dataHolder else {
             return DataHolder()

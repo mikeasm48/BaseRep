@@ -8,7 +8,13 @@
 
 import UIKit
 
+/// Сборка главного модуля
 final class MainAssembly: ModuleAssemblyProtocol {
+    
+    /// Собираем главный модуль из двух:
+    ///- топ фильмы вверху (scroll view)
+    ///- последние поступления  внизу (table view)
+    /// - Returns:  контроллер модуля
     static func build() -> UIViewController {
         let mainViewController = MainViewController()
         let recentListViewController = ListAssembly.build()

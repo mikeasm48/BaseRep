@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// Ячейка элемента коолекции модуля самых поплярных
 class TopRatedCollectionViewCell: UICollectionViewCell {
     let textLabel: UILabel = {
         let label = UILabel()

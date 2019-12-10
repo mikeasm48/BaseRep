@@ -7,10 +7,11 @@
 //
 
 import UIKit
-
+/// Протокол контроллера главного модуля
 protocol MainViewControllerProtocol {
 }
 
+/// Контроллер главного модуля
 class MainViewController: UIViewController, MainViewControllerProtocol {
 
     var router: MainRouterProtocol?
@@ -27,6 +28,7 @@ class MainViewController: UIViewController, MainViewControllerProtocol {
         }
     }
 
+    /// Отображем элементы модулей, входящих в общую сборку
     private func showModule() {
         view.backgroundColor = .white
         navigationItem.title = "Популярные"
@@ -57,7 +59,10 @@ class MainViewController: UIViewController, MainViewControllerProtocol {
             list.view.rightAnchor.constraint(equalTo: view.rightAnchor),
             list.view.bottomAnchor.constraint(equalTo: view.bottomAnchor)])
     }
-
+  // MARK: - Private methods
+    
+    /// Отображаем заставку при старте приложения на 2 секунды
+    /// параллельно грузим данные двух частей главного модуля
     private func showSplashScreen() {
         let splashScreenController = UIViewController()
         splashScreenController.view.backgroundColor = .black

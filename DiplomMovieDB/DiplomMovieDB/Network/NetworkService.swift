@@ -8,10 +8,13 @@
 
 import Foundation
 
+/// Получения данных по  URL
+/// используется интеракторами
 protocol NetworkServiceInput {
     func getData(at path: URL, completion: @escaping (Data?) -> Void)
 }
 
+/// Реализация доступа к данным
 class NetworkService: NetworkServiceInput {
     let session: URLSession
 
@@ -19,6 +22,11 @@ class NetworkService: NetworkServiceInput {
         self.session = session
     }
 
+    /// Получает данные для интеракторов
+    ///
+    /// - Parameters:
+    ///   - path:    URL к данным
+    ///   - completion: данные JSON для маппинга на модель
     func getData(at path: URL, completion: @escaping (Data?) -> Void) {
         let dataTask = session.dataTask(with: path) { data, _, _ in
             completion(data)

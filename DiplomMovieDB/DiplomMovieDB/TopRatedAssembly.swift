@@ -7,10 +7,10 @@
 //
 import UIKit
 
+/// Сборка модуля популярных фильмов
 final class TopRatedAssembly: ModuleAssemblyProtocol {
     static func build() -> UIViewController {
         let viewController = TopRatedViewController()
-        //TODO одна сессия на каждый модуль или одна на всех?
         let service = NetworkService(session: SessionFactory.getDefaultSession())
         let interactor = TopRatedInteractor(networkService: service)
         let presenter = TopRatedPresenter()

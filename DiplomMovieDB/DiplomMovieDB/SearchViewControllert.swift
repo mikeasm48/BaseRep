@@ -7,10 +7,10 @@
 //
 
 import UIKit
-
+/// Протокол контроллера модуля поиска фильмов
 protocol SearchViewControllerProtocol: TableViewControllerProtocol {
 }
-
+/// Контроллер модуля поиска фильмов
 class SearchViewController: AbstractTableViewController, SearchViewControllerProtocol {
     var interactor: SearchInteractorProtocol?
     var router: SearchRouterProtocol?
@@ -31,6 +31,7 @@ class SearchViewController: AbstractTableViewController, SearchViewControllerPro
         tableView.backgroundColor = .white
     }
 
+    /// Преопределяем метод для инициализации строки поиска с таблицей
     override func initAdditionalControlsWithLayoutConstraints() {
         view.addSubview(searchInputField)
         searchInputField.delegate = self
@@ -52,16 +53,25 @@ class SearchViewController: AbstractTableViewController, SearchViewControllerPro
             ])
     }
 
+    /// Получение данных из презентера
+    ///
+    /// - Parameters:
+    ///   - movies: фильмы
+    ///   - images: изображения
     override func didLoadData(movies: [MovieDataModel], images: [String: UIImage?]) {
         dataHolder?.setData(movies: movies, images: images)
         tableView.reloadData()
     }
 
+    /// Открываем детали фильма
+    ///
+    /// - Parameter indexPath: индекс строки в формате делагата таблицы
     override func selectRow(indexPath: IndexPath) {
         router?.openDetails(movie: getDataHolder().getMovie(index: indexPath.row))
     }
 }
 
+// MARK: - делегат строки поиска
 extension SearchViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         guard let textToSearch = textField.text else {
@@ -74,6 +84,9 @@ extension SearchViewController: UITextFieldDelegate {
         return true
     }
 
+    /// Вызываем поиск с задержкой 2 секунды
+    ///
+    /// - Parameter searchText: маска поиска
     private func executeSearchWithDelay(searchText: String) {
         searchQueue.cancelAllOperations()
         let operation = DelayOperation(delay: 2) {_ in

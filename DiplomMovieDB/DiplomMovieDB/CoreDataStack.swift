@@ -9,10 +9,12 @@
 import Foundation
 import CoreData
 
+/// Протокол инициализации стека CoreData
 protocol CoreDataStackProtocol {
     var persistentContainer: NSPersistentContainer {get}
 }
 
+/// Инициализация стека CoreData
 internal final class CoreDataStack: CoreDataStackProtocol {
     var persistentContainer: NSPersistentContainer
 

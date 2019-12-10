@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// Сборка модуля деталей фильма
 final class DetailsAssembly: ModuleAssemblyProtocol {
     static func build() -> UIViewController {
         let viewController = DetailsViewController()

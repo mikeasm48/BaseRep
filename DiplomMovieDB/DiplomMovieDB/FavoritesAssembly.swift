@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// Сборка модуля сохраненных в избранном фильмов
 final class FavoritesAssembly: ModuleAssemblyProtocol {
     static func build() -> UIViewController {
         let viewController = FavoritesViewController()

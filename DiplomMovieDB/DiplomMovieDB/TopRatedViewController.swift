@@ -8,18 +8,21 @@
 
 import UIKit
 
+/// Протокол модуля поплярных фильмов
 protocol TopRatedViewControllerProtocol {
     func didLoadData(movies: [MovieDataModel], images: [String: UIImage?])
 }
 
+/// Контроллер модуля поплярных фильмов
 class TopRatedViewController: DataHolderViewController, TopRatedViewControllerProtocol {
-    //Module
+    //Модуль
     var interactor: TopRatedInteractorProtocol?
     var router: TopRatedRouterProtocol?
-    //Collection
+    //Коллекция
     var collectionView: UICollectionView!
     let cellReuseId = "TopRatedCell"
 
+    /// Элементы модуля
     override func viewDidLoad() {
         super.viewDidLoad()
         //Init collection
@@ -41,16 +44,23 @@ class TopRatedViewController: DataHolderViewController, TopRatedViewControllerPr
         loadData()
     }
 
+    /// Получает данные от презентера
+    ///
+    /// - Parameters:
+    ///   - movies: фильмы
+    ///   - images: изображения
     func didLoadData(movies: [MovieDataModel], images: [String: UIImage?]) {
         dataHolder?.setData(movies: movies, images: images)
         collectionView?.reloadData()
     }
 
+    /// Вызов интерактора для начальной загрузки данных
     private func loadData() {
        interactor?.loadDataAsync()
     }
 }
 
+// MARK: - делегаты коллекции
 extension TopRatedViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return getDataHolder().getCount()

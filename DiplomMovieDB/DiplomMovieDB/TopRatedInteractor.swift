@@ -8,12 +8,15 @@
 
 import Foundation
 
+/// Протокол интерактора модуля популярных фильмов
 protocol TopRatedInteractorProtocol: ModuleInteractorProtocol {
 }
 
+/// Интерактор модуля популярных фильмов
 class TopRatedInteractor: Interactor, TopRatedInteractorProtocol {
     var presenter: TopRatedPresenterProtocol?
 
+    /// Начальная загрузка данных
     func loadDataAsync() {
         let url = API.listPath(baseUrl: API.topRatedBaseUrl, page: 1)
         loadMovieList(url: url) { [weak self] models in
@@ -21,6 +24,7 @@ class TopRatedInteractor: Interactor, TopRatedInteractorProtocol {
         }
     }
 
+    // MARK: - Private methods
     private func loadImages(models: [MovieDataModel]) {
         let names = models.map {model in model.backdropPath}
         self.loadMovieImages(with: names) {[weak self] data in

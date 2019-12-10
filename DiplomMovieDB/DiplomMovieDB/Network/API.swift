@@ -25,12 +25,23 @@ https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=836b
     static let upcomingBaseUrl = "https://api.themoviedb.org/3/movie/upcoming"
     static let nowPlayingBaseUrl = "https://api.themoviedb.org/3/movie/now_playing"
 
-    //URL для загрузки картинки
+    /// URL для загрузки картинки
+    ///
+    /// - Parameter imagePath: базовая часть URL для загрузки каритнки
+    /// - Returns: полный URL загрузки картинки
     static func loadImagePath(imagePath: String) -> URL {
         return URL(string: imageBaseUrl + imagePath)!
     }
 
-    //URL для загрузки отсортированного списка фильмов не больше определенной даты релиза (предполагается - текущей)
+    //
+    
+    /// URL для загрузки отсортированного списка фильмов
+    /// не больше определенной даты релиза (предполагается - текущей)
+    /// - Parameters:
+    ///   - sortBy: сортировка
+    ///   - maxReleaseDate: дата релиза, не позже. Нужно для отфильтровки странных данныхь с будущими датами и без деталей
+    ///   - page: страница загрузки
+    /// - Returns: полный URL к данным списка фильмов
     static func discoverPathByYear(sortBy: String, maxReleaseDate: String, page: Int) -> URL {
         guard var components = URLComponents(string: dicoverBaseUrl) else {
             return URL(string: dicoverBaseUrl)!
@@ -44,6 +55,14 @@ https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=836b
         return components.url!
     }
 
+    /// Произвольный список
+    /// может быть использован с любой static константой (перечисленны выше в начале)
+    /// в текущей реализации используется в  модуле самых поплярных с topRatedBaseUrl
+    /// содеражние легко изменяется другой константой
+    /// - Parameters:
+    ///   - baseUrl: базовая часть URL списка (см. константы)
+    ///   - page: страница подгрузки
+    /// - Returns:  полный URL к данным списка фильмов
     static func listPath(baseUrl: String, page: Int) -> URL {
         guard var components = URLComponents(string: baseUrl) else {
             return URL(string: dicoverBaseUrl)!
@@ -55,6 +74,12 @@ https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=836b
         return components.url!
     }
 
+    /// Списко поиска по запросу пользователя
+    ///
+    /// - Parameters:
+    ///   - queryText: текст запроса (обычно часть имени фильма). Можно как на русском так и на английском
+    ///   - page: страница отображения
+    /// - Returns: полный URL к данным списка фильмов по результату запроса
     static func searchPath(queryText: String, page: Int) -> URL {
         guard var components = URLComponents(string: searchBaseUrl) else {
             return URL(string: searchBaseUrl)!

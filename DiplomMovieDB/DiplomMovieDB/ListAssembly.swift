@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// Сборка модуля прсмотра деталей
 final class ListAssembly: ModuleAssemblyProtocol {
     static func build() -> UIViewController {
         let service = NetworkService(session: SessionFactory.getDefaultSession())

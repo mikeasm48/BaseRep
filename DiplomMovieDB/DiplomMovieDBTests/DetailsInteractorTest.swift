@@ -37,11 +37,11 @@ class DetailsInteractorTests: XCTestCase {
         super.tearDown()
     }
 
-    func testThatInteractorCanCheckMovieSaved() {
+    func testThatInteractorCanLoadDetails() {
         //Arrange
         let movie = createTestMovie(movieId: 123)
         //Act
-        interactor.checkMovieSaved(movie: movie)
+        interactor.loadDetails(movie: movie)
         //Assert
         waitForExpectations(timeout: 1) { (error) in
             if let error = error {
@@ -54,25 +54,8 @@ class DetailsInteractorTests: XCTestCase {
             return
         }
         XCTAssertTrue(resultState, "Incorrect saved movie state report to presenter")
-    }
-
-    func testThatInteractorCanCheckMovieNotSaved() {
-        //Arrange
-        let movie = createTestMovie(movieId: 222)
-        //Act
-        interactor.checkMovieSaved(movie: movie)
-        //Assert
-        waitForExpectations(timeout: 1) { (error) in
-            if let error = error {
-                XCTFail("WaitForExpectationsWithTimeout error: \(error)")
-            }
-        }
-        XCTAssertNotNil(presenter.presentedState, "No presented result")
-        guard let resultState = presenter.presentedState else {
-            XCTFail("No result in presenter")
-            return
-        }
-        XCTAssertFalse(resultState, "Incorrect saved movie state report to presenter")
+        XCTAssertNotNil(presenter.posterData, "No poster data in result")
+        XCTAssertNotNil(presenter.backdropData, "No backdrop data in result")
     }
 
     func testThatInteractorCanSaveMovie() {

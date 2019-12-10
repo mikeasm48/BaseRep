@@ -16,9 +16,10 @@ class DetailsViewControllerSpy: DetailsViewControllerProtocol {
     
     var expect: XCTestExpectation?
     
-    func didShowDetails(poster: UIImage?, backdrop: UIImage?) {
+    func didShowDetails(poster: UIImage?, backdrop: UIImage?, savedState: Bool) {
         self.posterImage = poster
         self.backdropImage = backdrop
+        self.movieSavedStated = savedState
         expect?.fulfill()
     }
 

@@ -7,6 +7,11 @@
 //
 
 import UIKit
+
+/// Общий протокол ассемблеров модулей
 protocol ModuleAssemblyProtocol {
+    /// Сборка модуля
+    ///
+    /// - Returns: возвращает контроллер модуля
     static func build() -> UIViewController
 }

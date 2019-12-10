@@ -7,6 +7,9 @@
 //
 import Foundation
 
+
+/// Общий протокол презентера модуля
+/// может быть расширен в модуле
 protocol ModulePresenterProtocol {
     func presentData(data: [MovieDataModel], imageData: [String: Data])
 }

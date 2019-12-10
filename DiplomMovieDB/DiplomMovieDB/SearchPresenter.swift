@@ -7,13 +7,18 @@
 //
 
 import UIKit
-
+/// Протокол презентера модуля поиска фильмов
 protocol SearchPresenterProtocol: ModulePresenterProtocol {
 }
-
+/// Презентер модуля поиска фильмов
 class SearchPresenter: SearchPresenterProtocol {
     var viewController: SearchViewControllerProtocol?
 
+    /// Преобразует изображения от интерактора и передает все контроллеру
+    ///
+    /// - Parameters:
+    ///   - data: данные фильмов
+    ///   - imageData: изображения
     func presentData(data: [MovieDataModel], imageData: [String: Data]) {
         viewController?.didLoadData(movies: data,
                                     images: imageData.mapValues {UIImage(data: $0)})

@@ -27,6 +27,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
+    // MARK: - Private methods
+
     private func getRoot(viewController: UIViewController) -> UIViewController {
         guard let navigationController = viewController.navigationController else {
             return viewController
