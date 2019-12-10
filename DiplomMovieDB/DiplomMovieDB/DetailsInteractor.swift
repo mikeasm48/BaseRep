@@ -19,7 +19,7 @@ protocol DetailsInteractorProtocol {
 class DetailsInteractor: Interactor, DetailsInteractorProtocol {
     var presenter: DetailsPresenterProtocol?
     let coreDataStack: CoreDataStackProtocol
-    
+
     init(networkService: NetworkServiceInput, coreDataStack: CoreDataStackProtocol) {
         self.coreDataStack = coreDataStack
         super.init(networkService: networkService)
@@ -41,7 +41,10 @@ class DetailsInteractor: Interactor, DetailsInteractorProtocol {
             guard let dataPoster = self.dataModel?.getPicture(for: movie.posterPath) as NSData? else {
                 return
             }
-            let dataObject = MOMovieContent(context: context)
+            let movieContent = NSEntityDescription.insertNewObject(forEntityName: "MovieContent", into: context) as? MOMovieContent
+            guard let dataObject = movieContent else {
+                return
+            }
             dataObject.movieId = String(movie.movieId)
             dataObject.title = movie.title
             dataObject.overview = movie.overview

@@ -10,11 +10,18 @@ import UIKit
 
 class TestPictureLoader {
     func loadTestPicture () -> Data? {
-        let testBundle = Bundle(for: type(of: self))
-        let filePath = testBundle.path(forResource: "TestPicture", ofType: "jpg")
-        let image = UIImage(contentsOfFile: filePath!)
+        let image = loadTestImage()
         let data = image?.pngData()
         return data
+    }
+
+    func loadTestImage () -> UIImage? {
+        let testBundle = Bundle(for: type(of: self))
+        guard let filePath = testBundle.path(forResource: "TestPicture", ofType: "jpg") else {
+            return nil
+        }
+        let image = UIImage(contentsOfFile: filePath)
+        return image
     }
 
     func createPictures(count: Int) -> [String: Data] {

@@ -45,6 +45,7 @@
 		006E4195239B731000D151DF /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006E4194239B731000D151DF /* CoreDataStack.swift */; };
 		006E4197239B737F00D151DF /* MOMovieContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006E4196239B737F00D151DF /* MOMovieContent.swift */; };
 		006E419B239BACC400D151DF /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006E419A239BACC400D151DF /* TableViewController.swift */; };
+		00A6328B239FADD90074BFC6 /* DataHolderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A6328A239FADD90074BFC6 /* DataHolderTests.swift */; };
 		00AAAF3323973B9500C05039 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AAAF3223973B9500C05039 /* DataModel.swift */; };
 		00AF268F239F69B3005BC565 /* DataModelStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF268E239F69B3005BC565 /* DataModelStub.swift */; };
 		00AF2691239F6A9A005BC565 /* TestPictureLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF2690239F6A9A005BC565 /* TestPictureLoader.swift */; };
@@ -144,6 +145,7 @@
 		006E4194239B731000D151DF /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		006E4196239B737F00D151DF /* MOMovieContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MOMovieContent.swift; sourceTree = "<group>"; };
 		006E419A239BACC400D151DF /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		00A6328A239FADD90074BFC6 /* DataHolderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataHolderTests.swift; sourceTree = "<group>"; };
 		00AAAF3223973B9500C05039 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		00AF268E239F69B3005BC565 /* DataModelStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModelStub.swift; sourceTree = "<group>"; };
 		00AF2690239F6A9A005BC565 /* TestPictureLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestPictureLoader.swift; sourceTree = "<group>"; };
@@ -244,6 +246,7 @@
 		0030EF91238E44CE00224006 /* DiplomMovieDBTests */ = {
 			isa = PBXGroup;
 			children = (
+				00A6328A239FADD90074BFC6 /* DataHolderTests.swift */,
 				00CC6D37239E5D0D0048DA74 /* Search */,
 				00CC6D2C239E57730048DA74 /* TopRated */,
 				00EFC3D223955EDD000F39DE /* Favorites */,
@@ -684,6 +687,7 @@
 				00F7371C23913DFB00874356 /* ListPresenterSpy.swift in Sources */,
 				00AF2691239F6A9A005BC565 /* TestPictureLoader.swift in Sources */,
 				00AF2695239F761D005BC565 /* TableViewControllerSpy.swift in Sources */,
+				00A6328B239FADD90074BFC6 /* DataHolderTests.swift in Sources */,
 				0030EFB6238E5AB800224006 /* NetworkServiceStub.swift in Sources */,
 				00CC6D36239E5C3B0048DA74 /* SearchAssemblyTests.swift in Sources */,
 				00CC6D3D239E61890048DA74 /* FavoritesInteractorTests.swift in Sources */,

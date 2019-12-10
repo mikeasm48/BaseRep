@@ -114,11 +114,6 @@ class DetailsInteractorTests: XCTestCase {
     }
 
     private func createTestMovie(movieId: Int) -> MovieDataModel {
-        return MovieDataModel(movieId: movieId,
-                              backdropPath: "",
-                              posterPath: "",
-                              title: "",
-                              overview: "",
-                              releaseDate: "")
+        return TestMovieCreator().createTestMovie(movieId: movieId)
     }
 }
