@@ -26,6 +26,7 @@
 		003EBD8B239CBEC000D27029 /* ModulePresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003EBD8A239CBEC000D27029 /* ModulePresenterProtocol.swift */; };
 		003EBD8D239CD27800D27029 /* ModuleRouterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003EBD8C239CD27800D27029 /* ModuleRouterProtocol.swift */; };
 		003EBD8F239CE7DA00D27029 /* DelayOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003EBD8E239CE7DA00D27029 /* DelayOperation.swift */; };
+		0048C2D523A0901800960F36 /* DetailsViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0048C2D423A0901800960F36 /* DetailsViewFactory.swift */; };
 		006B16242396134D00D388E0 /* MainAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006B16232396134D00D388E0 /* MainAssembly.swift */; };
 		006B16262396137100D388E0 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006B16252396137100D388E0 /* MainViewController.swift */; };
 		006B16292396264700D388E0 /* TopRatedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006B16282396264700D388E0 /* TopRatedViewController.swift */; };
@@ -126,6 +127,7 @@
 		003EBD8A239CBEC000D27029 /* ModulePresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModulePresenterProtocol.swift; sourceTree = "<group>"; };
 		003EBD8C239CD27800D27029 /* ModuleRouterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleRouterProtocol.swift; sourceTree = "<group>"; };
 		003EBD8E239CE7DA00D27029 /* DelayOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelayOperation.swift; sourceTree = "<group>"; };
+		0048C2D423A0901800960F36 /* DetailsViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewFactory.swift; sourceTree = "<group>"; };
 		006B16232396134D00D388E0 /* MainAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainAssembly.swift; sourceTree = "<group>"; };
 		006B16252396137100D388E0 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		006B16282396264700D388E0 /* TopRatedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopRatedViewController.swift; sourceTree = "<group>"; };
@@ -397,6 +399,7 @@
 				00ED1BBA2392741D00644E4D /* DetailsInteractor.swift */,
 				00ED1BBC2392759100644E4D /* DetailsPresenter.swift */,
 				00EFC3B623951507000F39DE /* DetailsAssembly.swift */,
+				0048C2D423A0901800960F36 /* DetailsViewFactory.swift */,
 			);
 			name = Details;
 			sourceTree = "<group>";
@@ -657,6 +660,7 @@
 				00AAAF3323973B9500C05039 /* DataModel.swift in Sources */,
 				0030EFAC238E4EF600224006 /* DetailsViewController.swift in Sources */,
 				003262AA2398CE02003A953D /* DataHolder.swift in Sources */,
+				0048C2D523A0901800960F36 /* DetailsViewFactory.swift in Sources */,
 				006E4197239B737F00D151DF /* MOMovieContent.swift in Sources */,
 				0030EFAE238E500000224006 /* ListInteractor.swift in Sources */,
 				006B16422396860F00D388E0 /* Interactor.swift in Sources */,

@@ -98,6 +98,10 @@ class DetailsInteractor: Interactor, DetailsInteractorProtocol {
     }
 
  // MARK: - детали реализации
+    
+    private func buildDetails(){
+        
+    }
 
     private func getMovieSavedState(movie: MovieDataModel) -> Bool {
         let context = coreDataStack.persistentContainer.viewContext
