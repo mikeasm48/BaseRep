@@ -30,7 +30,7 @@ protocol DetailsViewControllerProtocol {
 
     /// Возвращает view
     func getView() -> UIView?
-    
+
     /// Инициализирует обработчик кнопки сохранения
     func initSaveButton()
 }
@@ -78,7 +78,7 @@ class DetailsViewController: UIViewController, DetailsViewControllerProtocol {
     /// - Parameters:
     ///   - poster: изоражения для увеличения
     ///   - tapView: контрол для клика
-    func setPosterForZoom(poster: UIImage?, tapView: UIImageView){
+    func setPosterForZoom(poster: UIImage?, tapView: UIImageView) {
         self.poster = poster
         initGesture(imageView: tapView)
     }
@@ -86,14 +86,14 @@ class DetailsViewController: UIViewController, DetailsViewControllerProtocol {
     /// Устанавливает область прокрутки контента
     ///
     /// - Parameter scrollView: область прокрутки контена
-    func setScrollView(scrollView: UIScrollView){
+    func setScrollView(scrollView: UIScrollView) {
         self.scrollView = scrollView
     }
-    
+
     func getView() -> UIView? {
         return self.view
     }
-    
+
     func initSaveButton() {
         guard let button = getSaveButton() else {
             return
@@ -103,8 +103,9 @@ class DetailsViewController: UIViewController, DetailsViewControllerProtocol {
 
     // MARK: - детали реализации
 
-    private func initGesture(imageView: UIImageView){
-        let posterTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector (self.actionUITapGestureRecognizer))
+    private func initGesture(imageView: UIImageView) {
+        let posterTapGestureRecognizer = UITapGestureRecognizer(target: self,
+                                                                action: #selector (self.actionUITapGestureRecognizer))
         imageView.isUserInteractionEnabled = true
         imageView.addGestureRecognizer(posterTapGestureRecognizer)
     }
@@ -135,7 +136,8 @@ class DetailsViewController: UIViewController, DetailsViewControllerProtocol {
         let imageView = UIImageView(image: self.poster)
         imageView.frame = zoomedView.frame
         imageView.contentMode = .scaleAspectFit
-        let zoomedPosterTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(closePosterZoomImage))
+        let zoomedPosterTapGestureRecognizer = UITapGestureRecognizer(target: self,
+                                                                      action: #selector(closePosterZoomImage))
         imageView.isUserInteractionEnabled = true
         imageView.addGestureRecognizer(zoomedPosterTapGestureRecognizer)
         zoomedView.addSubview(imageView)

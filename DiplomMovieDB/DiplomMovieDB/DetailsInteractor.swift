@@ -33,7 +33,10 @@ class DetailsInteractor: Interactor, DetailsInteractorProtocol {
         self.loadMovieImages(with: [movie.posterPath, movie.backdropPath]) {[weak self] data in
             let poster = data[movie.posterPath]
             let backdrop = data[movie.backdropPath]
-            self?.presenter?.setDetails(movie: movie, posterData: poster, backdropData: backdrop, savedState: savedState)
+            self?.presenter?.setDetails(movie: movie,
+                                        posterData: poster,
+                                        backdropData: backdrop,
+                                        savedState: savedState)
         }
     }
 
@@ -48,7 +51,8 @@ class DetailsInteractor: Interactor, DetailsInteractorProtocol {
             guard let dataPoster = self.dataModel?.getPicture(for: movie.posterPath) as NSData? else {
                 return
             }
-            let movieContent = NSEntityDescription.insertNewObject(forEntityName: "MovieContent", into: context) as? MOMovieContent
+            let movieContent = NSEntityDescription.insertNewObject(forEntityName: "MovieContent",
+                                                                   into: context) as? MOMovieContent
             guard let dataObject = movieContent else {
                 return
             }
@@ -98,9 +102,8 @@ class DetailsInteractor: Interactor, DetailsInteractorProtocol {
     }
 
  // MARK: - детали реализации
-    
-    private func buildDetails(){
-        
+
+    private func buildDetails() {
     }
 
     private func getMovieSavedState(movie: MovieDataModel) -> Bool {

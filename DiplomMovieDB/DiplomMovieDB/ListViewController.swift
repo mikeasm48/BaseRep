@@ -12,7 +12,6 @@ import UIKit
 protocol ListViewControllerProtocol: TableViewControllerProtocol {
 }
 
-
 /// Контроллер модуля списка последних поступлений
 class ListViewController: AbstractTableViewController, ListViewControllerProtocol {
     var interactor: ListInteractorProtocol?

@@ -19,7 +19,7 @@ class FavoritesViewController: AbstractTableViewController, FavoritesViewControl
         super.viewDidLoad()
         navigationItem.title = "Избранное"
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
          interactor?.loadDataAsync()
@@ -37,7 +37,7 @@ class FavoritesViewController: AbstractTableViewController, FavoritesViewControl
     /// - Parameters:
     ///   - movies: фильмы
     ///   - images: изображения
-    override func didLoadData(movies: [MovieDataModel], images: [String : UIImage?]) {
+    override func didLoadData(movies: [MovieDataModel], images: [String: UIImage?]) {
         dataHolder?.resetData()
         dataHolder?.setData(movies: movies, images: images)
         tableView.reloadData()

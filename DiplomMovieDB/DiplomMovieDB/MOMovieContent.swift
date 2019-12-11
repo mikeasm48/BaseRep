@@ -6,7 +6,6 @@
 //  Copyright © 2019 Михаил Асмаковец. All rights reserved.
 //
 
-
 import  Foundation
 import CoreData
 

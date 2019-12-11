@@ -27,28 +27,26 @@ struct FetchData {
 
 /// Пртокол модели данных
 protocol DataModelProtocol {
-    
     /// Обновление данных изображений в модели
     ///
     /// - Parameters:
-    ///   - name: путь (имя) изображение. Уникальный идентификатор, который используется для загрузки изображения из сети
+    ///   - name: путь (имя) изображение. Уникальный идентификатор,
+    ///  который используется для загрузки изображения из сети
     ///   - data: данные изображения
-    /// - Returns: <#return value description#>
     func updatePicture(for name: String, data: Data)
-    
+
     /// Изобращжение есть в модели
     ///
     /// - Parameter name: путь (имя) изображения
     /// - Returns: изображение уже загружено в модель?
     func isPictureLoaded(for name: String) -> Bool
-    
+
     /// Получаем изображение из модели
     ///
     /// - Parameter name: путь (имя) изображения
     /// - Returns: изображение
     func getPicture(for name: String) -> Data?
 }
-
 
 /// Модель: реализация
 final class DataModel: DataModelProtocol {
@@ -64,7 +62,7 @@ final class DataModel: DataModelProtocol {
     private init() {}
 
     // MARK: - Private methods
-    
+
     ///  Обновление данных изображений в модели
     ///
     /// - Parameters:

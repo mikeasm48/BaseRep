@@ -123,7 +123,8 @@ class DetailsViewFactory: DetailsViewFactoryProtocol {
             backdropImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             backdropImageView.leftAnchor.constraint(equalTo: view.leftAnchor),
             backdropImageView.rightAnchor.constraint(equalTo: view.rightAnchor),
-            backdropImageView.bottomAnchor.constraint(equalTo: backdropImageView.topAnchor, constant: view.frame.height/4),
+            backdropImageView.bottomAnchor.constraint(equalTo: backdropImageView.topAnchor,
+                                                      constant: view.frame.height/4),
             //Scroll view
             scrollView.topAnchor.constraint(equalTo: backdropImageView.bottomAnchor, constant: viewShiftY),
             scrollView.leftAnchor.constraint(equalTo: view.leftAnchor),

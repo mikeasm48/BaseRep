@@ -18,7 +18,9 @@ class ListInteractor: Interactor, ListInteractorProtocol {
 
     /// Загрузка данных фильмов
     func loadDataAsync() {
-        let url = API.discoverPathByYear(sortBy: "popularity.desc", maxReleaseDate: getCurrentReleaseDate(), page: getNextFetchPage())
+        let url = API.discoverPathByYear(sortBy: "popularity.desc",
+                                         maxReleaseDate: getCurrentReleaseDate(),
+                                         page: getNextFetchPage())
         loadMovieList(url: url) { [weak self] models in
             self?.loadImages(models: models)
         }

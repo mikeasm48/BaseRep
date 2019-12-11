@@ -6,7 +6,6 @@
 //  Copyright © 2019 Михаил Асмаковец. All rights reserved.
 //
 
-
 /// Общий протокол интеракторов
 protocol ModuleInteractorProtocol {
     /// Асинхронная загрузка контроллера модуля

@@ -28,7 +28,7 @@ class SearchInteractorTests: XCTestCase {
         presenter = nil
         super.tearDown()
     }
-    
+
     func testThatInteractorCanSearch() {
         //Arrange
         let searchText = "Some Movie To Search"

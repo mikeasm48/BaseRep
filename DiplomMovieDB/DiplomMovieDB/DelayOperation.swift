@@ -10,7 +10,7 @@ import Foundation
 
 /// Класс для задержки поиска при поьзовательском вводе в строке поиска
 class DelayOperation: AsyncOperation {
-    public typealias Closure = (DelayOperation) -> ()
+    public typealias Closure = (DelayOperation) -> Void
     let closure: Closure
 
     let delay: TimeInterval
@@ -29,7 +29,6 @@ class DelayOperation: AsyncOperation {
         }
     }
 }
-
 
 /// Асинхронная операция для задержки ввода
 class AsyncOperation: Operation {

@@ -33,13 +33,12 @@ https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=836b
         return URL(string: imageBaseUrl + imagePath)!
     }
 
-    //
-    
     /// URL для загрузки отсортированного списка фильмов
     /// не больше определенной даты релиза (предполагается - текущей)
     /// - Parameters:
     ///   - sortBy: сортировка
-    ///   - maxReleaseDate: дата релиза, не позже. Нужно для отфильтровки странных данныхь с будущими датами и без деталей
+    ///   - maxReleaseDate: дата релиза, не позже. Нужно для отфильтровки странных данных
+    /// с будущими датами и без деталей
     ///   - page: страница загрузки
     /// - Returns: полный URL к данным списка фильмов
     static func discoverPathByYear(sortBy: String, maxReleaseDate: String, page: Int) -> URL {

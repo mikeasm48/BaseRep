@@ -31,4 +31,3 @@ class DetailsViewFactoryStub: DetailsViewFactoryProtocol {
         return UIButton()
     }
 }
-

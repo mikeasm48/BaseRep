@@ -10,7 +10,7 @@ import UIKit
 
 /// Протокол табличного контроллера
 protocol TableViewControllerProtocol {
-    
+
     /// Загрузка данных, вызывает интерактор
     func loadData()
 

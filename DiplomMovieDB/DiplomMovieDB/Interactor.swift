@@ -17,16 +17,15 @@ protocol InteractorProtocol {
     ///   - completion: возвращает массив моделей фильма
     /// - Returns: массив моделей фильма
     func loadMovieList(url: URL, completion: @escaping ([MovieDataModel]) -> Void)
-    
+
     /// Загрузка изображений
     /// изображения загружаются отдельно от списка фильмов
     /// - Parameters:
     ///   - names: пути к изхображениям
     ///   - completion: словарь: путь: бинарные данные фильма
     func loadMovieImages(with names: [String],
-                                 completion: @escaping ([String: Data]) -> Void)
+                         completion: @escaping ([String: Data]) -> Void)
 }
-
 
 /// Базовый интерактор, предок интеракторов модулей, реализующих списки (таблицы или коллекции)
 class Interactor: InteractorProtocol {
@@ -137,13 +136,12 @@ class Interactor: InteractorProtocol {
         return returnValue
     }
 
-    
     /// Обнуляет счетчик подгружаемых страниц
     func resetFetchData() {
         self.fetchData = nil
     }
 
-    //MARK: - приватные методы
+    // MARK: - приватные методы
     private func setFetchData(fetchData: FetchData) {
         self.fetchData = fetchData
     }

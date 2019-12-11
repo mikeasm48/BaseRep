@@ -27,27 +27,27 @@ protocol DataHolderProtocol {
     ///   - movies: спсок данных фильмов
     ///   - images: слварь изображений
     func setData(movies: [MovieDataModel], images: [String: UIImage?])
-    
+
     /// Очистка буфера контроллера
     func resetData()
-    
+
     /// Получить фильм из буфера
     ///
     /// - Parameter index: индекс фильма для делегата таблицы/коллекции
     /// - Returns: данные фильма
     func getMovie(index: Int) -> MovieDataModel
-    
+
     /// Полчитть изробаржение из буфера контроллера
     ///
     /// - Parameter path: путь к фильму
     /// - Returns: изображение в формате контроллера
     func getImage(path: String) -> UIImage?
-    
+
     /// Количество фильмов в буфере контролера
     ///
     /// - Returns: количество фильмов
     func getCount() -> Int
-    
+
     /// Определяет необходимость подгрузки следующей страницы в буфер контролера
     ///
     /// - Parameter currentIndex: текущий индекс строки делегата таблицы/коллекции

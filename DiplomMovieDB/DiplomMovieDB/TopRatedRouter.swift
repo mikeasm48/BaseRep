@@ -14,7 +14,7 @@ protocol TopRatedRouterProtocol: ModuleRouterProtocol {
 /// Роутер популярных фильмов
 final class TopRatedRouter: TopRatedRouterProtocol {
     weak var viewController: (TopRatedViewControllerProtocol & UIViewController)?
-    
+
     /// Открывает модуль просмотра деталей
     ///
     /// - Parameter movie: данные фильма для просмотра деталей

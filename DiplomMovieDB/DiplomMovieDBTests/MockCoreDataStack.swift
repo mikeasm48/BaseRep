@@ -27,7 +27,8 @@ class MockCoreDataStack: CoreDataStackProtocol {
 
     func saveTestData() {
         let context = self.persistentContainer.viewContext
-        let movieContent = NSEntityDescription.insertNewObject(forEntityName: "MovieContent", into: context) as? MOMovieContent
+        let movieContent = NSEntityDescription.insertNewObject(forEntityName: "MovieContent",
+                                                               into: context) as? MOMovieContent
         guard let movie = movieContent else {
             print("fail to append MOMovieContent")
             return

@@ -61,7 +61,8 @@ class TopRatedViewController: DataHolderViewController, TopRatedViewControllerPr
 }
 
 // MARK: - делегаты коллекции
-extension TopRatedViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension TopRatedViewController: UICollectionViewDelegate,
+UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return getDataHolder().getCount()
     }
@@ -89,7 +90,9 @@ extension TopRatedViewController: UICollectionViewDelegate, UICollectionViewData
         return imageView.frame.size
     }
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 10
     }
 
@@ -97,7 +100,9 @@ extension TopRatedViewController: UICollectionViewDelegate, UICollectionViewData
         router?.openDetails(movie: getDataHolder().getMovie(index: indexPath.row))
     }
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }
 }

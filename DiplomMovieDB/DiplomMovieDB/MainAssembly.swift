@@ -10,7 +10,6 @@ import UIKit
 
 /// Сборка главного модуля
 final class MainAssembly: ModuleAssemblyProtocol {
-    
     /// Собираем главный модуль из двух:
     ///- топ фильмы вверху (scroll view)
     ///- последние поступления  внизу (table view)
@@ -21,7 +20,7 @@ final class MainAssembly: ModuleAssemblyProtocol {
         let topRatedViewController = TopRatedAssembly.build()
         mainViewController.topRatedViewController = topRatedViewController
         mainViewController.recentListViewController = recentListViewController
-        
+
          _ = UINavigationController.init(rootViewController: mainViewController)
         return mainViewController
     }

@@ -60,7 +60,7 @@ class MainViewController: UIViewController, MainViewControllerProtocol {
             list.view.bottomAnchor.constraint(equalTo: view.bottomAnchor)])
     }
   // MARK: - Private methods
-    
+
     /// Отображаем заставку при старте приложения на 2 секунды
     /// параллельно грузим данные двух частей главного модуля
     private func showSplashScreen() {

@@ -7,7 +7,6 @@
 //
 import Foundation
 
-
 /// Общий протокол презентера модуля
 /// может быть расширен в модуле
 protocol ModulePresenterProtocol {

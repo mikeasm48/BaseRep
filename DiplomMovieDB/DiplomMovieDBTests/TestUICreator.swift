@@ -16,7 +16,7 @@ class TestUICreator {
     func getScrollView() -> UIScrollView {
         return UIScrollView()
     }
-    
+
     func getButton() -> UIButton {
         return UIButton()
     }

@@ -16,7 +16,7 @@ class SessionFactory {
         let session = URLSession(configuration: configuration)
         return session
     }
-    
+
     static func getDefaultSession() -> URLSession {
         return defaultSession
     }
