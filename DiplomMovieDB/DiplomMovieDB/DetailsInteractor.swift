@@ -23,8 +23,8 @@ class DetailsInteractor: Interactor, DetailsInteractorProtocol {
         self.coreDataStack = coreDataStack
         super.init(networkService: networkService)
     }
-    
-    /// Загрузка деталей
+
+    /// Загрузка деталей фильма
     ///загружаются только картинки, при возможности - уже сохраненные в модели данных
     ///если в модели нет, тогда идем в сеть
     /// - Parameter movie: <#movie description#>
@@ -33,7 +33,7 @@ class DetailsInteractor: Interactor, DetailsInteractorProtocol {
         self.loadMovieImages(with: [movie.posterPath, movie.backdropPath]) {[weak self] data in
             let poster = data[movie.posterPath]
             let backdrop = data[movie.backdropPath]
-            self?.presenter?.setDetails(posterData: poster, backdropData: backdrop, savedState: savedState)
+            self?.presenter?.setDetails(movie: movie, posterData: poster, backdropData: backdrop, savedState: savedState)
         }
     }
 

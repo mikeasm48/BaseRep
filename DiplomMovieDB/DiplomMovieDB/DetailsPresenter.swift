@@ -10,29 +10,34 @@ import UIKit
 
 /// Протокол презентера  модуля деталей фильма
 protocol DetailsPresenterProtocol {
-    func setDetails(posterData: Data?, backdropData: Data?, savedState: Bool)
+    func setDetails(movie: MovieDataModel, posterData: Data?, backdropData: Data?, savedState: Bool)
     func setMovieSavedState(_ state: Bool)
 }
 
 /// Презентер модуля деталей фильма
 class DetailsPresenter: DetailsPresenterProtocol {
-    var viewController: (DetailsViewControllerProtocol & DetailsViewController)?
+    var viewController: DetailsViewControllerProtocol?
+    var detailsViewFactory: DetailsViewFactoryProtocol?
 
-    func setDetails(posterData: Data?, backdropData: Data?, savedState: Bool) {
+    func setDetails(movie: MovieDataModel, posterData: Data?, backdropData: Data?, savedState: Bool) {
         guard let poster = posterData else {
             return
         }
         guard let backdrop = backdropData else {
             return
         }
-        guard let controller = viewController else {
+
+        guard let factory = detailsViewFactory else {
             return
         }
-        
-        let factory = DetailsViewFactory(viewController: controller)
-        
-        factory.buildDetailsView (poster: UIImage(data: poster), backdrop: UIImage(data: backdrop), savedState: savedState)
-//        viewController?.didShowDetails(poster: UIImage(data: poster), backdrop: UIImage(data: backdrop), savedState: savedState)
+
+        factory.buildDetailsView(movieData: movie,
+                                  poster: UIImage(data: poster),
+                                  backdrop: UIImage(data: backdrop),
+                                  savedState: savedState)
+        viewController?.setScrollView(scrollView: factory.getScrollView())
+        viewController?.setPosterForZoom(poster: factory.getPosterForZoom(), tapView: factory.getPosterViewForZoom())
+        viewController?.initSaveButton()
         viewController?.didCheckCoreDataState(savedState)
     }
 

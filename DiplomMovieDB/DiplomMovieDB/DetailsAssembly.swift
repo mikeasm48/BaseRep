@@ -17,10 +17,12 @@ final class DetailsAssembly: ModuleAssemblyProtocol {
         let interactor = DetailsInteractor(networkService: service, coreDataStack: coreDataStack)
         let presenter = DetailsPresenter()
         let router = DetailsRouter()
+        let detailsViewFactory = DetailsViewFactory(viewController: viewController)
 
         interactor.presenter = presenter
         interactor.dataModel = DataModel.shared
         presenter.viewController = viewController
+        presenter.detailsViewFactory = detailsViewFactory
         viewController.interactor = interactor
         viewController.router = router
         router.viewController = viewController

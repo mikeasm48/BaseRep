@@ -13,14 +13,14 @@ protocol TableViewControllerProtocol {
     
     /// Загрузка данных, вызывает интерактор
     func loadData()
-    
+
     /// Возврат данных, вызывается из презентера
     ///
     /// - Parameters:
     ///   - movies: данные фильмов
     ///   - images: данные изображений в формате контроллера
     func didLoadData(movies: [MovieDataModel], images: [String: UIImage?])
-    
+
     /// Событие выбора строки таблицы/элемента коллекции контролера
     ///служит для начала вызова другого модуля (деталей)
     /// - Parameter indexPath:  инфорамация о выбранной строке в формате делегата таблицы
@@ -59,7 +59,7 @@ class AbstractTableViewController: DataHolderViewController, TableViewController
     }
 
     // MARK: - TableViewControllerProtocol Stubs
-    
+
     /// Заглушка: загрузка данных
     func loadData() {
     }
@@ -72,7 +72,6 @@ class AbstractTableViewController: DataHolderViewController, TableViewController
     func didLoadData(movies: [MovieDataModel], images: [String: UIImage?]) {
     }
 
-    
     /// Заглущка: выбор строки
     func selectRow(indexPath: IndexPath) {
     }

@@ -15,7 +15,7 @@ class DetailsPresenterSpy: DetailsPresenterProtocol {
     var backdropData: Data?
     var expect: XCTestExpectation?
 
-    func setDetails(posterData: Data?, backdropData: Data?, savedState: Bool) {
+    func setDetails(movie: MovieDataModel, posterData: Data?, backdropData: Data?, savedState: Bool) {
         self.posterData = posterData
         self.backdropData = backdropData
         self.presentedState = savedState

@@ -13,12 +13,13 @@ import XCTest
 class DetailsPresenterTests: XCTestCase {
     var viewController: DetailsViewControllerSpy!
     var presenter: DetailsPresenter!
-    
+
     override func setUp() {
         super.setUp()
         viewController = DetailsViewControllerSpy()
-        viewController.expect = expectation(description: "Expect for data presenting")
+//        viewController.expect = expectation(description: "Expect for data presenting")
         presenter = DetailsPresenter()
+        presenter.detailsViewFactory = DetailsViewFactoryStub()
         presenter.viewController = viewController
     }
 
@@ -30,17 +31,12 @@ class DetailsPresenterTests: XCTestCase {
 
     func testThatPresenterCanSetDetails() {
         //Arrange
+        let movieData = TestMovieCreator().createTestMovie(movieId: 1)
         let imageData = TestPictureLoader().loadTestPicture()
         //Act
-        presenter.setDetails(posterData: imageData, backdropData: imageData, savedState: true)
+        presenter.setDetails(movie: movieData, posterData: imageData, backdropData: imageData, savedState: true)
         //Assert
-        waitForExpectations(timeout: 1) { (error) in
-            if let error = error {
-                XCTFail("WaitForExpectationsWithTimeout error: \(error)")
-            }
-        }
         XCTAssertNotNil(viewController?.posterImage, "Incorrect poster result  == nil")
-        XCTAssertNotNil(viewController?.backdropImage, "Incorrect backdrop result == nil")
         XCTAssertNotNil(viewController?.movieSavedStated, "Incorrect movied saved state  == nil")
     }
 
@@ -48,11 +44,6 @@ class DetailsPresenterTests: XCTestCase {
         let correctState = true
         //Act
         presenter.setMovieSavedState(correctState)
-        waitForExpectations(timeout: 1) { (error) in
-            if let error = error {
-                XCTFail("WaitForExpectationsWithTimeout error: \(error)")
-            }
-        }
         //Assert
         XCTAssertNotNil(viewController?.movieSavedStated, "Movie saved state did not set")
         XCTAssertTrue(viewController?.movieSavedStated ?? !correctState, "Incorrect movie state set by presenter")
@@ -62,11 +53,6 @@ class DetailsPresenterTests: XCTestCase {
         let correctState = false
         //Act
         presenter.setMovieSavedState(correctState)
-        waitForExpectations(timeout: 1) { (error) in
-            if let error = error {
-                XCTFail("WaitForExpectationsWithTimeout error: \(error)")
-            }
-        }
         //Assert
         XCTAssertNotNil(viewController?.movieSavedStated, "Movie saved state did not set")
         XCTAssertFalse(viewController?.movieSavedStated ?? !correctState, "Incorrect movie state set by presenter")

@@ -7,55 +7,99 @@
 //
 
 import UIKit
+//Протокол фабрики деталей представления фильма
+protocol DetailsViewFactoryProtocol {
 
-class DetailsViewFactory {
-    let viewController: DetailsViewController
+    /// Сборка представления
+    ///
+    /// - Parameters:
+    ///   - movieData: даные фильма
+    ///   - poster: изображение постера
+    ///   - backdrop: изображение заставки
+    ///   - savedState: статус сохранения в CoreData
+    /// - Returns: ничего
+    func buildDetailsView (movieData: MovieDataModel,
+                           poster: UIImage?,
+                           backdrop: UIImage?,
+                           savedState: Bool)
+
+    /// Возваращет изображение постера для масштабирования
+    ///
+    /// - Returns: изображение постера
+    func getPosterForZoom() -> UIImage?
+
+    /// Изображает контрол постера для обработки нажатия
+    ///
+    /// - Returns: контрол постера
+    func getPosterViewForZoom() -> UIImageView
+
+    /// Возвращает скроллируемую часть представления
+    ///
+    /// - Returns: скролируемая часть представления
+    func getScrollView() -> UIScrollView
+
+    /// Возвращает кнопку сохранения в  CoreData
+    ///
+    /// - Returns: кнопка сохранения
+    func getSaveButton() -> UIButton
+}
+//Фабрика деталей представления фильма
+class DetailsViewFactory: DetailsViewFactoryProtocol {
+    let viewController: DetailsViewControllerProtocol
     private let backgroundColor = UIColor.black
     private let textColor = UIColor.white
     private let titleColor = UIColor.cyan
     private let defaultPosterImageName = "DefaultPoster"
     private let defaultBackdropImageName = "LogoMovieDB"
-    
+
     private let viewShiftY: CGFloat = 30
     private let viewShiftX: CGFloat = 30
 
-    init (viewController: DetailsViewController) {
+    //Постер для zoom
+    private var posterForZoom: UIImage?
+    private var posterImageView = UIImageView()
+    //Кнопка соханения
+    private var saveButtonView = UIButton()
+    //scrollView
+    var scrollView = UIScrollView()
+    //Лого: на основании этого признака выбираем способ масшатбирования изображения backdrop
+    private var isDefaultBackdrop = false
+
+    init (viewController: DetailsViewControllerProtocol) {
         self.viewController = viewController
     }
 
-    func buildDetailsView (poster: UIImage?, backdrop: UIImage?, savedState: Bool) {
-        viewController.isDefaultPoster = false
+    /// Сборка преджставления
+    ///
+    /// - Parameters:
+    ///   - movieData: фильм
+    ///   - poster: постер
+    ///   - backdrop: заставка
+    ///   - savedState: статус сохранения
+    func buildDetailsView (movieData: MovieDataModel, poster: UIImage?, backdrop: UIImage?, savedState: Bool) {
+        isDefaultBackdrop = false
+        self.posterForZoom = poster
 
-        guard let view = viewController.view else {
-            print("no view")
+        guard let view = viewController.getView() else {
             return
         }
-        
+
         guard let backdropImage = getPictureWithDefault(image: backdrop, defaultName: defaultBackdropImageName) else {
             return
         }
         guard let posterImage = getPictureWithDefault(image: poster, defaultName: defaultPosterImageName) else {
             return
         }
-        //TODO не нужно
-        guard let movieData = viewController.movie else {
-            return
-        }
-        
-        //Прихраниваем постер для детального отображения по клику на нем
-        //TODO
-        viewController.poster = posterImage
-        
-        let backdropImageView  = getBackdropImageView(image: backdropImage)
-        viewController.scrollView = getScrollView()
-        let scrollView = viewController.scrollView
-        let posterImageView = getPosterImageView(image: posterImage)
-        let titleView = getMovieTitle(movie: movieData)
-        let releaseView = getMovieReleaseDate(movie: movieData)
-        let saveButtonView = getSaveButton(movie: movieData)
-        let descriptionTitleView = getDescriptionTitle(movie: movieData)
-        let descriptionView = getDescription(movie: movieData)
-        
+
+        let backdropImageView  = buildBackdropImageView(image: backdropImage)
+        scrollView = buildScrollView()
+        self.posterImageView = buildPosterImageView(image: posterImage)
+        let titleView = buildMovieTitle(movie: movieData)
+        let releaseView = buildMovieReleaseDate(movie: movieData)
+        saveButtonView = buildSaveButton(movie: movieData)
+        let descriptionTitleView = buildDescriptionTitle(movie: movieData)
+        let descriptionView = buildDescription(movie: movieData)
+
         view.addSubview(scrollView)
         view.addSubview(backdropImageView)
         scrollView.addSubview(posterImageView)
@@ -64,7 +108,7 @@ class DetailsViewFactory {
         scrollView.addSubview(descriptionTitleView)
         scrollView.addSubview(descriptionView)
         scrollView.addSubview(saveButtonView)
-        
+
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         backdropImageView.translatesAutoresizingMaskIntoConstraints = false
         posterImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -73,7 +117,7 @@ class DetailsViewFactory {
         descriptionTitleView.translatesAutoresizingMaskIntoConstraints = false
         descriptionView.translatesAutoresizingMaskIntoConstraints = false
         saveButtonView.translatesAutoresizingMaskIntoConstraints = false
-        
+
         NSLayoutConstraint.activate([
             //Backdrop image
             backdropImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -110,23 +154,49 @@ class DetailsViewFactory {
             saveButtonView.leftAnchor.constraint(equalTo: view.leftAnchor),
             saveButtonView.rightAnchor.constraint(equalTo: view.rightAnchor)
             ])
-        //TODO
-//        didCheckCoreDataState(savedState)
-        
-//        scrollView.contentSize = CGSize(width: view.frame.width, height: view.frame.height)
     }
-    
+
+    /// Возвращает изображение постера
+    ///
+    /// - Returns: Изображение постера
+    func getPosterForZoom() -> UIImage? {
+        return self.posterForZoom
+    }
+
+    /// Вовзращает контрол постера
+    ///
+    /// - Returns: контрол
+    func getPosterViewForZoom() -> UIImageView {
+        return self.posterImageView
+    }
+
+    /// Вовзращает скроллируемую часть представления
+    ///
+    /// - Returns: скролируемая часть
+    func getScrollView() -> UIScrollView {
+        return scrollView
+    }
+
+    /// Возвращает кнопку сохранения
+    ///
+    /// - Returns: кнопка сохранения
+    func getSaveButton() -> UIButton {
+        return saveButtonView
+    }
+
+    // MARK: - детали реализацции
+
     private func getPictureWithDefault(image: UIImage?, defaultName: String) -> UIImage? {
         guard let existImage = image else {
-            if defaultPosterImageName == defaultName {
-                viewController.isDefaultPoster = true
+            if defaultName == defaultBackdropImageName {
+                isDefaultBackdrop = true
             }
             return UIImage(named: defaultName)
         }
         return existImage
     }
-    
-    private func getDescriptionTitle (movie: MovieDataModel) -> UILabel {
+
+    private func buildDescriptionTitle (movie: MovieDataModel) -> UILabel {
         let labelView = UILabel(frame: getFrame())
         labelView.text = "О фильме"
         labelView.backgroundColor = backgroundColor
@@ -135,8 +205,8 @@ class DetailsViewFactory {
         labelView.sizeToFit()
         return labelView
     }
-    
-    private func getDescription (movie: MovieDataModel) -> UILabel {
+
+    private func buildDescription (movie: MovieDataModel) -> UILabel {
         let labelView = UILabel(frame: getFrame())
         labelView.text = movie.overview
         labelView.backgroundColor = backgroundColor
@@ -147,41 +217,36 @@ class DetailsViewFactory {
         labelView.sizeToFit()
         return labelView
     }
-    
-    private func getScrollView () -> UIScrollView {
+
+    private func buildScrollView () -> UIScrollView {
         let scrollView = UIScrollView()
         scrollView.isPagingEnabled = false
         return scrollView
     }
-    
+
     private func getFrame() -> CGRect {
         return CGRect( x: 0, y: 0, width: 0, height: 0)
     }
-    
-    private func getBackdropImageView(image: UIImage) -> UIImageView {
-        let imageView = UIImageView(frame: getFrame())
-        imageView.contentMode = .scaleAspectFill
-        imageView.image = image
-        return imageView
-    }
-    
-    private func getPosterImageView(image: UIImage) -> UIImageView {
-        let imageView = UIImageView(frame: getFrame())
-        imageView.contentMode = .scaleAspectFill
-        imageView.image = image
-//        let posterTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector (viewController.actionUITapGestureRecognizer))
-//        imageView.isUserInteractionEnabled = true
-//        imageView.addGestureRecognizer(posterTapGestureRecognizer)
-        viewController.initGesture(imageView: imageView)
-        return imageView
-    }
-    
-    @objc func actionUITapGestureRecognizer () {
 
-        print("gesture tap")
+    private func buildBackdropImageView(image: UIImage) -> UIImageView {
+        let imageView = UIImageView(frame: getFrame())
+        if isDefaultBackdrop {
+            imageView.contentMode = .scaleAspectFit
+        } else {
+            imageView.contentMode = .scaleAspectFill
+        }
+        imageView.image = image
+        return imageView
     }
-    
-    private func getMovieTitle(movie: MovieDataModel) -> UILabel {
+
+    private func buildPosterImageView(image: UIImage) -> UIImageView {
+        let imageView = UIImageView(frame: getFrame())
+        imageView.contentMode = .scaleAspectFill
+        imageView.image = image
+        return imageView
+    }
+
+    private func buildMovieTitle(movie: MovieDataModel) -> UILabel {
         let titleView = UILabel(frame: getFrame())
         titleView.text = movie.title
         titleView.backgroundColor = backgroundColor
@@ -192,8 +257,8 @@ class DetailsViewFactory {
         titleView.sizeToFit()
         return titleView
     }
-    
-    private func getMovieReleaseDate(movie: MovieDataModel) -> UILabel {
+
+    private func buildMovieReleaseDate(movie: MovieDataModel) -> UILabel {
         let labelView = UILabel(frame: getFrame())
         labelView.text = "Дата релиза: " + convertLocalDateString(from: movie.releaseDate)
         labelView.backgroundColor = backgroundColor
@@ -204,7 +269,7 @@ class DetailsViewFactory {
         labelView.sizeToFit()
         return labelView
     }
-    
+
     private func convertLocalDateString(from movieDate: String) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
@@ -216,14 +281,13 @@ class DetailsViewFactory {
         let dateResult = dateFormatter.string(from: date)
         return dateResult + " г."
     }
-    
-    private func getSaveButton (movie: MovieDataModel) -> UIButton {
+
+    private func buildSaveButton (movie: MovieDataModel) -> UIButton {
         let buttonView: UIButton = {
             let button = UIButton(type: .custom)
             button.setTitle("Сохранить", for: .normal)
             button.backgroundColor = backgroundColor
             button.setTitleColor(.cyan, for: .normal)
-            button.addTarget(self, action: #selector(viewController.tapButtonSave), for: .touchDown)
             button.frame = getFrame()
             return button
         }()
